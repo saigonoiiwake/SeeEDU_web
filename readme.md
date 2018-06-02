@@ -3,7 +3,7 @@
 ## Goal
 Platform for SeeEDU
 
-## Framework 
+## Framework
 Laravel 5.5.40
 
 ## Requirement
@@ -35,3 +35,4 @@ php artisan serve
 ## Document
 
 [Laravel 5.5 Document](https://laravel.com/docs/5.5)
+[Seeedu31]https://www.seeedu31.com/
