@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChapterReview extends Migration
+class CreateReviewStudent extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateChapterReview extends Migration
      */
     public function up()
     {
-        Schema::create('chapter_review', function (Blueprint $table) {
+        Schema::create('review_student', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('class_id');
-            $table->unsignedInteger('chapter_id');
+            $table->unsignedInteger('student_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('rate');
             $table->text('comment')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->index(['class_id', 'chapter_id', 'user_id']);
+            $table->index(['student_id', 'user_id']);
         });
     }
 
@@ -33,6 +32,6 @@ class CreateChapterReview extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapter_review');
+        Schema::dropIfExists('review_student');
     }
 }

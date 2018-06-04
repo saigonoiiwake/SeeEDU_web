@@ -16,18 +16,19 @@ class CreateChapter extends Migration
         Schema::create('chapter', function (Blueprint $table) {
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('id')->comment('chapter id');
+            $table->string('title');
             $table->longText('introduction');
-            $table->timestampTz('from_time')->nullable(); ;
-            $table->timestampTz('to_time')->nullable(); ;
-            $table->string('video');
-            $table->string('material');
-            $table->unsignedInteger('num_view');
+            $table->timestamp('from_time')->nullable();
+            $table->timestamp('to_time')->nullable();
+            $table->text('record_link')->nullable();
+            $table->unsignedInteger('num_view')->default(0);
             $table->json('data');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->primary(['class_id', 'id']);
             $table->index(['from_time', 'to_time']);
             $table->index(['num_view']);
+            $table->index(['title']);
         });
     }
 

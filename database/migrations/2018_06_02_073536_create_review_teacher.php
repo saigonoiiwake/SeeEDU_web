@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeacherReview extends Migration
+class CreateReviewTeacher extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTeacherReview extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_review', function (Blueprint $table) {
+        Schema::create('review_teacher', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('user_id');
@@ -32,6 +32,6 @@ class CreateTeacherReview extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_review');
+        Schema::dropIfExists('review_teacher');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrivateMessage extends Migration
+class CreateReviewChapter extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreatePrivateMessage extends Migration
      */
     public function up()
     {
-        Schema::create('private_message', function (Blueprint $table) {
+        Schema::create('review_chapter', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('from_user_id');
-            $table->unsignedInteger('to_user_id');
-            $table->text('message');
-            $table->boolean('status')->default(false); // false: unread, trun: read
+            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('chapter_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('rate');
+            $table->text('comment')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->index(['from_user_id', 'to_user_id']);
+            $table->index(['class_id', 'chapter_id', 'user_id']);
         });
     }
 
@@ -32,6 +33,6 @@ class CreatePrivateMessage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('private_message');
+        Schema::dropIfExists('review_chapter');
     }
 }

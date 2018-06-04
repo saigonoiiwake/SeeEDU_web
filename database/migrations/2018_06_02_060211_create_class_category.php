@@ -16,7 +16,7 @@ class CreateClassCategory extends Migration
         Schema::create('class_category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('level');
+            $table->unsignedInteger('level')->default(1);
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('display_order');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

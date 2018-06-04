@@ -16,7 +16,7 @@ class CreateRole extends Migration
         Schema::create('role', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->json('permission_ids')->comment('include permission ids');
+            $table->json('permission_ids')->comment('include many permission ids');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });

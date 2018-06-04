@@ -15,12 +15,12 @@ class CreateForumReply extends Migration
     {
         Schema::create('forum_reply', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('post_id');
+            $table->unsignedInteger('forum_id');
             $table->unsignedInteger('user_id');
             $table->text('content');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->index(['post_id', 'user_id']);
+            $table->index(['forum_id', 'user_id']);
         });
     }
 
