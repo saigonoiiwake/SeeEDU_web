@@ -35,7 +35,7 @@ class CreateClassTable extends Migration
             $table->index(['category_id']);
             $table->index(['title']);
             $table->index(['status']);
-            $table->index(['min_num', 'enroll_num', 'max_num']); // ?
+            $table->index(['min_num', 'enroll_num', 'max_num']);
             $table->index(['currency', 'price']);
             $table->index(['start_date', 'end_date']);
         });
