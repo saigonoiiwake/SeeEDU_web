@@ -29,8 +29,7 @@ class CreateClassTable extends Migration
             $table->timestamp('start_date')->nullable(); 
             $table->timestamp('end_date')->nullable(); 
             $table->json('data')->nullable()->comment('metadata');     
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->primary('id');
             $table->index(['id', 'updated_at']);
             $table->index(['category_id']);

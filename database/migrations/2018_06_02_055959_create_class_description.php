@@ -16,8 +16,7 @@ class CreateClassDescription extends Migration
         Schema::create('class_description', function (Blueprint $table) {
             $table->unsignedInteger('class_id');
             $table->longText('description');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->primary('class_id');
         });
     }

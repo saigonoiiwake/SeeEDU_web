@@ -16,8 +16,7 @@ class CreatePermission extends Migration
         Schema::create('permission', function (Blueprint $table) {
             $table->increments('id');
             $table->string('permission');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

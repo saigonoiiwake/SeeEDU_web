@@ -19,8 +19,7 @@ class CreateClassCategory extends Migration
             $table->unsignedInteger('level')->default(1);
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('display_order');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->index(['id', 'parent_id']);
         });
     }

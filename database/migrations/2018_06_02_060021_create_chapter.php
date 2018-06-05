@@ -23,8 +23,7 @@ class CreateChapter extends Migration
             $table->text('record_link')->nullable();
             $table->unsignedInteger('num_view')->default(0);
             $table->json('data');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->primary(['class_id', 'id']);
             $table->index(['from_time', 'to_time']);
             $table->index(['num_view']);

@@ -16,8 +16,7 @@ class CreateTransaction extends Migration
         Schema::create('transaction', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->index(['id', 'user_id']);
         });
     }

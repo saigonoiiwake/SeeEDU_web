@@ -19,8 +19,7 @@ class CreatePrivateMessage extends Migration
             $table->unsignedInteger('to_user_id');
             $table->text('message');
             $table->boolean('status')->default(false); // false: unread, trun: read
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->index(['from_user_id', 'to_user_id']);
         });
     }

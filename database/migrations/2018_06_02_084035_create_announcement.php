@@ -18,8 +18,7 @@ class CreateAnnouncement extends Migration
             $table->text('title');
             $table->text('link');
             $table->unsignedInteger('priority');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

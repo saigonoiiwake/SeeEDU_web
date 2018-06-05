@@ -17,8 +17,7 @@ class CreateZoomLicense extends Migration
             $table->increments('id');
             $table->string('license');
             $table->unsignedInteger('chapter_id')->nullable();
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->index(['license', 'chapter_id']);
         });
     }

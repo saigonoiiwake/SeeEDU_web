@@ -30,8 +30,7 @@ class CreateClassDraft extends Migration
             $table->json('chapter')->nullable();
             $table->json('data')->nullable()->comment('metadata'); 
             $table->uuid('exhibit_token')->comment('avoid duplicate');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->index(['user_id']);
         });
     }

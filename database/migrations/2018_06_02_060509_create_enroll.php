@@ -16,8 +16,7 @@ class CreateEnroll extends Migration
         Schema::create('enroll', function (Blueprint $table) {
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('user_id');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->primary(['class_id', 'user_id']);
         });
     }

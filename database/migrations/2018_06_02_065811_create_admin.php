@@ -16,8 +16,7 @@ class CreateAdmin extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
             $table->boolean('active')->default(true);
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->primary('user_id');
         });
     }
