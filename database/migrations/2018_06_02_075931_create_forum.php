@@ -15,11 +15,11 @@ class CreateForum extends Migration
     {
         Schema::create('forum', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('lecture_id');
             $table->unsignedInteger('user_id');
             $table->text('content');
             $table->timestamps();
-            $table->index(['class_id', 'user_id']);
+            $table->index(['lecture_id', 'user_id']);
         });
     }
 

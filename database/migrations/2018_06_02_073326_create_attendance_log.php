@@ -15,11 +15,11 @@ class CreateAttendanceLog extends Migration
     {
         Schema::create('attendance_log', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('lecture_id');
             $table->unsignedInteger('chapter_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
-            $table->index(['class_id', 'chapter_id', 'user_id']);
+            $table->index(['lecture_id', 'chapter_id', 'user_id']);
         });
     }
 

@@ -14,10 +14,10 @@ class CreateEnroll extends Migration
     public function up()
     {
         Schema::create('enroll', function (Blueprint $table) {
-            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('lecture_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
-            $table->primary(['class_id', 'user_id']);
+            $table->primary(['lecture_id', 'user_id']);
         });
     }
 

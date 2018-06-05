@@ -14,12 +14,12 @@ class CreateIdentity extends Migration
     public function up()
     {
         Schema::create('identity', function (Blueprint $table) {
-            $table->unsignedInteger('class_id');
+            $table->unsignedInteger('lecture_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('role_id');
             $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->primary(['class_id', 'user_id', 'role_id']);
+            $table->primary(['lecture_id', 'user_id', 'role_id']);
         });
     }
 
