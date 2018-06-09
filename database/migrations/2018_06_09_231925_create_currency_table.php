@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZoomLicense extends Migration
+class CreateCurrencyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateZoomLicense extends Migration
      */
     public function up()
     {
-        Schema::create('zoom_license', function (Blueprint $table) {
+        Schema::create('currency', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('license');
+            $table->string('name', 3);
             $table->timestamps();
-            $table->index(['license']);
         });
     }
 
@@ -28,6 +27,6 @@ class CreateZoomLicense extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zoom_license');
+        Schema::dropIfExists('currency');
     }
 }

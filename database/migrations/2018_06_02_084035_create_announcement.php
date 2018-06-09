@@ -18,6 +18,7 @@ class CreateAnnouncement extends Migration
             $table->text('title');
             $table->text('link');
             $table->unsignedInteger('priority');
+            $table->boolean('discard')->default(false);
             $table->timestamps();
         });
     }

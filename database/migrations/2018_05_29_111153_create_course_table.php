@@ -22,7 +22,7 @@ class CreateCourseTable extends Migration
             $table->unsignedInteger('enroll_num');
             $table->unsignedInteger('min_num');
             $table->unsignedInteger('max_num');
-            $table->string('currency', 3);
+            $table->unsignedInteger('currency_id');
             $table->float('price');
             $table->float('early_bird_price')->nullable();
             $table->unsignedInteger('early_bird_num')->nullable();
@@ -36,7 +36,7 @@ class CreateCourseTable extends Migration
             $table->index(['title']);
             $table->index(['status']);
             $table->index(['min_num', 'enroll_num', 'max_num']);
-            $table->index(['currency', 'price']);
+            $table->index(['currency_id', 'price']);
             $table->index(['start_date', 'end_date']);
         });
     }

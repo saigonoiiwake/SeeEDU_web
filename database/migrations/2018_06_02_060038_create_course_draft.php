@@ -20,7 +20,7 @@ class CreateCourseDraft extends Migration
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('min_num')->nullable();
             $table->unsignedInteger('max_num')->nullable();
-            $table->string('currency', 3)->nullable();
+            $table->unsignedInteger('currency_id')->nullable();
             $table->float('price')->nullable();
             $table->float('early_bird_price')->nullable()->nullable();
             $table->unsignedInteger('early_bird_num')->nullable()->nullable();

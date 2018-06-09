@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZoomLicense extends Migration
+class CreateChapterZoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateZoomLicense extends Migration
      */
     public function up()
     {
-        Schema::create('zoom_license', function (Blueprint $table) {
+        Schema::create('chapter_zoom', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('license');
+            $table->unsignedInteger('chapter_id');
+            $table->unsignedInteger('zoom_id');
             $table->timestamps();
-            $table->index(['license']);
+            $table->index(['chapter_id', 'zoom_id']);
         });
     }
 
@@ -28,6 +29,6 @@ class CreateZoomLicense extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zoom_license');
+        Schema::dropIfExists('chapter_zoom');
     }
 }
