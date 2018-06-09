@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLectureTable extends Migration
+class CreateCourseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateLectureTable extends Migration
      */
     public function up()
     {
-        Schema::create('lecture', function (Blueprint $table) {
-            $table->unsignedInteger('id')->comment('lecture id');
+        Schema::create('course', function (Blueprint $table) {
+            $table->unsignedInteger('id')->comment('course id');
             $table->string('title');  // max 58 chinese
             // class status: submitted, reviewing, success, rejected...
             $table->string('status')->comment('status for the class');     
@@ -48,6 +48,6 @@ class CreateLectureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lecture');
+        Schema::dropIfExists('course');
     }
 }

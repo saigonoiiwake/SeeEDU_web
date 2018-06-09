@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLectureDraft extends Migration
+class CreateCourseDraft extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLectureDraft extends Migration
      */
     public function up()
     {
-        Schema::create('lecture_draft', function (Blueprint $table) {
+        Schema::create('course_draft', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('title');
@@ -28,8 +28,7 @@ class CreateLectureDraft extends Migration
             $table->timestamp('end_date')->nullable();
             $table->longText('description')->nullable();
             $table->json('chapter')->nullable();
-            $table->json('data')->nullable()->comment('metadata'); 
-            $table->uuid('exhibit_token')->comment('avoid duplicate');
+            $table->json('data')->nullable()->comment('metadata');
             $table->timestamps();
             $table->index(['user_id']);
         });
@@ -42,6 +41,6 @@ class CreateLectureDraft extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lecture_draft');
+        Schema::dropIfExists('course_draft');
     }
 }

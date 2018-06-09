@@ -15,13 +15,13 @@ class CreateReviewChapter extends Migration
     {
         Schema::create('review_chapter', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('lecture_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('chapter_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('rate');
             $table->text('comment')->nullable();
             $table->timestamps();
-            $table->index(['lecture_id', 'chapter_id', 'user_id']);
+            $table->index(['course_id', 'chapter_id', 'user_id']);
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLectureDescription extends Migration
+class CreateCourseDescription extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateLectureDescription extends Migration
      */
     public function up()
     {
-        Schema::create('lecture_description', function (Blueprint $table) {
-            $table->unsignedInteger('lecture_id');
+        Schema::create('course_description', function (Blueprint $table) {
+            $table->unsignedInteger('course_id');
             $table->longText('description');
             $table->timestamps();
-            $table->primary('lecture_id');
+            $table->primary('course_id');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateLectureDescription extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lecture_description');
+        Schema::dropIfExists('course_description');
     }
 }

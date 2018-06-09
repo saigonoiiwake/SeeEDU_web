@@ -14,7 +14,7 @@ class CreateChapter extends Migration
     public function up()
     {
         Schema::create('chapter', function (Blueprint $table) {
-            $table->unsignedInteger('lecture_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('id')->comment('chapter id');
             $table->string('title');
             $table->longText('introduction');
@@ -24,7 +24,7 @@ class CreateChapter extends Migration
             $table->unsignedInteger('num_view')->default(0);
             $table->json('data');
             $table->timestamps();
-            $table->primary(['lecture_id', 'id']);
+            $table->primary(['course_id', 'id']);
             $table->index(['from_time', 'to_time']);
             $table->index(['num_view']);
             $table->index(['title']);

@@ -17,6 +17,7 @@ class AddIntroductionToUserTable extends Migration
             $table->text('intrduction')->after('email')->nullable();
             $table->json('experience')->after('intrduction')->nullable();
             $table->json('education')->after('experience')->nullable();
+            $table->json('data')->after('education')->nullable();
         });
     }
 
