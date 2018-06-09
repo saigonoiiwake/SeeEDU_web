@@ -11,7 +11,6 @@ class Admin extends Model
     protected $user_id;
     protected $active;
 
-
     /**
      * The attributes that are mass assignable.
      *
