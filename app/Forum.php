@@ -14,6 +14,16 @@ class Forum extends Model
      * @var array
      */
     protected $fillable = [
-
+        'course_id', 'user_id', 'content',
     ];
+
+    public function reply()
+    {
+        return $this->hasMany('App/CourseReply');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App/User', 'id', 'user_id');
+    }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseCategory extends Model
 {
-    protected $table = 'lecture_category';
+    protected $table = 'course_category';
 
     /**
      * The attributes that are mass assignable.
@@ -14,6 +14,11 @@ class CourseCategory extends Model
      * @var array
      */
     protected $fillable = [
-
+        'name', 'level', 'parent_id', 'display_order',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo('App/Course');
+    }
 }

@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+// TODO
+class ChpaterZoom extends Model
 {
-    protected $table = 'permission';
+    protected $table = 'chapter_zoom';
 
     /**
      * The attributes that are mass assignable.
@@ -14,6 +15,9 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'permission',
+        'course_id', 'id', 'zoom_id', 'active'
     ];
+
+    // chpater
+    // zoom
 }

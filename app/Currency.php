@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CourseDescription extends Model
+class Currency extends Model
 {
-    protected $table = 'course_description';
+    protected $table = 'currency';
 
     /**
      * The attributes that are mass assignable.
@@ -14,11 +14,16 @@ class CourseDescription extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'description',
+        'name',
     ];
 
     public function course()
     {
-        return $this->hasOne('App/Course', 'id', 'course_id');
+        return $this->belongsTo('App/Course');
+    }
+
+    public function courseDraft()
+    {
+        return $this->belongsTo('App/CourseDraft');
     }
 }

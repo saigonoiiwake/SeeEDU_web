@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+// TODO
 class ZoomLicense extends Model
 {
     protected $table = 'zoom_license';
@@ -14,6 +15,6 @@ class ZoomLicense extends Model
      * @var array
      */
     protected $fillable = [
-
+        'license',
     ];
 }

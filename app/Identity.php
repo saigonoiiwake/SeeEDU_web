@@ -14,6 +14,17 @@ class Identity extends Model
      * @var array
      */
     protected $fillable = [
-
+        'course_id', 'user_id', 'role_id', 'active'
     ];
+
+    public function course()
+    {
+        // ?
+        return $this->belongsTo('App/Course', 'id', 'course_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App/User', 'id', 'user_id');
+    }
 }

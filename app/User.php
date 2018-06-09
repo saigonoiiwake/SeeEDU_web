@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password',
+        'id', 'name', 'email', 'password', 'introduction', 'experience', 'data'
     ];
 
     /**
@@ -29,6 +29,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin');
+    }
+
+    // attendanceLog
+    // course draft
+    // enroll
+    // forum
+    // forumReply
+    // identiy
+    // private message
+    // transaction
 
     /**
      * generate 10 digit ID

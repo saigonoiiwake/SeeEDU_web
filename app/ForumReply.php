@@ -14,6 +14,16 @@ class ForumReply extends Model
      * @var array
      */
     protected $fillable = [
-
+        'forum_id', 'user_id', 'content',
     ];
+
+    public function forum()
+    {
+        return $this->belongsTo('App/Forum', 'id', 'forum_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App/User', 'id', 'user_id');
+    }
 }

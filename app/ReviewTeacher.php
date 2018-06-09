@@ -14,6 +14,16 @@ class ReviewTeacher extends Model
      * @var array
      */
     protected $fillable = [
-
+        'teacher_id', 'user_id', 'rate', 'comment'
     ];
+
+    public function teacher()
+    {
+        return $this->hasOne('App/User', 'id', 'teacher_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App/User', 'id', 'user_id');
+    }
 }

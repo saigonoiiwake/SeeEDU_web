@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseDraft extends Model
 {
-    protected $table = 'lecture_draft';
+    protected $table = 'course_draft';
 
     /**
      * The attributes that are mass assignable.
@@ -14,6 +14,13 @@ class CourseDraft extends Model
      * @var array
      */
     protected $fillable = [
-
+        'user_id', 'title', 'category_id', 'min_num', 'max_num',
+        'currency_id', 'price', 'early_bird_price', 'early_bird_name',
+        'start_date', 'end_date', 'description', 'chapter', 'data',
     ];
+
+    public function currency()
+    {
+        return $this->hasOne('App/Currency', 'id', 'currency_id');
+    }
 }

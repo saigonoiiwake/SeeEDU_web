@@ -14,6 +14,16 @@ class PrivateMessage extends Model
      * @var array
      */
     protected $fillable = [
-
+        'from_user_id', 'to_user_id', 'message', 'status'
     ];
+
+    public function fromUser()
+    {
+        return $this->hasOne('App/User', 'id', 'from_user_id');
+    }
+
+    public function toUser()
+    {
+        return $this->hasOne('App/User', 'id', 'to_user_id');
+    }
 }

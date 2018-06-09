@@ -14,6 +14,11 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->hasOne('App/User', 'id', 'user_id');
+    }
 }
