@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Validation\ValidationException;
 
 class User extends Authenticatable
 {
@@ -19,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password',
+        'id', 'name', 'email', 'password', 'introduction', 'experience', 'data'
     ];
 
     /**
@@ -30,6 +29,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin');
+    }
+
+    // attendanceLog
+    // course draft
+    // enroll
+    // forum
+    // forumReply
+    // identiy
+    // private message
+    // transaction
 
     /**
      * generate 10 digit ID
