@@ -19,11 +19,11 @@ class ReviewStudent extends Model
 
     public function student()
     {
-        return $this->hasOne('App/User', 'id', 'student_id');
+        return $this->belongsTo('App\User');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
     }
 }

@@ -21,36 +21,62 @@ class Course extends Model
 
     public function attendanceLog()
     {
-        return $this->belongsTo('App/AttendanceLog');
+        return $this->hasMany('App\AttendanceLog', 'course_id', 'id');
+    }
+
+    public function attendedStudent()
+    {
+        return $this->belongsToMany('App\User', 'attendance_log', 'course_id', 'user_id');
     }
 
     public function chapter()
     {
-        return $this->belongsTo('App/Chapter');
+        return $this->hasMany('App\Chapter', 'course_id', 'id');
     }
 
     public function category()
     {
-        return $this->hasOne('App/CourseCategory', 'id', 'category_id');
+        return $this->belongsTo('App\CourseCategory');
     }
 
     public function currency()
     {
-        return $this->hasOne('App/Currency', 'id', 'currency_id');
+        return $this->belongsTo('App\Currency');
     }
 
     public function description()
     {
-        return $this->belongsTo('App/CourseDescription');
+        return $this->hasOne('App\CourseDescription', 'course_id', 'id');
     }
 
     public function enroll()
     {
-        return $this->belongsTo('App/Enroll');
+        return $this->belongsTo('App\Enroll');
+    }
+
+    public function student()
+    {
+        return $this->belongsToMany('App\User', 'enroll', 'course_id', 'user_id');
     }
 
     public function identity()
     {
-        return; //$this->hasMany('App/Identity', '')
+        // one course has many identity (many teachers, many TAs)
+        return $this->hasMany('App\Identity', 'course_id', 'id');
+    }
+
+    public function teacherOrTA()
+    {
+        return $this->belongsToMany('App\User', 'identity', 'course_id', 'user_id');
+    }
+
+    public function forum()
+    {
+        return $this->hasMany('App\Forum', 'course_id', 'id');
+    }
+
+    public function review()
+    {
+        return $this->hasMany('App\ReviewChapter', 'course_id', 'id');
     }
 }

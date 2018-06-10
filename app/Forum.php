@@ -19,11 +19,16 @@ class Forum extends Model
 
     public function reply()
     {
-        return $this->hasMany('App/CourseReply');
+        return $this->hasMany('App\ForumReply');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
     }
 }

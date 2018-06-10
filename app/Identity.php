@@ -19,12 +19,16 @@ class Identity extends Model
 
     public function course()
     {
-        // ?
-        return $this->belongsTo('App/Course', 'id', 'course_id');
+        return $this->belongsTo('App\Course');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
     }
 }

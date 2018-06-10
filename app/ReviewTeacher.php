@@ -19,11 +19,11 @@ class ReviewTeacher extends Model
 
     public function teacher()
     {
-        return $this->hasOne('App/User', 'id', 'teacher_id');
+        return $this->belongsTo('App\User');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
     }
 }

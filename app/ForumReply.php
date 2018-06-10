@@ -19,11 +19,11 @@ class ForumReply extends Model
 
     public function forum()
     {
-        return $this->belongsTo('App/Forum', 'id', 'forum_id');
+        return $this->belongsTo('App\Forum');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User' );
     }
 }

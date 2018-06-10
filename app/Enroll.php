@@ -19,11 +19,11 @@ class Enroll extends Model
 
     public function course()
     {
-        return $this->hasOne('App/Course', 'id', 'course_id');
+        return $this->hasOne('App\Course', 'id', 'course_id');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
     }
 }

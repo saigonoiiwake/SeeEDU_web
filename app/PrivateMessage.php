@@ -19,11 +19,11 @@ class PrivateMessage extends Model
 
     public function fromUser()
     {
-        return $this->hasOne('App/User', 'id', 'from_user_id');
+        return $this->belongsTo('App\User');
     }
 
     public function toUser()
     {
-        return $this->hasOne('App/User', 'id', 'to_user_id');
+        return $this->belongsTo('App\User');
     }
 }

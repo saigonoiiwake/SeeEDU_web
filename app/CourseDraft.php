@@ -19,8 +19,13 @@ class CourseDraft extends Model
         'start_date', 'end_date', 'description', 'chapter', 'data',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function currency()
     {
-        return $this->hasOne('App/Currency', 'id', 'currency_id');
+        return $this->belongsTo('App\Currency');
     }
 }

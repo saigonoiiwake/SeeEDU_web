@@ -19,16 +19,16 @@ class ReviewChapter extends Model
 
     public function course()
     {
-        return $this->hasOne('App/Course', 'id', 'course_id');
+        return $this->belongsTo('App\Course');
     }
 
     public function chapter()
     {
-        return $this->hasOne('App/Chapter', 'id', 'chapter_id');
+        return $this->belongsTo('App\Chapter', 'id', 'chapter_id');
     }
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
     }
 }

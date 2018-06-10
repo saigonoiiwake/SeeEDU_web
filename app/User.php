@@ -32,17 +32,104 @@ class User extends Authenticatable
 
     public function admin()
     {
-        return $this->belongsTo('App\Admin');
+        return $this->hasOne('App\Admin', 'user_id', 'id');
     }
 
-    // attendanceLog
-    // course draft
-    // enroll
-    // forum
-    // forumReply
-    // identiy
-    // private message
-    // transaction
+    public function attendanceLog()
+    {
+        return $this->hasMany('App\AttendanceLog', 'user_id', 'id');
+    }
+
+    public function attendedCourse()
+    {
+        return $this->belongsToMany('App\Course', 'attendance_log', 'user_id', 'course_id');
+    }
+
+    public function attendedChapter()
+    {
+        return $this->belongsToMany('App\Chapter', 'attendance_log', 'user_id', 'chapter_id');
+    }
+
+    public function courseDraft()
+    {
+        return $this->hasMany('App\CourseDraft', 'user_id', 'id');
+    }
+
+    public function enroll()
+    {
+        return $this->hasMany('App\Enroll', 'user_id', 'id');
+    }
+
+    public function takeCourse()
+    {
+        return $this->belongsToMany('App\Course', 'enroll', 'user_id', 'course_id');
+    }
+
+    public function forum()
+    {
+        return $this->hasMany('App\Forum', 'user_id', 'id');
+    }
+
+    public function forumReply()
+    {
+        return $this->hasMany('App\ForumReply', 'user_id', 'id');
+    }
+
+    public function identity()
+    {
+        return $this->hasMany('App\Identity', 'user_id', 'id');
+    }
+
+    public function course()
+    {
+        // as teacher of TA
+        return $this->belongsToMany('App\Course', 'identity', 'user_id', 'course_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany('App\Role', 'identity', 'user_id', 'role_id');
+    }
+
+    public function receivePrivateMessage()
+    {
+        return $this->hasMany('App\PrivateMessage', 'to_user_id', 'id');
+    }
+
+    public function sendPrivateMessage()
+    {
+        return $this->hasMany('App\PrivateMessage', 'from_user_id', 'id');
+    }
+
+    public function reviewChapter()
+    {
+        return $this->hasMany('App\ReviewChapter', 'user_id', 'id');
+    }
+
+    public function reviewStudent()
+    {
+        return $this->hasMany('App\ReviewStudent', 'user_id', 'id');
+    }
+
+    public function receiveStudentReview()
+    {
+        return $this->hasMany('App\ReviewStudent', 'student_id', 'id');
+    }
+
+    public function reviewTeacher()
+    {
+        return $this->hasMany('App\ReviewherTeac', 'user_id', 'id');
+    }
+
+    public function receiveTeacherReview()
+    {
+        return $this->hasMany('App\ReviewTeacher', 'teacher_id', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany('App\Transaction', 'user_id', 'id');
+    }
 
     /**
      * generate 10 digit ID

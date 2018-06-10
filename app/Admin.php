@@ -8,9 +8,6 @@ class Admin extends Model
 {
     protected $table = 'admin';
 
-    protected $user_id;
-    protected $active;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +19,7 @@ class Admin extends Model
 
     public function user()
     {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->belongsTo('App\User');
     }
 
     /**

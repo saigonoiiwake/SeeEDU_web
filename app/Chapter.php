@@ -20,11 +20,21 @@ class Chapter extends Model
 
     public function course()
     {
-        return $this->hasOne('App/Course', 'id', 'course_id');
+        return $this->belongsTo('App\Course');
+    }
+
+    public function attendanceLog()
+    {
+        return $this->hasMany('App\AttendanceLog', 'chapter_id', 'id');
+    }
+
+    public function attendedStudent()
+    {
+        return $this->belongsToMany('App\User', 'attendance_log', 'course_id', 'user_id');
     }
 
     public function review()
     {
-        return $this->hasMany('App/ReviewChapter', 'chapter_id', 'id');
+        return $this->hasMany('App\ReviewChapter', 'chapter_id', 'id');
     }
 }

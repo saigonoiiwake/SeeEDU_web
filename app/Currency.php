@@ -19,11 +19,11 @@ class Currency extends Model
 
     public function course()
     {
-        return $this->belongsTo('App/Course');
+        return $this->hasMany('App\Course', 'currency_id', 'id');
     }
 
     public function courseDraft()
     {
-        return $this->belongsTo('App/CourseDraft');
+        return $this->hasMany('App\CourseDraft', 'currency_id', 'id');
     }
 }

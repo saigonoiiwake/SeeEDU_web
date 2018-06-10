@@ -19,6 +19,6 @@ class CourseDescription extends Model
 
     public function course()
     {
-        return $this->hasOne('App/Course', 'id', 'course_id');
+        return $this->belongsTo('App\Course');
     }
 }

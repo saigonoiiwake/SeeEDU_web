@@ -22,7 +22,7 @@ class CreateChapter extends Migration
             $table->timestamp('to_time')->nullable();
             $table->text('record_link')->nullable();
             $table->unsignedInteger('num_view')->default(0);
-            $table->json('data');
+            $table->json('data')->nullable();
             $table->timestamps();
             $table->primary(['course_id', 'id']);
             $table->index(['from_time', 'to_time']);
