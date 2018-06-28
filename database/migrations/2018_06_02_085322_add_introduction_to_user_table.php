@@ -14,10 +14,14 @@ class AddIntroductionToUserTable extends Migration
     public function up()
     {
         Schema::table('user', function (Blueprint $table) {
-            $table->text('intrduction')->after('email')->nullable();
-            $table->json('experience')->after('intrduction')->nullable();
-            $table->json('education')->after('experience')->nullable();
-            $table->json('data')->after('education')->nullable();
+            $table->enum('status', ['alive', 'dead'])->default('alive');
+            $table->text('photo_url')->after('email')->nullable();
+            $table->string('phone_number')->after('photo_url')->nullable();
+            $table->string('birthday')->after('phone_number')->nullable();
+            $table->text('introduction')->after('birthday')->nullable();
+            $table->json('education')->after('introduction')->nullable();
+            $table->json('experience')->after('education')->nullable();
+            $table->json('data')->after('experience')->nullable();
         });
     }
 
@@ -29,9 +33,14 @@ class AddIntroductionToUserTable extends Migration
     public function down()
     {
         Schema::table('user', function (Blueprint $table) {
-            $table->dropColumn('intrduction');
+            $table->dropColumn('status');
+            $table->dropColumn('photo_url');
+            $table->dropColumn('phone_number');
+            $table->dropColumn('birthday');
+            $table->dropColumn('introduction');
             $table->dropColumn('experience');
             $table->dropColumn('education');
+            $table->dropColumn('data');
         });
     }
 }
