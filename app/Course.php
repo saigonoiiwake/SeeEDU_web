@@ -9,6 +9,9 @@ class Course extends Model
 {
     protected $table = 'course';
 
+    // Disable auto increment `id` field
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
