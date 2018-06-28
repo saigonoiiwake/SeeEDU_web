@@ -12,6 +12,9 @@ class User extends Authenticatable
 
     protected $table = 'user';
 
+    // Disable auto increment `id` field
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
