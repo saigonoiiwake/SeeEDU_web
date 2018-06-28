@@ -70,3 +70,11 @@ class RegisterController extends Controller
         ]);
     }
 }
+
+
+App\User::create([
+    'id'       => User::generateIdSafe(),
+    'name'     => "tony",
+    'email'    => "a@a",
+    'password' => bcrypt("password"),
+]);

@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/create_course', 'CreateCourseController@index')->name('create_course');
+
+Route::post('/create_course', 'CreateCourseController@create')->name('home');
