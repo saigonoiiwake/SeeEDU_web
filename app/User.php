@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'introduction', 'experience', 'data'
+        'id', 'name', 'email', 'password', 'status', 'photo_url', 'phone_number', 'birthday',
+        'introduction', 'education', 'experience', 'data'
     ];
 
     /**
@@ -75,6 +76,11 @@ class User extends Authenticatable
         return $this->hasMany('App\ForumReply', 'user_id', 'id');
     }
 
+    public function qa()
+    {
+        return $this->hasMany('App\QA', 'user_id', 'id');
+    }
+
     public function identity()
     {
         return $this->hasMany('App\Identity', 'user_id', 'id');
@@ -101,9 +107,9 @@ class User extends Authenticatable
         return $this->hasMany('App\PrivateMessage', 'from_user_id', 'id');
     }
 
-    public function reviewChapter()
+    public function reviewCourse()
     {
-        return $this->hasMany('App\ReviewChapter', 'user_id', 'id');
+        return $this->hasMany('App\ReviewCourse', 'user_id', 'id');
     }
 
     public function reviewStudent()

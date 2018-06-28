@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReviewChapter extends Model
+class ReviewCourse extends Model
 {
-    protected $table = 'review_chapter';
+    protected $table = 'review_course';
 
     /**
      * The attributes that are mass assignable.
@@ -14,17 +14,12 @@ class ReviewChapter extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'chapter_id', 'user_id', 'rate', 'comment'
+        'course_id', 'user_id', 'rate', 'detail', 'comment'
     ];
 
     public function course()
     {
         return $this->belongsTo('App\Course');
-    }
-
-    public function chapter()
-    {
-        return $this->belongsTo('App\Chapter', 'id', 'chapter_id');
     }
 
     public function user()

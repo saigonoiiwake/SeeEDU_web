@@ -14,7 +14,7 @@ class Chapter extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'id', 'title', 'introduction', 'from_time', 'to_time',
+        'course_id', 'order', 'title', 'introduction', 'from_time', 'to_time',
         'record_link', 'new_view', 'data',
     ];
 
@@ -31,10 +31,5 @@ class Chapter extends Model
     public function attendedStudent()
     {
         return $this->belongsToMany('App\User', 'attendance_log', 'course_id', 'user_id');
-    }
-
-    public function review()
-    {
-        return $this->hasMany('App\ReviewChapter', 'chapter_id', 'id');
     }
 }

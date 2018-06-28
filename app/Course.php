@@ -75,8 +75,13 @@ class Course extends Model
         return $this->hasMany('App\Forum', 'course_id', 'id');
     }
 
+    public function qa()
+    {
+        return $this->hasMany('App\QA', 'course_id', 'id');
+    }
+
     public function review()
     {
-        return $this->hasMany('App\ReviewChapter', 'course_id', 'id');
+        return $this->hasMany('App\ReviewCourse', 'course_id', 'id');
     }
 }
