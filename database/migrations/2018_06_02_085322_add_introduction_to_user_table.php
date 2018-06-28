@@ -14,8 +14,8 @@ class AddIntroductionToUserTable extends Migration
     public function up()
     {
         Schema::table('user', function (Blueprint $table) {
-            $table->enum('status', ['alive', 'dead'])->default('alive');
-            $table->text('photo_url')->after('email')->nullable();
+            $table->enum('status', ['alive', 'dead'])->after('email')->default('alive');
+            $table->text('photo_url')->after('status')->nullable();
             $table->string('phone_number')->after('photo_url')->nullable();
             $table->string('birthday')->after('phone_number')->nullable();
             $table->text('introduction')->after('birthday')->nullable();

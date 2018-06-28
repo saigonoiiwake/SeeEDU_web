@@ -32,4 +32,25 @@ class Chapter extends Model
     {
         return $this->belongsToMany('App\User', 'attendance_log', 'course_id', 'user_id');
     }
+
+    /**
+     * generate chapter order
+     *
+     * @param int $course
+     * @return int
+     * @throws
+     */
+    public static function generateOrder($course)
+    {
+        $orders = self::query()
+            ->where('course_id', '=', $course)
+            ->orderBy('order', 'desc')
+            ->get();
+
+        if ( $orders->count() === 0 ) {
+            return 1;
+        }
+
+        return $orders[0]->order + 1;
+    }
 }

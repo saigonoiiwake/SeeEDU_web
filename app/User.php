@@ -165,7 +165,7 @@ class User extends Authenticatable
 
         try {
             self::query()
-                ->where('id', $id)
+                ->where('id', '=',$id)
                 ->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return $id;
