@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use App\Course;
+use App\Chapter;
 
-class HomeController extends Controller
+class CourseController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,10 +25,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id)
     {
-        $courses = Auth::user()->course;
+        $course = Course::find($id);
 
-        return view('home', ['courses' => $courses]);
+        Log::info($course);
+
+        $chapter = $course->chapter;
+
+        Log::info($chapter);
+
+        return view('course', ['course' => $course, 'chapters' => $chapter]);
     }
 }

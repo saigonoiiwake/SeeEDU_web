@@ -50,6 +50,27 @@
                         <span class="help-block">{{ $errors->first('description') }}</span>
                     @endif
                 </div>
+
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="/js/moment.min.js"></script>
+                    <script src="/js/bootstrap-datepicker.min.js"></script>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datepicker1').datepicker();
+                        });
+                    </script>
+                </div>
+
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>

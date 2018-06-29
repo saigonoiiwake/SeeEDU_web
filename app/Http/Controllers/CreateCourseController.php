@@ -72,26 +72,3 @@ class CreateCourseController extends Controller
         return view('home');
     }
 }
-
-$course = App\Course::create([
-    'id'    => App\Course::generateIdSafe(),
-    'title' => 1,
-    'status' => 'reviewing',
-    'category_id' => 1,
-    'enroll_num' => 12,
-    'min_num' => 1,
-    'max_num' => 100,
-    'currency_id' => 1,
-    'price' => 100,
-    'start_date' => '2018-02-12 12:23:22',
-    'end_date' => '2018-02-12 12:23:22',
-]);
-
-App\Chapter::create([
-    'title' => 'title',
-    'introduction' => 'inter',
-    'course_id' => $course->id,
-    'order' => Chapter::generateOrder($course->id),
-    'from_time' => '2018-02-12 12:23:22',
-    'to_time' => '2018-02-12 12:23:22',
-]);
