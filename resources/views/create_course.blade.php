@@ -62,11 +62,9 @@
                             </div>
                         </div>
                     </div>
-                    <script src="/js/moment.min.js"></script>
-                    <script src="/js/bootstrap-datepicker.min.js"></script>
                     <script type="text/javascript">
                         $(function () {
-                            $('#datepicker1').datepicker();
+                            $('#datepicker1').datepicker({ dateFormat: "yy-mm-dd" });
                         });
                     </script>
                 </div>
