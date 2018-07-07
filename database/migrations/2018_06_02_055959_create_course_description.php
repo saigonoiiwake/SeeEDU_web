@@ -15,7 +15,7 @@ class CreateCourseDescription extends Migration
     {
         Schema::create('course_description', function (Blueprint $table) {
             $table->unsignedInteger('course_id');
-            $table->longText('description');
+            $table->mediumText('description');
             $table->timestamps();
             $table->primary('course_id');
         });
