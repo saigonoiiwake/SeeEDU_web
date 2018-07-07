@@ -21,8 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'status', 'photo_url', 'phone_number', 'birthday',
-        'introduction', 'education', 'experience', 'data'
+        'id', 'name', 'email', 'password', 'status',
     ];
 
     /**
@@ -33,6 +32,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
 
     public function admin()
     {
@@ -142,7 +146,7 @@ class User extends Authenticatable
 
     /**
      * generate 10 digit ID
-     * 
+     *
      * @return int
      */
     public static function generateId()
