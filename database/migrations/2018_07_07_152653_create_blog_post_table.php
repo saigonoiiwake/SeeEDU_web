@@ -17,8 +17,8 @@ class CreateBlogPostTable extends Migration
           $table->unsignedInteger('id');
           $table->string('title');
           $table->string('slug');
-          $table->text('content');
-          $table->integer('blog_category_id');
+          $table->mediumText('content');
+          $table->unsignedInteger('blog_category_id');
           $table->string('featured');
           $table->softDeletes();
           $table->timestamps();
