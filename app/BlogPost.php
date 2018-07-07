@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class BlogPost extends Model
 {
-  protected $table = 'blog_post';
+    protected $table = 'blog_post';
 
-  // Disable auto increment `id` field
-  public $incrementing = false;
-
+    // Disable auto increment `id` field
+    public $incrementing = false;
 
     use softDeletes;
 
