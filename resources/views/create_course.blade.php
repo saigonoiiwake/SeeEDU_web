@@ -58,14 +58,14 @@
                                 <input type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
-                                 </span>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#datepicker1').datepicker({ dateFormat: "yy-mm-dd" });
-                        });
+                    <script type="text/javascript" differ>
+                        (function ($) {
+                            $('#datepicker1').datepicker();
+                        })(jQuery);
                     </script>
                 </div>
 

@@ -22,3 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/create_course', 'CreateCourseController@index')->name('create_course');
 
 Route::post('/create_course', 'CreateCourseController@create')->name('home');
+
+Route::get('/web_socket', function () {
+    return view('web_socket');
+});
+
+Route::get('/echo', 'EchoController@create');
+
+Route::get('/messages', function () {
+    return view('messages');
+});
