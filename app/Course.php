@@ -18,7 +18,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title', 'status', 'category_id', 'enroll_num', 'min_num', 'max_num',
+        'id', 'title', 'status', 'course_category_id', 'enroll_num', 'min_num', 'max_num',
         'currency_id', 'price', 'early_bird_price', 'early_bird_name', 'start_date', 'end_date',
         'data',
     ];

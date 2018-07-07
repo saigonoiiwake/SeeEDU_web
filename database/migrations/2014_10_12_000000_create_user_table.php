@@ -18,6 +18,7 @@ class CreateUserTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('status', ['alive', 'dead'])->default('alive');
             $table->rememberToken();
             $table->timestamps();
         });
