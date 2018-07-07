@@ -144,6 +144,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Transaction', 'user_id', 'id');
     }
 
+    public static function newUser($param)
+    {
+        return parent::create([
+            'id'       => self::generateIdSafe(),
+            'name'     => $param['name'],
+            'email'    => $param['email'],
+            'password' => bcrypt($param['password']),
+        ]);
+    }
+
     /**
      * generate 10 digit ID
      *

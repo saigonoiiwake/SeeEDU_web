@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Validator;
 
 class Course extends Model
 {
@@ -87,6 +88,27 @@ class Course extends Model
     public function review()
     {
         return $this->hasMany('App\ReviewCourse', 'course_id', 'id');
+    }
+
+    public static function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    public static function newCourse(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+//            'id'       => self::generateIdSafe(),
+//            'name'     => $param['name'],
+//            'email'    => $param['email'],
+//            'password' => bcrypt($param['password']),
+        ]);
     }
 
     /**

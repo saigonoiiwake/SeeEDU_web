@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class CourseDraft extends Model
 {
@@ -27,5 +28,26 @@ class CourseDraft extends Model
     public function currency()
     {
         return $this->belongsTo('App\Currency');
+    }
+
+    public static function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    public static function newCourseDraft(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+//            'id'       => self::generateIdSafe(),
+//            'name'     => $param['name'],
+//            'email'    => $param['email'],
+//            'password' => bcrypt($param['password']),
+        ]);
     }
 }
