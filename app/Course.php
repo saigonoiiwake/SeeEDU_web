@@ -41,7 +41,7 @@ class Course extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\CourseCategory');
+        return $this->belongsTo('App\CourseCategory', 'course_category_id', 'id');
     }
 
     public function currency()

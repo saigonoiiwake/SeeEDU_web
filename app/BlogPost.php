@@ -16,7 +16,7 @@ class BlogPost extends Model
     public $incrementing = false;
 
     protected $fillable = [
-      'id', 'title', 'content', 'blog_category_id', 'featured', 'slug', 'id'
+      'id', 'title', 'content', 'blog_category_id', 'featured', 'slug'
     ];
 
     protected $dates = ['delete_at'];
