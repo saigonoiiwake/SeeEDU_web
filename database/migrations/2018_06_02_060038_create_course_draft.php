@@ -17,7 +17,7 @@ class CreateCourseDraft extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('title');
-            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('course_category_id')->nullable();
             $table->unsignedInteger('min_num')->nullable();
             $table->unsignedInteger('max_num')->nullable();
             $table->unsignedInteger('currency_id')->nullable();

@@ -17,8 +17,8 @@ class CreateCourseTable extends Migration
             $table->unsignedInteger('id')->comment('course id');
             $table->string('title');  // max 58 chinese
             // class status: submitted, reviewing, success, rejected...
-            $table->string('status')->comment('status for the class');     
-            $table->unsignedInteger('category_id');
+            $table->string('status')->comment('status for the class');
+            $table->unsignedInteger('course_category_id');
             $table->unsignedInteger('enroll_num');
             $table->unsignedInteger('min_num');
             $table->unsignedInteger('max_num');
@@ -26,13 +26,13 @@ class CreateCourseTable extends Migration
             $table->float('price');
             $table->float('early_bird_price')->nullable();
             $table->unsignedInteger('early_bird_num')->nullable();
-            $table->timestamp('start_date')->nullable(); 
-            $table->timestamp('end_date')->nullable(); 
-            $table->json('data')->nullable()->comment('metadata');     
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
+            $table->json('data')->nullable()->comment('metadata');
             $table->timestamps();
             $table->primary('id');
             $table->index(['id', 'updated_at']);
-            $table->index(['category_id']);
+            $table->index(['course_category_id']);
             $table->index(['title']);
             $table->index(['status']);
             $table->index(['min_num', 'enroll_num', 'max_num']);
