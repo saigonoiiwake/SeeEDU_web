@@ -29,7 +29,7 @@ class Announcement extends Model
         ]);
     }
 
-    public static function newBlogPost(array $param)
+    public static function newAnnouncement(array $param)
     {
         self::validator($param)->validate();
 

@@ -54,7 +54,7 @@ class Admin extends Model
         ]);
     }
 
-    public static function newBlogPost(array $param)
+    public static function newAdmin(array $param)
     {
         self::validator($param)->validate();
 

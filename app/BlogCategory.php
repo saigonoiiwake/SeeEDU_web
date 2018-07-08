@@ -20,4 +20,21 @@ class BlogCategory extends Model
     {
         return $this->hasMany('App\BlogPost', 'blog_category_id', 'id');
     }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'name' => 'required',
+        ]);
+    }
+
+    public static function newBlogCategory(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'name' => $param['name'],
+        ]);
+    }
 }
