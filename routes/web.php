@@ -18,3 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/messenger', function () {
+    return view('messenger');
+});
+
+Route::get('/messenger/friendships', 'MessengerController@getFriendship');
+
+Route::get('/messenger/getMessages/{id}', 'MessengerController@getMessagesFor');
+Route::post('/messenger/send', 'MessengerController@send');
