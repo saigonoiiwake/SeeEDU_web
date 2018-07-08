@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile', 'user_id', 'id');
     }
 
     public function admin()
@@ -61,11 +61,6 @@ class User extends Authenticatable
     public function courseDraft()
     {
         return $this->hasMany('App\CourseDraft', 'user_id', 'id');
-    }
-
-    public function enroll()
-    {
-        return $this->hasMany('App\Enroll', 'user_id', 'id');
     }
 
     public function takeCourse()

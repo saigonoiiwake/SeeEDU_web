@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Permission extends Model
 {
@@ -13,9 +14,22 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'permission',
-    ];
+    protected $fillable = ['name'];
 
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'name' => 'require',
+        ]);
+    }
 
+    public static function newReply(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'name' => $param['name'],
+        ]);
+    }
 }

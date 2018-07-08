@@ -19,15 +19,15 @@ class CreateCourseTable extends Migration
             // class status: submitted, reviewing, success, rejected...
             $table->string('status')->comment('status for the class');
             $table->unsignedInteger('course_category_id');
-            $table->unsignedInteger('enroll_num');
+            $table->unsignedInteger('enroll_num')->default(0);
             $table->unsignedInteger('min_num');
             $table->unsignedInteger('max_num');
             $table->unsignedInteger('currency_id');
             $table->float('price');
             $table->float('early_bird_price')->nullable();
             $table->unsignedInteger('early_bird_num')->nullable();
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
             $table->json('data')->nullable()->comment('metadata');
             $table->timestamps();
             $table->primary('id');
@@ -37,7 +37,7 @@ class CreateCourseTable extends Migration
             $table->index(['status']);
             $table->index(['min_num', 'enroll_num', 'max_num']);
             $table->index(['currency_id', 'price']);
-            $table->index(['start_date', 'end_date']);
+            $table->index(['from_date', 'to_date']);
         });
     }
 

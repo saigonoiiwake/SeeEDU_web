@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Admin extends Model
 {
@@ -19,7 +20,7 @@ class Admin extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     /**
@@ -43,5 +44,22 @@ class Admin extends Model
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'user_id' => 'required',
+        ]);
+    }
+
+    public static function newBlogPost(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'user_id' => $param['user_id'],
+        ]);
     }
 }

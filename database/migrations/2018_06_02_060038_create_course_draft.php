@@ -24,9 +24,9 @@ class CreateCourseDraft extends Migration
             $table->float('price')->nullable();
             $table->float('early_bird_price')->nullable()->nullable();
             $table->unsignedInteger('early_bird_num')->nullable()->nullable();
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
-            $table->longText('description')->nullable();
+            $table->date('from_date')->nullable();
+            $table->date('to_date')->nullable();
+            $table->mediumText('description')->nullable();
             $table->json('chapter')->nullable();
             $table->json('data')->nullable()->comment('metadata');
             $table->timestamps();

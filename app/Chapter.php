@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Chapter extends Model
 {
@@ -14,13 +15,13 @@ class Chapter extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'order', 'title', 'introduction', 'from_time', 'to_time',
+        'course_id', 'order', 'title', 'description', 'from_time', 'to_time',
         'record_link', 'new_view', 'data',
     ];
 
     public function course()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo('App\Course', 'course_id', 'id');
     }
 
     public function attendanceLog()
@@ -31,6 +32,35 @@ class Chapter extends Model
     public function attendedStudent()
     {
         return $this->belongsToMany('App\User', 'attendance_log', 'course_id', 'user_id');
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'course_id'   => 'required',
+            'order'       => 'required',
+            'title'       => 'required',
+            'description' => 'required',
+            'from_time'   => 'required',
+            'to_time'     => 'required',
+            'data'        => 'required',
+        ]);
+    }
+
+    public static function newChapter(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'course_id'    => $param['course_id'],
+            'order'        => $param['order'],
+            'title'        => $param['title'],
+            'description'  => $param['description'],
+            'from_time'    => $param['from_time'],
+            'to_time'      => $param['to_time'],
+            'data'         => $param['data'],
+        ]);
     }
 
     /**

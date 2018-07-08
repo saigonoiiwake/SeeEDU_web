@@ -18,7 +18,7 @@ class CreateProfilesTable extends Migration
           $table->string('avatar')->nullable();
           $table->text('about')->nullable();
           $table->string('phone_number')->nullable();
-          $table->string('birthday')->nullable();
+          $table->date('birthday')->nullable();
           $table->string('facebook')->nullable();
           $table->string('youtube')->nullable();
           $table->json('education')->nullable();

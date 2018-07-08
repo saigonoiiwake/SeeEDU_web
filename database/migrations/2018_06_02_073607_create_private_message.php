@@ -18,7 +18,7 @@ class CreatePrivateMessage extends Migration
             $table->unsignedInteger('from_user_id');
             $table->unsignedInteger('to_user_id');
             $table->text('message');
-            $table->boolean('status')->default(false); // false: unread, trun: read
+            $table->boolean('status')->default(false); // false: unread, true: read
             $table->timestamps();
             $table->index(['from_user_id', 'to_user_id']);
         });

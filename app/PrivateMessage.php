@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class PrivateMessage extends Model
 {
@@ -19,11 +20,32 @@ class PrivateMessage extends Model
 
     public function fromUser()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'from_user_id', 'id');
     }
 
     public function toUser()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'to_user_id', 'id');
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'from_user_id' => 'require',
+            'to_user_id'   => 'require',
+            'message'      => 'require',
+        ]);
+    }
+
+    public static function newMessage(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'from_user_id' => auth()->id(),
+            'to_user_id'   => $param['to_user_id'],
+            'message'      => $param['message'],
+        ]);
     }
 }

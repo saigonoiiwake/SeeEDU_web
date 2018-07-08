@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewTeacher extends Model
 {
@@ -14,16 +15,40 @@ class ReviewTeacher extends Model
      * @var array
      */
     protected $fillable = [
-        'teacher_id', 'user_id', 'rate', 'comment'
+        'teacher_id', 'user_id', 'rate', 'detail', 'comment'
     ];
 
     public function teacher()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'teacher_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'teacher_id' => 'require',
+            'rate'       => 'require',
+            'detail'     => 'require',
+            'comment'    => 'require',
+        ]);
+    }
+
+    public static function newReview(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'teacher_id' => $param['teacher_id'],
+            'user_id'    => auth()->id(),
+            'rate'       => $param['rate'],
+            'detail'     => $param['detail'],
+            'comment'    => $param['comment'],
+        ]);
     }
 }

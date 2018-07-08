@@ -17,7 +17,8 @@ class CreateReviewStudent extends Migration
             $table->increments('id');
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('rate');
+            $table->float('rate');
+            $table->json('detail');
             $table->text('comment')->nullable();
             $table->timestamps();
             $table->index(['student_id', 'user_id']);
