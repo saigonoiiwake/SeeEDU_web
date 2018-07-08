@@ -23,9 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/messenger', function () {
-    return view('messenger');
-});
+Route::get('/messenger', 'MessengerController@index')->name('messenger');
 
 Route::get('/messenger/friendships', 'MessengerController@getFriendship');
 

@@ -15,6 +15,11 @@ class MessengerController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('messenger');
+    }
+
     public function getFriendship()
     {
         $friendships = Friendship::where('user_id', '=', auth()->id())->get();
