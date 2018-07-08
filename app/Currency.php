@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Currency extends Model
 {
@@ -13,9 +14,7 @@ class Currency extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-    ];
+    protected $fillable = ['name'];
 
     public function course()
     {
@@ -25,5 +24,22 @@ class Currency extends Model
     public function courseDraft()
     {
         return $this->hasMany('App\CourseDraft', 'currency_id', 'id');
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'name'          => 'require',
+        ]);
+    }
+
+    public static function newCurrency(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'name'          => $param['name'],
+        ]);
     }
 }

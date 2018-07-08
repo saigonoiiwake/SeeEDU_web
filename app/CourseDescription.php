@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class CourseDescription extends Model
 {
@@ -20,5 +21,24 @@ class CourseDescription extends Model
     public function course()
     {
         return $this->belongsTo('App\Course');
+    }
+
+    public static function validator(array $data)
+    {
+        // TODO
+        return Validator::make($data, [
+            'course_id'   => 'require',
+            'description' => 'require',
+        ]);
+    }
+
+    public static function newCourseDescription(array $param)
+    {
+        self::validator($param)->validate();
+
+        return parent::create([
+            'course_id'   => $param['course_id'],
+            'description' => $param['description'],
+        ]);
     }
 }

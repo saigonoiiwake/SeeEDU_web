@@ -15,8 +15,9 @@ class CreateAnnouncement extends Migration
     {
         Schema::create('announcement', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
-            $table->text('link');
+            $table->string('title');
+            $table->mediumText('content');
+            $table->string('link');
             $table->unsignedInteger('priority');
             $table->boolean('discard')->default(false);
             $table->timestamps();

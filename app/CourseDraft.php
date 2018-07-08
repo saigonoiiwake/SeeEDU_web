@@ -17,7 +17,7 @@ class CourseDraft extends Model
     protected $fillable = [
         'user_id', 'title', 'course_category_id', 'min_num', 'max_num',
         'currency_id', 'price', 'early_bird_price', 'early_bird_name',
-        'start_date', 'end_date', 'description', 'chapter', 'data',
+        'from_date', 'to_date', 'description', 'chapter', 'data',
     ];
 
     public function user()
@@ -32,10 +32,20 @@ class CourseDraft extends Model
 
     public static function validator(array $data)
     {
+        // TODO
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:user',
-            'password' => 'required|string|min:6|confirmed',
+            'title'              => 'require',
+            'course_category_id' => 'require',
+            'min_num'            => 'require',
+            'max_num'            => 'require',
+            'currency_id'        => 'require',
+            'price'              => 'require',
+            'early_bird_price'   => 'require',
+            'early_bird_name'    => 'require',
+            'from_date'          => 'require',
+            'to_date'            => 'require',
+            'chapter'            => 'require',
+            'data'               => 'require',
         ]);
     }
 
@@ -44,10 +54,19 @@ class CourseDraft extends Model
         self::validator($param)->validate();
 
         return parent::create([
-//            'id'       => self::generateIdSafe(),
-//            'name'     => $param['name'],
-//            'email'    => $param['email'],
-//            'password' => bcrypt($param['password']),
+            'user_id'            => auth()->id(),
+            'title'              => $param['title'],
+            'course_category_id' => $param['course_category_id'],
+            'min_num'            => $param['min_num'],
+            'max_num'            => $param['max_num'],
+            'currency_id'        => $param['currency_id'],
+            'price'              => $param['price'],
+            'early_bird_price'   => $param['early_bird_price'],
+            'early_bird_name'    => $param['early_bird_price'],
+            'from_date'          => $param['from_date'],
+            'to_date'            => $param['to_date'],
+            'chapter'            => $param['chapter'],
+            'data'               => $param['data'],
         ]);
     }
 }

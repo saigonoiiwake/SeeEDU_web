@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BlogPost extends Model
 {
@@ -16,7 +17,7 @@ class BlogPost extends Model
     public $incrementing = false;
 
     protected $fillable = [
-      'id', 'title', 'content', 'blog_category_id', 'featured', 'slug'
+        'id', 'title',  'slug', 'content', 'blog_category_id', 'featured'
     ];
 
     protected $dates = ['delete_at'];
@@ -33,15 +34,18 @@ class BlogPost extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\BlogTag');
+        return $this->belongsToMany('App\BlogTag', 'blog_post_tag', 'post_id', 'tag_id');
     }
 
     public static function validator(array $data)
     {
+        // TODO
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:user',
-            'password' => 'required|string|min:6|confirmed',
+            'title'            => 'required',
+            'slug'             => 'required',
+            'content'          => 'required',
+            'blog_category_id' => 'required',
+            'featured'         => 'required',
         ]);
     }
 
@@ -50,10 +54,12 @@ class BlogPost extends Model
         self::validator($param)->validate();
 
         return parent::create([
-            'id'       => self::generateIdSafe(),
-            'name'     => $param['name'],
-            'email'    => $param['email'],
-            'password' => bcrypt($param['password']),
+            'id'               => self::generateIdSafe(),
+            'title'            => $param['title'],
+            'slug'             => $param['slug'],
+            'content'          => $param['content'],
+            'blog_category_id' => $param['blog_category_id'],
+            'featured'         => $param['featured'],
         ]);
     }
 
@@ -77,22 +83,21 @@ class BlogPost extends Model
     public static function generateIdSafe($retry = 15)
     {
         if ($retry <= 0) {
-          // TODO: find the proper exception when ID can't be generate
-          throw new ModelNotFoundException();
+            // TODO: find the proper exception when ID can't be generate
+            throw new ModelNotFoundException();
         }
 
         $id = self::generateId();
 
         try {
-          self::query()
+            self::query()
               ->where('id', '=', $id)
               ->firstOrFail();
         } catch (ModelNotFoundException $e) {
-          return $id;
+            return $id;
         }
 
         // "[DuplicationCourseId] {$id}"
-
         return self::generateIdSafe($retry - 1);
     }
 }

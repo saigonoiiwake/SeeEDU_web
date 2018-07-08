@@ -18,7 +18,7 @@ class CreateChapter extends Migration
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('order');
             $table->string('title');
-            $table->longText('introduction');
+            $table->text('description');
             $table->timestamp('from_time')->nullable();
             $table->timestamp('to_time')->nullable();
             $table->text('record_link')->nullable();
@@ -26,6 +26,7 @@ class CreateChapter extends Migration
             $table->json('data')->nullable();
             $table->timestamps();
             $table->unique(['course_id', 'order']);
+            $table->index(['course_id', 'order']);
             $table->index(['from_time', 'to_time']);
             $table->index(['num_view']);
             $table->index(['title']);

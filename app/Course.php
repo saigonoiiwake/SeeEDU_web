@@ -13,16 +13,14 @@ class Course extends Model
     // Disable auto increment `id` field
     public $incrementing = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'id', 'title', 'status', 'course_category_id', 'enroll_num', 'min_num', 'max_num',
-        'currency_id', 'price', 'early_bird_price', 'early_bird_name', 'start_date', 'end_date',
+        'currency_id', 'price', 'early_bird_price', 'early_bird_name', 'from_date', 'to_date',
         'data',
     ];
+
+    // TODO: Please define status
+    const STATUS_SUBMIT = 'submit';
 
     public function attendanceLog()
     {
@@ -46,17 +44,12 @@ class Course extends Model
 
     public function currency()
     {
-        return $this->belongsTo('App\Currency');
+        return $this->belongsTo('App\Currency', 'currency_id', 'id');
     }
 
     public function description()
     {
         return $this->hasOne('App\CourseDescription', 'course_id', 'id');
-    }
-
-    public function enroll()
-    {
-        return $this->belongsTo('App\Enroll');
     }
 
     public function student()
@@ -92,10 +85,19 @@ class Course extends Model
 
     public static function validator(array $data)
     {
+        // TODO
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:user',
-            'password' => 'required|string|min:6|confirmed',
+            'title'              => 'require',
+            'course_category_id' => 'require',
+            'min_num'            => 'require',
+            'max_num'            => 'require',
+            'currency_id'        => 'require',
+            'price'              => 'require',
+            'early_bird_price'   => 'require',
+            'early_bird_name'    => 'require',
+            'from_date'          => 'require',
+            'to_date'            => 'require',
+            'data'               => 'require'
         ]);
     }
 
@@ -104,10 +106,19 @@ class Course extends Model
         self::validator($param)->validate();
 
         return parent::create([
-//            'id'       => self::generateIdSafe(),
-//            'name'     => $param['name'],
-//            'email'    => $param['email'],
-//            'password' => bcrypt($param['password']),
+            'id'                 => self::generateIdSafe(),
+            'title'              => $param['title'],
+            'status'             => self::STATUS_SUBMIT,  // TODO: Please define status
+            'course_category_id' => $param['course_category_id'],
+            'min_num'            => $param['min_num'],
+            'max_num'            => $param['max_num'],
+            'currency_id'        => $param['currency_id'],
+            'price'              => $param['price'],
+            'early_bird_price'   => $param['early_bird_price'],
+            'early_bird_name'    => $param['early_bird_price'],
+            'from_date'          => $param['from_date'],
+            'to_date'            => $param['to_date'],
+            'data'               => $param['data']
         ]);
     }
 
