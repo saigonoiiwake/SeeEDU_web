@@ -79,9 +79,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                        SeeEDU
-                    </a> -->
+                    <a class="navbar-brand" href="{{ url('/') }}"></a>
                     <a href="#" class="navbar-left"><img class="logo" src="https://i.imgur.com/bfY7ad3.png" alt="" width="200px"></a>
                 </div>
 
@@ -89,11 +87,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <br>
-                        <li class="">
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </li>
                         <li class="">
                             <a href="#" class="">
                                 <i class="seoicon-lightbulb-on"> 開課去</i>
