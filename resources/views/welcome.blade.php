@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    おはよございます！
                 </div>
             </div>
         </div>
