@@ -10,7 +10,7 @@ class Profile extends Model
     protected $table = 'profile';
 
     protected $fillable = [
-      'user_id', 'avatar', 'facebook', 'youtube', 'about',
+      'user_id', 'facebook', 'youtube', 'about',
       'phone_number', 'birthday', 'education', 'experience'
     ];
 
@@ -24,7 +24,6 @@ class Profile extends Model
         // TODO
         return Validator::make($data, [
             'user_id'      => 'require',
-            'avatar'       => 'require',
             'facebook'     => 'require',
             'youtube'      => 'require',
             'about'        => 'require',
@@ -41,7 +40,6 @@ class Profile extends Model
 
         return parent::create([
             'user_id'      => auth()->id(),
-            'avatar'       => $param['avatar'],
             'facebook'     => $param['facebook'],
             'youtube'      => $param['youtube'],
             'about'        => $param['about'],

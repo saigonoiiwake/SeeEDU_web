@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'status',
+        'id', 'name', 'avatar', 'email', 'password', 'status',
     ];
 
     /**
@@ -144,6 +144,7 @@ class User extends Authenticatable
         return parent::create([
             'id'       => self::generateIdSafe(),
             'name'     => $param['name'],
+            'avatar'   => $param['avatar'],
             'email'    => $param['email'],
             'password' => bcrypt($param['password']),
         ]);
