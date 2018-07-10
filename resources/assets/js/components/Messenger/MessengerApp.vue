@@ -48,17 +48,17 @@
             saveSendingMessage(message) {
                 // push new message to messages array
                 this.messages.push(message);
-                this.updatedNewestMessage(message.to_user_id, message);
+                this.updatedLatestMessage(message.to_user_id, message);
             },
             handleIncoming(message) {
                 if (this.selectedFriend && message.from_user_id == this.selectedFriend.id) {
                     this.messages.push(message);
-                    this.updatedNewestMessage(message.from_user_id, message);
+                    this.updatedLatestMessage(message.from_user_id, message);
                     return;
                 }
 
                 this.updatedUnreadCount(message.from_user, false);
-                this.updatedNewestMessage(message.from_user_id, message);
+                this.updatedLatestMessage(message.from_user_id, message);
             },
             updatedUnreadCount(friend, reset) {
                 this.friends = this.friends.map((single) => {
@@ -75,13 +75,13 @@
                     return single;
                 });
             },
-            updatedNewestMessage(friend_id, message) {
+            updatedLatestMessage(friend_id, message) {
                 this.friends = this.friends.map((single) => {
                     if (single.id != friend_id) {
                         return single;
                     }
 
-                    single.newest_message = message.message;
+                    single.latest_message = message.message;
                     single.updated_at = message.updated_at;
 
                     return single;

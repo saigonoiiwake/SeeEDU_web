@@ -48922,17 +48922,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         saveSendingMessage: function saveSendingMessage(message) {
             // push new message to messages array
             this.messages.push(message);
-            this.updatedNewestMessage(message.to_user_id, message);
+            this.updatedLatestMessage(message.to_user_id, message);
         },
         handleIncoming: function handleIncoming(message) {
             if (this.selectedFriend && message.from_user_id == this.selectedFriend.id) {
                 this.messages.push(message);
-                this.updatedNewestMessage(message.from_user_id, message);
+                this.updatedLatestMessage(message.from_user_id, message);
                 return;
             }
 
             this.updatedUnreadCount(message.from_user, false);
-            this.updatedNewestMessage(message.from_user_id, message);
+            this.updatedLatestMessage(message.from_user_id, message);
         },
         updatedUnreadCount: function updatedUnreadCount(friend, reset) {
             this.friends = this.friends.map(function (single) {
@@ -48949,13 +48949,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return single;
             });
         },
-        updatedNewestMessage: function updatedNewestMessage(friend_id, message) {
+        updatedLatestMessage: function updatedLatestMessage(friend_id, message) {
             this.friends = this.friends.map(function (single) {
                 if (single.id != friend_id) {
                     return single;
                 }
 
-                single.newest_message = message.message;
+                single.latest_message = message.message;
                 single.updated_at = message.updated_at;
 
                 return single;
@@ -49682,8 +49682,8 @@ var render = function() {
             _c("div", { staticClass: "friend" }, [
               _c("p", { staticClass: "name" }, [_vm._v(_vm._s(friend.name))]),
               _vm._v(" "),
-              _c("p", { staticClass: "newest-message" }, [
-                _vm._v(_vm._s(friend.newest_message))
+              _c("p", { staticClass: "latest-message" }, [
+                _vm._v(_vm._s(friend.latest_message))
               ])
             ]),
             _vm._v(" "),

@@ -7,7 +7,7 @@
                 </div>
                 <div class="friend">
                     <p class="name">{{ friend.name }}</p>
-                    <p class="newest-message">{{ friend.newest_message }}</p>
+                    <p class="latest-message">{{ friend.latest_message }}</p>
                 </div>
                 <span class="unread" v-if="friend.unread">
                     {{ friend.unread }}
