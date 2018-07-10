@@ -13,54 +13,29 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
+    @yield('course_style')
 
     <style>
-      .logo{
-      position: absolute;
-      top: -50px;
-      left: -20px;
+
+    input[type=text] {
+        width: 60px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 12px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 4px 4px 4px 4px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
       }
 
-      .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        /* Set the fixed height of the footer here */
-        height: 70px;
-        background-color: #398DD5;
-      }
-
-      .copyright {
-        width: 100%;
-        text-align: center;
-        font-size: 16px;
-        font-weight: 600;
-        color: $color_black;
-        bottom: 0;
-        letter-spacing: 1px;
-      }
-
-      .blank{
-        display:inline-block;
-        padding: 20px;
-        background: #398DD5;
-      }
-      .itemf{
-        display:inline-block;
-        padding: %;
-        color: #FFF;
-        background: $color_blue;
-        font-size: 16px;
-        font-weight: 400;
-        letter-spacing: 1px;
-
-        &:hover {
-      		border-bottom: 4px solid #FFF;
-      	}
-
-}
+        input[type=text]:focus {
+          width: 100%;
+        }
     </style>
-
 
 </head>
 <body>
@@ -75,38 +50,39 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <br>
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}"></a>
-                    <a href="#" class="navbar-left"><img class="logo" src="https://i.imgur.com/bfY7ad3.png" alt="" width="200px"></a>
+                    <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a>
+                    <!-- <a href="#" class="navbar-left"><img class="logo" src="https://i.imgur.com/bfY7ad3.png" alt="" width="200px"></a> -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <br>
                         <li class="">
                             <a href="#" class="">
                                 <i class="seoicon-lightbulb-on"> 開課去</i>
                             </a>
                         </li>
                         <li class="">
-                            <a href="#" class="">
+                            <a href="{{ route('courses') }}" class="">
                                 <i class="seoicon-people"> 選課去</i>
                             </a>
                         </li>
                         <li class="search search_main" style="color: black; margin-top: 1px;">
-                            <a href="#" class="js-open-search">
+                            <a class="js-open-search">
                                 <i class="seoicon-loupe"></i>
                             </a>
+                        </li>
+                        <li class="search search_main" style="color: black; margin-top: 8px;">
+                          <input type="text" name="search" >
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      <br>
+
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}"> 登入 </a></li>
@@ -160,24 +136,7 @@
         </nav>
   <div class="header-spacer"></div>
         @yield('content')
-    </div>
-
-    <footer class="footer">
-      <div class="container">
-          <div class="blank"></div><a class="itemf faq" href="#0"><span>關於我們</span></a>
-          <div class="blank"></div><a class="itemf faq" href="#0"><span>常見問題</span></a>
-          <div class="blank"></div><a class="itemf service" href="#0"><span>服務政策</span></a>
-          <div class="blank"></div><a class="itemf privacy" href="#0"><span>隱私權條款</span></a>
-          <div class="blank"></div><a class="itemf blog" href="#0"><span>Blog</span></a>
-          <div class="blank"></div><a class="itemf class" href="#0"><span>立即選課</span></a>
-          <div class="blank"></div><a class="itemf class" href="#0"><span><i class="seoicon-social-facebook"></i></span></a>
-          <div class="blank"></div><a class="itemf class" href="#0"><span><i class="seoicon-social-instagram"></i></span></a>
-          </div>
-      </div>
-          <h1 class="copyright">copyright @ 2018-2019 SeeEDU reserved</h3>
-    </footer>
-
-
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
