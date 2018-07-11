@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/about', function () {
     return view('about');
@@ -26,6 +26,14 @@ Route::get('/qa', function () {
 Route::get('/courses', function () {
     return view('courses');
 })->name('courses');
+
+Route::get('/policies', function () {
+    return view('policies');
+})->name('policies');
+
+Route::get('/joinus', function () {
+    return view('joinus');
+})->name('joinus');
 
 Route::get('/test', function () {
     return view('test');

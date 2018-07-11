@@ -371,7 +371,7 @@ input[type=text] {
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable" style="display: block;">
      <div class="pix-content text-center">
       <div class="pix-margin-bottom-10">
-       <i class="pixicon-heart" style="color: rgb(239, 143, 52); font-size: 80px;"></i>
+       <i class="seoicon-quotes" style="color: rgb(239, 143, 52); font-size: 80px;"></i>
       </div>
       <h2 class="pix-black-gray-dark pix-no-margin-top">
        <span class="pix_edit_text">學習，讓我們遇見更好的自己。</span>

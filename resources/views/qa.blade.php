@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.app')
+
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
@@ -17,10 +16,11 @@
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 	<![endif]-->
-	<title>常見問題</title>
+	<br>
+	<br>
+	
 	<style type="text/css" id="pix_page_style"></style>
-</head>
-<body>
+
 <div class="pix_section pix-padding-v-40 gray-bg" id="section_faq_1" style="display: block;">
   <div class="container">
    <div class="row">
@@ -161,5 +161,3 @@
 <script src="app/js/plugins.js" type="text/javascript"></script>
 <script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
 <script src="app/js/custom.min.js"></script>
-</body>
-</html>

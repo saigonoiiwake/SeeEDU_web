@@ -53,7 +53,6 @@
 
 <!-- Footer -->
 
-@include('includes/footer')
 
 <!-- End Footer -->
 
@@ -120,7 +119,7 @@
             <div class="info">
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="heading text-center">
-                        <h3 class="heading-title" >SeeEDU LIVE School</h3>
+                        <h3 class="heading-title" ><a href="{{ route('welcome') }}" class="heading-title">SeeEDU LIVE School</a></h3>
                         <div class="heading-line">
                             <span class="short-line"></span>
                             <span class="long-line"></span>

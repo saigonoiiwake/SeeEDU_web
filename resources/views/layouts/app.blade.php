@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
     @yield('welcome_style')
-
+    @yield('course_style')
     <style>
 
     input[type=text] {
@@ -53,8 +53,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a>
-                    <!-- <a href="#" class="navbar-left"><img class="logo" src="https://i.imgur.com/bfY7ad3.png" alt="" width="200px"></a> -->
+                    <!-- <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a> -->
+                    <a href="#" class="navbar-left"><img class="logo" src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_100/v1531194450/logo_final-398DD5.png" alt="" width="100px"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -140,6 +140,7 @@
 
 <!-- Footer -->
 
+<body>
 @include('includes/footer')
 
     <!-- Scripts -->

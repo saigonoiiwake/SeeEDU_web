@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.app')
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
@@ -20,10 +18,7 @@
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 	<![endif]-->
-	<title>SeeEDU Live School</title>
-	<style type="text/css" id="pix_page_style"></style>
-</head>
-<body>
+
 
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
   <div class="container">
@@ -296,5 +291,3 @@
 <script src="app/js/plugins.js" type="text/javascript"></script>
 <script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
 <script src="app/js/custom.min.js"></script>
-</body>
-</html>
