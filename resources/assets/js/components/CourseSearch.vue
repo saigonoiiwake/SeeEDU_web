@@ -60,142 +60,115 @@
 </script>
 
 <style lang="scss" scoped>
-//顏色
-$color_blue: #398DD5;
-$color_grey: #C3C3C3;
-$color_darkgrey: #434343;
-$color_orange: #EF8F34;
-$color_red: #E24831;
-$color_background: #FCFCFC;
-$color_yellow: #FBF04F;
-
-//尺寸定義區 (標題/內文/書籤按鈕/書籤icon/老師icon)
-$size_title: 25px;
-$size_para: 15px;
-$size_bookbtn: 42px;
-$size_icon: 22px;
-$size_teacher: 55px;
-
-//尺寸(課程/上下半部/進度條/預購價/底部橘條)
-$width_class: 260px;
-$height_toppart: 220px;
-$height_bottompart: 184px;
-$height_progressbar: 10px;
-$height_pricerow: 22px;
-$height_bottomorange: 5px;
-
-//尺寸(課程框框的padding)
-$padding_class: 15px;
-
-//預設照片
-$url_teacher: "https://hahow.in/images/57ab3d5585b097070042067a";
-$url_class: "https://hahow.in/images/574fab4f206cd60900c52a67?width=300";
-
-
 .classbox {
-    width: $width_class;
-    padding: $padding_class;
-    padding-bottom: 0px;
-    box-sizing: border-box;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 12px rgba(#000,0.2);
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    margin: 25px 45px;
-    text-align: left; 
-    text-decoration: none;
+  width: 260px;
+  padding: 15px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin: 25px 45px;
+  text-align: left;
+  text-decoration: none;
+}
+.classbox:hover .classpicture {
+  transform: scale(1.15);
+}
+.classbox:hover .bookbtn {
+  bottom: 10px;
+}
+.classbox .top {
+  height: 220px;
+  border-radius: 5px 5px 0px 0px;
+  margin: -15px;
+  margin-bottom: 0px;
+  overflow: hidden;
+  position: relative;
+}
+.classbox .top .classpicture {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url(https://res.cloudinary.com/sabina123/image/upload/v1530271405/samples/animals/kitten-playing.gif);
+  background-size: cover;
+  transition-duration: 0.3s;
+}
 
-    &.classpicture {
-        transform: scale(1.15);
-        background-size: cover;
-        transition-duration: 0.3s;
-        position: absolute;
-    }
+.teacherpic {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  border: solid 2px white;
+  border-radius: 100%;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+  right: 5px;
+  bottom: 115px;
+}
 
-    &.bookbtn {
-        bottom: 10px;
-    }
+.tag {
+  width: 80px;
+  height: 25px;
+  position: absolute;
+  color: white;
+  top: 20px;
+  left: -40px;
+  padding-top: 5px;
+  text-align: center;
+  background-color: #398DD5;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+}
 
-    .top {
-        height: $height_toppart;
-        border-radius: 5px 5px 0px 0px;
-        margin: -15px;
-        margin-bottom: 0px;
-        overflow: hidden;
-        position: relative;
-    }
+.teacher_name, .student_number {
+  font-size: 15px;
+  display: inline-block;
+  color: #C3C3C3;
+}
 
-    .teacherpic {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        background-size: cover;
-        border: solid 2px white;
-        border-radius: 100%;
-        box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
-        z-index: 10;
-        right: 5px;
-        bottom: 115px;
-    }
+.student_number {
+  font-weight: 300;
+  position: absolute;
+  right: 20px;
+}
 
-    .tag {
-        width: 80px;
-        height: 25px;
-        position: absolute;
-        color: white;
-        top: 20px;
-        left: -40px;
-        padding-top: 5px;
-        text-align: center;
-        background-color: $color_blue;
-        border-radius: 15px;
-        box-shadow: 0px 0px 5px rgba(#fff,0.5);
-    }
+.progressbar {
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.progressbar .valuebar {
+  background-color: #398DD5;
+  width: 80px;
+  height: 100%;
+  transition-duration: 1s;
+}
 
-    .teacher_name,.student_number {
-        font-size: 15px;
-        display: inline-block;
-        color: $color_grey;
-    }
+.view_number, .price {
+  display: inline-block;
+}
 
-    .student_number {
-        font-weight: 300;
-        position: absolute;
-        right: 20px;
-    } 
+.view_number {
+  font-weight: 300;
+  font-size: 15px;
+  margin: 10px 0px;
+  color: #C3C3C3;
+}
 
-    .progressbar {
-        height: $height_progressbar;
-        border-radius: 5px;
-        overflow: hidden; 
-        background-color: rgba(0,0,0,0.12);
-    
-        .valuebar {
-            background-color: $color_blue;
-            height: 100%;
-            transition-duration: 1s;
-        }
-    }
-    .view_number,.price{
-        display: inline-block;
-    } 
-    .view_number {
-        font-weight: 300;
-        font-size: 15px;
-        margin: 10px 0px;
-        color: $color_grey;
-    }
+.classtitle, .price {
+  color: #434343;
+}
 
-    .classtitle,.price {
-        color: $color_darkgrey;
-    }
-
-    .price {
-        font-size: 15px;
-        posiiton: relative;
-        margin-left: 10px ;
-    }   
-}  
+.price {
+  font-size: 15px;
+  posiiton: relative;
+  margin-left: 10px;
+}
+ 
 </style>

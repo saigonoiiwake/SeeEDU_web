@@ -1072,7 +1072,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(44);
+module.exports = __webpack_require__(50);
 
 
 /***/ }),
@@ -43303,13 +43303,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(55)
+  __webpack_require__(43)
 }
 var normalizeComponent = __webpack_require__(9)
 /* script */
-var __vue_script__ = __webpack_require__(59)
+var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43348,16 +43348,47 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */,
-/* 44 */
-/***/ (function(module, exports) {
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(44);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(46)("6fcc4c8e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-27b4f9da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseSearch.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-27b4f9da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseSearch.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.classbox[data-v-27b4f9da] {\n  width: 260px;\n  padding: 15px;\n  padding-bottom: 0px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background-color: white;\n  border-radius: 5px;\n  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);\n          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);\n  position: relative;\n  cursor: pointer;\n  display: inline-block;\n  margin: 25px 45px;\n  text-align: left;\n  text-decoration: none;\n}\n.classbox:hover .classpicture[data-v-27b4f9da] {\n  -webkit-transform: scale(1.15);\n          transform: scale(1.15);\n}\n.classbox:hover .bookbtn[data-v-27b4f9da] {\n  bottom: 10px;\n}\n.classbox .top[data-v-27b4f9da] {\n  height: 220px;\n  border-radius: 5px 5px 0px 0px;\n  margin: -15px;\n  margin-bottom: 0px;\n  overflow: hidden;\n  position: relative;\n}\n.classbox .top .classpicture[data-v-27b4f9da] {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  background-image: url(https://res.cloudinary.com/sabina123/image/upload/v1530271405/samples/animals/kitten-playing.gif);\n  background-size: cover;\n  -webkit-transition-duration: 0.3s;\n          transition-duration: 0.3s;\n}\n.teacherpic[data-v-27b4f9da] {\n  position: absolute;\n  width: 60px;\n  height: 60px;\n  background-size: cover;\n  border: solid 2px white;\n  border-radius: 100%;\n  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);\n          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);\n  z-index: 10;\n  right: 5px;\n  bottom: 115px;\n}\n.tag[data-v-27b4f9da] {\n  width: 80px;\n  height: 25px;\n  position: absolute;\n  color: white;\n  top: 20px;\n  left: -40px;\n  padding-top: 5px;\n  text-align: center;\n  background-color: #398DD5;\n  border-radius: 15px;\n  -webkit-box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);\n          box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);\n}\n.teacher_name[data-v-27b4f9da], .student_number[data-v-27b4f9da] {\n  font-size: 15px;\n  display: inline-block;\n  color: #C3C3C3;\n}\n.student_number[data-v-27b4f9da] {\n  font-weight: 300;\n  position: absolute;\n  right: 20px;\n}\n.progressbar[data-v-27b4f9da] {\n  height: 10px;\n  border-radius: 5px;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.12);\n}\n.progressbar .valuebar[data-v-27b4f9da] {\n  background-color: #398DD5;\n  width: 80px;\n  height: 100%;\n  -webkit-transition-duration: 1s;\n          transition-duration: 1s;\n}\n.view_number[data-v-27b4f9da], .price[data-v-27b4f9da] {\n  display: inline-block;\n}\n.view_number[data-v-27b4f9da] {\n  font-weight: 300;\n  font-size: 15px;\n  margin: 10px 0px;\n  color: #C3C3C3;\n}\n.classtitle[data-v-27b4f9da], .price[data-v-27b4f9da] {\n  color: #434343;\n}\n.price[data-v-27b4f9da] {\n  font-size: 15px;\n  posiiton: relative;\n  margin-left: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 /*
@@ -43439,54 +43470,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(56);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(57)("6fcc4c8e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-27b4f9da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseSearch.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-27b4f9da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CourseSearch.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(47)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.classbox[data-v-27b4f9da] {\n  width: 260px;\n  padding: 15px;\n  padding-bottom: 0px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background-color: white;\n  border-radius: 5px;\n  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);\n          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);\n  position: relative;\n  cursor: pointer;\n  display: inline-block;\n  margin: 25px 45px;\n  text-align: left;\n  text-decoration: none;\n}\n.classbox.classpicture[data-v-27b4f9da] {\n    -webkit-transform: scale(1.15);\n            transform: scale(1.15);\n    background-size: cover;\n    -webkit-transition-duration: 0.3s;\n            transition-duration: 0.3s;\n    position: absolute;\n}\n.classbox.bookbtn[data-v-27b4f9da] {\n    bottom: 10px;\n}\n.classbox .top[data-v-27b4f9da] {\n    height: 220px;\n    border-radius: 5px 5px 0px 0px;\n    margin: -15px;\n    margin-bottom: 0px;\n    overflow: hidden;\n    position: relative;\n}\n.classbox .teacherpic[data-v-27b4f9da] {\n    position: absolute;\n    width: 60px;\n    height: 60px;\n    background-size: cover;\n    border: solid 2px white;\n    border-radius: 100%;\n    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);\n            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);\n    z-index: 10;\n    right: 5px;\n    bottom: 115px;\n}\n.classbox .tag[data-v-27b4f9da] {\n    width: 80px;\n    height: 25px;\n    position: absolute;\n    color: white;\n    top: 20px;\n    left: -40px;\n    padding-top: 5px;\n    text-align: center;\n    background-color: #398DD5;\n    border-radius: 15px;\n    -webkit-box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);\n            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);\n}\n.classbox .teacher_name[data-v-27b4f9da], .classbox .student_number[data-v-27b4f9da] {\n    font-size: 15px;\n    display: inline-block;\n    color: #C3C3C3;\n}\n.classbox .student_number[data-v-27b4f9da] {\n    font-weight: 300;\n    position: absolute;\n    right: 20px;\n}\n.classbox .progressbar[data-v-27b4f9da] {\n    height: 10px;\n    border-radius: 5px;\n    overflow: hidden;\n    background-color: rgba(0, 0, 0, 0.12);\n}\n.classbox .progressbar .valuebar[data-v-27b4f9da] {\n      background-color: #398DD5;\n      height: 100%;\n      -webkit-transition-duration: 1s;\n              transition-duration: 1s;\n}\n.classbox .view_number[data-v-27b4f9da], .classbox .price[data-v-27b4f9da] {\n    display: inline-block;\n}\n.classbox .view_number[data-v-27b4f9da] {\n    font-weight: 300;\n    font-size: 15px;\n    margin: 10px 0px;\n    color: #C3C3C3;\n}\n.classbox .classtitle[data-v-27b4f9da], .classbox .price[data-v-27b4f9da] {\n    color: #434343;\n}\n.classbox .price[data-v-27b4f9da] {\n    font-size: 15px;\n    posiiton: relative;\n    margin-left: 10px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 57 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -43505,7 +43489,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(58)
+var listToStyles = __webpack_require__(47)
 
 /*
 type StyleObject = {
@@ -43714,7 +43698,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 58 */
+/* 47 */
 /***/ (function(module, exports) {
 
 /**
@@ -43747,7 +43731,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 59 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43809,7 +43793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -43889,6 +43873,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-27b4f9da", module.exports)
   }
 }
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
