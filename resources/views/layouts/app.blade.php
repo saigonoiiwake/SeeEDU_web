@@ -8,12 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SeeEDU</title>
+    <title>SeeEDU LIVE School</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
-    @yield('course_style')
+    @yield('welcome_style')
 
     <style>
 
@@ -39,8 +39,8 @@
 
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+    <header id="app">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -107,7 +107,7 @@
                                   <li>
                                   <li>
                                     <a href="#" class="">
-                                        <i class="seoicon-mail-send"> 我的信箱</i>
+                                        <i class="seoicon-mail-send"> 私人訊息</i>
                                     </a>
                                   </li>
                                   <li>
@@ -136,9 +136,14 @@
         </nav>
   <div class="header-spacer"></div>
         @yield('content')
-</div>
+</header>
+
+<!-- Footer -->
+
+@include('includes/footer')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('welcome_scripts')
 </body>
 </html>
