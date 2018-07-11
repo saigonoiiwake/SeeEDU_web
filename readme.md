@@ -17,17 +17,29 @@ Laravel 5.5.40
 
 ## Run
 
-1. Install Dependency
+#### Install Dependency
 ```shell
 composer install
+npm install
 ```
 
-2. Do Migration
+#### With Pusher for Messenger in .env
+```shell
+BROADCAST_DRIVER=pusher
+
+PUSHER_APP_ID=xxxxx
+PUSHER_APP_KEY=xxxxx
+PUSHER_APP_SECRET=xxxxx
+PUSHER_APP_CLUSTER=xxxx
+
+```
+
+#### Do Migration
 ```shell
 php artisan migrate
 ```
 
-3. Run Server
+####Run Server
 ```shell
 php artisan serve
 ```
