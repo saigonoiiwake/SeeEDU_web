@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="search search_main" style="color: black; margin-top: 1px;">
-                            <a href="#" class="js-open-search">
+                            <a href="/search" class="js-open-search">
                                 <i class="seoicon-loupe"></i>
                             </a>
                         </li>
