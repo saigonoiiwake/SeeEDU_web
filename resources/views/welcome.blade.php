@@ -31,6 +31,7 @@ Hiroshi
 <link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
 <link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
 <link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
+<link rel="stylesheet" type="text/css" href="app/css/font-style.css" />
 <link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-fix.css" />

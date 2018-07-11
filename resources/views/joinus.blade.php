@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('welcome_style')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
@@ -15,16 +15,16 @@ PM
 BD
 Internship">
 加入SeeEDU	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/font-style.min.css" />
-	<link href="css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
+	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
+	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
+	<link rel="stylesheet" type="text/css" href="app/css/font-style.css"/>
+	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+@stop
 
-
-
+@section('content')
 <br>
 <br>
   <div class="pix_section pix-padding" id="section_titles_1" style="display: block;">
@@ -56,7 +56,7 @@ Internship">
         <p class="pix-black-gray-light big-text pix-margin-bottom-20">
          <span class="pix_edit_text">一個最不一樣的線上教育平台</span>
         </p>
-        <a href="#" class="btn green-blue-bg pix-white btn-md normal" style="background-color: rgb(66, 157, 235);">
+        <a href="{{ route('about') }}" class="btn green-blue-bg pix-white btn-md normal" style="background-color: rgb(66, 157, 235);">
          <span class="pix_edit_text"><span style="font-weight: 700;">了解更多</span></span>
         </a>
        </div>
@@ -188,7 +188,7 @@ Internship">
             <div class="pix-content pix-padding-v-10 text-left">
              <div class="media ic">
               <div class="media-left pix-icon-area text-center pix-padding-right-20 pix-padding-top-10">
-               <img src="images/deal/dialog.png" alt="">
+               <img src="{{ asset('app/images/deal/dialog.png') }}" alt="">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
@@ -204,7 +204,7 @@ Internship">
             <div class="pix-content pix-padding-v-10 text-left">
              <div class="media ic">
               <div class="media-left pix-icon-area text-center pix-padding-right-20 pix-padding-top-10">
-               <img src="images/deal/bag.png" alt="">
+               <img src="{{ asset('app/images/deal/bag.png') }}" alt="">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
@@ -223,7 +223,7 @@ Internship">
        </div>
       </div>
       <div class="col-md-6 col-xs-12 text-center pix-padding-top-40 col-sm-6 column ui-droppable">
-       <div class="pix-content"><img src="images/business/video-section-bg.jpg" alt="" class="img-responsive pix-inline-block"></div>
+       <div class="pix-content"><img src="{{ asset('app/images/business/video-section-bg.jpg') }}" alt="" class="img-responsive pix-inline-block"></div>
       </div>
      </div>
     </div>
@@ -249,6 +249,25 @@ Internship">
 
 
 
-  <div class="pix_section pix_section_dragged" style="z-index: 2147483647; display: inline-block; box-shadow: rgba(0, 0, 0, 0) 0px 0px 9px 9px !important; position: relative; width: 220px; right: auto; height: 200px; bottom: auto; left: 0px; top: 0px;" id="section_3"><div style=" box-shadow: 0 0 5px 1px rgba(0,0,0,0.08),0 0px 10px 0 rgba(0,0,0,0.08) !important;display:inline-block;border-radius:3px;overflow:hidden;"></div></div>
+  <div class="pix_section pix_section_dragged" style="z-index: 2147483647; display: inline-block; box-shadow: rgba(0, 0, 0, 0) 0px 0px 9px 9px !important; position: relative; width: 220px; right: auto; height: 200px; bottom: auto; left: 0px; top: 0px;" id="section_3">
+		<div style=" box-shadow: 0 0 5px 1px rgba(0,0,0,0.08),0 0px 10px 0 rgba(0,0,0,0.08) !important;display:inline-block;border-radius:3px;overflow:hidden;">
+		</div>
+	</div>
 
+@stop
+
+@section('welcome_scripts')
   <!-- Javascript -->
+	<!-- Javascript -->
+<script src="app/js/jquery-1.11.2.js"></script>
+<script src="app/js/jquery-ui.js"></script>
+<script src="app/js/bootstrap.min.js"></script>
+<script src="app/js/velocity.min.js"></script>
+<script src="app/js/velocity.ui.min.js"></script>
+<script src="app/js/appear.min.js" type="text/javascript"></script>
+<script src="app/js/animations.min.js" type="text/javascript"></script>
+<script src="app/js/plugins.js" type="text/javascript"></script>
+<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="app/js/custom.min.js"></script>
+
+@stop

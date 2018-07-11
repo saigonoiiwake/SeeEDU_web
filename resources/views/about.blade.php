@@ -1,4 +1,6 @@
 @extends('layouts.app')
+
+@section('welcome_style')
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
@@ -18,7 +20,10 @@
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 	<![endif]-->
+@stop
 
+
+@section('content')
 
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
   <div class="container">
@@ -278,9 +283,11 @@
   </div>
  </div>
 
+ @stop
+
 <!-- Javascript -->
 
-
+@section('welcome_scripts')
 <script src="app/js/jquery-1.11.2.js"></script>
 <script src="app/js/jquery-ui.js"></script>
 <script src="app/js/bootstrap.min.js"></script>
@@ -291,3 +298,4 @@
 <script src="app/js/plugins.js" type="text/javascript"></script>
 <script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
 <script src="app/js/custom.min.js"></script>
+@stop
