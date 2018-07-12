@@ -13,108 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
 	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
 
-<style>
-  .form {
-  border: solid 3px #C3C3C3;
-  width: 900px;
-  margin: 50px auto;
-  }
-  .form .line {
-  position: relative;
-  height: 10px;
-  background-color: #C3C3C3;
-  }
-  .form .circle {
-  display: inline-block;
-  }
-  .form .circle1 {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background-color: #398DD5;
-  border-radius: 100%;
-  left: -3.5%;
-  top: -40px;
-  }
-  .form .circle1 h2 {
-  text-align: center;
-  color: white;
-  position: relative;
-  top: -5px;
-  }
-  .form .circle2, .form .circle3 {
-  width: 60px;
-  height: 60px;
-  background-color: #C3C3C3;
-  border-radius: 100%;
-  top: -40px;
-  }
-  .form .circle2 h2, .form .circle3 h2 {
-  text-align: center;
-  color: white;
-  position: relative;
-  top: -5px;
-  }
-  .form .circle2 {
-  position: relative;
-  left: 40%;
-  }
-  .form .circle3 {
-  position: relative;
-  left: 82%;
-  }
-
-  .bottom {
-  margin: 80px;
-  }
-  .bottom h5 {
-  font-size: 16px;
-  color: #434343;
-  }
-  .bottom input {
-  position: relative;
-  left: 20px;
-  width: 150px;
-  height: 20px;
-  }
-  .bottom .upload-photo {
-  float: right;
-  position: relative;
-  top: -350px;
-  width: 300px;
-  height: 300px;
-  margin: 10px;
-  margin-left: -20px;
-  text-align: center;
-  line-height: 180px;
-  font-weight: bold;
-  color: white;
-  background-color: #C3C3C3;
-  background-size: cover;
-  }
-  .bottom .question {
-  position: relative;
-  margin-top: 60px;
-  left: 120px;
-  text-align: center;
-  }
-  .bottom .question .next {
-  background-color: #398DD5;
-  border-radius: 5px;
-  color: white;
-  width: 120px;
-  margin: 20px;
-  height: 40px;
-  }
-  .bottom .question .save {
-  background-color: #C3C3C3;
-  border-radius: 5px;
-  margin: 20px;
-  color: white;
-  width: 120px;
-  height: 40px;
-  }
-</style>
 @stop
 
 @section('content')
@@ -150,84 +48,128 @@
       <p class="pix-black-gray-light big-text pix-margin-bottom-20">
        <span class="pix_edit_text"><span>填寫之前請務必確認帳戶為本人帳戶，以及真實姓名須和身分證上姓名符合，審核作業將更加順利，謝謝您。</span></span>
       </p>
-
      </div>
     </div>
    </div>
   </div>
  </div>
 
+ <div class="col-md-8 col-md-offset-2">
 
-<section class="form">
-  <div class="stepbar">
-    <div class="line"></div>
-    <div class="circle circle1">
-      <h2>1</h2>
-    </div>
-    <div class="circle circle2">
-      <h2>2</h2>
-    </div>
-    <div class="circle circle3">
-      <h2>3</h2>
-    </div>
-    <!--STEP BAR結束-->
-  </div>
-  <div class="bottom">
-    <h5>真實姓名
-      <input id="name_input" placeholder="黃志明"/>
-    </h5>
-    <h5>出生日期
-      <input id="name_input" placeholder="1993/01/05"/>
-    </h5>
-    <h5>開課暱稱
-      <input id="name" placeholder="阿明"/>
-    </h5>
-    <h5>聯絡電話
-      <input id="phone" placeholder="0930962357"/>
-    </h5>
-    <h5>學歷
-      <input id="school" placeholder="交通大學外文系"/>
-    </h5>
-    <h5>經歷
-      <input id="experience" placeholder="東京奧運日文口譯"/>
-    </h5>
-    <h5>大頭照（300X300px）
-      <input id="id_photo" type="file" multiple="multipled"/>
-    </h5>
-    <div class="question">
-      <button class="next"><a href="{{ route('open_courses_2') }}">下一步</a></button>
-      <button class="save">暫存離開</button>
-    </div>
-  </div>
-</section>
+
+ 	<div class="panel panel-default">
+ 	 	<div class="panel-heading">
+ 	     老師基本資訊
+ 	 	</div>
+
+ 	 	<div class="panel-body">
+ 			<form class="form" action="#" method="post" enctype="multipart/form-data">
+
+ 			<div class="form-row">
+ 		     <div class="form-group col-md-6">
+ 		      <label for="real_name">*真實姓名</label>
+ 		      <input type="text" class="form-control" id="real_name" placeholder="黃志明" name="real_name">
+ 		    </div>
+
+ 		     <div class="form-group col-md-6">
+ 		      <label for="nick_name">*開課暱稱</label>
+ 		      <input type="text" class="form-control" id="nick_name" placeholder="阿明老師" name="nick_name">
+ 		    </div>
+ 			</div>
+
+ 			<div class="form-row">
+ 				<div class="form-group col-md-6">
+ 		      <label for="birthday">*生日</label>
+ 		      <input type="date" class="form-control" id="birthday" placeholder="2018/01/01" name="birthday">
+ 		    </div>
+ 		    <div class="form-group col-md-6">
+ 		      <label for="contact">*聯絡電話</label>
+ 		      <input type="text" class="form-control" id="contact" placeholder="" name="contact">
+ 		    </div>
+ 			</div>
+
+				<div class="form-group" id="showBlock">
+					<label for="school">*學歷</label><input type="button" id="btn" value="增加"/ class="btn btn-xs btn-success">
+					<input type="text" class="form-control" id="school" name="school">
+				</div>
+
+
+
+
+			<div class="form-group" id="showBlock-2">
+				<label for="school">*經歷</label><input type="button" id="btn-2" value="增加"/ class="btn btn-xs btn-success">
+				<input type="text" class="form-control" id="experience" name="experience">
+			</div>
+
+
+			<div class="form-group" >
+					<label for="content">簡介(約50字)</label>
+					<textarea name="content" id="content" rows="5" cols="5" class="form-control" ></textarea>
+			</div>
+
+ 	  	</form>
+ 		</div>
+
+
+ 		<div class="panel-footer">
+			<a href="{{ route('welcome') }}"><button class="btn btn-default" type="submit">暫存離開</button></a>
+			<a href="{{ route('open_courses_2') }}"><button class="btn btn-success col-md-8" type="submit">下一步</button></a>
+		</div>
+
+ 	</div>
+
+ </div>
+
+@include('includes.footer')
+
+ <!-- add new item Dynamically in the show block -->
+ <!-- click the button to add new item -->
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+ //set the default value
+ var txtId = 1;
+
+ //add input block in showBlock
+ $("#btn").click(function () {
+		 $("#showBlock").append('<div class="form-group" id="div' +
+		 txtId +
+		 '"><input type="text" class="form-control" name="test[]" /> <input class="btn btn-xs btn-danger" type="button" value="刪除" onclick="deltxt('+
+		 txtId +
+		 ')"></div>');
+		 txtId++;
+ });
+
+
+ //set the default value
+ var txtId_2 = 1;
+
+ //add input block in showBlock
+ $("#btn-2").click(function () {
+		 $("#showBlock-2").append('<div class="form-group" id="div' +
+		 txtId_2 +
+		 '"><input type="text" class="form-control" name="test[]" /> <input class="btn btn-xs btn-danger" type="button" value="刪除" onclick="deltxt('+
+		 txtId_2 +
+		 ')"></div>');
+		 txtId_2++;
+ });
+
+ //remove div
+ function deltxt(id) {
+		 $("#div"+id).remove();
+ }
+
+</script>
+
+
+
 
 @stop
 
 @section('course_open_scripts')
-<script>
-var inputAddphoto = '<div class="upload-photo"></div>',
-    inputphoto = $('#id_photo');
 
-inputphoto.before(inputAddphoto);
 
-$('.upload-photo').on('click', function() {
-    $(this).siblings('#id_photo').trigger('click');
-});
 
-inputphoto.on('change', function(){
-    var input = $(this),
-        reader = new FileReader();
-
-    reader.onload = function (e) {
-        input.siblings('.upload-photo').css('background-image', 'url(' + e.target.result + ')');
-    };
-
-    reader.readAsDataURL(this.files[0]);
-});
-
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 @stop

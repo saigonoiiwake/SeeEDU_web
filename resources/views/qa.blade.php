@@ -18,7 +18,7 @@
 	<![endif]-->
 	<br>
 	<br>
-	
+
 	<style type="text/css" id="pix_page_style"></style>
 
 <div class="pix_section pix-padding-v-40 gray-bg" id="section_faq_1" style="display: block;">
@@ -150,6 +150,8 @@
    </div>
   </div>
  </div>
+
+ @include('includes.footer')
 <!-- Javascript -->
 <script src="app/js/jquery-1.11.2.js"></script>
 <script src="app/js/jquery-ui.js"></script>

@@ -232,6 +232,9 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
   </div>
  </div>
 </div>
+
+@include('includes.footer')
+
 <!-- Javascript -->
 <script src="app/js/jquery-1.11.2.js"></script>
 <script src="app/js/jquery-ui.js"></script>

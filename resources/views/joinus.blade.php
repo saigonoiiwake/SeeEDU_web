@@ -254,6 +254,8 @@ Internship">
 		</div>
 	</div>
 
+@include('includes.footer')
+
 @stop
 
 @section('welcome_scripts')

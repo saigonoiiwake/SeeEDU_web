@@ -283,7 +283,9 @@
   </div>
  </div>
 
- @stop
+ @include('includes.footer')
+
+ @endsection
 
 <!-- Javascript -->
 

@@ -273,7 +273,7 @@ input[type=text] {
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content pix-padding-bottom-30" style="background-repeat: repeat-x; padding: 0px; margin: 0px;">
       <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><p><strong><span style="font-size: 16px;">更多課程&gt;</span></strong><span style="font-size: 16px;">﻿</span></p></span>
+        <a href="{{ route('courses') }}"><span class="pix_edit_text"><p><strong><span style="font-size: 16px;">更多課程&gt;</span></strong><span style="font-size: 16px;">﻿</span></p></span></a>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
        <span class="pix_edit_text"><span style="font-size: 12px;">好玩有趣的課程們都在等著你！</span></span>
@@ -449,6 +449,8 @@ input[type=text] {
     </div>
    </div>
   </div>
+
+@include('includes.footer')
 
 @endsection
 

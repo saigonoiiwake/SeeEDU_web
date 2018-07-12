@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
 	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
 
+
 @stop
 
 @section('content')
@@ -52,7 +53,28 @@
   </div>
  </div>
 
+<div class="col-md-8 col-md-offset-2">
 
+
+  <div class="panel panel-default">
+ 	 <div class="panel-heading">
+ 			合約內容
+ 	 </div>
+	 <div class="panel-body">
+		 <div class="form-group" >
+
+		 </div>
+	 </div>
+	 <div class="panel-footer">
+		 <a href="{{ route('welcome') }}"><button class="btn btn-default" type="submit">暫存離開</button></a>
+		 <a href="{{ route('open_courses_2') }}"><button class="btn btn-info" type="submit">上一步</button></a>
+		 <a href="{{ route('open_courses_4') }}"><button class="btn btn-success col-md-8" type="submit">送出審查</button></a>
+	 </div>
+ </div>
+
+</div>
+
+@include('includes.footer')
 
 @stop
 
