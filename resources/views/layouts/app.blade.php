@@ -76,11 +76,9 @@
                             <li><a href="{{ route('login') }}"> 登入 </a></li>
                             <li><a href="{{ route('register') }}"> 註冊 </a></li>
                         @else
-
                             <li>
                                  <img src="app/img/blog-details-author.png" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
                             </li>
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -94,7 +92,7 @@
                                   </li>
                                   <li>
                                   <li>
-                                    <a href="#" class="">
+                                    <a href="/messenger" class="">
                                         <i class="seoicon-mail-send"> 私人訊息</i>
                                     </a>
                                   </li>
