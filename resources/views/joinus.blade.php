@@ -42,7 +42,9 @@ Internship">
       </div>
      </div>
     </div>
-   </div><div class="pix_section pix-padding" id="section_features_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 60px;">
+   </div>
+
+<div class="pix_section pix-padding" id="section_features_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 60px;">
     <div class="container">
      <div class="row">
 
@@ -54,107 +56,110 @@ Internship">
          <span class="pix_edit_text"><b>我們的故事</b></span>
         </h4>
         <p class="pix-black-gray-light big-text pix-margin-bottom-20">
-         <span class="pix_edit_text">一個最不一樣的線上教育平台</span>
+         <span class="pix_edit_text">一個有溫度的線上教育平台</span>
         </p>
         <a href="{{ route('about') }}" class="btn green-blue-bg pix-white btn-md normal" style="background-color: rgb(66, 157, 235);">
          <span class="pix_edit_text"><span style="font-weight: 700;">了解更多</span></span>
         </a>
        </div>
-      </div><div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable" style="display: block;">
+      </div>
+	<div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable" style="display: block;">
        <div class="pix-content pix-padding-bottom-30">
         <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-         <span class="pix_edit_text"><span style="font-weight: 700;">你絕對不能錯過</span></span>
+         <span class="pix_edit_text"><span style="font-weight: 700;">對外語教育有熱忱的老師</span></span>
         </h2>
         <p class="pix-black-gray-light big-text text-center">
-         <span class="pix_edit_text">這裡沒有老闆與員工，只有一起並肩作戰，互相cover的夥伴們</span>
+         <span class="pix_edit_text">趕快加入最棒的開課平台</span>
         </p>
        </div>
-      </div><div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
+  </div>
+	<div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
        <div class="pix-content pix-margin-v-30">
         <div class="media">
          <div class="media-left media-middle">
           <div class="pix-margin-bottom-20 pix-cirlce-7">
-           <i class="pixicon-window81" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
+           <i class="fas fa-wifi" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
           </div>
          </div>
          <div class="media-body media-middle">
           <div class="pix-padding-left-5">
            <h5 class="media-heading pix-black-gray-dark secondary-font">
             <span class="pix_edit_text">
-             <strong>舒適的辦公空間</strong></span>
+             <strong>彈性的上課空間</strong></span>
            </h5>
            <p class="pix-black-gray-light pix-margin-bottom-20">
-            <span class="pix_edit_text">We provide you with a full user control that results in more faster revenue.</span>
+            <span class="pix_edit_text">不管是家裡還是森林、沙灘，只要有網路的地方都是教室</span>
            </p>
           </div>
          </div>
         </div>
        </div>
-      </div>
-      <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
+  </div>
+  <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
        <div class="pix-content pix-margin-v-30">
         <div class="media">
          <div class="media-left media-middle">
           <div class="pix-margin-bottom-20 pix-cirlce-7">
-           <i class="pixicon-hotairballoon" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
+           <i class="fas fa-desktop" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
           </div>
          </div>
          <div class="media-body media-middle">
           <div class="pix-padding-left-5">
            <h5 class="media-heading pix-black-gray-dark secondary-font">
-            <span class="pix_edit_text"><span style="font-weight: 700;">一年15天特休</span></span>
+            <span class="pix_edit_text"><span style="font-weight: 700;">真人即時互動</span></span>
            </h5>
            <p class="pix-black-gray-light pix-margin-bottom-20">
-            <span class="pix_edit_text">We provide you with a full user control that results in more faster revenue.</span>
+            <span class="pix_edit_text">電腦背後有著熱衷學習外語的學生，再也不用再對冷冰冰的機器上課</span>
            </p>
           </div>
          </div>
         </div>
        </div>
-      </div>
-      <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
+  </div>
+  <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
        <div class="pix-content pix-margin-v-30">
         <div class="media">
          <div class="media-left media-middle">
           <div class="pix-margin-bottom-20 pix-cirlce-7">
-           <i class="pixicon-light" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
+           <i class="fas fa-toolbox" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
           </div>
          </div>
          <div class="media-body media-middle">
           <div class="pix-padding-left-5">
            <h5 class="media-heading pix-black-gray-dark secondary-font">
-            <span class="pix_edit_text"><span style="font-weight: 700;">發揮你的所長</span></span>
+            <span class="pix_edit_text"><span style="font-weight: 700;">最可靠的後盾</span></span>
            </h5>
            <p class="pix-black-gray-light pix-margin-bottom-20">
-            <span class="pix_edit_text">We provide you with a full user control that results in more faster revenue.</span>
+            <span class="pix_edit_text">我們將持續開發各種讓學習更有效率的小工具</span>
            </p>
           </div>
          </div>
         </div>
        </div>
-      </div>
-      <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
+  </div>
+  <div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
        <div class="pix-content pix-margin-v-30">
         <div class="media">
          <div class="media-left media-middle">
           <div class="pix-margin-bottom-20 pix-cirlce-7">
-           <i class="pixicon-heart5" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
+           <i class="fas fa-thumbs-up" style="color: rgb(66, 157, 235); font-size: 60px;"></i>
           </div>
          </div>
          <div class="media-body media-middle">
           <div class="pix-padding-left-5">
            <h5 class="media-heading pix-black-gray-dark secondary-font">
             <span class="pix_edit_text">
-             <strong>比你更在乎你的職涯</strong></span>
+             <strong>往成功之路邁進</strong></span>
            </h5>
            <p class="pix-black-gray-light pix-margin-bottom-20">
-            <span class="pix_edit_text">We provide you with a full user control that results in more faster revenue.</span>
+            <span class="pix_edit_text">教育創業的門檻將是0元，這裡有屬於才華洋溢的你的舞台</span>
            </p>
           </div>
          </div>
         </div>
        </div>
-      </div>
+  </div>
+
      </div>
     </div>
    </div>
@@ -176,10 +181,10 @@ Internship">
             <div class="pix-content pix-padding-top-20">
              <h2 class="pix-black-gray-dark pix-no-margin-top secondary-font">
               <span class="pix_edit_text">
-               <strong>熱門職缺</strong></span>
+               <strong>其他熱門職缺</strong></span>
              </h2>
              <p class="pix-black-gray-light big-text pix-margin-bottom-20">
-              <span class="pix_edit_text">This is just a simple text made for this unique and awesome template, you can replace it with any text.</span>
+              <span class="pix_edit_text">我們是成長中的創業公司，歡迎有著各種能力的你跟我們聊聊，需具備以下特質</span>
              </p>
             </div>
            </div>
@@ -192,10 +197,10 @@ Internship">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
-                <span class="pix_edit_text"><strong>後端工程師</strong></span>
+                <span class="pix_edit_text"><strong>瘋狂的想法</strong></span>
                </h5>
                <p class="pix-black-gray-light pix-margin-bottom-30">
-                <span class="pix_edit_text">Create your own company today.</span>
+                <span class="pix_edit_text">激盪出最特別的解決方案</span>
                </p>
               </div>
              </div>
@@ -208,10 +213,10 @@ Internship">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
-                <span class="pix_edit_text"><strong>BD</strong></span>
+                <span class="pix_edit_text"><strong>熱愛學習</strong></span>
                </h5>
                <p class="pix-black-gray-light pix-margin-bottom-30">
-                <span class="pix_edit_text">Start using pixfort page builder.</span>
+                <span class="pix_edit_text">對於各種新事物的好奇心，並樂於分享</span>
                </p>
               </div>
              </div>
@@ -227,19 +232,20 @@ Internship">
       </div>
      </div>
     </div>
-   </div><div class="pix_section pix-padding-v-85" id="section_call_to_action_1" style="display: block;">
+   </div>
+	 <div class="pix_section pix-padding-v-85" id="section_call_to_action_1" style="display: block;">
     <div class="container">
      <div class="row">
       <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
        <div class="pix-content text-center">
         <h4 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-         <span class="pix_edit_text"><strong>加入SeeEDU</strong></span>
+         <span class="pix_edit_text"><strong>SeeEDU LIVE School</strong></span>
         </h4>
         <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
          <span class="pix_edit_text">這裡有與你/妳一起實現夢想的夥伴！</span>
         </h6>
         <a href="#" class="btn green-bg btn-lg pix-white wide">
-         <span class="pix_edit_text"><b>立即應徵</b></span>
+         <span class="pix_edit_text"><b>立即加入</b></span>
         </a>
        </div>
       </div>

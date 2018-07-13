@@ -14,10 +14,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('app/css/font-style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     @yield('welcome_style')
     @yield('course_style')
     @yield('course_open_style')
 
+<style>
+@charset "UTF-8";
+* {
+  font-family: 微軟正黑體;
+}
+
+</style>
 
 </head>
 
@@ -37,7 +45,7 @@
 
                     <!-- Branding Image -->
                     <!-- <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a> -->
-                    <a href="{{ route('welcome') }}" class="navbar-left"><img class="logo" src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_100/v1531194450/logo_final-398DD5.png" alt="" width="100px"></a>
+                    <a href="{{ route('welcome') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -53,11 +61,7 @@
                                 <i class="seoicon-people"> 選課去</i>
                             </a>
                         </li>
-                        <li class="search search_main" style="color: black; margin-top: 1px;">
-                            <a class="js-open-search">
-                                <i class="seoicon-loupe"></i>
-                            </a>
-                        </li>
+                        
                         <li class="search search_main" style="color: black; margin-top: 8px;">
                           <input type="text" name="search" >
                         </li>
@@ -65,11 +69,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      <li>
-                        <a href="#" class="">
-                            <i class="seoicon-basket"> 購物車</i>
-                        </a>
-                      </li>
+
 
                         <!-- Authentication Links -->
                         @guest
@@ -120,7 +120,7 @@
 
     @yield('content')
 
-    
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

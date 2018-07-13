@@ -5,7 +5,7 @@
   <div class="row">
    <div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content"><div class="pix-padding-v-20">
-     <a class="" href="#"><img src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_120/v1531194450/logo_final-398DD5.png" alt="" class="img-responsive pix-inline-block"></a>
+     <a class="" href="#"><img src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" class="img-responsive pix-inline-block"></a>
     </div><div class="clearfix"></div><div class="pix-padding-v-10">
      <p class="pix-navy-blue-2">
        <span class="pix_edit_text">
@@ -17,13 +17,13 @@
    <div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content pix-padding-v-10">
      <div class="pix-padding-v-10">
-      <a href="{{ route('about') }}" class="pix-navy-blue-2 secondary-font"><span class="pix_edit_text">關於SeeEDU</span></a>
+      <a href="{{ route('about') }}" class="pix-navy-blue-2 "><span class="pix_edit_text">關於SeeEDU</span></a>
      </div>
      <div class="pix-padding-v-10">
-      <a href="{{ route('qa') }}" class="pix-navy-blue-2 secondary-font"><span class="pix_edit_text">常見問題</span></a>
+      <a href="{{ route('qa') }}" class="pix-navy-blue-2"><span class="pix_edit_text">常見問題</span></a>
      </div>
      <div class="pix-padding-v-10">
-      <a href="{{ route('policies') }}" class="pix-navy-blue-2 secondary-font">
+      <a href="{{ route('policies') }}" class="pix-navy-blue-2 ">
         <span class="pix_edit_text">服務與隱私權政策<br><span><br></span>
       </a>
      </div>
@@ -35,13 +35,13 @@
    </div><div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content pix-padding-v-10">
      <div class="pix-padding-v-10">
-      <a href="{{ route('index') }}" class="pix-navy-blue-2 secondary-font"><span class="pix_edit_text">Blog</span></a>
+      <a href="{{ route('index') }}" class="pix-navy-blue-2"><span class="pix_edit_text">Blog</span></a>
      </div>
      <div class="pix-padding-v-10">
-      <a href="{{ route('joinus') }}" class="pix-navy-blue-2 secondary-font"><span class="pix_edit_text">加入我們</span></a>
+      <a href="{{ route('joinus') }}" class="pix-navy-blue-2"><span class="pix_edit_text">加入我們</span></a>
     </div>
     <div class="pix-padding-v-10">
-     <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="pix-navy-blue-2 secondary-font" target="_blank">免費下載上課軟體</a>
+     <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="pix-navy-blue-2 " target="_blank">免費下載上課軟體</a>
    </div>
      <div class="pix-padding-v-10">
      </div>
@@ -53,12 +53,13 @@
    </div>
    <div class="col-md-3 col-xs-12 col-sm-2 column ui-droppable">
     <div class="pix-content pix-adjust-height text-left">
-     <a href="#" class="small-social">
-      <i class="seoicon-facebook" style="color: rgb(129, 142, 155);"></i>
+     <a href="https://www.facebook.com/seeedulive/" class="small-social" target="_blank">
+      <i class="fab fa-facebook-square" style="color: rgb(129, 142, 155);"></i>
      </a>
-     <a href="#" class="small-social">
-      <i class="seoicon-social-instagram" style="color: rgb(129, 142, 155);"></i>
+     <a href="https://www.facebook.com/seeedulive/" class="small-social" target="_blank">
+      <i class="fab fa-instagram" style="color: rgb(129, 142, 155);"></i>
      </a>
+     <a href="mailto:service@seeedu31.com" class="small-social" ><i class="far fa-envelope" style="color: rgb(129, 142, 155);"></i></a>
     </div>
    </div>
   </div>

@@ -24,23 +24,6 @@
 @section('content')
 
 
-
-<div class="pix_section pix-padding" id="section_titles_1" style="display: block;">
-  <div class="container">
-   <div class="row">
-    <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
-     <div class="pix-content pix-padding-bottom-30">
-      <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><strong>上課方式</strong></span>
-      </h2>
-      <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text">手機、平板、電腦都可以上課，教室就該無拘無束</span>
-      </p>
-     </div>
-    </div>
-   </div>
-  </div>
- </div>
 <div class="pix_section gray-bg pix-padding" id="section_videos_1" style="display: block;">
   <div class="container">
    <div class="row">
@@ -56,6 +39,66 @@
  </div>
 
 
+ <div class="pix_section pix-padding-v-30" id="section_features_2" style="display: block; background-color: rgb(252, 252, 252); background-repeat: repeat-x; padding-top: 0px; padding-bottom: 30px;">
+  <div class="container">
+ 	<div class="row">
+
+ 		<div class="col-sm-1 column ui-droppable col-md-1"></div>
+
+ 	 <div class="col-xs-12 col-sm-2 column ui-droppable col-md-2">
+ 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
+ 			<img src="app/images/illustrations/下載zoom.png" alt="" class="img-responsive">
+ 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
+ 			<span class="pix_edit_text"><strong>下載zoom</strong></span>
+ 		 </h5>
+ 		</div>
+ 	 </div>
+
+ 	 <div class="col-xs-12 col-sm-2 column ui-droppable col-md-2">
+ 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
+ 			<img src="app/images/illustrations/進入直播.png" alt="" class="img-responsive">
+ 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
+ 			<span class="pix_edit_text"><strong>進入直播</strong></span>
+ 		 </h5>
+ 		</div>
+ 	 </div>
+
+
+ 	 <div class="col-xs-12 col-sm-2 column ui-droppable col-md-2">
+ 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
+ 			<img src="app/images/illustrations/開啟視訊.png" alt="" class="img-responsive">
+ 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
+ 			<span class="pix_edit_text"><strong>開啟視訊</strong></span>
+ 		 </h5>
+ 		</div>
+ 	 </div>
+
+ 	 <div class="col-xs-12 col-sm-2 column ui-droppable col-md-2">
+ 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
+ 			<img src="app/images/illustrations/舉手發問.png" alt="" class="img-responsive">
+ 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
+ 			<span class="pix_edit_text"><strong>舉手發問</strong></span>
+ 		 </h5>
+ 		</div>
+ 	 </div>
+
+ 	 <div class="col-xs-12 col-sm-2 column ui-droppable col-md-2">
+ 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
+ 			<img src="app/images/illustrations/傳訊討論.png" alt="" class="img-responsive">
+ 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
+ 			<span class="pix_edit_text"><strong>傳訊討論</strong></span>
+ 		 </h5>
+ 		</div>
+ 	 </div>
+
+ 		<div class="col-sm-1 column ui-droppable col-md-1"></div>
+
+ 	 </div>
+ 	</div>
+  </div>
+
+
+
 <div class="pix_section pix-padding-v-85" id="section_call_to_action_2" style="display: block;">
   <div class="container">
    <div class="row">
@@ -68,7 +111,7 @@
        <span class="pix_edit_text">給您最優質的線上互動體驗</span>
       </h6>
       <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="btn green-bg pix-white wide btn-lg normal" style="background-color: rgb(66, 157, 235);">
-       <span class="pix_edit_text" target="_blank"><strong>下載ZOOM</strong></span>
+       <span class="pix_edit_text" target="_blank"><strong>免費下載</strong></span>
       </a>
      </div>
     </div>

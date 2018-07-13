@@ -7,6 +7,13 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
+
+@charset "UTF-8";
+* {
+  font-family: 微軟正黑體;
+}
+
+
 .container {
 width: 100vw;
 height: 100vh;
@@ -191,9 +198,9 @@ text-transform: capitalize;
                   <div class="form-container-in">
           </div>
           <div class="log-container">
-            <a href="{{ route('welcome') }}"><img id="logo" src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_100/v1531194450/logo_final-398DD5.png" alt="">
+            <a href="{{ route('welcome') }}"><img id="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="">
           </a>
-              
+
         </div>
 
           <div class="row">
