@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('app/css/font-style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
     @yield('welcome_style')
     @yield('course_style')
     @yield('course_open_style')

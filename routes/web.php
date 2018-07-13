@@ -84,24 +84,24 @@ Route::get('/joinus', function () {
     return view('joinus');
 })->name('joinus');
 
-Route::get('/opencourse', function () {
-    return view('open_courses');
+Route::get('/courses/create', function () {
+    return view('courses.create.welcome');
 })->name('open_courses');
 
-Route::get('/opencourse-1', function () {
-    return view('open_courses_1');
+Route::get('/courses/create/opencourse-1', function () {
+    return view('courses.create.open_courses_1');
 })->name('open_courses_1');
 
-Route::get('/opencourse-2', function () {
-    return view('open_courses_2');
+Route::get('/courses/create/opencourse-2', function () {
+    return view('courses.create.open_courses_2');
 })->name('open_courses_2');
 
-Route::get('/opencourse-3', function () {
-    return view('open_courses_3');
+Route::get('/courses/create/opencourse-3', function () {
+    return view('courses.create.open_courses_3');
 })->name('open_courses_3');
 
-Route::get('/opencourse-4', function () {
-    return view('open_courses_4');
+Route::get('/courses/create/opencourse-4', function () {
+    return view('courses.create.open_courses_4');
 })->name('open_courses_4');
 
 Route::get('/how-to-take-courses', function () {
