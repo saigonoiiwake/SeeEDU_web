@@ -61,9 +61,13 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/login2', function () {
-    return view('login2');
-});
+Route::get('/mypage', function () {
+    return view('mypage');
+})->name('mypage');
+
+Route::get('/mycourse', function () {
+    return view('mycourse');
+})->name('mycourse');
 
 Route::get('/qa', function () {
     return view('qa');
