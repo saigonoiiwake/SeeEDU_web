@@ -454,7 +454,7 @@ to { opacity: 0; padding: 0px; height: 0px; }
                   </li>
 
                   <li class="list-group-item">
-                      <a href="#">課程列表</a>
+                      <a href="{{ route('mycourse') }}">課程列表</a>
                   </li>
 
                   <li class="list-group-item">
@@ -479,7 +479,7 @@ to { opacity: 0; padding: 0px; height: 0px; }
                     </div>
 
                     <div class="col-sm-6 upcoming">
-                      <h3>upcoming</h3>
+                      <h3>下一堂課</h3>
                       <h4 class="date">5/26 14:00</h4>
                       <h5>日檢 N3 實戰班</h5>
                     </div>
@@ -488,11 +488,13 @@ to { opacity: 0; padding: 0px; height: 0px; }
                 </section>
                 <div class="row">
 
-                  <div id="calendar">
+                  <div id="calendar" >
                     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
                   </div>
 
                 </div>
+
+                <br>
 
 
 
