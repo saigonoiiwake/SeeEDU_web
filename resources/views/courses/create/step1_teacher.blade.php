@@ -60,7 +60,6 @@
  	     老師基本資訊
  	 	</div>
 
-
 		<form class="form" id="teacher-information" action="/courses/create/step/teacher" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
 
@@ -68,50 +67,70 @@
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
+
 						<label for="real_name">真實姓名</label><span class="required">*</span>
-						<input type="text" class="form-control" id="name" placeholder="" name="name" required>
+						<input type="text" class="form-control" id="name" placeholder="" name="name" value="{{ $teacher_profile['name'] or '' }}" required>
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="nick_name">開課暱稱</label><span class="required">*</span>
-						<input type="text" class="form-control" id="nick_name" placeholder="" name="nick_name" required>
+						<input type="text" class="form-control" id="nick_name" placeholder="" name="nick_name" value="{{ $teacher_profile['nick_name'] or '' }}" required>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="birthday">生日</label><span class="required">*</span>
-						<input type="date" class="form-control" id="birthday" placeholder="2018/01/01" name="birthday" required>
+						<input type="date" class="form-control" id="birthday" placeholder="" name="birthday" value="{{ $teacher_profile['birthday'] or '' }}" required>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="contact">聯絡電話</label><span class="required">*</span>
-						<input type="text" class="form-control" id="contact" placeholder="" name="contact" required>
+						<label for="phone_number">聯絡電話</label><span class="required">*</span>
+						<input type="text" class="form-control" id="phone_number" placeholder="" name="phone_number" value="{{ $teacher_profile['phone_number'] or '' }}" required>
 					</div>
 				</div>
 
 				<div class="form-group" id="education-block">
 					<div id="education-input">
 						<label for="school">學歷</label><span class="required">*</span>
-						<input type="text" class="form-control" id="education" name="education[0]" required>
+						@if(array_key_exists('education' ,$teacher_profile))
+							@foreach ($teacher_profile['education'] as $key => $education)
+								<input type="text" class="form-control" id="education-{{ $key }}" name="education[{{ $key }}]" value="{{ $education }}">
+							@endforeach
+						@else
+							<input type="text" class="form-control" id="education-0" name="education[0]" required>
+						@endif
+
 					</div>
 					<div id="education-btn">
 						<input type="button" id="education-add-btn" value="增加" class="btn btn-xs btn-success">
+						@if(array_key_exists('education' ,$teacher_profile) && count($teacher_profile['education']) > 1)
+							<input class="btn btn-xs btn-danger" type="button" id="education-del-btn" value="刪除" onclick="delEducation()">
+						@endif
 					</div>
 				</div>
 				<div class="form-group" id="experience-block">
 					<div id="experience-input">
 						<label for="school">經歷</label><span class="required">*</span>
-						<input type="text" class="form-control" id="experience" name="experience[0]" required>
+						@if(array_key_exists('experience' ,$teacher_profile))
+							@foreach ($teacher_profile['experience'] as $key => $experience)
+								<input type="text" class="form-control" id="experience-{{ $key }}" name="experience[{{ $key }}]" value="{{ $experience }}">
+							@endforeach
+						@else
+							<input type="text" class="form-control" id="experience-0" name="experience[0]" required>
+						@endif
 					</div>
 					<div id="experience-btn">
 						<input type="button" id="experience-add-btn" value="增加" class="btn btn-xs btn-success">
+						@if(array_key_exists('experience' ,$teacher_profile) && count($teacher_profile['experience']) > 1)
+							<input class="btn btn-xs btn-danger" type="button" id="experience-del-btn" value="刪除" onclick="delExperience()">
+						@endif
 					</div>
 				</div>
 
 
 				<div class="form-group" >
 					<label for="content">簡介(約50字)</label>
-					<textarea name="content" id="content" rows="5" cols="5" class="form-control" ></textarea>
+					<textarea name="content" id="content" rows="5" cols="5" class="form-control">{{ $teacher_profile['content'] or '' }}</textarea>
 				</div>
 			</div>
 
@@ -129,13 +148,11 @@
 
 @endsection
 
-
-
 @section('scripts')
-<script src="{{ asset('http://code.jquery.com/jquery-1.9.1.js') }}"></script>
+
 <script>
  //set the default value
- var educationId = 1;
+ var educationId = parseInt("{{ array_key_exists('education', $teacher_profile) ? count($teacher_profile['education']) : 1 }}");
 
  //add input block in education-input
  $("#education-add-btn").click(function () {
@@ -150,6 +167,7 @@
 
  function delEducation() {
      educationId--;
+     console.log(educationId);
      $("#education-" + educationId).remove();
      if( educationId === 1 ) {
          $("#education-del-btn").remove();
@@ -158,7 +176,7 @@
 
 
  //set the default value
- var experienceId = 1;
+ var experienceId = parseInt("{{ array_key_exists('experience', $teacher_profile) ? count($teacher_profile['experience']) : 1 }}");
 
  //add input block in experience-input
  $("#experience-add-btn").click(function () {
