@@ -10,7 +10,7 @@
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
-	<link rel="stylesheet" type="text/css" href="{{ asset(app/css/jquery.fancybox.min.css'') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />

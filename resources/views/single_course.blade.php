@@ -34,10 +34,14 @@
 @section('content')
 
 
-
 <div class="pix_section pix-padding-v-85 gray-bg" id="section_videos_2" style="display: block;">
   <div class="container">
-   <div class="row">
+		<div class="row col-xs-12 center-block text-center">
+			<h5 class="pix-black-gray-dark secondary-font">
+			 <span class="pix_edit_text"><strong>商用日語暑期衝刺班</strong></span>
+			</h5>
+		</div>
+   	<div class="row">
 
 
     <div class="col-md-8 col-xs-12 col-sm-8 column ui-droppable">
@@ -50,11 +54,13 @@
      <div class="pix-content text-left pix_feature_std pix_light_gray_border white-bg">
       <div class="pix-padding-h-10">
        <div class="pix-padding-v-9">
-        <i class="fas fa-book big-icon-55 pix-slight-white"></i>
+				 <div class="row">
+
+					 <i id="calendar" class="far fa-calendar-alt big-icon-55 pix-slight-white"></i>
+					 <label for="calendar">日期時間</label>
+				 </div>
        </div>
-       <h5 class="pix-black-gray-dark secondary-font">
-        <span class="pix_edit_text"><strong>商用日語暑期衝刺班</strong></span>
-       </h5>
+
        <div class="pix-margin-bottom-15"><h6><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">商用</span></span></h6></div>
        <p class="pix-black-gray-light big-text">
          <span class="pix_edit_text">
@@ -69,7 +75,8 @@
       </div>
      </div>
     </div>
-   </div>
+   	</div>
+
   </div>
  </div>
 

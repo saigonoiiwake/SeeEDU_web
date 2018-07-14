@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>login</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
-
-@charset "UTF-8";
-* {
-  font-family: 微軟正黑體;
-}
-
 
 .container {
 width: 100vw;
@@ -219,22 +215,55 @@ text-transform: capitalize;
             </div>
             <div class="left-divider"></div>
             <div class="col-md-6">
-              <form action="">
 
+              <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                {!! csrf_field() !!}
 
-
-          <div class="form-group">
-            <label for="email">Email :</label>
-            <input id="email" type="text" class="form-control">
-          </div>
-            <div class="form-group">
-            <label for="password">密碼 :</label>
-            <input id="password" type="password" class="form-control">
-          </div>
                 <div class="form-group">
-                  <input type="submit" value="登入" class="btn-primary btnn form-submit"></input>
+                  <label for="email">Email</label>
+                  <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                    @if ($errors->has('email'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
+
                 </div>
-        </form>
+
+                <div class="form-group">
+                  <label for="password">密碼 :</label>
+                  <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                    @if ($errors->has('password'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                    @endif
+
+                </div>
+
+                <div class="form-group">
+                  <div class="checkbox">
+                      <label>
+                          <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>記住我
+                      </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btnn form-submit">
+                    登入
+                  </button>
+
+                  <a class="btn btn-link" href="{{ route('password.request') }}">
+                    忘記密碼?
+                  </a>
+                </div>
+
+              </form>
+
+
             </div>
           </div>
 
