@@ -1,22 +1,19 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
 	<meta name="description" content="懷抱著對教育的滿腔熱血，四個人，一個理想，我們相信學習是連結彼此最好的方式，因此SeeEDU Live School誕生了！ 在這裡，學習不再孤單沒動力，每個人都可以找到志同道合的朋友，一起更上一層樓！">
-	<meta name="keywords" content="教育
-理想
-交通大學
-學習">
+	<meta name="keywords" content="教育 理想 交通大學 學習">
 	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }} " />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }} " />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }} " />
+	<link rel="stylesheet" type="text/css" href="{{ asset(' app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }} " />
+	<link href="{{ asset(' app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 	<![endif]-->
@@ -268,15 +265,15 @@
 
 <!-- Javascript -->
 
-@section('welcome_scripts')
-<script src="app/js/jquery-1.11.2.js"></script>
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+@section('scripts')
+<script src="{{ asset('app/js/jquery-1.11.2.js') }} "></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') } "></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }} "></script>
+<script src="{{ asset('app/js/appear.min.js') }} " type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }} " type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }} " type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }} " type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}" ></script>
 @stop

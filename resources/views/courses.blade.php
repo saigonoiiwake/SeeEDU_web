@@ -1,38 +1,24 @@
 @extends('layouts.app')
 
-@section('course_style')
+@section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
 	<meta name="description" content="不斷學習，是一種生活態度！
 SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課程，學習可以無所不在，錯過直播也不用擔心，每堂課都有錄影，讓你無限次觀看、複習，更棒的是！能夠和志同道合的同學們一起分享、討論，學習變成一件最有趣的事！ ">
-	<meta name="keywords" content="日檢
-課程
-多益
-日語
-會話班
-Hiroshi老師
-日本留學
-美國留學
-托福
- toefl
-雅思">
-探索課程
-不斷學習，是一種生活態度！	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="keywords" content="日檢 課程 多益 日語 會話班 Hiroshi老師 日本留學 美國留學 托福 toefl 雅思">
+
+<!-- CSS dependencies -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 
 <style>
 
-    @charset "UTF-8";
-    * {
-      font-family: 微軟正黑體;
-    }
 
     html, body {
       margin: 0;
@@ -416,16 +402,16 @@ Hiroshi老師
 @include('includes.footer')
 
 <!-- Javascript -->
-<script src="app/js/jquery-1.11.2.js"></script>
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
+<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}"></script>
 
 
 

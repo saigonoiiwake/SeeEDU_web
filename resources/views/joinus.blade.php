@@ -1,27 +1,18 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
-	<meta name="description" content="和我們一起懷抱熱情，朝理想邁進
-這裡沒有老闆與員工，只有一群互相支援的夥伴！">
-	<meta name="keywords" content="熱門職缺
-前端工程師
-高薪
-後端工程師
-UI設計師
-PM
-BD
-Internship">
-加入SeeEDU	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.css"/>
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="description" content="和我們一起懷抱熱情，朝理想邁進 這裡沒有老闆與員工，只有一群互相支援的夥伴！">
+	<meta name="keywords" content="熱門職缺 前端工程師 高薪 後端工程師 UI設計師 PM BD Internship 兼職">
+	<!-- CSS dependencies -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.css') }}"/>
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 @stop
 
 @section('content')
@@ -264,18 +255,18 @@ Internship">
 
 @stop
 
-@section('welcome_scripts')
+@section('scripts')
   <!-- Javascript -->
 	<!-- Javascript -->
-<script src="app/js/jquery-1.11.2.js"></script>
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
+<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}"></script>
 
 @stop

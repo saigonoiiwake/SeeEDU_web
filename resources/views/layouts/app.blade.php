@@ -13,11 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('app/css/font-style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    @yield('welcome_style')
-    @yield('course_style')
-    @yield('course_open_style')
+    @yield('styles')
+
 
 <style>
 @charset "UTF-8";
@@ -61,7 +60,7 @@
                                 <i class="seoicon-people"> 選課去</i>
                             </a>
                         </li>
-                        
+
                         <li class="search search_main" style="color: black; margin-top: 8px;">
                           <input type="text" name="search" >
                         </li>
@@ -120,12 +119,9 @@
 
     @yield('content')
 
-
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    @yield('welcome_scripts')
-    @yield('course_open_scripts')
+    @yield('scripts')
 
 </body>
 </html>

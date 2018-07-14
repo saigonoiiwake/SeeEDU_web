@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 
 <style>
 
 @charset "UTF-8";
 * {
-font-family: 微軟正黑體;
 box-sizing: border-box;
-
 }
 
 .row {
@@ -513,7 +511,7 @@ to { opacity: 0; padding: 0px; height: 0px; }
 
 @endsection
 
-@section('welcome_scripts')
+@section('scripts')
 
 <script>
 

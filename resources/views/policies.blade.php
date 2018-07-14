@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 
 	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }} "/>
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 
 @stop
 
@@ -56,4 +56,4 @@
 
  @include('includes.footer')
 
- @stop
+ @endsection

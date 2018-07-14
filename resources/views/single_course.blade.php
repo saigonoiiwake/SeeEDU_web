@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 
-@section('welcome_style')
+@section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 
 
 	<style>
@@ -27,6 +27,9 @@
 	}
 	</style>
 @endsection
+
+
+
 
 @section('content')
 
@@ -183,11 +186,9 @@
 
 @endsection
 
-@section('welcome_scripts')
+@section('scripts')
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
-
-
 
 @endsection

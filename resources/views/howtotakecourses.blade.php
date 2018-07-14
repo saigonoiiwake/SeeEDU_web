@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
 	<meta name="description" content="">
 	<meta name="keywords" content="上課方式">
 	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 	<![endif]-->
@@ -119,17 +119,24 @@
   </div>
  </div>
 
- @include('includes.footer')
-<!-- Javascript -->
-<script src="app/js/jquery-1.11.2.js"></script>
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+@include('includes.footer')
 
-@stop
+
+@endsection
+
+
+@section('scripts')
+
+<!-- Javascript -->
+<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
+<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}"></script>
+
+@endsection

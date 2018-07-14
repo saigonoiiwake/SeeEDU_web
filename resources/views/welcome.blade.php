@@ -1,38 +1,23 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" href="uploads/pix-favicon.ico">
-<meta name="description" content="SeeEDU Live School 讓學習把我們連結在一起
-語言是一把鑰匙，讓我們一同開啟世界的門
-英文、日文，以及你想得到的各種外語，在這裡都能輕鬆快樂的和朋友們一同學習！
-互動式直播課程、無限次觀看、同學間的討論、分享。
+<meta name="description" content="SeeEDU Live School 讓學習把我們連結在一起。語言是一把鑰匙，讓我們一同開啟世界的門。英文、日文，以及你想得到的各種外語，在這裡都能輕鬆快樂的和朋友們一同學習！互動式直播課程、無限次觀看、同學間的討論、分享。
 學習變成最快樂的一件事！">
-<meta name="keywords" content="日語
-英語
-熱門課程
-Hiroshi
-無限次觀看
-直播課程
-學日文
-學英文
-互動式
-線上課程
-真人
-">
-
+<meta name="keywords" content="日語 英語 熱門課程 Hiroshi 無限次觀看 直播課程 學日文 學英文 互動式 線上課程 真人 推薦">
 
 <!-- CSS dependencies -->
-<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-<link rel="stylesheet" type="text/css" href="app/css/font-style.css" />
-<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.css') }}" />
+<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-fix.css" />
 <![endif]-->
@@ -379,7 +364,7 @@ input[type=text] {
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/下載教材.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
-       <span class="pix_edit_text"><strong>購買/下載教材</strong></span>
+       <span class="pix_edit_text"><strong>取得教材</strong></span>
       </h5>
      </div>
     </div>
@@ -515,15 +500,15 @@ input[type=text] {
 
 @endsection
 
-@section('welcome_scripts')
+@section('scripts')
 
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
+<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}"></script>
 @stop

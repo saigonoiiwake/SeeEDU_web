@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
-@section('welcome_style')
+@section('styles')
 
 <style>
 
-@charset "UTF-8";
-* {
-  font-family: 微軟正黑體;
-}
 
 h1 {
   margin-top: 40px;

@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
-@section('course_open_style')
+@section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
-	<meta name="description" content="讓知識創造最高價值！
-「師者，所以傳道、授業、解惑也。」
-所謂老師，職責是傳播人生道理、講授專業知識、解答疑難問題。毫無疑問，一個好老師應受人尊重，因為知識極富價值。">
+	<meta name="description" content="讓知識創造最高價值">
 	<meta name="keywords" content="開課流程介紹
 優秀老師
 最高價值
@@ -22,13 +20,13 @@
 立即開課">
 開課流程介紹
 SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
-	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/jquery.fancybox.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/pix_style.min.css" />
-	<link rel="stylesheet" type="text/css" href="app/css/main.min.css"/>
-	<link rel="stylesheet" type="text/css" href="app/css/font-style.min.css" />
-	<link href="app/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
+	<link href="{{ asset('app/css/animations.min.css') }}" rel="stylesheet" type="text/css" media="all" />
 @stop
 
 @section('content')
@@ -166,15 +164,15 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 @include('includes.footer')
 
 <!-- Javascript -->
-<script src="app/js/jquery-1.11.2.js"></script>
-<script src="app/js/jquery-ui.js"></script>
-<script src="app/js/bootstrap.min.js"></script>
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/velocity.ui.min.js"></script>
-<script src="app/js/appear.min.js" type="text/javascript"></script>
-<script src="app/js/animations.min.js" type="text/javascript"></script>
-<script src="app/js/plugins.js" type="text/javascript"></script>
-<script src="app/js/jquery.fancybox.min.js" type="text/javascript"></script>
-<script src="app/js/custom.min.js"></script>
+<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
+<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
+<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('app/js/custom.min.js') }}"></script>
 
-@stop
+@endsection
