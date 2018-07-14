@@ -14,7 +14,7 @@ class Currency extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'symbol'];
 
     public function course()
     {
@@ -31,6 +31,7 @@ class Currency extends Model
         // TODO
         return Validator::make($data, [
             'name'          => 'require',
+            'symbol'        => 'require',
         ]);
     }
 
@@ -39,7 +40,8 @@ class Currency extends Model
         self::validator($param)->validate();
 
         return parent::create([
-            'name'          => $param['name'],
+            'name'     => $param['name'],
+            'symbol'   => $param['symbol'],
         ]);
     }
 }
