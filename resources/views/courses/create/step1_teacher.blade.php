@@ -55,66 +55,71 @@
  </div>
 
  <div class="col-md-8 col-md-offset-2">
-
-
  	<div class="panel panel-default">
  	 	<div class="panel-heading">
  	     老師基本資訊
  	 	</div>
 
- 	 	<div class="panel-body">
- 			<form class="form" action="#" method="post" enctype="multipart/form-data">
 
- 			<div class="form-row">
- 		     <div class="form-group col-md-6">
- 		      <label for="real_name">*真實姓名</label>
- 		      <input type="text" class="form-control" id="real_name" placeholder="黃志明" name="real_name">
- 		    </div>
+		<form class="form" id="teacher-information" action="/courses/create/step/teacher" method="post" enctype="multipart/form-data">
+			{{csrf_field()}}
 
- 		     <div class="form-group col-md-6">
- 		      <label for="nick_name">*開課暱稱</label>
- 		      <input type="text" class="form-control" id="nick_name" placeholder="阿明老師" name="nick_name">
- 		    </div>
- 			</div>
+			<div class="panel-body">
 
- 			<div class="form-row">
- 				<div class="form-group col-md-6">
- 		      <label for="birthday">*生日</label>
- 		      <input type="date" class="form-control" id="birthday" placeholder="2018/01/01" name="birthday">
- 		    </div>
- 		    <div class="form-group col-md-6">
- 		      <label for="contact">*聯絡電話</label>
- 		      <input type="text" class="form-control" id="contact" placeholder="" name="contact">
- 		    </div>
- 			</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="real_name">真實姓名</label><span class="required">*</span>
+						<input type="text" class="form-control" id="name" placeholder="" name="name" required>
+					</div>
 
-				<div class="form-group" id="showBlock">
-					<label for="school">*學歷</label><input type="button" id="btn" value="增加"/ class="btn btn-xs btn-success">
-					<input type="text" class="form-control" id="school" name="school">
+					<div class="form-group col-md-6">
+						<label for="nick_name">開課暱稱</label><span class="required">*</span>
+						<input type="text" class="form-control" id="nick_name" placeholder="" name="nick_name" required>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="birthday">生日</label><span class="required">*</span>
+						<input type="date" class="form-control" id="birthday" placeholder="2018/01/01" name="birthday" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="contact">聯絡電話</label><span class="required">*</span>
+						<input type="text" class="form-control" id="contact" placeholder="" name="contact" required>
+					</div>
+				</div>
+
+				<div class="form-group" id="education-block">
+					<div id="education-input">
+						<label for="school">學歷</label><span class="required">*</span>
+						<input type="text" class="form-control" id="education" name="education[0]" required>
+					</div>
+					<div id="education-btn">
+						<input type="button" id="education-add-btn" value="增加" class="btn btn-xs btn-success">
+					</div>
+				</div>
+				<div class="form-group" id="experience-block">
+					<div id="experience-input">
+						<label for="school">經歷</label><span class="required">*</span>
+						<input type="text" class="form-control" id="experience" name="experience[0]" required>
+					</div>
+					<div id="experience-btn">
+						<input type="button" id="experience-add-btn" value="增加" class="btn btn-xs btn-success">
+					</div>
 				</div>
 
 
-
-
-			<div class="form-group" id="showBlock-2">
-				<label for="school">*經歷</label><input type="button" id="btn-2" value="增加"/ class="btn btn-xs btn-success">
-				<input type="text" class="form-control" id="experience" name="experience">
-			</div>
-
-
-			<div class="form-group" >
+				<div class="form-group" >
 					<label for="content">簡介(約50字)</label>
 					<textarea name="content" id="content" rows="5" cols="5" class="form-control" ></textarea>
+				</div>
 			</div>
 
- 	  	</form>
- 		</div>
-
-
- 		<div class="panel-footer">
-			<a href="{{ route('welcome') }}"><button class="btn btn-default" type="submit">暫存離開</button></a>
-			<a href="{{ route('/courses/create/step/course') }}"><button class="btn btn-success col-md-8" type="submit">下一步</button></a>
-		</div>
+			<div class="panel-footer">
+				<button class="btn btn-default" type="submit">暫存離開</button>
+				<button class="btn btn-success col-md-8" type="submit">下一步</button>
+			</div>
+		</form>
 
  	</div>
 
@@ -130,35 +135,49 @@
 <script src="{{ asset('http://code.jquery.com/jquery-1.9.1.js') }}"></script>
 <script>
  //set the default value
- var txtId = 1;
+ var educationId = 1;
 
- //add input block in showBlock
- $("#btn").click(function () {
-		 $("#showBlock").append('<div class="form-group" id="div' +
-		 txtId +
-		 '"><input type="text" class="form-control" name="test[]" /> <input class="btn btn-xs btn-danger" type="button" value="刪除" onclick="deltxt('+
-		 txtId +
-		 ')"></div>');
-		 txtId++;
+ //add input block in education-input
+ $("#education-add-btn").click(function () {
+	 $("#education-input").append('<input type="text" class="form-control" id="education-'+ educationId+'" name="education['+ educationId +']" /> ');
+     educationId++;
+     if(educationId === 2) {
+         $("#education-btn").append(
+         	'<input class="btn btn-xs btn-danger" type="button" id="education-del-btn" value="刪除" onclick="delEducation()">'
+		 );
+	 }
  });
+
+ function delEducation() {
+     educationId--;
+     $("#education-" + educationId).remove();
+     if( educationId === 1 ) {
+         $("#education-del-btn").remove();
+	 }
+ }
 
 
  //set the default value
- var txtId_2 = 1;
+ var experienceId = 1;
 
- //add input block in showBlock
- $("#btn-2").click(function () {
-		 $("#showBlock-2").append('<div class="form-group" id="div' +
-		 txtId_2 +
-		 '"><input type="text" class="form-control" name="test[]" /> <input class="btn btn-xs btn-danger" type="button" value="刪除" onclick="deltxt('+
-		 txtId_2 +
-		 ')"></div>');
-		 txtId_2++;
+ //add input block in experience-input
+ $("#experience-add-btn").click(function () {
+     $("#experience-input").append('<input type="text" class="form-control" id="experience-'+ experienceId+'" name="experience['+ experienceId +']" /> ');
+     experienceId++;
+     if(experienceId === 2) {
+         $("#experience-btn").append(
+             '<input class="btn btn-xs btn-danger" type="button" id="experience-del-btn" value="刪除" onclick="delExperience()">'
+         );
+     }
  });
 
  //remove div
- function deltxt(id) {
-		 $("#div"+id).remove();
+ function delExperience() {
+     experienceId--;
+     $("#experience-" + experienceId).remove();
+     if( experienceId === 1 ) {
+         $("#experience-del-btn").remove();
+     }
  }
 
 </script>
