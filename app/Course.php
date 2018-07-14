@@ -14,7 +14,7 @@ class Course extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'title', 'status', 'course_category_id', 'enroll_num', 'min_num', 'max_num',
+        'id', 'title', 'status', 'course_category_id', 'enroll_num', 'min_num', 'max_num', 'browse_num',
         'currency_id', 'price', 'early_bird_price', 'early_bird_name', 'from_date', 'to_date',
         'data',
     ];
@@ -76,6 +76,11 @@ class Course extends Model
     public function qa()
     {
         return $this->hasMany('App\QA', 'course_id', 'id');
+    }
+
+    public function bulletin()
+    {
+        return $this->hasMany('App\CourseBulletin', 'course_id', 'id');
     }
 
     public function review()
