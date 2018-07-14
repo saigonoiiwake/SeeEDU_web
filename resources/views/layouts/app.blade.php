@@ -51,7 +51,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li class="">
-                            <a href="{{ route('open_courses') }}" class="">
+                            <a href="{{ route('/courses/create/welcome') }}" class="">
                                 <i class="seoicon-lightbulb-on"> 開課去</i>
                             </a>
                         </li>

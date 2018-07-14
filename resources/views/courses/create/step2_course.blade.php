@@ -178,8 +178,8 @@
 		</div>
 
 		<div class="panel-footer">
-			<a href="{{ route('open_courses_1') }}"><button class="btn btn-info" type="submit">上一步</button></a>
-			<a href="{{ route('open_courses_3') }}"><button class="btn btn-success col-md-8" type="submit">下一步</button></a>
+			<a href="{{ route('/courses/create/step/teacher') }}"><button class="btn btn-info" type="submit">上一步</button></a>
+			<a href="{{ route('/courses/create/step/contract') }}"><button class="btn btn-success col-md-8" type="submit">下一步</button></a>
 			<a href="{{ route('welcome') }}"><button class="btn btn-default" type="submit">暫存離開</button></a>
 		</div>
 

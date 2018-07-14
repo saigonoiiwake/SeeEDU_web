@@ -88,25 +88,25 @@ Route::get('/joinus', function () {
     return view('joinus');
 })->name('joinus');
 
-Route::get('/opencourse', function () {
-    return view('open_courses');
-})->name('open_courses');
+Route::get('/courses/create', function () {
+    return view('courses.create.welcome');
+})->name('/courses/create/welcome');
 
-Route::get('/opencourse-1', function () {
-    return view('open_courses_1');
-})->name('open_courses_1');
+Route::get('/courses/create/step/teacher', function () {
+    return view('courses.create.step1_teacher');
+})->name('/courses/create/step/teacher');
 
-Route::get('/opencourse-2', function () {
-    return view('open_courses_2');
-})->name('open_courses_2');
+Route::get('/courses/create/step/course', function () {
+    return view('courses.create.step2_course');
+})->name('/courses/create/step/course');
 
-Route::get('/opencourse-3', function () {
-    return view('open_courses_3');
-})->name('open_courses_3');
+Route::get('/courses/create/step/contract', function () {
+    return view('courses.create.step3_contract');
+})->name('/courses/create/step/contract');
 
-Route::get('/opencourse-4', function () {
-    return view('open_courses_4');
-})->name('open_courses_4');
+Route::get('/courses/create/complete', function () {
+    return view('courses.create.complete');
+})->name('/courses/create/complete');
 
 Route::get('/how-to-take-courses', function () {
     return view('howtotakecourses');
