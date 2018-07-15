@@ -184,7 +184,7 @@
             <div class="pix-content pix-padding-v-10 text-left">
              <div class="media ic">
               <div class="media-left pix-icon-area text-center pix-padding-right-20 pix-padding-top-10">
-               <img src="{{ asset('app/images/deal/dialog.png') }}" alt="">
+               <img src="{{ asset('app/images/joinus/testimonial2.png') }}" alt="">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
@@ -200,7 +200,7 @@
             <div class="pix-content pix-padding-v-10 text-left">
              <div class="media ic">
               <div class="media-left pix-icon-area text-center pix-padding-right-20 pix-padding-top-10">
-               <img src="{{ asset('app/images/deal/bag.png') }}" alt="">
+               <img src="{{ asset('app/images/joinus/services3.png') }}" alt="">
               </div>
               <div class="media-body">
                <h5 class="pix-black-gray-dark secondary-font">
@@ -219,7 +219,7 @@
        </div>
       </div>
       <div class="col-md-6 col-xs-12 text-center pix-padding-top-40 col-sm-6 column ui-droppable">
-       <div class="pix-content"><img src="{{ asset('app/images/business/video-section-bg.jpg') }}" alt="" class="img-responsive pix-inline-block"></div>
+       <div class="pix-content"><img src="{{ asset('app/images/joinus/seo-analysis.png') }}" alt="" class="img-responsive pix-inline-block"></div>
       </div>
      </div>
     </div>
@@ -252,21 +252,5 @@
 	</div>
 
 @include('includes.footer')
-
-@stop
-
-@section('scripts')
-  <!-- Javascript -->
-	<!-- Javascript -->
-<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
-<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
-<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
-<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/custom.min.js') }}"></script>
 
 @stop

@@ -402,17 +402,5 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 @include('includes.footer')
 
 <!-- Javascript -->
-<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
-<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
-<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
-<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/custom.min.js') }}"></script>
-
-
 
 @stop

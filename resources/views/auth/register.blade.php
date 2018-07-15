@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>register</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
-
-@charset "UTF-8";
-* {
-  font-family: 微軟正黑體;
-}
 
 
 .container {
@@ -219,25 +216,56 @@ text-transform: capitalize;
             </div>
             <div class="left-divider"></div>
             <div class="col-md-6">
-              <form action="">
 
-             <div class="form-group">
-              <label for="lname">名字 :</label>
-              <input id="lname" type="text" class="form-control">
-            </div>
+              <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                {!! csrf_field() !!}
+                 <div class="form-group">
+                  <label for="lname">暱稱</label>
+                  <input id="lname" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
-          <div class="form-group">
-            <label for="email">Email :</label>
-            <input id="email" type="text" class="form-control">
-          </div>
-            <div class="form-group">
-            <label for="password">密碼 :</label>
-            <input id="password" type="password" class="form-control">
-          </div>
-                <div class="form-group">
-                  <input type="submit" value="註冊" class="btn-primary btnn form-submit"></input>
+                    @if ($errors->has('name'))
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                    @endif
+
                 </div>
-        </form>
+
+                <div class="form-group">
+                  <label for="email">Email </label>
+                  <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                    @if ($errors->has('email'))
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                  <label for="password">密碼 </label>
+                  <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                </div>
+
+                <div class="form-group">
+                  <label for="password-confirm">確認密碼</label>
+                  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btnn form-submit">註冊</button>
+                </div>
+
+              </form>
+
+
             </div>
           </div>
 
