@@ -62,7 +62,6 @@
 
 		<form class="form" id="teacher-information" action="/courses/create/step/teacher" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
-
 			<div class="panel-body">
 
 				{{-- errors when post form with invalidated format  --}}
@@ -80,23 +79,23 @@
 					<div class="form-group col-md-6">
 
 						<label for="real_name">真實姓名</label><span class="required">*</span>
-						<input type="text" class="form-control" id="name" placeholder="" name="name" value="{{ $teacher_profile['name'] or '' }}" required>
+						<input type="text" class="form-control" id="name" placeholder="" name="name" value="{{ $teacher_profile['name'] or '' }}">
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="nick_name">開課暱稱</label><span class="required">*</span>
-						<input type="text" class="form-control" id="nick_name" placeholder="" name="nick_name" value="{{ $teacher_profile['nick_name'] or '' }}" required>
+						<input type="text" class="form-control" id="nick_name" placeholder="" name="nick_name" value="{{ $teacher_profile['nick_name'] or '' }}">
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="birthday">生日</label><span class="required">*</span>
-						<input type="date" class="form-control" id="birthday" placeholder="" name="birthday" value="{{ $teacher_profile['birthday'] or '' }}" required>
+						<input type="date" class="form-control" id="birthday" placeholder="" name="birthday" value="{{ $teacher_profile['birthday'] or '' }}">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="phone_number">聯絡電話</label><span class="required">*</span>
-						<input type="text" class="form-control" id="phone_number" placeholder="" name="phone_number" value="{{ $teacher_profile['phone_number'] or '' }}" required>
+						<input type="text" class="form-control" id="phone_number" placeholder="" name="phone_number" value="{{ $teacher_profile['phone_number'] or '' }}">
 					</div>
 				</div>
 
@@ -108,9 +107,8 @@
 								<input type="text" class="form-control" id="education-{{ $key }}" name="education[{{ $key }}]" value="{{ $education }}">
 							@endforeach
 						@else
-							<input type="text" class="form-control" id="education-0" name="education[0]" required>
+							<input type="text" class="form-control" id="education-0" name="education[0]">
 						@endif
-
 					</div>
 					<div id="education-btn">
 						<input type="button" id="education-add-btn" value="增加" class="btn btn-xs btn-success">
@@ -127,7 +125,7 @@
 								<input type="text" class="form-control" id="experience-{{ $key }}" name="experience[{{ $key }}]" value="{{ $experience }}">
 							@endforeach
 						@else
-							<input type="text" class="form-control" id="experience-0" name="experience[0]" required>
+							<input type="text" class="form-control" id="experience-0" name="experience[0]">
 						@endif
 					</div>
 					<div id="experience-btn">
@@ -140,21 +138,19 @@
 
 
 				<div class="form-group" >
-					<label for="content">簡介(約50字)</label>
-					<textarea name="content" id="content" rows="5" cols="5" class="form-control">{{ $teacher_profile['content'] or '' }}</textarea>
+					<label for="about">簡介(約50字)</label>
+					<textarea name="about" id="about" rows="5" cols="5" class="form-control">{{ $teacher_profile['about'] or '' }}</textarea>
 				</div>
 			</div>
 
 			<div class="panel-footer">
 				<div class="teacher_profile_button">
-					<button class="btn btn-default" type="submit">暫存離開</button>
+					<button class="btn btn-default" type="submit" formaction="/courses/create/step/teacher/save">暫存離開</button>
 					<button class="btn btn-success col-md-8" type="submit">下一步</button>
 				</div>
 			</div>
 		</form>
-
  	</div>
-
  </div>
 
 @include('includes.footer')

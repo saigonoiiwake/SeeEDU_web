@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Service\ParameterService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
 class Profile extends Model
 {
     protected $table = 'profile';
+
+    protected $primaryKey = 'user_id';
 
     protected $fillable = [
       'user_id', 'facebook', 'youtube', 'about',
@@ -19,34 +22,49 @@ class Profile extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public static function get($user_id)
+    {
+        return Profile::where('user_id', $user_id)->get()->first();
+    }
+
+    public function getEducation()
+    {
+        if ($this->education === null){
+            return [];
+        }
+
+        return json_decode($this->education, true);
+    }
+
+    public function getExperience()
+    {
+        if ($this->experience === null){
+            return [];
+        }
+
+        return json_decode($this->experience, true);
+    }
+
     public static function validator(array $data)
     {
-        // TODO
         return Validator::make($data, [
-            'user_id'      => 'require',
-            'facebook'     => 'require',
-            'youtube'      => 'require',
-            'about'        => 'require',
-            'phone_number' => 'require',
-            'birthday'     => 'require',
-            'education'    => 'require',
-            'experience'   => 'require',
+            'birthday'     => 'nullable|date',
         ]);
     }
 
-    public static function newProfile(array $param)
+    public static function newProfile(array $params)
     {
-        self::validator($param)->validate();
+        self::validator($params)->validate();
 
         return parent::create([
             'user_id'      => auth()->id(),
-            'facebook'     => $param['facebook'],
-            'youtube'      => $param['youtube'],
-            'about'        => $param['about'],
-            'phone_number' => $param['phone_number'],
-            'birthday'     => $param['birthday'],
-            'education'    => $param['education'],
-            'experience'   => $param['experience'],
+            'facebook'     => ParameterService::get($params, 'facebook', ''),
+            'youtube'      => ParameterService::get($params, 'youtube', ''),
+            'about'        => ParameterService::get($params, 'about', ''),
+            'phone_number' => ParameterService::get($params, 'phone_number', ''),
+            'birthday'     => ParameterService::get($params, 'birthday', ''),
+            'education'    => json_encode(ParameterService::get($params, 'education', [])),
+            'experience'   => json_encode(ParameterService::get($params, 'experience', [])),
         ]);
     }
 }
