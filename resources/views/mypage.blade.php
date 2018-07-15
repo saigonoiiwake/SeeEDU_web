@@ -872,6 +872,6 @@ to { opacity: 0; padding: 0px; height: 0px; }
 </script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script> -->
 
 @stop
