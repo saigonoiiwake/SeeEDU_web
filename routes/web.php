@@ -92,10 +92,10 @@ Route::get('/courses/create', function () {
     return view('courses.create.welcome');
 })->name('/courses/create/welcome');
 
-Route::get('/courses/create/step/teacher', 'CourseCreateController@createTeacherProfile')
+Route::get('/courses/create/step/teacher', 'CourseCreateController@showTeacherProfileForm')
     ->name('/courses/create/step/teacher');
 
-Route::post('/courses/create/step/teacher', 'CourseCreateController@teacherProfile');
+Route::post('/courses/create/step/teacher', 'CourseCreateController@postTeacherProfile');
 
 Route::get('/courses/create/step/course', function () {
     return view('courses.create.step2_course');

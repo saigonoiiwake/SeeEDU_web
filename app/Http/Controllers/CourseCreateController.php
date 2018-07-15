@@ -2,38 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
-use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class CourseCreateController
 {
-    public function createTeacherProfile(Request $request)
+    public function showTeacherProfileForm(Request $request)
     {
         $teacher_profile = $request->session()->get('teacher_profile');
+        if (empty($teacher_profile)) {
+            $teacher_profile['nick_name'] = auth()->user()->nick_name;
+        }
         return view('courses.create.step1_teacher', compact('teacher_profile', $teacher_profile));
     }
 
-    public function teacherProfile(Request $request)
+    public function postTeacherProfile(Request $request)
     {
-        Log::info($request);
-//        $validatedData = $request->validate([
-//            'name' => 'required|unique:products',
-//            'amount' => 'required|numeric',
-//            'company' => 'required',
-//            'available' => 'required',
-//            'description' => 'required',
-//        ]);
+        $validatedData = $request->validate([
+            'name'         => 'required',
+            'nick_name'    => 'required',
+            'birthday'     => 'required|date',
+            'phone_number' => 'required',
+            'education'    => 'required',
+            'experience'   => 'required',
+            'content'      => 'required|max:50',
+        ]);
 
         $teacher_profile = [
-            'name'         => $request['name'],
-            'nick_name'    => $request['nick_name'],
-            'birthday'     => $request['birthday'],
-            'phone_number' => $request['phone_number'],
-            'education'    => $request['education'],
-            'experience'   => $request['experience'],
-            'content'      => $request['content'],
+            'name'         => $validatedData['name'],
+            'nick_name'    => $validatedData['nick_name'],
+            'birthday'     => $validatedData['birthday'],
+            'phone_number' => $validatedData['phone_number'],
+            'education'    => $validatedData['education'],
+            'experience'   => $validatedData['experience'],
+            'content'      => $validatedData['content'],
         ];
         $request->session()->put('teacher_profile', $teacher_profile);
 

@@ -65,6 +65,17 @@
 
 			<div class="panel-body">
 
+				{{-- errors when post form with invalidated format  --}}
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
 
@@ -92,7 +103,7 @@
 				<div class="form-group" id="education-block">
 					<div id="education-input">
 						<label for="school">學歷</label><span class="required">*</span>
-						@if(array_key_exists('education' ,$teacher_profile))
+						@if($teacher_profile['education'] or false)
 							@foreach ($teacher_profile['education'] as $key => $education)
 								<input type="text" class="form-control" id="education-{{ $key }}" name="education[{{ $key }}]" value="{{ $education }}">
 							@endforeach
@@ -103,7 +114,7 @@
 					</div>
 					<div id="education-btn">
 						<input type="button" id="education-add-btn" value="增加" class="btn btn-xs btn-success">
-						@if(array_key_exists('education' ,$teacher_profile) && count($teacher_profile['education']) > 1)
+						@if(($teacher_profile['education'] or false) && count($teacher_profile['education']) > 1)
 							<input class="btn btn-xs btn-danger" type="button" id="education-del-btn" value="刪除" onclick="delEducation()">
 						@endif
 					</div>
@@ -111,7 +122,7 @@
 				<div class="form-group" id="experience-block">
 					<div id="experience-input">
 						<label for="school">經歷</label><span class="required">*</span>
-						@if(array_key_exists('experience' ,$teacher_profile))
+						@if($teacher_profile['experience'] or false)
 							@foreach ($teacher_profile['experience'] as $key => $experience)
 								<input type="text" class="form-control" id="experience-{{ $key }}" name="experience[{{ $key }}]" value="{{ $experience }}">
 							@endforeach
@@ -121,7 +132,7 @@
 					</div>
 					<div id="experience-btn">
 						<input type="button" id="experience-add-btn" value="增加" class="btn btn-xs btn-success">
-						@if(array_key_exists('experience' ,$teacher_profile) && count($teacher_profile['experience']) > 1)
+						@if(($teacher_profile['experience'] or false) && count($teacher_profile['experience']) > 1)
 							<input class="btn btn-xs btn-danger" type="button" id="experience-del-btn" value="刪除" onclick="delExperience()">
 						@endif
 					</div>
@@ -135,8 +146,10 @@
 			</div>
 
 			<div class="panel-footer">
-				<button class="btn btn-default" type="submit">暫存離開</button>
-				<button class="btn btn-success col-md-8" type="submit">下一步</button>
+				<div class="teacher_profile_button">
+					<button class="btn btn-default" type="submit">暫存離開</button>
+					<button class="btn btn-success col-md-8" type="submit">下一步</button>
+				</div>
 			</div>
 		</form>
 
@@ -152,7 +165,7 @@
 
 <script>
  //set the default value
- var educationId = parseInt("{{ array_key_exists('education', $teacher_profile) ? count($teacher_profile['education']) : 1 }}");
+ var educationId = parseInt("{{ ($teacher_profile['education'] or false) ? count($teacher_profile['education']) : 1 }}");
 
  //add input block in education-input
  $("#education-add-btn").click(function () {
@@ -176,7 +189,7 @@
 
 
  //set the default value
- var experienceId = parseInt("{{ array_key_exists('experience', $teacher_profile) ? count($teacher_profile['experience']) : 1 }}");
+ var experienceId = parseInt("{{ ($teacher_profile['experience'] or false) ? count($teacher_profile['experience']) : 1 }}");
 
  //add input block in experience-input
  $("#experience-add-btn").click(function () {
@@ -201,3 +214,4 @@
 </script>
 
 @endsection
+
