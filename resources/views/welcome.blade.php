@@ -435,7 +435,7 @@ input[type=text] {
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/real_estate/team_1.jpg" alt="">
+         <img src="app/images/teammember3.png" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -457,7 +457,7 @@ input[type=text] {
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/real_estate/team_2.jpg" alt="">
+         <img src="app/images/teammember3.png" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -479,7 +479,7 @@ input[type=text] {
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/real_estate/team_3.jpg" alt="">
+         <img src="app/images/teammember3.png" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -499,16 +499,3 @@ input[type=text] {
 @include('includes.footer')
 
 @endsection
-
-@section('scripts')
-
-<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
-<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
-<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/custom.min.js') }}"></script>
-@stop

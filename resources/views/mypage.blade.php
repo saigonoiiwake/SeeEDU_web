@@ -448,7 +448,7 @@ to { opacity: 0; padding: 0px; height: 0px; }
                 <ul class="list-group">
 
                   <li class="list-group-item">
-                      <a href="{{ route('mypage') }}">我的頁面</a>
+                      <a href="{{ route('mypage') }}">個人頁面</a>
                   </li>
 
                   <li class="list-group-item">
@@ -872,6 +872,6 @@ to { opacity: 0; padding: 0px; height: 0px; }
 </script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script> -->
 
 @stop

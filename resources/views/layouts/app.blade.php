@@ -85,8 +85,8 @@
 
                                 <ul class="dropdown-menu">
                                   <li>
-                                    <a href="#" class="">
-                                        <i class="seoicon-button"> 我的課程</i>
+                                    <a href="{{ route('mycourse') }}" class="">
+                                        <i class="seoicon-button"> 個人頁面</i>
                                     </a>
                                   </li>
                                   <li>

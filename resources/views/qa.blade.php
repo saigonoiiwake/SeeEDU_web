@@ -10,7 +10,7 @@
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
-	<link rel="stylesheet" type="text/css" href="{{ asset(app/css/jquery.fancybox.min.css'') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/pix_style.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/main.min.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-style.min.css') }}" />
@@ -160,18 +160,3 @@
  @include('includes.footer')
 
  @endsection
-
- @section('scripts')
-<!-- Javascript -->
-<script src="{{ asset('app/js/jquery-1.11.2.js') }}"></script>
-<script src="{{ asset('app/js/jquery-ui.js') }}"></script>
-<script src="{{ asset('app/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.min.js') }}"></script>
-<script src="{{ asset('app/js/velocity.ui.min.js') }}"></script>
-<script src="{{ asset('app/js/appear.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/animations.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/plugins.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/jquery.fancybox.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('app/js/custom.min.js') }}"></script>
-
-@endsection
