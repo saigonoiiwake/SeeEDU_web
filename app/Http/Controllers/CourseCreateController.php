@@ -41,4 +41,9 @@ class CourseCreateController
 
         return redirect('/courses/create/step/course');
     }
+
+    public function showCourseForm(Request $request) {
+        $course = $request->session()->get('course');
+        return view('courses.create.step2_course', compact('course', $course));
+    }
 }

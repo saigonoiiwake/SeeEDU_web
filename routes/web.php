@@ -97,9 +97,8 @@ Route::get('/courses/create/step/teacher', 'CourseCreateController@showTeacherPr
 
 Route::post('/courses/create/step/teacher', 'CourseCreateController@postTeacherProfile');
 
-Route::get('/courses/create/step/course', function () {
-    return view('courses.create.step2_course');
-})->name('/courses/create/step/course');
+Route::get('/courses/create/step/course', 'CourseCreateController@showCourseForm')
+    ->name('/courses/create/step/course');
 
 Route::get('/courses/create/step/contract', function () {
     return view('courses.create.step3_contract');
