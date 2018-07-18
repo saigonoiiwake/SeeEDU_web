@@ -1,20 +1,20 @@
-<div id="disqus_thread"></div>
 
+<div id="disqus_thread"></div>
 <script>
 
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-
 var disqus_config = function () {
-this.page.url = " route('single_course') ";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "1234"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.language = "zh_TW";
+    this.page.url = "{{ route('course.single', [ '$id' => $course->id ]) }}";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "course-{{ $course->id }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = 'https://seeedu.disqus.com/embed.js';
+s.src = 'https://seeedu31.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
