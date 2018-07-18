@@ -134,11 +134,15 @@
 				</div>
 			</div>
 
-			<div class="panel-heading" id="chapter-heading" hidden="hidden">
+			<div class="panel-heading" id="chapter-heading" >
 				章節基本資訊
 			</div>
-			<div class="panel-body" id="chapter-body" hidden="hidden">
-
+			<div class="panel-body" id="chapter-body" >
+				<div id="chapter-detail">
+				</div>
+				<div class="form-row col-md-12">
+					<input type="button" class="btn btn-success" onclick="addChapter()" value="add"/>
+				</div>
 			</div>
 
 			<div class="panel-heading">
@@ -235,14 +239,13 @@
 
 			    if (data.length > 0) {
                     numberOfChapter = data.length;
-                    console.log("here");
-                    $("#chapter-body").empty();
+                    $("#chapter-detail").empty();
                     $("#chapter-heading").show();
                     $("#chapter-body").show();
 
                     data.forEach( function(value, index, array) {
                         var id = index + 1;
-                        $("#chapter-body").append(
+                        $("#chapter-detail").append(
                             '<div class="form-group" id="chapter-'+ id +'">\n' +
                             '   <div class="form-row col-md-12">\n' +
                             '        <h5><br>Chapter ' + id + '</h5>\n' +
@@ -273,7 +276,7 @@
                     numberOfChapter = 0;
                     $("#chapter-heading").hide();
                     $("#chapter-body").hide();
-                    $("#chapter-body").empty();
+                    $("#chapter-detail").empty();
 				}
 			}
 		});
@@ -281,6 +284,39 @@
 
     function deleteChapter(id) {
     	$("#chapter-" + id).remove();
+    }
+
+    function addChapter() {
+        numberOfChapter++;
+        var id = numberOfChapter;
+
+        $("#chapter-heading").show();
+        $("#chapter-body").show();
+
+        $("#chapter-detail").append(
+            '<div class="form-group" id="chapter-'+ id +'">\n' +
+            '   <div class="form-row col-md-12">\n' +
+            '        <h5><br>Chapter ' + id + '</h5>\n' +
+            '   </div>\n' +
+            '   <div class="form-row">\n' +
+            '        <div class="form-group col-md-6">\n' +
+            '              <label for="time">From Time</label>\n' +
+            '              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="">\n' +
+            '        </div>\n' +
+            '        <div class="form-group col-md-6">\n' +
+            '              <label for="time">To Time</label>\n' +
+            '              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="">\n' +
+            '        </div>\n' +
+            '   </div>\n' +
+            '   <div class="form-row col-md-12">\n' +
+            '        <label for="introduction">Introduction</label>\n' +
+            '        <textarea rows="2" cols="5" class="form-control" id="introduction-' + id +'"></textarea>\n' +
+            '   </div>\n' +
+            '   <div class="form-row col-md-12">\n' +
+            '       <input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="delete"/>\n' +
+            '   </div>\n' +
+            '</div>'
+        );
     }
 
 	$(document).ready(function() {
