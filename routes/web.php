@@ -102,6 +102,8 @@ Route::post('/courses/create/step/teacher/save', 'CourseCreateController@saveTea
 Route::get('/courses/create/step/course', 'CourseCreateController@showCourseForm')
     ->name('/courses/create/step/course');
 
+Route::post('/courses/create/step/course', 'CourseCreateController@postCourse');
+
 Route::get('/courses/create/step/contract', function () {
     return view('courses.create.step3_contract');
 })->name('/courses/create/step/contract');
@@ -115,6 +117,5 @@ Route::get('/how-to-take-courses', function () {
 })->name('howtotakecourses');
 
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/courses/create/generate/chapter', 'CourseCreateController@generateChapterTime')
+    ->name('/courses/create/generate/chapter');;

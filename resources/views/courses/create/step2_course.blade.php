@@ -60,32 +60,33 @@
 <div class="col-md-8 col-md-offset-2">
 
 	<div class="panel panel-default">
-		<form class="form" action="#" method="post" enctype="multipart/form-data">
+		<form class="form" action="/courses/create/step/course" method="post" enctype="multipart/form-data">
+			{{csrf_field()}}
 			<div class="panel-heading">
 			 課程基本資訊
 			</div>
 			<div class="panel-body">
 				<div class="form-row">
-				 <div class="form-group col-md-6">
-				  <label for="from_date">課程開始日期</label><span class="required">*</span>
-				  <input type="date" class="form-control" id="from_date" placeholder="2018/04/06" name="from_date" value="{{ $course['from_date'] or '' }}">
-				</div>
+					<div class="form-group col-md-6">
+					  <label for="from_date">課程開始日期</label><span class="required">*</span>
+					  <input type="date" class="form-control" id="from_date" placeholder="2018/04/06" name="from_date" value="{{ $course['from_date'] or '' }}">
+					</div>
 
-				 <div class="form-group col-md-6">
-				  <label for="to_date">課程結束日期</label><span class="required">*</span>
-				  <input type="date" class="form-control" id="to_date" placeholder="2018/09/06" name="to_date" value="{{ $course['to_date'] or '' }}">
-				</div>
+				 	<div class="form-group col-md-6">
+					  <label for="to_date">課程結束日期</label><span class="required">*</span>
+					  <input type="date" class="form-control" id="to_date" placeholder="2018/09/06" name="to_date" value="{{ $course['to_date'] or '' }}">
+					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
-				  <label for="from_time">上課時間<span class="required">*</span>
-				  <input type="time" class="form-control" id="from_time" placeholder="15:00" name="from_time" value="{{ $course['from_time'] or '' }}">
-				</div>
-				<div class="form-group col-md-6">
-				  <label for="to_time">下課時間</label><span class="required">*</span>
-				  <input type="time" class="form-control" id="to_time" placeholder="17:00" name="to_time" value="{{ $course['to_time'] or '' }}">
-				</div>
+				  		<label for="from_time">上課時間</label><span class="required">*</span>
+				  		<input type="time" class="form-control" id="from_time" placeholder="15:00" name="from_time" value="{{ $course['from_time'] or '' }}">
+					</div>
+					<div class="form-group col-md-6">
+					  <label for="to_time">下課時間</label><span class="required">*</span>
+					  <input type="time" class="form-control" id="to_time" placeholder="17:00" name="to_time" value="{{ $course['to_time'] or '' }}">
+					</div>
 				</div>
 
 				<div class="form-group">
@@ -126,7 +127,18 @@
 						<input class="form-check-input" type="checkbox" id="sunday" value="sunday" {{ $course['sunday'] or false? 'checked' : '' }}>
 						<label class="form-check-label" for="sunday">日</label>
 					</div>
+
+					<div class="col-md-1">
+						<input type="button" class="btn btn-info" onclick="generateChapter()" value="生成章節"/>
+					</div>
 				</div>
+			</div>
+
+			<div class="panel-heading" id="chapter-heading" hidden="hidden">
+				章節基本資訊
+			</div>
+			<div class="panel-body" id="chapter-body" hidden="hidden">
+
 			</div>
 
 			<div class="panel-heading">
@@ -136,19 +148,21 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="min_num">課程人數下限</label><span class="required">*</span>
-						<input type="number" class="form-control" id="min_num" placeholder="5" name="min_num">
+						<input type="number" class="form-control" id="min_num" placeholder="" name="min_num" value="{{ $course['min_num'] or '' }}">
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="max_num">課程人數上限</label><span class="required">*</span>
-						<input type="number" class="form-control" id="max_num" placeholder="30" name="max_num">
+						<input type="number" class="form-control" id="max_num" placeholder="" name="max_num" value="{{ $course['max_num'] or '' }}">
 					</div>
 
 				</div>
 
 				<div class="form-group">
-					<label for="price">課程售價(新台幣)</label><span class="required">*</span>
-					<input type="number" class="form-control" id="price" placeholder="5000">
+					<div class="form-row col-md-12">
+						<label for="price">課程售價(新台幣)</label><span class="required">*</span>
+						<input type="number" class="form-control" id="price" placeholder="" value="{{ $course['price'] or '' }}">
+					</div>
 				</div>
 
 			</div>
@@ -157,16 +171,16 @@
 				 課程介紹
 			</div>
 			<div class="panel-body">
-				<div class="form-group" >
-						<label for="content">好的文案可以帶來更多的學生</label>
-						<textarea name="content" id="content" rows="10" cols="5" class="form-control" ></textarea>
-					</div>
+				<div class="form-group col-md-12" >
+					<label for="content">好的文案可以帶來更多的學生</label>
+					<textarea name="content" id="content" rows="10" cols="5" class="form-control" >{{ $course['content'] or '' }}</textarea>
+				</div>
 			</div>
 
 			<div class="panel-footer">
-				<a href="{{ route('/courses/create/step/teacher') }}"><button class="btn btn-info" type="submit">上一步</button></a>
-				<a href="{{ route('/courses/create/step/contract') }}"><button class="btn btn-success col-md-8" type="submit">下一步</button></a>
-				<a href="{{ route('welcome') }}"><button class="btn btn-default" type="submit">暫存離開</button></a>
+				<button class="btn btn-info" type="submit">上一步</button>
+				<button class="btn btn-success col-md-8" type="submit">下一步</button>
+				<button class="btn btn-default" type="submit">暫存離開</button>
 			</div>
 		</form>
 
@@ -186,8 +200,91 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer="defer"></script>
 
 <script>
+
+	var numberOfChapter = 0;
+
+    function generateChapter() {
+
+        var fromDate = document.getElementById('from_date').value;
+        var toDate = document.getElementById('to_date').value;
+        var fromTime = document.getElementById('from_time').value;
+        var toTime = document.getElementById('to_time').value;
+
+        if (!fromDate || !toDate || !fromTime || !toTime || fromTime > toTime) {
+			return;
+		}
+
+        $.get({
+			type: 'GET',
+			url : "{{ route('/courses/create/generate/chapter') }}",
+			data: {
+			    from_date: fromDate,
+				to_date: toDate,
+				from_time: fromTime,
+				to_time: toTime,
+				monday: document.getElementById('monday').checked,
+        		tuesday: document.getElementById('tuesday').checked,
+				wednesday: document.getElementById('wednesday').checked,
+				thursday: document.getElementById('thursday').checked,
+        		friday: document.getElementById('friday').checked,
+        		saturday: document.getElementById('saturday').checked,
+				sunday: document.getElementById('sunday').checked
+            },
+			success: function(data) {
+			    console.log(data);
+
+			    if (data.length > 0) {
+                    numberOfChapter = data.length;
+                    console.log("here");
+                    $("#chapter-body").empty();
+                    $("#chapter-heading").show();
+                    $("#chapter-body").show();
+
+                    data.forEach( function(value, index, array) {
+                        var id = index + 1;
+                        $("#chapter-body").append(
+                            '<div class="form-group" id="chapter-'+ id +'">\n' +
+                            '   <div class="form-row col-md-12">\n' +
+                            '        <h5><br>Chapter ' + id + '</h5>\n' +
+                            '   </div>\n' +
+                            '   <div class="form-row">\n' +
+                            '        <div class="form-group col-md-6">\n' +
+                            '              <label for="time">From Time</label>\n' +
+                            '              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="'+value['from_datetime']+'">\n' +
+                            '        </div>\n' +
+                            '        <div class="form-group col-md-6">\n' +
+                            '              <label for="time">To Time</label>\n' +
+                            '              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="'+value['to_datetime']+'">\n' +
+                            '        </div>\n' +
+                            '   </div>\n' +
+                            '   <div class="form-row col-md-12">\n' +
+                            '        <label for="introduction">Introduction</label>\n' +
+                            '        <textarea rows="2" cols="5" class="form-control" id="introduction-' + id +'"></textarea>\n' +
+                            '   </div>\n' +
+                            '   <div class="form-row col-md-12">\n' +
+                            '       <input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="delete"/>\n' +
+                            '   </div>\n' +
+                            '</div>'
+                        );
+
+                    });
+
+				} else {
+                    numberOfChapter = 0;
+                    $("#chapter-heading").hide();
+                    $("#chapter-body").hide();
+                    $("#chapter-body").empty();
+				}
+			}
+		});
+	}
+
+    function deleteChapter(id) {
+    	$("#chapter-" + id).remove();
+    }
+
 	$(document).ready(function() {
-	$('#content').summernote();
+		$('#content').summernote();
 	});
 </script>
 

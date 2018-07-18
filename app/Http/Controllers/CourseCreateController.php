@@ -6,6 +6,7 @@ use App\Profile;
 use App\Service\ParameterService;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -107,5 +108,105 @@ class CourseCreateController extends Controller
     public function showCourseForm(Request $request) {
         $course = $request->session()->get('course');
         return view('courses.create.step2_course', compact('course', $course));
+    }
+
+    public function postCourse(Request $request)
+    {
+        Log::info($request);
+//        $validatedData = $request->validate([
+//            'name'         => 'required',
+//            'nick_name'    => 'required',
+//            'birthday'     => 'required|date',
+//            'phone_number' => 'required',
+//            'education.*'  => 'required',
+//            'experience.*' => 'required',
+//            'about'        => 'required|max:50',
+//        ]);
+//
+//        $teacher_profile = [
+//            'name'         => $validatedData['name'],
+//            'nick_name'    => $validatedData['nick_name'],
+//            'birthday'     => $validatedData['birthday'],
+//            'phone_number' => $validatedData['phone_number'],
+//            'education'    => $validatedData['education'],
+//            'experience'   => $validatedData['experience'],
+//            'about'        => $validatedData['about'],
+//        ];
+//        $request->session()->put('teacher_profile', $teacher_profile);
+
+        return redirect('/courses/create/step/contract');
+    }
+
+    public function generateChapterTime(Request $request)
+    {
+        Log::info($request);
+        Log::info(Input::get());
+
+        $from_date = $request['from_date'];
+        $to_date = $request['to_date'];
+        $from_time = $request['from_time'];
+        $to_time = $request['to_time'];
+
+        $monday = $request['monday'] === 'true';
+        $tuesday = $request['tuesday'] === 'true';
+        $wednesday = $request['wednesday'] === 'true';
+        $thursday = $request['thursday'] === 'true';
+        $friday = $request['friday'] === 'true';
+        $saturday = $request['saturday'] === 'true';
+        $sunday = $request['sunday'] === 'true';
+
+
+        $chapters = [];
+
+        if ($monday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Monday'));
+        }
+
+        if ($tuesday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Tuesday'));
+        }
+
+        if ($wednesday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Wednesday'));
+        }
+
+        if ($thursday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Thursday'));
+        }
+
+        if ($friday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Friday'));
+        }
+
+        if ($saturday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Saturday'));
+        }
+
+        if ($sunday) {
+            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Sunday'));
+        }
+
+        sort($chapters);
+
+        return response()->json($chapters);
+    }
+
+    protected function getListOfDate($from_date, $to_date, $from_time, $to_time, $day_of_week) {
+        $tmp = $from_date;
+        $time_list = [];
+        while( $tmp < $to_date ) {
+            $next_day = date('Y-m-d', strtotime('next '.$day_of_week, strtotime($tmp)));
+            if($next_day <= $to_date) {
+                $from_datetime = "$next_day"."T"."$from_time";
+                $to_datetime = "$next_day"."T"."$to_time";
+                $time_list[] = [
+                    "from_datetime" => $from_datetime,
+                    "to_datetime" =>$to_datetime
+                ];
+            }
+            $tmp = date('Y-m-d', strtotime('+1 day', strtotime($next_day)));
+        }
+
+        return $time_list;
     }
 }
