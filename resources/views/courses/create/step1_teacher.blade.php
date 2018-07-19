@@ -101,7 +101,7 @@
 
 				<div class="form-group" id="education-block">
 					<div id="education-input">
-						<label for="school">學歷</label><span class="required">*</span>
+						<label for="education-0">學歷</label><span class="required">*</span>
 						@if($teacher_profile['education'] or false)
 							@foreach ($teacher_profile['education'] as $key => $education)
 								<input type="text" class="form-control" id="education-{{ $key }}" name="education[{{ $key }}]" value="{{ $education }}">
@@ -119,7 +119,7 @@
 				</div>
 				<div class="form-group" id="experience-block">
 					<div id="experience-input">
-						<label for="school">經歷</label><span class="required">*</span>
+						<label for="experience-0">經歷</label><span class="required">*</span>
 						@if($teacher_profile['experience'] or false)
 							@foreach ($teacher_profile['experience'] as $key => $experience)
 								<input type="text" class="form-control" id="experience-{{ $key }}" name="experience[{{ $key }}]" value="{{ $experience }}">
