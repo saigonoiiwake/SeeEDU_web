@@ -221,11 +221,11 @@ text-transform: capitalize;
                 {!! csrf_field() !!}
                  <div class="form-group">
                   <label for="lname">暱稱</label>
-                  <input id="lname" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                  <input id="lname" type="text" class="form-control{{ $errors->has('nick_name') ? ' is-invalid' : '' }}" name="nick_name" value="{{ old('nick_name') }}" required autofocus>
 
-                    @if ($errors->has('name'))
+                    @if ($errors->has('nick_name'))
                     <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('name') }}</strong>
+                      <strong>{{ $errors->first('nick_name') }}</strong>
                     </span>
                     @endif
 
