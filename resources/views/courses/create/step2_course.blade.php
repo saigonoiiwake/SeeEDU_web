@@ -73,14 +73,33 @@
 				</div>
 				<div class="form-group col-md-12" >
 					<label for="title">課程類別</label>
-					{{--Level 0--}}
-					<select class="form-control" name="category">
-						<option value="0" selected disabled>請選擇</option>
+					{{--Level 1--}}
+					<select class="form-control" name="" id="level-1">
+						<option data-subgroup="" value="" selected disabled>請選擇</option>
 						@foreach($categories as $category)
-							<option value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+							@if( $category['level'] === 1)
+								<option data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+							@endif
 						@endforeach
 					</select>
-					{{--Level 1--}}
+					{{--Level 2--}}
+					<select class="form-control" name="" id="level-2">
+						<option data-subgroup="" value="" selected disabled>請選擇</option>
+						@foreach($categories as $category)
+							@if( $category['level'] === 2)
+								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+							@endif
+						@endforeach
+					</select>
+					{{--Level 2--}}
+					<select class="form-control" name="category" id="level-3">
+						<option data-subgroup="" value="" selected disabled>請選擇</option>
+						@foreach($categories as $category)
+							@if( $category['level'] === 3)
+								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+							@endif
+						@endforeach
+					</select>
 				</div>
 				<div class="form-group col-md-12" >
 					<label for="featured">課程圖片</label>
@@ -344,6 +363,42 @@
 	$(document).ready(function() {
 		$('#content').summernote();
 	});
+
+    // course category
+    setHierarchySelectEvent('#level-1', '#level-2');
+    setHierarchySelectEvent('#level-2', '#level-3');
+    //セレクトボックスの初期値
+    $('#level-1').val('').change();
+    $('#level-2').val('').change();
+    $('#level-3').val('').change();
+
+    function setHierarchySelectEvent(parentSelect, childSelect){
+        var initCategorySmallHtml = $(childSelect).html();
+        $(parentSelect).change(function(){
+            if( 1 < $(this).find('option:selected').length ){
+                $(childSelect).find("option").each(function(index, element){
+                    $(element).remove();
+                });
+            }else{
+                var subgroup =  $(this).find('option:selected').attr('data-subgroup');
+                $(childSelect).html(initCategorySmallHtml);
+                $(childSelect).find("option").each(function(index, element){
+                    var group = $(element).attr('data-group');
+                    if( group ){
+                        if( subgroup == group ){
+                            //$(element).css('display', 'block');
+                        }else{
+                            //$(element).css('display', 'none');
+                            $(element).remove();
+                        }
+                    }
+                });
+            }
+            $(childSelect).val('').change();
+        });
+    }
+
+
 </script>
 
 @endsection

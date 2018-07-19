@@ -85,7 +85,7 @@ class CourseCreateController extends Controller
 
             $profile = $user->profile;
             if($profile === null) {
-                $profile = Profile::newProfile($request);
+                $profile = Profile::newProfile($request->toArray());
                 $profile->save();
             } else {
                 $profile->birthday = $request['birthday'];
