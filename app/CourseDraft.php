@@ -17,7 +17,7 @@ class CourseDraft extends Model
     protected $fillable = [
         'user_id', 'title', 'course_category_id', 'min_num', 'max_num',
         'currency_id', 'price', 'early_bird_price', 'early_bird_name',
-        'from_date', 'to_date', 'description', 'chapter', 'data',
+        'from_date', 'to_date', 'featured', 'video', 'description', 'chapter', 'data',
     ];
 
     public function user()
@@ -44,6 +44,9 @@ class CourseDraft extends Model
             'early_bird_name'    => 'require',
             'from_date'          => 'require',
             'to_date'            => 'require',
+            'featured'           => 'require',
+            'video'              => 'require',
+            'description'        => 'require',
             'chapter'            => 'require',
             'data'               => 'require',
         ]);
@@ -65,6 +68,9 @@ class CourseDraft extends Model
             'early_bird_name'    => $param['early_bird_price'],
             'from_date'          => $param['from_date'],
             'to_date'            => $param['to_date'],
+            'featured'           => $param['featured'],
+            'video'              => $param['video'],
+            'description'        => $param['description'],
             'chapter'            => $param['chapter'],
             'data'               => $param['data'],
         ]);
