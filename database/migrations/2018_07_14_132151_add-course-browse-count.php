@@ -14,7 +14,7 @@ class AddCourseBrowseCount extends Migration
     public function up()
     {
         Schema::table('course', function (Blueprint $table) {
-            $table->string('browse_num')->after('max_num')->default(0);
+            $table->unsignedInteger('browse_num')->after('max_num')->default(0);
         });
     }
 

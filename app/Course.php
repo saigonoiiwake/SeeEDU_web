@@ -123,6 +123,8 @@ class Course extends Model
             'early_bird_name'    => $param['early_bird_price'],
             'from_date'          => $param['from_date'],
             'to_date'            => $param['to_date'],
+            'featured'           => $param['featured'],
+            'video'              => $param['vidoe'],
             'data'               => $param['data']
         ]);
     }
