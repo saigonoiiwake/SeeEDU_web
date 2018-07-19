@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CourseCategory;
 use App\Profile;
 use App\Service\ParameterService;
 use App\User;
@@ -35,7 +36,8 @@ class CourseCreateController extends Controller
             ];
 
         }
-        return view('courses.create.step1_teacher', compact('teacher_profile', $teacher_profile));
+
+        return view('courses.create.step1_teacher', ['teacher_profile'=> $teacher_profile]);
     }
 
     public function postTeacherProfile(Request $request)
@@ -62,6 +64,7 @@ class CourseCreateController extends Controller
         $request->session()->put('teacher_profile', $teacher_profile);
 
         return redirect('/courses/create/step/course');
+        //return $this->showCourseForm($request);
     }
 
     public function saveTeacherProfile(Request $request)
@@ -107,12 +110,42 @@ class CourseCreateController extends Controller
 
     public function showCourseForm(Request $request) {
         $course = $request->session()->get('course');
-        return view('courses.create.step2_course', compact('course', $course));
+        $categories = CourseCategory::all();
+        // restruct the response
+        $categories = $categories->map(function($category)  {
+            return [
+                'id'   => $category->id,
+                'name' => $category->name,
+                'level' => $category->level,
+                'parent_id' => $category->parent_id,
+            ];
+        });
+
+        return view('courses.create.step2_course', ['course' => $course, 'categories' => $categories]);
+    }
+
+    public function previousStepForCourse(Request $request)
+    {
+        Log::info($request);
+
+        return redirect('/courses/create/step/teacher');
     }
 
     public function postCourse(Request $request)
     {
         Log::info($request);
+
+        $featured = $request['featured'];
+        Log::info($request->hasFile('featured'));
+        Log::info($featured);
+        if($request->hasFile('featured')) {
+            $file = $request->file('featured');
+            $timestamp = str_replace([' ', ':'], '-', 'test');//Carbon::now()->toDateTimeString());
+            $name = $timestamp. '-' .$file->getClientOriginalName();
+            //$data->image = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+        //$featured->storeAs('uploads/', $featured->getClientOriginalName(), 'uploads');
 //        $validatedData = $request->validate([
 //            'name'         => 'required',
 //            'nick_name'    => 'required',
@@ -123,7 +156,7 @@ class CourseCreateController extends Controller
 //            'about'        => 'required|max:50',
 //        ]);
 //
-//        $teacher_profile = [
+//        $course = [
 //            'name'         => $validatedData['name'],
 //            'nick_name'    => $validatedData['nick_name'],
 //            'birthday'     => $validatedData['birthday'],
@@ -132,16 +165,13 @@ class CourseCreateController extends Controller
 //            'experience'   => $validatedData['experience'],
 //            'about'        => $validatedData['about'],
 //        ];
-//        $request->session()->put('teacher_profile', $teacher_profile);
+//        $request->session()->put('course', $course);
 
         return redirect('/courses/create/step/contract');
     }
 
     public function generateChapterTime(Request $request)
     {
-        Log::info($request);
-        Log::info(Input::get());
-
         $from_date = $request['from_date'];
         $to_date = $request['to_date'];
         $from_time = $request['from_time'];
@@ -154,7 +184,6 @@ class CourseCreateController extends Controller
         $friday = $request['friday'] === 'true';
         $saturday = $request['saturday'] === 'true';
         $sunday = $request['sunday'] === 'true';
-
 
         $chapters = [];
 

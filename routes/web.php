@@ -104,6 +104,8 @@ Route::get('/courses/create/step/course', 'CourseCreateController@showCourseForm
 
 Route::post('/courses/create/step/course', 'CourseCreateController@postCourse');
 
+Route::post('/courses/create/step/course/previous', 'CourseCreateController@previousStepForCourse');
+
 Route::get('/courses/create/step/contract', function () {
     return view('courses.create.step3_contract');
 })->name('/courses/create/step/contract');

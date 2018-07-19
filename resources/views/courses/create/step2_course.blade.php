@@ -60,12 +60,39 @@
 <div class="col-md-8 col-md-offset-2">
 
 	<div class="panel panel-default">
-		<form class="form" action="/courses/create/step/course" method="post" enctype="multipart/form-data">
+		<form class="form" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
+
 			<div class="panel-heading">
-			 課程基本資訊
+				課程基本資訊
 			</div>
 			<div class="panel-body">
+				<div class="form-group col-md-12" >
+					<label for="title">課程名稱</label>
+					<input name="title" id="title" class="form-control" >{{ $course['title'] or '' }}
+				</div>
+				<div class="form-group col-md-12" >
+					<label for="title">課程類別</label>
+					{{--Level 0--}}
+					<select class="form-control" name="category">
+						<option value="0" selected disabled>請選擇</option>
+						@foreach($categories as $category)
+							<option value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+						@endforeach
+					</select>
+					{{--Level 1--}}
+				</div>
+				<div class="form-group col-md-12" >
+					<label for="featured">課程圖片</label>
+					<input accept="image/*" id="uploadImage" type="file" name="featured">
+					<div class="container col-md-12">
+						<img id="img" src="" style="max-width: 100%; height: auto;">
+					</div>
+				</div>
+				<div class="form-group col-md-12" >
+					<label for="content">好的文案可以帶來更多的學生</label>
+					<textarea name="content" id="content" rows="10" cols="5" class="form-control" >{{ $course['content'] or '' }}</textarea>
+				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 					  <label for="from_date">課程開始日期</label><span class="required">*</span>
@@ -90,54 +117,55 @@
 				</div>
 
 				<div class="form-group">
-					<div class="form-check form-check-inline col-md-3">
+					<div class="form-check form-check-inline col-md-2">
 						<label>開課星期</label><span class="required">*</span>
 					</div>
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="monday" value="monday" {{ $course['monday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="monday">一</label>
+					<div class="form-group col-md-4">
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="monday" name="day_of_week[monday]" value="monday" {{ $course['monday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="monday">一</label>
+						</div>
+
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="tuesday" name="day_of_week[tuesday]" value="tuesday" {{ $course['tuesday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="tuesday">二</label>
+						</div>
+
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="wednesday" name="day_of_week[wednesday]" value="wednesday" {{ $course['wednesday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="wednesday">三</label>
+						</div>
+
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="thursday" name="day_of_week[thursday]" value="thursday" {{ $course['thursday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="thursday">四</label>
+						</div>
+
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="friday" name="day_of_week[friday]" value="friday" {{ $course['friday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="friday">五</label>
+						</div>
+
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="saturday" name="day_of_week[saturaday]" value="saturday" {{ $course['saturday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="saturday">六</label>
+						</div>
+						<div class="form-check form-check-inline col-md-1">
+							<input class="form-check-input" type="checkbox" id="sunday" name="day_of_week[sunday]" value="sunday" {{ $course['sunday'] or false? 'checked' : '' }}>
+							<label class="form-check-label" for="sunday">日</label>
+						</div>
 					</div>
 
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="tuesday" value="tuesday" {{ $course['tuesday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="tuesday">二</label>
-					</div>
-
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="wednesday" value="wednesday" {{ $course['wednesday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="wednesday">三</label>
-					</div>
-
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="thursday" value="thursday" {{ $course['thursday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="thursday">四</label>
-					</div>
-
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="friday" value="friday" {{ $course['friday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="friday">五</label>
-					</div>
-
-					<div class="form-check form-check-inline col-md-1">
-						<input class="form-check-input" type="checkbox" id="saturday" value="saturday" {{ $course['saturday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="saturday">六</label>
-					</div>
-
-					<div class="form-check form-check-inline col-md-3">
-						<input class="form-check-input" type="checkbox" id="sunday" value="sunday" {{ $course['sunday'] or false? 'checked' : '' }}>
-						<label class="form-check-label" for="sunday">日</label>
-					</div>
-
-					<div class="col-md-1">
+					<div class="col-md-3">
 						<input type="button" class="btn btn-info" onclick="generateChapter()" value="生成章節"/>
 					</div>
 				</div>
 			</div>
 
-			<div class="panel-heading" id="chapter-heading" >
+			<div class="panel-heading" id="chapter-heading" hidden="hidden">
 				章節基本資訊
 			</div>
-			<div class="panel-body" id="chapter-body" >
+			<div class="panel-body" id="chapter-body" hidden="hidden">
 				<div id="chapter-detail">
 				</div>
 				<div class="form-row col-md-12">
@@ -171,21 +199,12 @@
 
 			</div>
 
-			<div class="panel-heading">
-				 課程介紹
-			</div>
-			<div class="panel-body">
-				<div class="form-group col-md-12" >
-					<label for="content">好的文案可以帶來更多的學生</label>
-					<textarea name="content" id="content" rows="10" cols="5" class="form-control" >{{ $course['content'] or '' }}</textarea>
-				</div>
+			<div class="panel-footer">
+				<button class="btn btn-info" type="submit" formaction="/courses/create/step/course/previous">上一步</button>
+				<button class="btn btn-success col-md-8" type="submit" formaction="/courses/create/step/course">下一步</button>
+				<button class="btn btn-default" type="submit" formaction="/courses/create/step/course/save">暫存離開</button>
 			</div>
 
-			<div class="panel-footer">
-				<button class="btn btn-info" type="submit">上一步</button>
-				<button class="btn btn-success col-md-8" type="submit">下一步</button>
-				<button class="btn btn-default" type="submit">暫存離開</button>
-			</div>
 		</form>
 
 	</div>
@@ -246,28 +265,7 @@
                     data.forEach( function(value, index, array) {
                         var id = index + 1;
                         $("#chapter-detail").append(
-                            '<div class="form-group" id="chapter-'+ id +'">\n' +
-                            '   <div class="form-row col-md-12">\n' +
-                            '        <h5><br>Chapter ' + id + '</h5>\n' +
-                            '   </div>\n' +
-                            '   <div class="form-row">\n' +
-                            '        <div class="form-group col-md-6">\n' +
-                            '              <label for="time">From Time</label>\n' +
-                            '              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="'+value['from_datetime']+'">\n' +
-                            '        </div>\n' +
-                            '        <div class="form-group col-md-6">\n' +
-                            '              <label for="time">To Time</label>\n' +
-                            '              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="'+value['to_datetime']+'">\n' +
-                            '        </div>\n' +
-                            '   </div>\n' +
-                            '   <div class="form-row col-md-12">\n' +
-                            '        <label for="introduction">Introduction</label>\n' +
-                            '        <textarea rows="2" cols="5" class="form-control" id="introduction-' + id +'"></textarea>\n' +
-                            '   </div>\n' +
-                            '   <div class="form-row col-md-12">\n' +
-                            '       <input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="delete"/>\n' +
-                            '   </div>\n' +
-                            '</div>'
+                            getChapterFormat(id, value['from_datetime'],value['to_datetime'])
                         );
 
                     });
@@ -286,6 +284,36 @@
     	$("#chapter-" + id).remove();
     }
 
+    function getChapterFormat(id, from_datetime, to_datetime) {
+        //name="experience[0]"
+        return  '<div class="container col-md-12" id="chapter-'+ id +'" style="border: #f5dd86; border-style: solid;">' +
+				'   <div class="container col-md-12">\n' +
+				'        <h6><br>Chapter ' + id + '</h6>\n' +
+				'   </div>\n' +
+				'   <div class="form-row">\n' +
+				'        <div class="form-group col-md-6">\n' +
+				'              <label for="from-time-' + id +'">開始時間</label>\n' +
+				'              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="'+ from_datetime +'" name="chapter['+ id +'][from-time]">\n' +
+				'        </div>\n' +
+				'        <div class="form-group col-md-6">\n' +
+				'              <label for="to-time-' + id +'">結束時間</label>\n' +
+				'              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="'+ to_datetime +'" name="chapter['+ id +'][to-time]">\n' +
+				'        </div>\n' +
+				'   </div>\n' +
+				'   <div class="form-row col-md-12">\n' +
+				'        <label for="title-' + id +'">標題</label>\n' +
+				'        <textarea rows="2" cols="5" class="form-control" id="title-' + id +'" name="chapter['+ id +'][title]"></textarea>\n' +
+				'   </div>\n' +
+				'   <div class="form-row col-md-12">\n' +
+				'        <label for="description-' + id +'">描述</label>\n' +
+				'        <textarea rows="2" cols="5" class="form-control" id="description-' + id +'" name="chapter['+ id +'][description]"></textarea>\n' +
+				'   </div>\n' +
+				'   <div class="form-row col-md-12">\n' +
+				'       <input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="刪除"/>\n' +
+				'   </div>\n' +
+				'</div>'
+	}
+
     function addChapter() {
         numberOfChapter++;
         var id = numberOfChapter;
@@ -294,29 +322,23 @@
         $("#chapter-body").show();
 
         $("#chapter-detail").append(
-            '<div class="form-group" id="chapter-'+ id +'">\n' +
-            '   <div class="form-row col-md-12">\n' +
-            '        <h5><br>Chapter ' + id + '</h5>\n' +
-            '   </div>\n' +
-            '   <div class="form-row">\n' +
-            '        <div class="form-group col-md-6">\n' +
-            '              <label for="time">From Time</label>\n' +
-            '              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="">\n' +
-            '        </div>\n' +
-            '        <div class="form-group col-md-6">\n' +
-            '              <label for="time">To Time</label>\n' +
-            '              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="">\n' +
-            '        </div>\n' +
-            '   </div>\n' +
-            '   <div class="form-row col-md-12">\n' +
-            '        <label for="introduction">Introduction</label>\n' +
-            '        <textarea rows="2" cols="5" class="form-control" id="introduction-' + id +'"></textarea>\n' +
-            '   </div>\n' +
-            '   <div class="form-row col-md-12">\n' +
-            '       <input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="delete"/>\n' +
-            '   </div>\n' +
-            '</div>'
+            getChapterFormat(id, '', '')
         );
+    }
+
+    $("#uploadImage").change(function(){
+        readImage( this );
+    });
+
+    function readImage(input) {
+        if ( input.files && input.files[0] ) {
+            var FR= new FileReader();
+            FR.onload = function(e) {
+                //e.target.result = base64 format picture
+                $('#img').attr( "src", e.target.result );
+            };
+            FR.readAsDataURL( input.files[0] );
+        }
     }
 
 	$(document).ready(function() {
