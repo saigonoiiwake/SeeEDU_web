@@ -496,6 +496,7 @@ input[type=text] {
    </div>
   </div>
 
+  
 @include('includes.footer')
 
 @endsection

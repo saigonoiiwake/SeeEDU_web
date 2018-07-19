@@ -13,6 +13,17 @@
 
 Auth::routes();
 
+Route::get('/courses', [
+  'uses' => 'CourseController@index',
+  'as' => 'courses'
+]);
+
+Route::get('/course/{id}', [
+  'uses' => 'CourseController@singleCouse',
+  'as' => 'course.single'
+]);
+
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -56,6 +67,9 @@ Route::get('/results', function(){
                         ->with('query', request('query'));
 });
 
+
+
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -71,14 +85,6 @@ Route::get('/mycourse', function () {
 Route::get('/qa', function () {
     return view('qa');
 })->name('qa');
-
-Route::get('/courses', function () {
-    return view('courses');
-})->name('courses');
-
-Route::get('/course', function () {
-    return view('single_course');
-})->name('single_course');
 
 Route::get('/policies', function () {
     return view('policies');

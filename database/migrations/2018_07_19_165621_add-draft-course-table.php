@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCourseBrowseCount extends Migration
+class AddDraftCourseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddCourseBrowseCount extends Migration
      */
     public function up()
     {
-        Schema::table('course', function (Blueprint $table) {
-            $table->unsignedInteger('browse_num')->after('max_num')->default(0);
+        Schema::table('course_draft', function (Blueprint $table) {
+            $table->text('featured')->after('to_date');
+            $table->text('video')->after('featured');
         });
     }
 
@@ -25,8 +26,9 @@ class AddCourseBrowseCount extends Migration
      */
     public function down()
     {
-        Schema::table('course', function (Blueprint $table) {
-            $table->dropColumn('browse_num');
+        Schema::table('course_draft', function (Blueprint $table) {
+            $table->dropColumn('featured');
+            $table->dropColumn('video');
         });
     }
 }

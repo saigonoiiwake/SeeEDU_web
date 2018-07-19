@@ -45,6 +45,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     }
     .classbox:hover .bookbtn {
       bottom: 10px;
+			transform: rotateY(180deg);
     }
     .classbox .top {
       height: 220px;
@@ -58,7 +59,6 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       width: 100%;
       height: 100%;
       position: absolute;
-      background-image: url(https://res.cloudinary.com/sabina123/image/upload/v1530271405/samples/animals/kitten-playing.gif);
       background-size: cover;
       transition-duration: 0.3s;
     }
@@ -73,7 +73,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
       z-index: 10;
       right: 5px;
-      bottom: 115px;
+      bottom: 170px;
     }
 
     .tag {
@@ -110,8 +110,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     }
     .progressbar .valuebar {
       background-color: #398DD5;
-      width: 80px;
       height: 100%;
+			width: 30px;
       transition-duration: 1s;
     }
 
@@ -137,10 +137,19 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     }
 
 
+}
+
+
 </style>
 @stop
 
 @section('content')
+
+
+
+
+
+
 
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
   <div class="container">
@@ -163,236 +172,43 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
   <div class="container">
  	<div class="row">
 
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
+
+@foreach($courses as $course)
+ 	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
  		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
+		 		<div class="card-container">
+		   		<div class="card">
+						<div class="side">
+
+						</div>
+						<div class="side back">
+
+						</div>
+ 			 			<div class="classbox">
+ 				 		<div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
  					 <div class="top">
  						 <div class="classpicture">
+							 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
  						 </div>
  					 </div>
  					 <div class="bottom">
- 						 <div class="tag">HOT</div>
+ 						 <div class="tag">{{ $course->from_date }} </div>
  						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
+ 							 <h3 class="classtitle"><a href="{{ route('course.single', ['id' => $course->id]) }}">{{ $course->title }}</a></h3>
+ 							 <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->name }}</div>
+ 							 <div class="student_number">修課人數<span> {{ $course->enroll_num }}</span></div>
  						 </div>
  						 <div class="progressbar">
- 							 <div class="valuebar"></div>
+ 							 <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
  						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
+ 					 <div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
+ 					 <div class="price">課程價格<span>NTD {{ $course->price }}</span></div>
  				 </div>
- 			 </div>
+ 			 			</div>
+					</div>
+				</div>
  	 </div>
-
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
- 		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
- 					 <div class="top">
- 						 <div class="classpicture">
- 						 </div>
- 					 </div>
- 					 <div class="bottom">
- 						 <div class="tag">HOT</div>
- 						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
- 						 </div>
- 						 <div class="progressbar">
- 							 <div class="valuebar"></div>
- 						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
- 				 </div>
- 			 </div>
- 	 </div>
-
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
- 		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
- 					 <div class="top">
- 						 <div class="classpicture">
- 						 </div>
- 					 </div>
- 					 <div class="bottom">
- 						 <div class="tag">HOT</div>
- 						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
- 						 </div>
- 						 <div class="progressbar">
- 							 <div class="valuebar"></div>
- 						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
- 				 </div>
- 			 </div>
- 	 </div>
-
- 	</div>
-  </div>
- </div>
- <div class="pix_section pix-padding-v-10" id="section_features_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
-	<div class="container">
-	<div class="row">
-
-	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
-		 <div class="category"></div>
-			 <div class="classbox">
-				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
-					 <div class="top">
-						 <div class="classpicture">
-						 </div>
-					 </div>
-					 <div class="bottom">
-						 <div class="tag">HOT</div>
-						 <div class="text">
-							 <h3 class="classtitle">日文檢定快樂過</h3>
-							 <div class="teacher_name">YOUKA</div>
-							 <div class="student_number">修課人數<span> 18</span></div>
-						 </div>
-						 <div class="progressbar">
-							 <div class="valuebar"></div>
-						 </div>
-					 <div class="view_number">瀏覽量<span> 560</span></div>
-					 <div class="price">課程價格<span>NT$ 8,000</span></div>
-				 </div>
-			 </div>
-	 </div>
-
-	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
-		 <div class="category"></div>
-			 <div class="classbox">
-				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
-					 <div class="top">
-						 <div class="classpicture">
-						 </div>
-					 </div>
-					 <div class="bottom">
-						 <div class="tag">HOT</div>
-						 <div class="text">
-							 <h3 class="classtitle">日文檢定快樂過</h3>
-							 <div class="teacher_name">YOUKA</div>
-							 <div class="student_number">修課人數<span> 18</span></div>
-						 </div>
-						 <div class="progressbar">
-							 <div class="valuebar"></div>
-						 </div>
-					 <div class="view_number">瀏覽量<span> 560</span></div>
-					 <div class="price">課程價格<span>NT$ 8,000</span></div>
-				 </div>
-			 </div>
-	 </div>
-
-	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
-		 <div class="category"></div>
-			 <div class="classbox">
-				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
-					 <div class="top">
-						 <div class="classpicture">
-						 </div>
-					 </div>
-					 <div class="bottom">
-						 <div class="tag">HOT</div>
-						 <div class="text">
-							 <h3 class="classtitle">日文檢定快樂過</h3>
-							 <div class="teacher_name">YOUKA</div>
-							 <div class="student_number">修課人數<span> 18</span></div>
-						 </div>
-						 <div class="progressbar">
-							 <div class="valuebar"></div>
-						 </div>
-					 <div class="view_number">瀏覽量<span> 560</span></div>
-					 <div class="price">課程價格<span>NT$ 8,000</span></div>
-				 </div>
-			 </div>
-	 </div>
-
-	</div>
-	</div>
- </div>
-
- <div class="pix_section pix-padding-v-10" id="section_features_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
-  <div class="container">
- 	<div class="row">
-
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
- 		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
- 					 <div class="top">
- 						 <div class="classpicture">
- 						 </div>
- 					 </div>
- 					 <div class="bottom">
- 						 <div class="tag">HOT</div>
- 						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
- 						 </div>
- 						 <div class="progressbar">
- 							 <div class="valuebar"></div>
- 						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
- 				 </div>
- 			 </div>
- 	 </div>
-
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
- 		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
- 					 <div class="top">
- 						 <div class="classpicture">
- 						 </div>
- 					 </div>
- 					 <div class="bottom">
- 						 <div class="tag">HOT</div>
- 						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
- 						 </div>
- 						 <div class="progressbar">
- 							 <div class="valuebar"></div>
- 						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
- 				 </div>
- 			 </div>
- 	 </div>
-
- 	 <div class="col-md-4 col-xs-6 col-sm-4 column ui-droppable">
- 		 <div class="category"></div>
- 			 <div class="classbox">
- 				 <div class="teacher"><img class="teacherpic" src="https://res.cloudinary.com/sabina123/image/upload/v1530271388/samples/animals/cat.jpg" alt="" width="200px"/></div>
- 					 <div class="top">
- 						 <div class="classpicture">
- 						 </div>
- 					 </div>
- 					 <div class="bottom">
- 						 <div class="tag">HOT</div>
- 						 <div class="text">
- 							 <h3 class="classtitle">日文檢定快樂過</h3>
- 							 <div class="teacher_name">YOUKA</div>
- 							 <div class="student_number">修課人數<span> 18</span></div>
- 						 </div>
- 						 <div class="progressbar">
- 							 <div class="valuebar"></div>
- 						 </div>
- 					 <div class="view_number">瀏覽量<span> 560</span></div>
- 					 <div class="price">課程價格<span>NT$ 8,000</span></div>
- 				 </div>
- 			 </div>
- 	 </div>
+@endforeach
 
  	</div>
   </div>
@@ -402,5 +218,13 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 @include('includes.footer')
 
 <!-- Javascript -->
+<script>
+$('[data-countdown]').each(function() {
+  var $this = $(this), finalDate = $(this).data('countdown');
+  $this.countdown(finalDate, function(event) {
+    $this.html(event.strftime('%D days %H:%M:%S'));
+  });
+});
+</script>
 
 @stop
