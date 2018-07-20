@@ -30,7 +30,7 @@
        <span class="pix_edit_text"><span style="font-weight: 700;">&nbsp;立即開課</span></span>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text"><span style="font-size: 24px;">Step 2</span></span>
+       <span class="pix_edit_text"><span style="font-size: 24px;">Step 3</span></span>
       </p>
      </div>
     </div>
@@ -115,9 +115,9 @@
 				</div>
 				<div class="form-group col-md-12" >
 					<label for="featured">課程圖片</label>
-					<input accept="image/*" id="uploadImage" type="file" name="featured" title="">
+					<input accept="image/*" id="uploadImage" type="file" name="featured">
 					<div class="container col-md-12">
-						<img id="img" src="{{ ($course['featured'] or false)? asset($course['featured']) : '' }}" style="max-width: 100%; height: auto;">
+						<img id="img" src="" style="max-width: 100%; height: auto;">
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
@@ -266,7 +266,7 @@
 
 			<div class="panel-footer">
 				<button class="btn btn-info" type="submit" formaction="/courses/create/step/course/previous">上一步</button>
-				<button class="btn btn-success col-md-8" type="submit" formaction="/courses/create/step/course">下一步</button>
+				<button class="btn btn-success col-md-8" type="submit" formaction="/courses/create/step/course">送出審查</button>
 				<button class="btn btn-default" type="submit" formaction="/courses/create/step/course/save">暫存離開</button>
 			</div>
 

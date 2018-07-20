@@ -59,7 +59,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
      <p class="pix-black-gray-light big-text pix-margin-bottom-20">
       <span class="pix_edit_text">原生網路世代將重新定義教育<br><span>將所學教授給學生，帶給學生們最寶貴的價值</span></span>
      </p>
-     <a href="{{ route('/courses/create/step/teacher') }}" class="btn green-blue-bg pix-white normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
+     <a href="{{ route('/courses/create/step/contract') }}" class="btn green-blue-bg pix-white normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
       <span class="pix_edit_text">
        <strong>立即開課</strong></span>
      </a>
@@ -151,7 +151,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
      <p class="pix-black-gray-light big-text pix-margin-bottom-20">
       <span class="pix_edit_text">        教師可自行訂定<span style="font-weight: bold;">課程價格</span>，SeeEDU平台上顯示之<span style="font-weight: bold;">課程平台售價</span>為課程價格的1.1倍，成功開課並達成最低學生數，教師的收入為<span style="font-weight: bold;">（課程價格）☓&nbsp; &nbsp;(購課人數）☓&nbsp; 80%</span></span>
      </p>
-     <a href="{{ route('/courses/create/step/teacher') }}" class="btn pix-orange-line wide normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
+     <a href="{{ route('/courses/create/step/contract') }}" class="btn pix-orange-line wide normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
       <span class="pix_edit_text">
        <strong>立即開課</strong></span>
      </a>

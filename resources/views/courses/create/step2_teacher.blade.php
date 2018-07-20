@@ -27,7 +27,7 @@
        <span class="pix_edit_text"><span style="font-weight: 700;">立即開課</span></span>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text"><span style="font-size: 24px;"><span style="font-size: 24px;">Step</span><span style="font-size: 24px;"> 1</span></span></span>
+       <span class="pix_edit_text"><span style="font-size: 24px;"><span style="font-size: 24px;">Step</span><span style="font-size: 24px;"> 2</span></span></span>
       </p>
      </div>
     </div>
