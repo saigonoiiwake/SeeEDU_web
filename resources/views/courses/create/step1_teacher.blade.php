@@ -77,7 +77,6 @@
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
-
 						<label for="real_name">真實姓名</label><span class="required">*</span>
 						<input type="text" class="form-control" id="name" placeholder="" name="name" value="{{ $teacher_profile['name'] or '' }}">
 					</div>

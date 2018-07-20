@@ -67,50 +67,66 @@
 				課程基本資訊
 			</div>
 			<div class="panel-body">
+
+				{{-- errors when post form with invalidated format  --}}
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 				<div class="form-group col-md-12" >
 					<label for="title">課程名稱</label>
-					<input name="title" id="title" class="form-control" >{{ $course['title'] or '' }}
+					<input name="title" id="title" class="form-control" value="{{ $course['title'] or '' }}">
 				</div>
 				<div class="form-group col-md-12" >
 					<label for="title">課程類別</label>
 					{{--Level 1--}}
-					<select class="form-control" name="" id="level-1">
+					<select class="form-control" name="category_1" id="level-1">
 						<option data-subgroup="" value="" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 1)
-								<option data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+								<option data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_1'] or false) ? ($course['category_1'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
 							@endif
 						@endforeach
 					</select>
 					{{--Level 2--}}
-					<select class="form-control" name="" id="level-2">
+					<select class="form-control" name="category_2" id="level-2">
 						<option data-subgroup="" value="" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 2)
-								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_2'] or false) ? ($course['category_2'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
 							@endif
 						@endforeach
 					</select>
 					{{--Level 2--}}
-					<select class="form-control" name="category" id="level-3">
+					<select class="form-control" name="category_3" id="level-3">
 						<option data-subgroup="" value="" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 3)
-								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['$category'] or false) ? ($course['category'] === $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
+								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_3'] or false) ? ($course['category_3'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
 							@endif
 						@endforeach
 					</select>
 				</div>
 				<div class="form-group col-md-12" >
 					<label for="featured">課程圖片</label>
-					<input accept="image/*" id="uploadImage" type="file" name="featured">
+					<input accept="image/*" id="uploadImage" type="file" name="featured" title="">
 					<div class="container col-md-12">
-						<img id="img" src="" style="max-width: 100%; height: auto;">
+						<img id="img" src="{{ ($course['featured'] or false)? asset($course['featured']) : '' }}" style="max-width: 100%; height: auto;">
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="content">好的文案可以帶來更多的學生</label>
-					<textarea name="content" id="content" rows="10" cols="5" class="form-control" >{{ $course['content'] or '' }}</textarea>
+					<label for="video">課程介紹影片(網址)</label>
+					<input name="video" id="video" class="form-control" value="{{ $course['video'] or '' }}">
+				</div>
+				<div class="form-group col-md-12" >
+					<label for="description">好的文案可以帶來更多的學生</label>
+					<textarea name="description" id="description" rows="10" cols="5" class="form-control" >{{ $course['description'] or '' }}</textarea>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -141,36 +157,36 @@
 					</div>
 					<div class="form-group col-md-4">
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="monday" name="day_of_week[monday]" value="monday" {{ $course['monday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="monday" name="day_of_week[monday]" value="monday" {{ $course['day_of_week']['monday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="monday">一</label>
 						</div>
 
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="tuesday" name="day_of_week[tuesday]" value="tuesday" {{ $course['tuesday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="tuesday" name="day_of_week[tuesday]" value="tuesday" {{ $course['day_of_week']['tuesday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="tuesday">二</label>
 						</div>
 
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="wednesday" name="day_of_week[wednesday]" value="wednesday" {{ $course['wednesday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="wednesday" name="day_of_week[wednesday]" value="wednesday" {{ $course['day_of_week']['wednesday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="wednesday">三</label>
 						</div>
 
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="thursday" name="day_of_week[thursday]" value="thursday" {{ $course['thursday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="thursday" name="day_of_week[thursday]" value="thursday" {{ $course['day_of_week']['thursday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="thursday">四</label>
 						</div>
 
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="friday" name="day_of_week[friday]" value="friday" {{ $course['friday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="friday" name="day_of_week[friday]" value="friday" {{ $course['day_of_week']['friday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="friday">五</label>
 						</div>
 
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="saturday" name="day_of_week[saturaday]" value="saturday" {{ $course['saturday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="saturday" name="day_of_week[saturaday]" value="saturday" {{ $course['day_of_week']['saturday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="saturday">六</label>
 						</div>
 						<div class="form-check form-check-inline col-md-1">
-							<input class="form-check-input" type="checkbox" id="sunday" name="day_of_week[sunday]" value="sunday" {{ $course['sunday'] or false? 'checked' : '' }}>
+							<input class="form-check-input" type="checkbox" id="sunday" name="day_of_week[sunday]" value="sunday" {{ $course['day_of_week']['sunday'] or false? 'checked' : '' }}>
 							<label class="form-check-label" for="sunday">日</label>
 						</div>
 					</div>
@@ -181,11 +197,41 @@
 				</div>
 			</div>
 
-			<div class="panel-heading" id="chapter-heading" hidden="hidden">
+			<div class="panel-heading" id="chapter-heading" {{ ($course['chapter'] or false)? (count($course['chapter']) > 0 ? '' : 'hidden') : 'hidden' }}>
 				章節基本資訊
 			</div>
-			<div class="panel-body" id="chapter-body" hidden="hidden">
+			<div class="panel-body" id="chapter-body" {{ ($course['chapter'] or false)? (count($course['chapter']) > 0 ? '' : 'hidden')  : 'hidden' }}>
 				<div id="chapter-detail">
+					@if($course['chapter'] or false)
+						@foreach ($course['chapter'] as $key => $chapter)
+							<div class="container col-md-12" id="chapter-{{ $key }}" style="border: #f5dd86; border-style: solid;">
+								<div class="container col-md-12">
+									<h6><br>Chapter {{ $key }}</h6>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="from-time-{{ $key }}">開始時間</label>
+										<input type="datetime-local" class="form-control" id="from-time-{{ $key }}" value="{{ $chapter['from_datetime'] }}" name="chapter[{{ $key }}][from_datetime]">
+									</div>
+									<div class="form-group col-md-6">
+										<label for="to-time-{{ $key }}">結束時間</label>
+										<input type="datetime-local" class="form-control" id="to-time-{{ $key }}" value="{{ $chapter['to_datetime'] }}" name="chapter[{{ $key }}][to_datetime]">
+									</div>
+								</div>
+								<div class="form-row col-md-12">
+									<label for="title-{{ $key }}">標題</label>
+									<textarea rows="2" cols="5" class="form-control" id="title-{{ $key }}" name="chapter[{{ $key }}][title]">{{ $chapter['title'] }}</textarea>
+								</div>
+								<div class="form-row col-md-12">
+									<label for="description-{{ $key }}">描述</label>
+									<textarea rows="2" cols="5" class="form-control" id="description-{{ $key }}" name="chapter[{{ $key }}][description]">{{ $chapter['description'] }}</textarea>
+								</div>
+								<div class="form-row col-md-12">
+									<input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="刪除"/>
+									</div>
+								</div>
+						@endforeach
+					@endif
 				</div>
 				<div class="form-row col-md-12">
 					<input type="button" class="btn btn-success" onclick="addChapter()" value="add"/>
@@ -199,12 +245,12 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="min_num">課程人數下限</label><span class="required">*</span>
-						<input type="number" class="form-control" id="min_num" placeholder="" name="min_num" value="{{ $course['min_num'] or '' }}">
+						<input type="number" class="form-control" id="min_num" placeholder="" min="1" name="min_num" value="{{ $course['min_num'] or '' }}">
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="max_num">課程人數上限</label><span class="required">*</span>
-						<input type="number" class="form-control" id="max_num" placeholder="" name="max_num" value="{{ $course['max_num'] or '' }}">
+						<input type="number" class="form-control" id="max_num" placeholder="" min="1" name="max_num" value="{{ $course['max_num'] or '' }}">
 					</div>
 
 				</div>
@@ -212,7 +258,7 @@
 				<div class="form-group">
 					<div class="form-row col-md-12">
 						<label for="price">課程售價(新台幣)</label><span class="required">*</span>
-						<input type="number" class="form-control" id="price" placeholder="" value="{{ $course['price'] or '' }}">
+						<input type="number" class="form-control" id="price" placeholder="" name="price" value="{{ $course['price'] or '' }}">
 					</div>
 				</div>
 
@@ -243,7 +289,7 @@
 
 <script>
 
-	var numberOfChapter = 0;
+	var numberOfChapter = parseInt("{{ ($course['chapter'] or false) ? count($course['chapter']) : 0 }}");
 
     function generateChapter() {
 
@@ -312,11 +358,11 @@
 				'   <div class="form-row">\n' +
 				'        <div class="form-group col-md-6">\n' +
 				'              <label for="from-time-' + id +'">開始時間</label>\n' +
-				'              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="'+ from_datetime +'" name="chapter['+ id +'][from-time]">\n' +
+				'              <input type="datetime-local" class="form-control" id="from-time-'+ id +'" value="'+ from_datetime +'" name="chapter['+ id +'][from_datetime]">\n' +
 				'        </div>\n' +
 				'        <div class="form-group col-md-6">\n' +
 				'              <label for="to-time-' + id +'">結束時間</label>\n' +
-				'              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="'+ to_datetime +'" name="chapter['+ id +'][to-time]">\n' +
+				'              <input type="datetime-local" class="form-control" id="to-time-'+ id +'" value="'+ to_datetime +'" name="chapter['+ id +'][to_datetime]">\n' +
 				'        </div>\n' +
 				'   </div>\n' +
 				'   <div class="form-row col-md-12">\n' +
@@ -361,16 +407,16 @@
     }
 
 	$(document).ready(function() {
-		$('#content').summernote();
+		$('#description').summernote();
 	});
 
     // course category
     setHierarchySelectEvent('#level-1', '#level-2');
     setHierarchySelectEvent('#level-2', '#level-3');
     //セレクトボックスの初期値
-    $('#level-1').val('').change();
-    $('#level-2').val('').change();
-    $('#level-3').val('').change();
+    $('#level-1').val({{ ($course['category_1'] or false) ? $course['category_1'] : '' }}).change();
+    $('#level-2').val({{ ($course['category_2'] or false) ? $course['category_2'] : '' }}).change();
+    $('#level-3').val({{ ($course['category_3'] or false) ? $course['category_3'] : '' }}).change();
 
     function setHierarchySelectEvent(parentSelect, childSelect){
         var initCategorySmallHtml = $(childSelect).html();

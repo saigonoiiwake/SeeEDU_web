@@ -111,7 +111,7 @@ class CourseCreateController extends Controller
     public function showCourseForm(Request $request) {
         $course = $request->session()->get('course');
         $categories = CourseCategory::all();
-        // restruct the response
+        // reconstruct the response
         $categories = $categories->map(function($category)  {
             return [
                 'id'   => $category->id,
@@ -135,39 +135,90 @@ class CourseCreateController extends Controller
     {
         Log::info($request);
 
-        $featured = $request['featured'];
-        Log::info($request->hasFile('featured'));
-        Log::info($featured);
-        if($request->hasFile('featured')) {
-            $file = $request->file('featured');
-            $timestamp = str_replace([' ', ':'], '-', 'test');//Carbon::now()->toDateTimeString());
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            //$data->image = $name;
-            $file->move(public_path().'/images/', $name);
-        }
-        //$featured->storeAs('uploads/', $featured->getClientOriginalName(), 'uploads');
-//        $validatedData = $request->validate([
-//            'name'         => 'required',
-//            'nick_name'    => 'required',
-//            'birthday'     => 'required|date',
-//            'phone_number' => 'required',
-//            'education.*'  => 'required',
-//            'experience.*' => 'required',
-//            'about'        => 'required|max:50',
-//        ]);
-//
-//        $course = [
-//            'name'         => $validatedData['name'],
-//            'nick_name'    => $validatedData['nick_name'],
-//            'birthday'     => $validatedData['birthday'],
-//            'phone_number' => $validatedData['phone_number'],
-//            'education'    => $validatedData['education'],
-//            'experience'   => $validatedData['experience'],
-//            'about'        => $validatedData['about'],
-//        ];
-//        $request->session()->put('course', $course);
+        // Example of request
+        //  'title' => 'Japanese N2',
+        //  'category-1' => '1',
+        //  'category-2' => '3',
+        //  'category-3' => '8',
+        //  'description' => '<p>Test</p>',
+        //  'from_date' => '2018-07-01',
+        //  'to_date' => '2018-07-06',
+        //  'from_time' => '14:00',
+        //  'to_time' => '15:00',
+        //  'day_of_week' =>
+        //  array (
+        //      'monday' => 'monday',
+        //  ),
+        //  'chapter' =>
+        //  array (
+        //      1 =>
+        //          array (
+        //              'from-time' => '2018-07-02T14:00',
+        //              'to-time' => '2018-07-02T15:00',
+        //              'title' => 'chapter 1',
+        //              'description' => 'chapter 1 description',
+        //          ),
+        //  ),
+        //  'min_num' => '22',
+        //  'max_num' => '17',
+        //  'featured' =>
+        //  Illuminate\Http\UploadedFile::__set_state(array(
+        //      'test' => false,
+        //      'originalName' => 'pikachuchu.jpg',
+        //      'mimeType' => 'image/jpeg',
+        //      'size' => 17748,
+        //      'error' => 0,
+        //      'hashName' => NULL,
+        //  )),
 
-        return redirect('/courses/create/step/contract');
+        $validatedData = $request->validate([
+            'title'       => 'required|max:50',
+            'category_1'  => 'required|integer',
+            'category_2'  => 'required|integer',
+            'category_3'  => 'required|integer',
+            'featured'    => 'required|file',
+            'video'       => 'required|active_url',
+            'description' => 'required',
+            'from_date'   => 'required|date',
+            'to_date'     => 'required|date|after:from_date',
+            'from_time'   => 'required|regex:/([0-9][0-9]:[0-9][0-9])/u',
+            'to_time'     => 'required|regex:/([0-9][0-9]:[0-9][0-9])/u',
+            'day_of_week' => 'required|array|min:1',
+            'chapter'     => 'required|array|min:1',
+            'min_num'     => 'required|integer|min:1|max:max_num',
+            'max_num'     => 'required|integer|min:1',
+            'price'       => 'required|integer',
+        ]);
+
+
+        $file = $request->file('featured');
+        $timestamp = time();
+        $file_name = $timestamp. '-' .$file->getClientOriginalName();
+        $file_dir = public_path().'/images/courses/';
+        $file->move($file_dir, $file_name);
+
+        $course = [
+            'title'       => $validatedData['title'],
+            'category_1'  => $validatedData['category_1'],
+            'category_2'  => $validatedData['category_2'],
+            'category_3'  => $validatedData['category_3'],
+            'featured'    => '/images/courses/'. $file_name,
+            'video'       => $validatedData['video'],
+            'description' => $validatedData['description'],
+            'from_date'   => $validatedData['from_date'],
+            'to_date'     => $validatedData['to_date'],
+            'from_time'   => $validatedData['from_time'],
+            'to_time'     => $validatedData['to_time'],
+            'day_of_week' => $validatedData['day_of_week'],
+            'chapter'     => $validatedData['chapter'],
+            'min_num'     => $validatedData['min_num'],
+            'max_num'     => $validatedData['max_num'],
+            'price'       => $validatedData['price'],
+        ];
+
+        $request->session()->put('course', $course);
+
+        return redirect('/courses/create/step/course');
     }
 
     public function generateChapterTime(Request $request)
@@ -221,7 +272,7 @@ class CourseCreateController extends Controller
     }
 
     protected function getListOfDate($from_date, $to_date, $from_time, $to_time, $day_of_week) {
-        $tmp = $from_date;
+        $tmp = date('Y-m-d', strtotime('-1 day', strtotime($from_date)));
         $time_list = [];
         while( $tmp < $to_date ) {
             $next_day = date('Y-m-d', strtotime('next '.$day_of_week, strtotime($tmp)));
