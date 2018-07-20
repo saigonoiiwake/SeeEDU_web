@@ -45,7 +45,6 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     }
     .classbox:hover .bookbtn {
       bottom: 10px;
-			transform: rotateY(180deg);
     }
     .classbox .top {
       height: 220px;

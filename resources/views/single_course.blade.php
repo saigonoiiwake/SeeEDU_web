@@ -71,7 +71,7 @@
 			 </div>
 
 			 <div class="pix-margin-bottom-15">
-					<h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">課程價格</span></span>  NT ${{ $course->price}}</h4>
+					<h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">課程價格</span></span>  NT ${{ number_format($course->price)}}</h4>
 
 				</div>
 
@@ -183,9 +183,19 @@
 	 </div>
  </div>
 
- <!-- Go to www.addthis.com/dashboard to customize your tools -->
- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
-
+ <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post">
+	 {{ csrf_field() }}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+    data-amount="{{ $course->price*100 }}"
+    data-name="SeeEDU Live School"
+    data-description="這裡放分類"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="en"
+    data-currency="twd">
+  </script>
+</form>
 
 
  @include('includes.footer')
@@ -194,7 +204,6 @@
 
 @section('scripts')
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
 
 @endsection

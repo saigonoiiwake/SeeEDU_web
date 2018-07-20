@@ -23,6 +23,10 @@ Route::get('/course/{id}', [
   'as' => 'course.single'
 ]);
 
+Route::post('/course/checkout/{id}', [
+  'uses' => 'CourseController@pay',
+  'as' => 'course.checkout'
+]);
 
 Route::get('/', function () {
     return view('welcome');
