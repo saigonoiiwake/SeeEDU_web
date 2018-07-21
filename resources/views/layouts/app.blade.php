@@ -63,9 +63,9 @@
                             </a>
                         </li>
 
-                        <li class="search search_main" style="color: black; margin-top: 8px;">
+                        <!-- <li class="search search_main" style="color: black; margin-top: 8px;">
                           <input type="text" name="search" >
-                        </li>
+                        </li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,7 +78,7 @@
                             <li><a href="{{ route('register') }}"> 註冊 </a></li>
                         @else
                             <li>
-                                 <img src="{{ Auth::user()->avatar }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
+                                 <img src="{{ asset(Auth::user()->avatar) }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -86,7 +86,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                  <li>
+                                  <!-- <li>
                                     <a href="{{ route('mycourse') }}" class="">
                                         <i class="seoicon-button"> 個人頁面</i>
                                     </a>
@@ -96,7 +96,7 @@
                                     <a href="/messenger" class="">
                                         <i class="seoicon-mail-send"> 私人訊息</i>
                                     </a>
-                                  </li>
+                                  </li> -->
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

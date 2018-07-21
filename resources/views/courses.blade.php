@@ -40,9 +40,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       text-align: left;
       text-decoration: none;
     }
-    .classbox:hover .classpicture {
-      transform: scale(1.15);
-    }
+
     .classbox:hover .bookbtn {
       bottom: 10px;
     }
@@ -135,6 +133,185 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       margin-left: 10px;
     }
 
+		html, body {
+      margin: 0;
+      padding: 0;
+
+    }
+
+    .classbox {
+      width: 260px;
+      padding: 15px;
+      padding-bottom: 0px;
+      box-sizing: border-box;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      margin: 25px 45px;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .classbox:hover .bookbtn {
+      bottom: 10px;
+    }
+    .classbox .top {
+      height: 220px;
+      border-radius: 5px 5px 0px 0px;
+      margin: -15px;
+      margin-bottom: 0px;
+      overflow: hidden;
+      position: relative;
+    }
+    .classbox .top .classpicture {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .teacherpic {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: 190px;
+      background-size: cover;
+      border: solid 2px white;
+      border-radius: 100%;
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+      z-index: 10;
+      right: 5px;
+      bottom: 170px;
+    }
+
+    .tag {
+      width: 80px;
+      height: 25px;
+      position: absolute;
+      color: white;
+      top: 20px;
+      left: -40px;
+      padding-top: 5px;
+      text-align: center;
+      background-color: #398DD5;
+      border-radius: 15px;
+      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .teacher_name, .student_number {
+      font-size: 15px;
+      display: inline-block;
+      color: #C3C3C3;
+    }
+
+    .student_number {
+      font-weight: 300;
+      position: absolute;
+      right: 20px;
+    }
+
+    .progressbar {
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    .progressbar .valuebar {
+      background-color: #398DD5;
+      height: 100%;
+			width: 30px;
+      transition-duration: 1s;
+    }
+
+    .view_number, .price {
+      display: inline-block;
+    }
+
+    .view_number {
+      font-weight: 300;
+      font-size: 15px;
+      margin: 10px 0px;
+      color: #C3C3C3;
+    }
+
+    .classtitle, .price {
+      color: #434343;
+    }
+
+    .price {
+      font-size: 15px;
+      posiiton: relative;
+      margin-left: 20px;
+    }
+
+		.card-container {
+		  cursor: pointer;
+		  height: 220px;
+		  perspective: 600;
+		  position: relative;
+		  width: 260px;
+		}
+		.card {
+		  height: 220px;
+		  position: absolute;
+		  transform-style: preserve-3d;
+		  transition: all 1s ease-in-out;
+		  width: 260px;
+		}
+
+		.card:hover {
+		  transform: rotateY(180deg);
+
+		}
+
+		.card .side {
+		  backface-visibility: hidden;
+		  border-radius: 6px;
+		  height: 100%;
+		  position: absolute;
+		  overflow: hidden;
+		  width: 100%;
+		}
+
+		.course1 span {
+		  position: relative;
+		  top: 14px;
+		}
+		.weekday {
+		    color: #429DEB;
+		  }
+		.comment {
+		  margin: 20px 0px 20px 30px;
+		}
+		.course1 {
+		  background-color: #FCFCFC;
+		  text-align: center;
+		  border: solid 1px #C3C3C3;
+		  border-radius: 5px;
+		  height: 30px;
+		  width: 200px;
+		  margin-right: auto;
+		  margin-left: auto;
+		  margin-top: 0;
+		  margin-bottom: 0;
+		  padding: 0px;
+
+		  }
+
+		.card .back {
+
+		  font-size: 12px;
+		  background: #eaeaed;
+		  color: #434343;
+		  line-height: 3px;
+		  transform: rotateY(-180deg);
+
+		}
+
+
+
 
 }
 
@@ -175,20 +352,56 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 @foreach($courses as $course)
  	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
  		 <div class="category"></div>
-		 		<div class="card-container">
-		   		<div class="card">
-						<div class="side">
 
-						</div>
-						<div class="side back">
-
-						</div>
  			 			<div class="classbox">
  				 		<div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
  					 <div class="top">
- 						 <div class="classpicture">
-							 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
- 						 </div>
+
+						 <div class="card-container">
+		 		   		<div class="card">
+		 						<div class="side">
+									<div class="classpicture">
+										<a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+									</div>
+		 						</div>
+		 						<div class="side back">
+
+									<br>
+									<div class="course1">
+										<span>9/20 ~ 11/20</span>
+									</div>
+
+									<br>
+									<div class="course1">
+										<span class="weekday">每週 一 四</span>
+									</div>
+
+									<br>
+									<div class="course1">
+										<span>21:30 - 23:30 </span>
+									</div>
+
+									<br>
+									<div class="course1">
+										<span>分類一 </span>
+									</div>
+
+									<br>
+									<div class="course1">
+										<span>分類二</span>
+									</div>
+
+									<br>
+									<div class="course1">
+										<span>分類三</span>
+									</div>
+
+		 						</div>
+							</div>
+						</div>
+
+
+
  					 </div>
  					 <div class="bottom">
  						 <div class="tag">{{ $course->from_date }} </div>
@@ -204,8 +417,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  					 <div class="price">課程價格<span>NTD {{ $course->price }}</span></div>
  				 </div>
  			 			</div>
-					</div>
-				</div>
+
+
  	 </div>
 @endforeach
 

@@ -55,11 +55,15 @@
      <div class="pix-content text-left pix_feature_std pix_light_gray_border white-bg">
       <div class="pix-padding-h-10">
 
-
+				<p class="pix-black-gray-light big-text">
+          <span class="pix_edit_text">
+           <i class="fas fa-hashtag">詳細資訊</i>
+          </span>
+        </p>
 
 
        <div class="pix-margin-bottom-15">
-				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">開始日期</span> {{$course->from_date}} </span></h4>
+				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">開課日期</span> {{$course->from_date}} </span></h4>
 			 </div>
 
 			 <div class="pix-margin-bottom-15">
@@ -76,16 +80,27 @@
 				</div>
 
 
-       <p class="pix-black-gray-light big-text">
-         <span class="pix_edit_text">
-          <i class="fas fa-hashtag"></i>
-         </span>
-       </p>
-       <a href="#" class="btn  orange-bg btn-round-lg pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-         <span class="pix_edit_text">
-          <strong>購買</strong>
-         </span>
-       </a>
+
+
+			 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay">
+				{{ csrf_field() }}
+				<script
+					src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+					data-amount="{{ $course->price*100 }}"
+					data-name="SeeEDU Live School"
+					data-description="這裡放分類"
+					data-image="{{ asset('app/images/illustrations/checkout.png') }}"
+					data-locale="en"
+					data-currency="twd">
+				</script>
+			 <script>
+							// Hide default stripe button, be careful there if you
+							// have more than 1 button of that class
+							document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+				</script>
+					<button type="submit" class="btn dark-yellow-bg btn-lg pix-white wide"><span class="pix_edit_text"><b>立即購買</b></span></button>
+			</form>
       </div>
      </div>
     </div>
@@ -119,7 +134,7 @@
 			        <div class="media-right media-top text-center media-box-area">
 			         <div class="pix-inner">
 			          <div class="pix-round-shape-120 pix-margin-h-10">
-			           <img src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="">
+			           <img src="{{ asset($course->teacherOrTA()->get()->first()->avatar) }}" alt="">
 			          </div>
 			         </div>
 			        </div>
@@ -161,9 +176,25 @@
 		         <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
 		          <span class="pix_edit_text">加入SeeEDU一起學習吧！</span>
 		         </h6>
-		         <a href="#" class="btn green-bg btn-lg pix-white wide">
-		          <span class="pix_edit_text"><b>立即購買</b></span>
-		         </a>
+						 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay">
+							{{ csrf_field() }}
+							<script
+								src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+								data-amount="{{ $course->price*100 }}"
+								data-name="SeeEDU Live School"
+								data-description="這裡放分類"
+								data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+								data-locale="en"
+								data-currency="twd">
+							</script>
+						 <script>
+										// Hide default stripe button, be careful there if you
+										// have more than 1 button of that class
+										document.getElementsByClassName("stripe-button-el")[1].style.display = 'none';
+							</script>
+								<button type="submit" class="btn dark-yellow-bg btn-lg pix-white wide"><span class="pix_edit_text"><b>立即購買</b></span></button>
+						</form>
 		        </div>
 		       </div>
 		      </div>
@@ -183,19 +214,8 @@
 	 </div>
  </div>
 
- <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post">
-	 {{ csrf_field() }}
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
-    data-amount="{{ $course->price*100 }}"
-    data-name="SeeEDU Live School"
-    data-description="這裡放分類"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="en"
-    data-currency="twd">
-  </script>
-</form>
+
+
 
 
  @include('includes.footer')
