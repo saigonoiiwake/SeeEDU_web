@@ -25,6 +25,17 @@ class CourseCreateController extends Controller
         return view('courses.create.step1_contract');
     }
 
+    public function complete(Request $request)
+    {
+        $course_id = $request->session()->get('course_id');
+
+        if(empty($course_id)) {
+            return redirect('/courses/create');
+        }
+
+        return view('courses.create.complete', ['course_id' => $course_id]);
+    }
+
     public function showTeacherProfileForm()
     {
         $user = User::find(auth()->user()->id);
@@ -33,6 +44,7 @@ class CourseCreateController extends Controller
         $teacher_profile = [
             'name'         => $user->name,
             'nick_name'    => $user->nick_name,
+            'avatar'       => $user->avatar,
             'birthday'     => $profile ? $profile->birthday : '',
             'phone_number' => $profile ? $profile->phone_number : '',
             'education'    => $profile ? $profile->getEducation() : '',
@@ -61,6 +73,15 @@ class CourseCreateController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $validatedData['name'];
             $user->nick_name = $validatedData['nick_name'];
+            if( $request->hasFile('avatar') ) {
+                $file = $request->file('avatar');
+                $timestamp = time();
+                $file_name = $timestamp. '-' .$file->getClientOriginalName();
+                $file_dir = public_path() . '/images/avatar/';
+                $file->move($file_dir, $file_name);
+                $user->avatar = '/images/avatar/' . $file_name;
+            }
+
             $user->save();
 
             $profile = $user->profile;
@@ -102,6 +123,14 @@ class CourseCreateController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request['name'];
             $user->nick_name = $request['nick_name'];
+            if( $request->hasFile('avatar') ) {
+                $file = $request->file('avatar');
+                $timestamp = time();
+                $file_name = $timestamp. '-' .$file->getClientOriginalName();
+                $file_dir = public_path() . '/images/avatar/';
+                $file->move($file_dir, $file_name);
+                $user->avatar = '/images/avatar/' . $file_name;
+            }
             $user->save();
 
             $profile = $user->profile;
@@ -132,7 +161,7 @@ class CourseCreateController extends Controller
     public function showCourseForm(Request $request) {
         $save_teacher = $request->session()->get('save_teacher');
         if(empty($save_teacher)) {
-            return redirect('/courses/create/step/teacher');
+            return redirect('/courses/create');
         }
 
         $course = $request->session()->get('course');
@@ -177,6 +206,24 @@ class CourseCreateController extends Controller
     public function submitCourse(Request $request)
     {
         Log::info($request);
+        $course = [
+            'title'       => $request['title'],
+            'category_1'  => $request['category_1'],
+            'category_2'  => $request['category_2'],
+            'category_3'  => $request['category_3'],
+            'video'       => $request['video'],
+            'description' => $request['description'],
+            'from_date'   => $request['from_date'],
+            'to_date'     => $request['to_date'],
+            'from_time'   => $request['from_time'],
+            'to_time'     => $request['to_time'],
+            'day_of_week' => $request['day_of_week'],
+            'chapter'     => $request['chapter'],
+            'min_num'     => $request['min_num'],
+            'max_num'     => $request['max_num'],
+            'price'       => $request['price'],
+        ];
+        $request->session()->put('course', $course);
 
         // Example of request
         //  'title' => 'Japanese N2',
@@ -233,7 +280,6 @@ class CourseCreateController extends Controller
             'price'       => 'required|integer',
         ]);
 
-
         DB::beginTransaction();
 
         try {
@@ -280,7 +326,7 @@ class CourseCreateController extends Controller
         $request->session()->forget('course');
         $request->session()->forget('save_teacher');
 
-        return view('courses.create.complete', [ 'id' => $course->id ]);
+        return redirect('/courses/create/complete')->with(['course_id' => $course->id ]);
     }
 
     public function saveCourseAndTeacherProfile(Request $request)

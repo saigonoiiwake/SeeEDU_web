@@ -97,6 +97,13 @@
 						<input type="text" class="form-control" id="phone_number" placeholder="" name="phone_number" value="{{ $teacher_profile['phone_number'] or '' }}">
 					</div>
 				</div>
+				<div class="form-group col-md-12" >
+					<label for="avatar">更新大頭貼</label>
+					<input accept="image/*" id="uploadImage" type="file" name="avatar">
+					<div class="container col-md-2">
+						<img id="img" src="{{ asset($teacher_profile['avatar']) }}" style="max-width: 100%; height: auto;">
+					</div>
+				</div>
 
 				<div class="form-group" id="education-block">
 					<div id="education-input">
@@ -203,6 +210,21 @@
      $("#experience-" + experienceId).remove();
      if( experienceId === 1 ) {
          $("#experience-del-btn").remove();
+     }
+ }
+
+ $("#uploadImage").change(function(){
+     readImage( this );
+ });
+
+ function readImage(input) {
+     if ( input.files && input.files[0] ) {
+         var FR= new FileReader();
+         FR.onload = function(e) {
+             //e.target.result = base64 format picture
+             $('#img').attr( "src", e.target.result );
+         };
+         FR.readAsDataURL( input.files[0] );
      }
  }
 

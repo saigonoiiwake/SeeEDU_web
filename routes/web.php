@@ -98,6 +98,9 @@ Route::get('/courses/create', function () {
     return view('courses.create.welcome');
 })->name('/courses/create/welcome');
 
+Route::get('/courses/create/step/contract', 'CourseCreateController@showContract')
+    ->name('/courses/create/step/contract');
+
 Route::get('/courses/create/step/teacher', 'CourseCreateController@showTeacherProfileForm')
     ->name('/courses/create/step/teacher');
 
@@ -114,8 +117,8 @@ Route::post('/courses/create/step/course/previous', 'CourseCreateController@prev
 
 Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCourseAndTeacherProfile');
 
-Route::get('/courses/create/step/contract', 'CourseCreateController@showContract')
-    ->name('/courses/create/step/contract');
+Route::get('/courses/create/complete', 'CourseCreateController@complete')
+    ->name('/courses/create/complete');
 
 Route::get('/how-to-take-courses', function () {
     return view('howtotakecourses');
