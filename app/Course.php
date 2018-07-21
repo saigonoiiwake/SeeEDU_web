@@ -101,7 +101,7 @@ class Course extends Model
             'currency_id'        => 'required',
             'price'              => 'required',
 //            'early_bird_price'   => 'required',
-//            'early_bird_name'    => 'required',
+//            'early_bird_num'    => 'required',
             'from_date'          => 'required',
             'to_date'            => 'required',
             'data'               => 'required'
@@ -122,7 +122,7 @@ class Course extends Model
             'currency_id'        => $param['currency_id'],
             'price'              => $param['price'],
 //            'early_bird_price'   => $param['early_bird_price'],
-//            'early_bird_name'    => $param['early_bird_price'],
+//            'early_bird_num'    => $param['early_bird_num'],
             'from_date'          => $param['from_date'],
             'to_date'            => $param['to_date'],
             'min_num'            => $param['min_num'],

@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\CourseCategory;
 use App\CourseDescription;
+use App\CourseDraft;
 use App\Profile;
 use App\Service\ParameterService;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -25,24 +25,20 @@ class CourseCreateController extends Controller
         return view('courses.create.step1_contract');
     }
 
-    public function showTeacherProfileForm(Request $request)
+    public function showTeacherProfileForm()
     {
-        $teacher_profile = $request->session()->get('teacher_profile');
-        if (empty($teacher_profile)) {
-            $user = User::find(auth()->user()->id);
-            $profile = $user->profile;
+        $user = User::find(auth()->user()->id);
+        $profile = $user->profile;
 
-            $teacher_profile = [
-                'name'         => $user->name,
-                'nick_name'    => $user->nick_name,
-                'birthday'     => $profile ? $profile->birthday : '',
-                'phone_number' => $profile ? $profile->phone_number : '',
-                'education'    => $profile ? $profile->getEducation() : '',
-                'experience'   => $profile ? $profile->getExperience() : '',
-                'about'        => $profile ? $profile->about : '',
-            ];
-
-        }
+        $teacher_profile = [
+            'name'         => $user->name,
+            'nick_name'    => $user->nick_name,
+            'birthday'     => $profile ? $profile->birthday : '',
+            'phone_number' => $profile ? $profile->phone_number : '',
+            'education'    => $profile ? $profile->getEducation() : '',
+            'experience'   => $profile ? $profile->getExperience() : '',
+            'about'        => $profile ? $profile->about : '',
+        ];
 
         return view('courses.create.step2_teacher', ['teacher_profile'=> $teacher_profile]);
     }
@@ -54,24 +50,42 @@ class CourseCreateController extends Controller
             'nick_name'    => 'required',
             'birthday'     => 'required|date',
             'phone_number' => 'required',
-            'education.*'  => 'required',
-            'experience.*' => 'required',
+            'education.0'  => 'required',
+            'experience.0' => 'required',
             'about'        => 'required|max:50',
         ]);
 
-        $teacher_profile = [
-            'name'         => $validatedData['name'],
-            'nick_name'    => $validatedData['nick_name'],
-            'birthday'     => $validatedData['birthday'],
-            'phone_number' => $validatedData['phone_number'],
-            'education'    => $validatedData['education'],
-            'experience'   => $validatedData['experience'],
-            'about'        => $validatedData['about'],
-        ];
-        $request->session()->put('teacher_profile', $teacher_profile);
+        DB::beginTransaction();
+
+        try {
+            $user = User::find(auth()->user()->id);
+            $user->name = $validatedData['name'];
+            $user->nick_name = $validatedData['nick_name'];
+            $user->save();
+
+            $profile = $user->profile;
+            if($profile === null) {
+                $profile = Profile::newProfile($validatedData->toArray());
+                $profile->save();
+            } else {
+                $profile->birthday = $validatedData['birthday'];
+                $profile->phone_number = $validatedData['phone_number'];
+                $profile->education = json_encode(array_filter($validatedData['education']));
+                $profile->experience = json_encode(array_filter($validatedData['experience']));
+                $profile->about = $validatedData['about'];
+                $profile->save();
+            }
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+
+        $request->session()->put('save_teacher', true);
 
         return redirect('/courses/create/step/course');
-        //return $this->showCourseForm($request);
     }
 
     public function saveTeacherProfile(Request $request)
@@ -97,8 +111,8 @@ class CourseCreateController extends Controller
             } else {
                 $profile->birthday = $request['birthday'];
                 $profile->phone_number = $request['phone_number'];
-                $profile->education = json_encode($request['education']);
-                $profile->experience = json_encode($request['experience']);
+                $profile->education = json_encode(array_filter($request['education']));
+                $profile->experience = json_encode(array_filter($request['experience']));
                 $profile->about = $request['about'];
                 $profile->save();
             }
@@ -116,6 +130,11 @@ class CourseCreateController extends Controller
     }
 
     public function showCourseForm(Request $request) {
+        $save_teacher = $request->session()->get('save_teacher');
+        if(empty($save_teacher)) {
+            return redirect('/courses/create/step/teacher');
+        }
+
         $course = $request->session()->get('course');
         $categories = CourseCategory::all();
         // reconstruct the response
@@ -227,7 +246,7 @@ class CourseCreateController extends Controller
             $course_param = [
                 'title'               => $validatedData['title'],
                 'course_category_id'  => $validatedData['category_3'],
-                'featured'    => $file_name,
+                'featured'    => '/images/courses/' . $file_name,
                 'video'       => $validatedData['video'],
                 'from_date'   => $validatedData['from_date'],
                 'to_date'     => $validatedData['to_date'],
@@ -246,30 +265,53 @@ class CourseCreateController extends Controller
 
             $course = Course::newCourse($course_param);
 
-            $course_description = CourseDescription::newCourseDescription([
+            CourseDescription::newCourseDescription([
                 'course_id' => $course->id,
                 'description' => $validatedData['description']
             ]);
 
-            $teacher_profile = $request->session()->get('teacher_profile');
+            DB::commit();
 
-            $user = User::find(auth()->user()->id);
-            $user->name = $teacher_profile['name'];
-            $user->nick_name = $teacher_profile['nick_name'];
-            $user->save();
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
 
-            $profile = $user->profile;
-            if($profile === null) {
-                $profile = Profile::newProfile($teacher_profile->toArray());
-                $profile->save();
-            } else {
-                $profile->birthday = $teacher_profile['birthday'];
-                $profile->phone_number = $teacher_profile['phone_number'];
-                $profile->education = json_encode($teacher_profile['education']);
-                $profile->experience = json_encode($teacher_profile['experience']);
-                $profile->about = $teacher_profile['about'];
-                $profile->save();
-            }
+        $request->session()->forget('course');
+        $request->session()->forget('save_teacher');
+
+        return view('courses.create.complete', [ 'id' => $course->id ]);
+    }
+
+    public function saveCourseAndTeacherProfile(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            $draft_param = [
+                'title'               => $request['title'],
+                'course_category_id'  => $request['category_3'],
+                'video'       => $request['video'],
+                'from_date'   => $request['from_date'],
+                'to_date'     => $request['to_date'],
+                'min_num'     => $request['min_num'],
+                'max_num'     => $request['max_num'],
+                'currency_id' => 1,
+                'price'       => $request['price'],
+                'description' => $request['description'],
+                'chapter'     => $request['chapter'],
+                'data'        => [
+                    'day_of_week' => $request['day_of_week'],
+                    'from_time'   => $request['from_time'],
+                    'to_time'     => $request['to_time'],
+                    'category_1'  => $request['category_1'],
+                    'category_2'  => $request['category_2'],
+                    'category_3'  => $request['category_3'],
+                ],
+            ];
+
+            CourseDraft::newCourseDraft($draft_param);
 
             DB::commit();
 
@@ -281,7 +323,7 @@ class CourseCreateController extends Controller
         $request->session()->forget('teacher_profile');
         $request->session()->forget('course');
 
-        return view('courses.create.complete', [ 'id' => $course->id ]);
+        return redirect('/');
     }
 
     public function generateChapterTime(Request $request)

@@ -112,6 +112,8 @@ Route::post('/courses/create/step/submit', 'CourseCreateController@submitCourse'
 
 Route::post('/courses/create/step/course/previous', 'CourseCreateController@previousStepForCourse');
 
+Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCourseAndTeacherProfile');
+
 Route::get('/courses/create/step/contract', 'CourseCreateController@showContract')
     ->name('/courses/create/step/contract');
 
