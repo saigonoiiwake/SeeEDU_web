@@ -329,12 +329,11 @@ class CourseCreateController extends Controller
         return redirect('/courses/create/complete')->with(['course_id' => $course->id ]);
     }
 
-    public function saveCourseAndTeacherProfile(Request $request)
+    public function saveCourseDraft(Request $request)
     {
         DB::beginTransaction();
 
         try {
-
             $draft_param = [
                 'title'               => $request['title'],
                 'course_category_id'  => $request['category_3'],

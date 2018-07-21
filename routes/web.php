@@ -115,7 +115,7 @@ Route::post('/courses/create/step/submit', 'CourseCreateController@submitCourse'
 
 Route::post('/courses/create/step/course/previous', 'CourseCreateController@previousStepForCourse');
 
-Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCourseAndTeacherProfile');
+Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCourseDraft');
 
 Route::get('/courses/create/complete', 'CourseCreateController@complete')
     ->name('/courses/create/complete');
