@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\CourseCategory;
+use App\CourseDescription;
 use App\Profile;
 use App\Service\ParameterService;
 use App\User;
@@ -16,6 +18,11 @@ class CourseCreateController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function showContract()
+    {
+        return view('courses.create.step1_contract');
     }
 
     public function showTeacherProfileForm(Request $request)
@@ -126,12 +133,29 @@ class CourseCreateController extends Controller
 
     public function previousStepForCourse(Request $request)
     {
-        Log::info($request);
+        $course = [
+            'title'       => $request['title'],
+            'category_1'  => $request['category_1'],
+            'category_2'  => $request['category_2'],
+            'category_3'  => $request['category_3'],
+            'video'       => $request['video'],
+            'description' => $request['description'],
+            'from_date'   => $request['from_date'],
+            'to_date'     => $request['to_date'],
+            'from_time'   => $request['from_time'],
+            'to_time'     => $request['to_time'],
+            'day_of_week' => $request['day_of_week'],
+            'chapter'     => $request['chapter'],
+            'min_num'     => $request['min_num'],
+            'max_num'     => $request['max_num'],
+            'price'       => $request['price'],
+        ];
+        $request->session()->put('course', $course);
 
         return redirect('/courses/create/step/teacher');
     }
 
-    public function postCourse(Request $request)
+    public function submitCourse(Request $request)
     {
         Log::info($request);
 
@@ -191,34 +215,73 @@ class CourseCreateController extends Controller
         ]);
 
 
-        $file = $request->file('featured');
-        $timestamp = time();
-        $file_name = $timestamp. '-' .$file->getClientOriginalName();
-        $file_dir = public_path().'/images/courses/';
-        $file->move($file_dir, $file_name);
+        DB::beginTransaction();
 
-        $course = [
-            'title'       => $validatedData['title'],
-            'category_1'  => $validatedData['category_1'],
-            'category_2'  => $validatedData['category_2'],
-            'category_3'  => $validatedData['category_3'],
-            'featured'    => '/images/courses/'. $file_name,
-            'video'       => $validatedData['video'],
-            'description' => $validatedData['description'],
-            'from_date'   => $validatedData['from_date'],
-            'to_date'     => $validatedData['to_date'],
-            'from_time'   => $validatedData['from_time'],
-            'to_time'     => $validatedData['to_time'],
-            'day_of_week' => $validatedData['day_of_week'],
-            'chapter'     => $validatedData['chapter'],
-            'min_num'     => $validatedData['min_num'],
-            'max_num'     => $validatedData['max_num'],
-            'price'       => $validatedData['price'],
-        ];
+        try {
+            $file = $request->file('featured');
+            $timestamp = time();
+            $file_name = $timestamp. '-' .$file->getClientOriginalName();
+            $file_dir = public_path().'/images/courses/';
+            $file->move($file_dir, $file_name);
 
-        $request->session()->put('course', $course);
+            $course_param = [
+                'title'               => $validatedData['title'],
+                'course_category_id'  => $validatedData['category_3'],
+                'featured'    => $file_name,
+                'video'       => $validatedData['video'],
+                'from_date'   => $validatedData['from_date'],
+                'to_date'     => $validatedData['to_date'],
 
-        return redirect('/courses/create/step/course');
+                'min_num'     => $validatedData['min_num'],
+                'max_num'     => $validatedData['max_num'],
+                'currency_id' => 1,
+                'price'       => $validatedData['price'],
+                'data'        => [
+                    'day_of_week' => array_values($validatedData['day_of_week']),
+                    'from_time'   => $validatedData['from_time'],
+                    'to_time'     => $validatedData['to_time'],
+                    'chapter'     => $validatedData['chapter'],
+                ],
+            ];
+
+            $course = Course::newCourse($course_param);
+
+            $course_description = CourseDescription::newCourseDescription([
+                'course_id' => $course->id,
+                'description' => $validatedData['description']
+            ]);
+
+            $teacher_profile = $request->session()->get('teacher_profile');
+
+            $user = User::find(auth()->user()->id);
+            $user->name = $teacher_profile['name'];
+            $user->nick_name = $teacher_profile['nick_name'];
+            $user->save();
+
+            $profile = $user->profile;
+            if($profile === null) {
+                $profile = Profile::newProfile($teacher_profile->toArray());
+                $profile->save();
+            } else {
+                $profile->birthday = $teacher_profile['birthday'];
+                $profile->phone_number = $teacher_profile['phone_number'];
+                $profile->education = json_encode($teacher_profile['education']);
+                $profile->experience = json_encode($teacher_profile['experience']);
+                $profile->about = $teacher_profile['about'];
+                $profile->save();
+            }
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+
+        $request->session()->forget('teacher_profile');
+        $request->session()->forget('course');
+
+        return view('courses.create.complete', [ 'id' => $course->id ]);
     }
 
     public function generateChapterTime(Request $request)

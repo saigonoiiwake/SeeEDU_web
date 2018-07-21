@@ -108,17 +108,12 @@ Route::post('/courses/create/step/teacher/save', 'CourseCreateController@saveTea
 Route::get('/courses/create/step/course', 'CourseCreateController@showCourseForm')
     ->name('/courses/create/step/course');
 
-Route::post('/courses/create/step/course', 'CourseCreateController@postCourse');
+Route::post('/courses/create/step/submit', 'CourseCreateController@submitCourse');
 
 Route::post('/courses/create/step/course/previous', 'CourseCreateController@previousStepForCourse');
 
-Route::get('/courses/create/step/contract', function () {
-    return view('courses.create.step1_contract');
-})->name('/courses/create/step/contract');
-
-Route::get('/courses/create/complete', function () {
-    return view('courses.create.complete');
-})->name('/courses/create/complete');
+Route::get('/courses/create/step/contract', 'CourseCreateController@showContract')
+    ->name('/courses/create/step/contract');
 
 Route::get('/how-to-take-courses', function () {
     return view('howtotakecourses');

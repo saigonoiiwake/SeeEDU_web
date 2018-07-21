@@ -206,7 +206,7 @@
 						@foreach ($course['chapter'] as $key => $chapter)
 							<div class="container col-md-12" id="chapter-{{ $key }}" style="border: #f5dd86; border-style: solid;">
 								<div class="container col-md-12">
-									<h6><br>Chapter {{ $key }}</h6>
+									<h6><br>章節 #{{ $key }}</h6>
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-6">
@@ -266,8 +266,8 @@
 
 			<div class="panel-footer">
 				<button class="btn btn-info" type="submit" formaction="/courses/create/step/course/previous">上一步</button>
-				<button class="btn btn-success col-md-8" type="submit" formaction="/courses/create/step/course">送出審查</button>
 				<button class="btn btn-default" type="submit" formaction="/courses/create/step/course/save">暫存離開</button>
+				<button class="btn btn-success" type="submit" formaction="/courses/create/step/submit">送出審查</button>
 			</div>
 
 		</form>
@@ -353,7 +353,7 @@
         //name="experience[0]"
         return  '<div class="container col-md-12" id="chapter-'+ id +'" style="border: #f5dd86; border-style: solid;">' +
 				'   <div class="container col-md-12">\n' +
-				'        <h6><br>Chapter ' + id + '</h6>\n' +
+				'        <h6><br>章節 #' + id + '</h6>\n' +
 				'   </div>\n' +
 				'   <div class="form-row">\n' +
 				'        <div class="form-group col-md-6">\n' +

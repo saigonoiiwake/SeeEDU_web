@@ -28,7 +28,7 @@
        <span class="pix_edit_text"><span style="font-weight: 700;">已送出審查</span></span>
       </h4>
       <p class="pix-black-gray-light big-text pix-margin-bottom-20">
-       <span class="pix_edit_text"><span>課程編號 ＃1234567</span><br><span><span><br></span></span><span><span>審核結果將在10個工作天內出爐，有任何疑問歡迎告知線上客服人員您的課程編號，可加速解決您的疑問。</span></span></span>
+       <span class="pix_edit_text"><span>課程編號 ＃{{ $id }}</span><br><span><span><br></span></span><span><span>審核結果將在10個工作天內出爐，有任何疑問歡迎告知線上客服人員您的課程編號，可加速解決您的疑問。</span></span></span>
       </p>
 
      </div>

@@ -145,7 +145,7 @@
 			<div class="panel-footer">
 				<div class="teacher_profile_button">
 					<button class="btn btn-default" type="submit" formaction="/courses/create/step/teacher/save">暫存離開</button>
-					<button class="btn btn-success col-md-8" type="submit">下一步</button>
+					<button class="btn btn-success" type="submit">下一步</button>
 				</div>
 			</div>
 		</form>
