@@ -15,9 +15,13 @@ class Chapter extends Model
      * @var array
      */
     protected $fillable = [
-        'course_id', 'order', 'title', 'description', 'from_time', 'to_time',
+        'course_id', 'order', 'status', 'title', 'description', 'from_time', 'to_time',
         'record_link', 'new_view', 'data',
     ];
+
+    const STATUS_WAITING = 'waiting';
+    const STATUS_CANCELED = 'canceled';
+    const STATUS_CLOSED = 'closed';
 
     public function course()
     {
