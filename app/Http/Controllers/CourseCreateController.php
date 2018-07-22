@@ -243,8 +243,8 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => $request['day_of_week'],
-            'chapter'     => $request['chapter'],
+            'day_of_week' => ParameterService::get($request,'day_of_week', []),
+            'chapter'     => ParameterService::get($request,'chapter', []),
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
             'price'       => $request['price'],
@@ -259,7 +259,7 @@ class CourseCreateController extends Controller
         Log::info($request);
 
         // reindex chapter and sort it by time
-        $chapter = array_values($request['chapter']);
+        $chapter = array_values(ParameterService::get($request,'chapter', []));
         sort($chapter);
         $course = [
             'title'       => $request['title'],
@@ -272,7 +272,7 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => $request['day_of_week'],
+            'day_of_week' => ParameterService::get($request,'day_of_week', []),
             'chapter'     => $chapter,
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
