@@ -192,9 +192,7 @@ span.psw {
 
 			</div>
 
-				<button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">擁有折扣代碼？</button>
-
-				<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay">
+				<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
 				 {{ csrf_field() }}
 				 <script
 					 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -208,6 +206,9 @@ span.psw {
 					 data-label="立即購買">
 				 </script>
 			 </form>
+
+			 <button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" >擁有折扣代碼？</button>
+
 
 
 			 	<h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
