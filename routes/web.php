@@ -13,6 +13,9 @@
 
 Auth::routes();
 
+Route::post('/coupon','CouponsController@store')->name('coupon.store');
+Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
+
 Route::get('/courses', [
   'uses' => 'CourseController@index',
   'as' => 'courses'
