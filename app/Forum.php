@@ -37,9 +37,9 @@ class Forum extends Model
     {
         // TODO
         return Validator::make($data, [
-            'course_id' => 'require',
-            'user_id'   => 'require',
-            'content'   => 'require',
+            'course_id' => 'required',
+            'user_id'   => 'required',
+            'content'   => 'required',
         ]);
     }
 
