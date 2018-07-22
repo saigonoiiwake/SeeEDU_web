@@ -203,7 +203,10 @@
 			<div class="panel-body" id="chapter-body" {{ ($course['chapter'] or false)? (count($course['chapter']) > 0 ? '' : 'hidden')  : 'hidden' }}>
 				<div id="chapter-detail">
 					@if($course['chapter'] or false)
-						@foreach ($course['chapter'] as $key => $chapter)
+						@foreach ($course['chapter'] as $index => $chapter)
+							@php
+								$key = $index + 1;
+							@endphp
 							<div class="container col-md-12" id="chapter-{{ $key }}" style="border: #f5dd86; border-style: solid;">
 								<div class="container col-md-12">
 									<h6><br>章節 #{{ $key }}</h6>
@@ -227,7 +230,7 @@
 									<textarea rows="2" cols="5" class="form-control" id="description-{{ $key }}" name="chapter[{{ $key }}][description]">{{ $chapter['description'] }}</textarea>
 								</div>
 								<div class="form-row col-md-12">
-									<input type="button" class="btn btn-danger" onclick="deleteChapter('+ id +')" value="刪除"/>
+									<input type="button" class="btn btn-danger" onclick="deleteChapter({{ $key }})" value="刪除"/>
 									</div>
 								</div>
 						@endforeach

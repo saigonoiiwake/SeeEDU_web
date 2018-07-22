@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Chapter;
 use App\Course;
 use App\CourseCategory;
 use App\CourseDescription;
 use App\CourseDraft;
 use App\Identity;
 use App\Profile;
+use App\Service\ChapterService;
 use App\Service\ParameterService;
 use App\User;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Mockery\Exception;
 
 class CourseCreateController extends Controller
 {
@@ -46,25 +50,45 @@ class CourseCreateController extends Controller
             return redirect('/courses/create/step/contract');
         }
 
-        $user = User::find(auth()->user()->id);
-        $profile = $user->profile;
+        $teacher_profile = $request->session()->get('teacher_profile');
+        if (empty($teacher_profile)) {
+            $user = User::find(auth()->user()->id);
+            $profile = $user->profile;
 
-        $teacher_profile = [
-            'name'         => $user->name,
-            'nick_name'    => $user->nick_name,
-            'avatar'       => $user->avatar,
-            'birthday'     => $profile ? $profile->birthday : '',
-            'phone_number' => $profile ? $profile->phone_number : '',
-            'education'    => $profile ? $profile->getEducation() : '',
-            'experience'   => $profile ? $profile->getExperience() : '',
-            'about'        => $profile ? $profile->about : '',
-        ];
+            $teacher_profile = [
+                'name'         => $user->name,
+                'nick_name'    => $user->nick_name,
+                'avatar'       => $user->avatar,
+                'birthday'     => $profile ? $profile->birthday : '',
+                'phone_number' => $profile ? $profile->phone_number : '',
+                'education'    => $profile ? $profile->getEducation() : '',
+                'experience'   => $profile ? $profile->getExperience() : '',
+                'about'        => $profile ? $profile->about : '',
+            ];
+        }
+
+        if(!array_key_exists('avatar', $teacher_profile)) {
+            $teacher_profile['avatar'] = auth()->user()->avatar;
+        }
+
+        $request->session()->forget('teacher_profile');
 
         return view('courses.create.step2_teacher', ['teacher_profile' => $teacher_profile]);
     }
 
     public function postTeacherProfile(Request $request)
     {
+        $teacher_profile = [
+            'name'         => $request['name'],
+            'nick_name'    => $request['nick_name'],
+            'birthday'     => $request['birthday'],
+            'phone_number' => $request['phone_number'],
+            'education'    => $request['education'],
+            'experience'   => $request['experience'],
+            'about'        => $request['about'],
+        ];
+        $request->session()->put('teacher_profile', $teacher_profile);
+
         $validatedData = $request->validate([
             'name'         => 'required',
             'nick_name'    => 'required',
@@ -94,7 +118,7 @@ class CourseCreateController extends Controller
 
             $profile = $user->profile;
             if ($profile === null) {
-                $profile = Profile::newProfile($validatedData->toArray());
+                $profile = Profile::newProfile($validatedData);
                 $profile->save();
             } else {
                 $profile->birthday = $validatedData['birthday'];
@@ -119,6 +143,17 @@ class CourseCreateController extends Controller
 
     public function saveTeacherProfile(Request $request)
     {
+        $teacher_profile = [
+            'name'         => $request['name'],
+            'nick_name'    => $request['nick_name'],
+            'birthday'     => $request['birthday'],
+            'phone_number' => $request['phone_number'],
+            'education'    => $request['education'],
+            'experience'   => $request['experience'],
+            'about'        => $request['about'],
+        ];
+        $request->session()->put('teacher_profile', $teacher_profile);
+
         $request->validate([
             'nick_name' => 'required',
             'birthday'  => 'date',
@@ -215,6 +250,10 @@ class CourseCreateController extends Controller
     public function submitCourse(Request $request)
     {
         Log::info($request);
+
+        // reindex chapter and sort it by time
+        $chapter = array_values($request['chapter']);
+        sort($chapter);
         $course = [
             'title'       => $request['title'],
             'category_1'  => $request['category_1'],
@@ -227,7 +266,7 @@ class CourseCreateController extends Controller
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
             'day_of_week' => $request['day_of_week'],
-            'chapter'     => $request['chapter'],
+            'chapter'     => $chapter,
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
             'price'       => $request['price'],
@@ -252,8 +291,8 @@ class CourseCreateController extends Controller
         //  array (
         //      1 =>
         //          array (
-        //              'from-time' => '2018-07-02T14:00',
-        //              'to-time' => '2018-07-02T15:00',
+        //              'from_datetime' => '2018-07-02T14:00',
+        //              'to_datetime' => '2018-07-02T15:00',
         //              'title' => 'chapter 1',
         //              'description' => 'chapter 1 description',
         //          ),
@@ -278,12 +317,13 @@ class CourseCreateController extends Controller
             'featured'    => 'required|file',
             'video'       => 'required|active_url',
             'description' => 'required',
-            'from_date'   => 'required|date',
+            // start date should be large than 10 day from today
+            'from_date'   => 'required|date|after:' . date('Y-m-d', strtotime('+10 day')),
             'to_date'     => 'required|date|after:from_date',
             'from_time'   => 'required|regex:/([0-9][0-9]:[0-9][0-9])/u',
             'to_time'     => 'required|regex:/([0-9][0-9]:[0-9][0-9])/u',
             'day_of_week' => 'required|array|min:1',
-            'chapter'     => 'required|array|min:1',
+            'chapter'     => ['required', 'array', 'min:1', new \App\Rules\Chapter($request['from_date'], $request['to_date'])],
             'min_num'     => 'required|integer|min:1|max:max_num',
             'max_num'     => 'required|integer|min:1',
             'price'       => 'required|integer',
@@ -297,6 +337,9 @@ class CourseCreateController extends Controller
             $file_name = $timestamp . '-' . $file->getClientOriginalName();
             $file_dir = public_path() . '/images/courses/';
             $file->move($file_dir, $file_name);
+
+            $chapters = array_values($validatedData['chapter']);
+            sort($validatedData['chapter']);
 
             $course_param = [
                 'title'              => $validatedData['title'],
@@ -314,16 +357,29 @@ class CourseCreateController extends Controller
                     'day_of_week' => array_values($validatedData['day_of_week']),
                     'from_time'   => $validatedData['from_time'],
                     'to_time'     => $validatedData['to_time'],
-                    'chapter'     => $validatedData['chapter'],
+                    'chapter'     => $chapters,
                 ],
             ];
 
+            // course
             $course = Course::newCourse($course_param);
 
             CourseDescription::newCourseDescription([
                 'course_id'   => $course->id,
                 'description' => $validatedData['description'],
             ]);
+
+            // chapter
+            foreach ($chapters as $chapter) {
+                Chapter::newChapter([
+                    'course_id'   => $course->id,
+                    'title'       => $chapter['title'],
+                    'description' => $chapter['description'],
+                    'from_time'   => $chapter['from_datetime'],
+                    'to_time'     => $chapter['to_datetime'],
+                    'data'        => $chapter,
+                ]);
+            }
 
             // generate identity
             Identity::newIdentity([
@@ -339,8 +395,10 @@ class CourseCreateController extends Controller
             throw $e;
         }
 
-        $request->session()->forget('course');
+        //$request->session()->forget('course');
         $request->session()->forget('save_teacher');
+        $request->session()->forget('signed_contract');
+        $request->session()->forget('teacher_profile');
 
         return redirect('/courses/create/complete')->with(['course_id' => $course->id]);
     }
@@ -394,66 +452,18 @@ class CourseCreateController extends Controller
         $from_time = $request['from_time'];
         $to_time = $request['to_time'];
 
-        $monday = $request['monday'] === 'true';
-        $tuesday = $request['tuesday'] === 'true';
-        $wednesday = $request['wednesday'] === 'true';
-        $thursday = $request['thursday'] === 'true';
-        $friday = $request['friday'] === 'true';
-        $saturday = $request['saturday'] === 'true';
-        $sunday = $request['sunday'] === 'true';
+        $day_of_week = [];
 
-        $chapters = [];
+        $day_of_week[] = $request['monday'] === 'true' ? 'Monday' : null;
+        $day_of_week[] = $request['tuesday'] === 'true' ? 'Tuesday' : null;
+        $day_of_week[] = $request['wednesday'] === 'true' ? 'Wednesday' : null;
+        $day_of_week[] = $request['thursday'] === 'true' ? 'Thursday' : null;
+        $day_of_week[] = $request['friday'] === 'true' ? 'Friday' : null;
+        $day_of_week[] = $request['saturday'] === 'true' ? 'Saturday' : null;
+        $day_of_week[] = $request['sunday'] === 'true' ? 'Sunday' : null;
 
-        if ($monday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Monday'));
-        }
-
-        if ($tuesday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Tuesday'));
-        }
-
-        if ($wednesday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Wednesday'));
-        }
-
-        if ($thursday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Thursday'));
-        }
-
-        if ($friday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Friday'));
-        }
-
-        if ($saturday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Saturday'));
-        }
-
-        if ($sunday) {
-            $chapters = array_merge($chapters, $this->getListOfDate($from_date, $to_date, $from_time, $to_time, 'Sunday'));
-        }
-
-        sort($chapters);
+        $chapters = ChapterService::generateChapterTime($from_date, $to_date, $from_time, $to_time, array_filter($day_of_week));
 
         return response()->json($chapters);
-    }
-
-    protected function getListOfDate($from_date, $to_date, $from_time, $to_time, $day_of_week)
-    {
-        $tmp = date('Y-m-d', strtotime('-1 day', strtotime($from_date)));
-        $time_list = [];
-        while ($tmp < $to_date) {
-            $next_day = date('Y-m-d', strtotime('next ' . $day_of_week, strtotime($tmp)));
-            if ($next_day <= $to_date) {
-                $from_datetime = "$next_day" . "T" . "$from_time";
-                $to_datetime = "$next_day" . "T" . "$to_time";
-                $time_list[] = [
-                    "from_datetime" => $from_datetime,
-                    "to_datetime"   => $to_datetime,
-                ];
-            }
-            $tmp = date('Y-m-d', strtotime('+1 day', strtotime($next_day)));
-        }
-
-        return $time_list;
     }
 }
