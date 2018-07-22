@@ -225,7 +225,9 @@ class CourseCreateController extends Controller
             ];
         });
 
-        return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories]);
+        $course_drafts = auth()->user()->courseDraft;
+
+        return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories, 'course_drafts' => $course_drafts]);
     }
 
     public function previousStepForCourse(Request $request)

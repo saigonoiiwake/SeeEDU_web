@@ -59,6 +59,32 @@
 
 <div class="col-md-8 col-md-offset-2">
 
+	{{--@if($course_drafts or false)--}}
+	{{--<div class="panel panel-default">--}}
+		{{--<div class="panel-heading">--}}
+			{{--課程草稿--}}
+		{{--</div>--}}
+		{{--<div class="panel-body">--}}
+			{{--<table class="table">--}}
+				{{--<thead>--}}
+					{{--<tr>--}}
+						{{--<th> 編號 </th>--}}
+						{{--<th> 標題 </th>--}}
+					{{--</tr>--}}
+				{{--</thead>--}}
+				{{--<tbody>--}}
+				{{--@foreach($course_drafts as $draft)--}}
+					{{--<tr onclick="{{ route("/courses/create/step/course") }}" style="cursor: pointer;">--}}
+						{{--<td><a href="#">{{ $draft['id'] }}</a></td>--}}
+						{{--<td><a href="#">{{ $draft['title'] }}</a></td>--}}
+					{{--</tr>--}}
+				{{--@endforeach--}}
+				{{--</tbody>--}}
+			{{--</table>--}}
+		{{--</div>--}}
+	{{--</div>--}}
+	{{--@endif--}}
+
 	<div class="panel panel-default">
 		<form class="form" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
@@ -446,6 +472,10 @@
             $(childSelect).val('').change();
         });
     }
+
+    function readDraft($id) {
+
+	}
 
 
 </script>
