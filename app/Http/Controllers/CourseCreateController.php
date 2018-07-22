@@ -87,6 +87,7 @@ class CourseCreateController extends Controller
             'experience'   => $request['experience'],
             'about'        => $request['about'],
         ];
+        // avoid validate error, remain the old data for showTeacherProfileForm
         $request->session()->put('teacher_profile', $teacher_profile);
 
         $validatedData = $request->validate([
@@ -137,6 +138,7 @@ class CourseCreateController extends Controller
         }
 
         $request->session()->put('save_teacher', true);
+        $request->session()->forget('teacher_profile');
 
         return redirect('/courses/create/step/course');
     }
@@ -196,6 +198,9 @@ class CourseCreateController extends Controller
             throw $e;
         }
 
+        $request->session()->forget('course');
+        $request->session()->forget('save_teacher');
+        $request->session()->forget('signed_contract');
         $request->session()->forget('teacher_profile');
 
         return redirect('/');
@@ -395,7 +400,7 @@ class CourseCreateController extends Controller
             throw $e;
         }
 
-        //$request->session()->forget('course');
+        $request->session()->forget('course');
         $request->session()->forget('save_teacher');
         $request->session()->forget('signed_contract');
         $request->session()->forget('teacher_profile');
@@ -441,6 +446,8 @@ class CourseCreateController extends Controller
 
         $request->session()->forget('teacher_profile');
         $request->session()->forget('course');
+        $request->session()->forget('signed_contract');
+        $request->session()->forget('teacher_profile');
 
         return redirect('/');
     }
