@@ -17,10 +17,10 @@ class Setting extends Model
     {
         // TODO
         return Validator::make($data, [
-            'site_name'      => 'require',
-            'address'        => 'require',
-            'contact_number' => 'require',
-            'contact_email'  => 'require',
+            'site_name'      => 'required',
+            'address'        => 'required',
+            'contact_number' => 'required',
+            'contact_email'  => 'required',
         ]);
     }
 

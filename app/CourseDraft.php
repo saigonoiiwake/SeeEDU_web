@@ -34,21 +34,21 @@ class CourseDraft extends Model
     {
         // TODO
         return Validator::make($data, [
-            'title'              => 'require',
-            'course_category_id' => 'require',
-            'min_num'            => 'require',
-            'max_num'            => 'require',
-            'currency_id'        => 'require',
-            'price'              => 'require',
-            'early_bird_price'   => 'require',
-            'early_bird_name'    => 'require',
-            'from_date'          => 'require',
-            'to_date'            => 'require',
-            'featured'           => 'require',
-            'video'              => 'require',
-            'description'        => 'require',
-            'chapter'            => 'require',
-            'data'               => 'require',
+            'title'              => 'required',
+            'course_category_id' => 'required',
+            'min_num'            => 'required',
+            'max_num'            => 'required',
+            'currency_id'        => 'required',
+            'price'              => 'required',
+            'early_bird_price'   => 'required',
+            'early_bird_name'    => 'required',
+            'from_date'          => 'required',
+            'to_date'            => 'required',
+            'featured'           => 'required',
+            'video'              => 'required',
+            'description'        => 'required',
+            'chapter'            => 'required',
+            'data'               => 'required',
         ]);
     }
 

@@ -32,9 +32,9 @@ class ForumReply extends Model
     {
         // TODO
         return Validator::make($data, [
-            'forum_id' => 'require',
-            'user_id'   => 'require',
-            'content'   => 'require',
+            'forum_id' => 'required',
+            'user_id'   => 'required',
+            'content'   => 'required',
         ]);
     }
 
