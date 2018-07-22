@@ -195,7 +195,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  						 <div class="tag">{{ $course->from_date }} </div>
  						 <div class="text">
  							 <h3 class="classtitle"><a href="{{ route('course.single', ['id' => $course->id]) }}">{{ $course->title }}</a></h3>
- 							 <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->name }}</div>
+ 							 <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->nick_name }}</div>
  							 <div class="student_number">修課人數<span> {{ $course->enroll_num }}</span></div>
  						 </div>
  						 <div class="progressbar">

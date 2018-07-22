@@ -6,6 +6,7 @@ use App\Course;
 use App\CourseCategory;
 use App\CourseDescription;
 use App\CourseDraft;
+use App\Identity;
 use App\Profile;
 use App\Service\ParameterService;
 use App\User;
@@ -20,8 +21,10 @@ class CourseCreateController extends Controller
         $this->middleware('auth');
     }
 
-    public function showContract()
+    public function showContract(Request $request)
     {
+        $request->session()->put('signed_contract', true);
+
         return view('courses.create.step1_contract');
     }
 
@@ -29,15 +32,20 @@ class CourseCreateController extends Controller
     {
         $course_id = $request->session()->get('course_id');
 
-        if(empty($course_id)) {
+        if (empty($course_id)) {
             return redirect('/courses/create');
         }
 
         return view('courses.create.complete', ['course_id' => $course_id]);
     }
 
-    public function showTeacherProfileForm()
+    public function showTeacherProfileForm(Request $request)
     {
+        $signed_contract = $request->session()->get('signed_contract');
+        if (empty($signed_contract)) {
+            return redirect('/courses/create/step/contract');
+        }
+
         $user = User::find(auth()->user()->id);
         $profile = $user->profile;
 
@@ -52,7 +60,7 @@ class CourseCreateController extends Controller
             'about'        => $profile ? $profile->about : '',
         ];
 
-        return view('courses.create.step2_teacher', ['teacher_profile'=> $teacher_profile]);
+        return view('courses.create.step2_teacher', ['teacher_profile' => $teacher_profile]);
     }
 
     public function postTeacherProfile(Request $request)
@@ -73,10 +81,10 @@ class CourseCreateController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $validatedData['name'];
             $user->nick_name = $validatedData['nick_name'];
-            if( $request->hasFile('avatar') ) {
+            if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
                 $timestamp = time();
-                $file_name = $timestamp. '-' .$file->getClientOriginalName();
+                $file_name = $timestamp . '-' . $file->getClientOriginalName();
                 $file_dir = public_path() . '/images/avatar/';
                 $file->move($file_dir, $file_name);
                 $user->avatar = '/images/avatar/' . $file_name;
@@ -85,7 +93,7 @@ class CourseCreateController extends Controller
             $user->save();
 
             $profile = $user->profile;
-            if($profile === null) {
+            if ($profile === null) {
                 $profile = Profile::newProfile($validatedData->toArray());
                 $profile->save();
             } else {
@@ -123,10 +131,10 @@ class CourseCreateController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request['name'];
             $user->nick_name = $request['nick_name'];
-            if( $request->hasFile('avatar') ) {
+            if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
                 $timestamp = time();
-                $file_name = $timestamp. '-' .$file->getClientOriginalName();
+                $file_name = $timestamp . '-' . $file->getClientOriginalName();
                 $file_dir = public_path() . '/images/avatar/';
                 $file->move($file_dir, $file_name);
                 $user->avatar = '/images/avatar/' . $file_name;
@@ -134,7 +142,7 @@ class CourseCreateController extends Controller
             $user->save();
 
             $profile = $user->profile;
-            if($profile === null) {
+            if ($profile === null) {
                 $profile = Profile::newProfile($request->toArray());
                 $profile->save();
             } else {
@@ -158,20 +166,21 @@ class CourseCreateController extends Controller
         return redirect('/');
     }
 
-    public function showCourseForm(Request $request) {
+    public function showCourseForm(Request $request)
+    {
         $save_teacher = $request->session()->get('save_teacher');
-        if(empty($save_teacher)) {
+        if (empty($save_teacher)) {
             return redirect('/courses/create');
         }
 
         $course = $request->session()->get('course');
         $categories = CourseCategory::all();
         // reconstruct the response
-        $categories = $categories->map(function($category)  {
+        $categories = $categories->map(function ($category) {
             return [
-                'id'   => $category->id,
-                'name' => $category->name,
-                'level' => $category->level,
+                'id'        => $category->id,
+                'name'      => $category->name,
+                'level'     => $category->level,
                 'parent_id' => $category->parent_id,
             ];
         });
@@ -285,17 +294,17 @@ class CourseCreateController extends Controller
         try {
             $file = $request->file('featured');
             $timestamp = time();
-            $file_name = $timestamp. '-' .$file->getClientOriginalName();
-            $file_dir = public_path().'/images/courses/';
+            $file_name = $timestamp . '-' . $file->getClientOriginalName();
+            $file_dir = public_path() . '/images/courses/';
             $file->move($file_dir, $file_name);
 
             $course_param = [
-                'title'               => $validatedData['title'],
-                'course_category_id'  => $validatedData['category_3'],
-                'featured'    => '/images/courses/' . $file_name,
-                'video'       => $validatedData['video'],
-                'from_date'   => $validatedData['from_date'],
-                'to_date'     => $validatedData['to_date'],
+                'title'              => $validatedData['title'],
+                'course_category_id' => $validatedData['category_3'],
+                'featured'           => '/images/courses/' . $file_name,
+                'video'              => $validatedData['video'],
+                'from_date'          => $validatedData['from_date'],
+                'to_date'            => $validatedData['to_date'],
 
                 'min_num'     => $validatedData['min_num'],
                 'max_num'     => $validatedData['max_num'],
@@ -312,8 +321,15 @@ class CourseCreateController extends Controller
             $course = Course::newCourse($course_param);
 
             CourseDescription::newCourseDescription([
+                'course_id'   => $course->id,
+                'description' => $validatedData['description'],
+            ]);
+
+            // generate identity
+            Identity::newIdentity([
                 'course_id' => $course->id,
-                'description' => $validatedData['description']
+                'user_id'   => auth()->id(),
+                'role_id'   => 1,
             ]);
 
             DB::commit();
@@ -326,7 +342,7 @@ class CourseCreateController extends Controller
         $request->session()->forget('course');
         $request->session()->forget('save_teacher');
 
-        return redirect('/courses/create/complete')->with(['course_id' => $course->id ]);
+        return redirect('/courses/create/complete')->with(['course_id' => $course->id]);
     }
 
     public function saveCourseDraft(Request $request)
@@ -335,18 +351,18 @@ class CourseCreateController extends Controller
 
         try {
             $draft_param = [
-                'title'               => $request['title'],
-                'course_category_id'  => $request['category_3'],
-                'video'       => $request['video'],
-                'from_date'   => $request['from_date'],
-                'to_date'     => $request['to_date'],
-                'min_num'     => $request['min_num'],
-                'max_num'     => $request['max_num'],
-                'currency_id' => 1,
-                'price'       => $request['price'],
-                'description' => $request['description'],
-                'chapter'     => $request['chapter'],
-                'data'        => [
+                'title'              => $request['title'],
+                'course_category_id' => $request['category_3'],
+                'video'              => $request['video'],
+                'from_date'          => $request['from_date'],
+                'to_date'            => $request['to_date'],
+                'min_num'            => $request['min_num'],
+                'max_num'            => $request['max_num'],
+                'currency_id'        => 1,
+                'price'              => $request['price'],
+                'description'        => $request['description'],
+                'chapter'            => $request['chapter'],
+                'data'               => [
                     'day_of_week' => $request['day_of_week'],
                     'from_time'   => $request['from_time'],
                     'to_time'     => $request['to_time'],
@@ -421,17 +437,18 @@ class CourseCreateController extends Controller
         return response()->json($chapters);
     }
 
-    protected function getListOfDate($from_date, $to_date, $from_time, $to_time, $day_of_week) {
+    protected function getListOfDate($from_date, $to_date, $from_time, $to_time, $day_of_week)
+    {
         $tmp = date('Y-m-d', strtotime('-1 day', strtotime($from_date)));
         $time_list = [];
-        while( $tmp < $to_date ) {
-            $next_day = date('Y-m-d', strtotime('next '.$day_of_week, strtotime($tmp)));
-            if($next_day <= $to_date) {
-                $from_datetime = "$next_day"."T"."$from_time";
-                $to_datetime = "$next_day"."T"."$to_time";
+        while ($tmp < $to_date) {
+            $next_day = date('Y-m-d', strtotime('next ' . $day_of_week, strtotime($tmp)));
+            if ($next_day <= $to_date) {
+                $from_datetime = "$next_day" . "T" . "$from_time";
+                $to_datetime = "$next_day" . "T" . "$to_time";
                 $time_list[] = [
                     "from_datetime" => $from_datetime,
-                    "to_datetime" =>$to_datetime
+                    "to_datetime"   => $to_datetime,
                 ];
             }
             $tmp = date('Y-m-d', strtotime('+1 day', strtotime($next_day)));

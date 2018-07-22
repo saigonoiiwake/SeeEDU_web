@@ -126,21 +126,25 @@
 			        <div class="media-body media-top media-box-area">
 			         <div class="pix-inner">
 			          <p class="pix-black-gray-light big-text-20 pix-margin-bottom-20">
-			           <span class="pix_edit_text">" {{ $teacher->profile->about }} "</span>
+			           <span class="pix_edit_text">" {{ $teacher->profile or false ? $teacher->profile->about : '' }} "</span>
 			          </p>
 			          <h5 class="pix-black-gray pix-no-margin-top pix-no-margin-bottom">
 			           <span class="pix_edit_text"><span style="font-weight: 700;">{{ $teacher->nick_name }}</span></span>
 			          </h5>
 			          <h6 class="pix-black-gray-light pix-no-margin-top">
 			           <span class="pix_edit_text">
-                           @foreach($teacher->profile->getEducation() as $education)
-                              {{ $education }}
-                           @endforeach
+                           @if($teacher->profile or false)
+                               @foreach($teacher->profile->getEducation() as $education)
+                                  {{ $education }}
+                               @endforeach
+                           @endif
                        </span>
                       <span class="pix_edit_text">
-                           @foreach($teacher->profile->getExperience() as $experience)
-                              {{ $experience }}
-                          @endforeach
+                          @if($teacher->profile or false)
+                              @foreach($teacher->profile->getExperience() as $experience)
+                                  {{ $experience }}
+                              @endforeach
+                          @endif
                        </span>
 			          </h6>
 			         </div>
