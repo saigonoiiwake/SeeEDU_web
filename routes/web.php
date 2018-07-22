@@ -19,7 +19,7 @@ Route::get('/courses', [
 ]);
 
 Route::get('/course/{id}', [
-  'uses' => 'CourseController@singleCouse',
+  'uses' => 'CourseController@singleCourse',
   'as' => 'course.single'
 ]);
 

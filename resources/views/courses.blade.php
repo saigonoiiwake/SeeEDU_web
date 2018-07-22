@@ -188,7 +188,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  				 		<div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
  					 <div class="top">
  						 <div class="classpicture">
-							 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+							 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ asset($course->featured) }}" alt="" width="400px"></a>
  						 </div>
  					 </div>
  					 <div class="bottom">

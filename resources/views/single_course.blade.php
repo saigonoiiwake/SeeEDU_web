@@ -56,8 +56,6 @@
       <div class="pix-padding-h-10">
 
 
-
-
        <div class="pix-margin-bottom-15">
 				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">開始日期</span> {{$course->from_date}} </span></h4>
 			 </div>
@@ -113,32 +111,44 @@
 
 			     <div class="col-md-1 col-xs-12 col-sm-1 column ui-droppable">
 			     </div>
+
+                 @foreach($course->teacherOrTA()->get() as $teacher)
 			     <div class="col-md-10 col-xs-12 col-sm-10 column ui-droppable">
 			      <div class="pix-content pix-padding-bottom-30 pix-margin-v-30">
 			       <div class="media">
 			        <div class="media-right media-top text-center media-box-area">
 			         <div class="pix-inner">
 			          <div class="pix-round-shape-120 pix-margin-h-10">
-			           <img src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="">
+			           <img src="{{ asset($teacher->first()->avatar) }}" alt="">
 			          </div>
 			         </div>
 			        </div>
 			        <div class="media-body media-top media-box-area">
 			         <div class="pix-inner">
 			          <p class="pix-black-gray-light big-text-20 pix-margin-bottom-20">
-			           <span class="pix_edit_text">" Lorem ipsum dolor sit amet consectet adipiscing elit sed do moda tempo incididunt ut labore et dolore magnar aliqua. "</span>
+			           <span class="pix_edit_text">" {{ $teacher->profile->about }} "</span>
 			          </p>
 			          <h5 class="pix-black-gray pix-no-margin-top pix-no-margin-bottom">
-			           <span class="pix_edit_text"><span style="font-weight: 700;">Hiroshi老師</span></span>
+			           <span class="pix_edit_text"><span style="font-weight: 700;">{{ $teacher->nick_name }}</span></span>
 			          </h5>
 			          <h6 class="pix-black-gray-light pix-no-margin-top">
-			           <span class="pix_edit_text">口譯、台大電機、語言學習愛好者</span>
+			           <span class="pix_edit_text">
+                           @foreach($teacher->profile->getEducation() as $education)
+                              {{ $education }}
+                           @endforeach
+                       </span>
+                      <span class="pix_edit_text">
+                           @foreach($teacher->profile->getExperience() as $experience)
+                              {{ $experience }}
+                          @endforeach
+                       </span>
 			          </h6>
 			         </div>
 			        </div>
 			       </div>
 			      </div>
 			     </div>
+                    @endforeach
 			    </div>
 			   </div>
 			  </div>
@@ -147,7 +157,7 @@
 
 				<div class="container">
 					<h1 class="header">課程介紹</h1>
-					{{!! $course->description()->get()->first()->description	!!}}
+					{!! $course->description->description !!}
 				<hr>
 
 				<div class="pix_section pix-padding-v-85" id="section_call_to_action_1" style="display: block;">
