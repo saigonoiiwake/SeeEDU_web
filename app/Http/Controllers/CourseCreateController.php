@@ -262,7 +262,7 @@ class CourseCreateController extends Controller
         //  )),
 
         $validatedData = $request->validate([
-            'title'       => 'required|max:50',
+            'title'       => 'required|max:16',
             'category_1'  => 'required|integer',
             'category_2'  => 'required|integer',
             'category_3'  => 'required|integer',
