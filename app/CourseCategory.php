@@ -27,10 +27,10 @@ class CourseCategory extends Model
     {
         // TODO
         return Validator::make($data, [
-            'name'          => 'require',
-            'level'         => 'require',
-            'parent_id'     => 'require',
-            'display_order' => 'require',
+            'name'          => 'required',
+            'level'         => 'required',
+            'parent_id'     => 'required',
+            'display_order' => 'required',
         ]);
     }
 

@@ -24,8 +24,8 @@ class CourseBulletinType extends Model
     {
         // TODO
         return Validator::make($data, [
-            'name'     => 'require',
-            'priority' => 'require',
+            'name'     => 'required',
+            'priority' => 'required',
         ]);
     }
 

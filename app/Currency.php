@@ -30,8 +30,8 @@ class Currency extends Model
     {
         // TODO
         return Validator::make($data, [
-            'name'          => 'require',
-            'symbol'        => 'require',
+            'name'          => 'required',
+            'symbol'        => 'required',
         ]);
     }
 

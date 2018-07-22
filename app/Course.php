@@ -19,8 +19,10 @@ class Course extends Model
         'data', 'featured', 'video'
     ];
 
-    // TODO: Please define status
     const STATUS_SUBMIT = 'submit';
+    const STATUS_OPEN = 'open';
+    const STATUS_REFUSED = 'refused';
+    const STATUS_CLOSED = 'closed';
 
     public function attendanceLog()
     {
