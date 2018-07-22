@@ -32,10 +32,10 @@ class ReviewStudent extends Model
     {
         // TODO
         return Validator::make($data, [
-            'student_id' => 'require',
-            'rate'       => 'require',
-            'detail'     => 'require',
-            'comment'    => 'require',
+            'student_id' => 'required',
+            'rate'       => 'required',
+            'detail'     => 'required',
+            'comment'    => 'required',
         ]);
     }
 

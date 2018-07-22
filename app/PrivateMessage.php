@@ -32,9 +32,9 @@ class PrivateMessage extends Model
     {
         // TODO
         return Validator::make($data, [
-            'from_user_id' => 'require',
-            'to_user_id'   => 'require',
-            'message'      => 'require',
+            'from_user_id' => 'required',
+            'to_user_id'   => 'required',
+            'message'      => 'required',
         ]);
     }
 

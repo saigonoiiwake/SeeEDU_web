@@ -16,7 +16,7 @@ class ZoomLicense extends Model
     {
         // TODO
         return Validator::make($data, [
-            'license' => 'require',
+            'license' => 'required',
         ]);
     }
 

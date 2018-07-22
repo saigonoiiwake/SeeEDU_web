@@ -27,8 +27,8 @@ class CourseDescription extends Model
     {
         // TODO
         return Validator::make($data, [
-            'course_id'   => 'require',
-            'description' => 'require',
+            'course_id'   => 'required',
+            'description' => 'required',
         ]);
     }
 

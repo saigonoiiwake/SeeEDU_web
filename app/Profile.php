@@ -23,14 +23,14 @@ class Profile extends Model
     {
         // TODO
         return Validator::make($data, [
-            'user_id'      => 'require',
-            'facebook'     => 'require',
-            'youtube'      => 'require',
-            'about'        => 'require',
-            'phone_number' => 'require',
-            'birthday'     => 'require',
-            'education'    => 'require',
-            'experience'   => 'require',
+            'user_id'      => 'required',
+            'facebook'     => 'required',
+            'youtube'      => 'required',
+            'about'        => 'required',
+            'phone_number' => 'required',
+            'birthday'     => 'required',
+            'education'    => 'required',
+            'experience'   => 'required',
         ]);
     }
 
