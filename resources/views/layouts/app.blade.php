@@ -52,7 +52,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li class="">
-                            <a href="{{ route('open_courses') }}" class="">
+                            <a href="{{ route('/courses/create/welcome') }}" class="">
                                 <i class="seoicon-lightbulb-on"> 開課去</i>
                             </a>
                         </li>
@@ -78,7 +78,7 @@
                         @else
 
                             <li>
-                                 <img src="{{ Auth::user()->avatar }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
+                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
                             </li>
 
                             <li class="dropdown">

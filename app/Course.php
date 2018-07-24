@@ -16,7 +16,7 @@ class Course extends Model
     protected $fillable = [
         'id', 'title', 'status', 'course_category_id', 'enroll_num', 'min_num', 'max_num', 'browse_num',
         'currency_id', 'price', 'early_bird_price', 'early_bird_name', 'from_date', 'to_date',
-        'data',
+        'data', 'featured', 'video'
     ];
 
     const STATUS_SUBMIT = 'submit';
@@ -96,12 +96,14 @@ class Course extends Model
         return Validator::make($data, [
             'title'              => 'required',
             'course_category_id' => 'required',
+            'featured'           => 'required',
+            'video'              => 'required',
             'min_num'            => 'required',
             'max_num'            => 'required',
             'currency_id'        => 'required',
             'price'              => 'required',
-            'early_bird_price'   => 'required',
-            'early_bird_name'    => 'required',
+//            'early_bird_price'   => 'required',
+//            'early_bird_num'    => 'required',
             'from_date'          => 'required',
             'to_date'            => 'required',
             'data'               => 'required'
@@ -117,17 +119,17 @@ class Course extends Model
             'title'              => $param['title'],
             'status'             => self::STATUS_SUBMIT,  // TODO: Please define status
             'course_category_id' => $param['course_category_id'],
-            'min_num'            => $param['min_num'],
-            'max_num'            => $param['max_num'],
+            'featured'           => $param['featured'],
+            'video'              => $param['video'],
             'currency_id'        => $param['currency_id'],
             'price'              => $param['price'],
-            'early_bird_price'   => $param['early_bird_price'],
-            'early_bird_name'    => $param['early_bird_price'],
+//            'early_bird_price'   => $param['early_bird_price'],
+//            'early_bird_num'    => $param['early_bird_num'],
             'from_date'          => $param['from_date'],
             'to_date'            => $param['to_date'],
-            'featured'           => $param['featured'],
-            'video'              => $param['vidoe'],
-            'data'               => $param['data']
+            'min_num'            => $param['min_num'],
+            'max_num'            => $param['max_num'],
+            'data'               => json_encode($param['data'])
         ]);
     }
 

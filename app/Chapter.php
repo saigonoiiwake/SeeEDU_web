@@ -40,44 +40,42 @@ class Chapter extends Model
 
     public static function validator(array $data)
     {
-        // TODO
         return Validator::make($data, [
             'course_id'   => 'required',
-            'order'       => 'required',
             'title'       => 'required',
             'description' => 'required',
             'from_time'   => 'required',
             'to_time'     => 'required',
-            'data'        => 'required',
         ]);
     }
 
-    public static function newChapter(array $param)
+    public static function newChapter(array $params)
     {
-        self::validator($param)->validate();
+        self::validator($params)->validate();
 
         return parent::create([
-            'course_id'    => $param['course_id'],
-            'order'        => $param['order'],
-            'title'        => $param['title'],
-            'description'  => $param['description'],
-            'from_time'    => $param['from_time'],
-            'to_time'      => $param['to_time'],
-            'data'         => $param['data'],
+            'course_id'    => $params['course_id'],
+            'order'        => self::generateOrder($params['course_id']),
+            'status'       => self::STATUS_WAITING,
+            'title'        => $params['title'],
+            'description'  => $params['description'],
+            'from_time'    => $params['from_time'],
+            'to_time'      => $params['to_time'],
+            'data'         => json_encode($params['data']),
         ]);
     }
 
     /**
      * generate chapter order
      *
-     * @param int $course
+     * @param int $course_id
      * @return int
      * @throws
      */
-    public static function generateOrder($course)
+    public static function generateOrder($course_id)
     {
         $orders = self::query()
-            ->where('course_id', '=', $course)
+            ->where('course_id', '=', $course_id)
             ->orderBy('order', 'desc')
             ->get();
 

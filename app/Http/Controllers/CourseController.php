@@ -12,7 +12,7 @@ class CourseController extends Controller
       return view('courses')->with('courses', Course::all());
     }
 
-    public function singleCouse($id)
+    public function singleCourse($id)
     {
       $course = Course::where('id', $id)->first();
 
