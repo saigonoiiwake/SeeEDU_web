@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::post('/coupon','CouponsController@store')->name('coupon.store');
+Route::post('/coupon/{id}','CouponsController@getCode')->name('coupon.getCode');
 Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
 
 Route::get('/courses', [

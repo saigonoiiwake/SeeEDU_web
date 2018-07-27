@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Stripe\Error as Stripe;
+use Session;
 
 class Handler extends ExceptionHandler
 {
@@ -13,7 +15,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+         'Symfony\Component\HttpKernel\Exception\HttpException'
     ];
 
     /**
@@ -48,6 +50,24 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+      if ($exception instanceof Stripe\RateLimit)
+      {
+          Session::flash('info','付款系統忙碌中，請稍後再試');
+          return redirect()->back();
+      }
+
+      if ($exception instanceof Stripe\Api ||
+          $exception instanceof Stripe\ApiConnection ||
+          $exception instanceof Stripe\Authentication ||
+          $exception instanceof Stripe\InvalidRequest ||
+          $exception instanceof Stripe\Card ||
+          $exception instanceof Stripe\Base)
+      {
+          Session::flash('info',$exception->getMessage());
+          return redirect()->back();
+      }
+
         return parent::render($request, $exception);
     }
 }

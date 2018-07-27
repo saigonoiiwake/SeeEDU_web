@@ -188,16 +188,42 @@ span.psw {
 			 <div class="pix-margin-top-80">
 
 				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
+
+				 @if( !session()->has('coupon') )
          <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price,0) }}</span></span></h4>
+				 @else
+				    <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
+				 @endif
 
 			</div>
+
+			@if( session()->has('coupon'))
+				使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
+				<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
+					{{ csrf_field() }}
+					{{ method_field('delete') }}
+					<button class="btn btn-default" type="submit" name="button">移除</button>
+				</form>
+				<br>
+			@endif
+
+			@php
+				$final_price = $course->price*100
+			@endphp
+
+			@if( session()->has('coupon') )
+				@php
+				$final_price =  ($course->price - session()->get('coupon')['discount'])*100
+				@endphp
+			@endif
+
 
 				<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
 				 {{ csrf_field() }}
 				 <script
 					 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 					 data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
-					 data-amount="{{ $course->price*100 }}"
+					 data-amount="{{ $final_price }}"
 					 data-name="SeeEDU Live School"
 					 data-description="這裡放分類"
 					 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
@@ -325,7 +351,7 @@ span.psw {
 
 <div id="id01" class="modal">
 
-  <form class="modal-content animate" action="{{ route('coupon.store') }}" method="post" >
+  <form class="modal-content animate" action="{{ route('coupon.getCode', ['id' => $course->id]) }}" method="post" >
 		{{ csrf_field()	}}
 		<div class="container">
 

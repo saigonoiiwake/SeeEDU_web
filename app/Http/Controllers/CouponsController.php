@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Coupon;
+use App\Course;
 use Session;
 
 class CouponsController extends Controller
@@ -34,16 +35,26 @@ class CouponsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function getCode($id, Request $request)
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
+
+        $course = Course::find($id);
 
         if(!$coupon){
           Session::flash('info', '無此優惠券代碼');
           return redirect()->back();
         }
 
-      
+        session()->put('coupon',[
+          'name' => $coupon->code,
+          'discount' => $coupon->discount($course->price)
+        ]);
+
+        Session::flash('success', '優惠券輸入成功');
+
+        return redirect()->back();
+
     }
 
     /**
@@ -83,11 +94,14 @@ class CouponsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        session()->forget('coupon');
+
+        Session::flash('success', '已移除優惠券');
+
+        return redirect()->back();
     }
 }

@@ -39,10 +39,17 @@ class CourseController extends Controller
       // Get the payment token ID submitted by the form:
       $token = $_POST['stripeToken'];;
 
+      $final_price = 100*$course->price;
+      
+      if( session()->has('coupon') )
+      {
+        $final_price = ($course->price - session()->get('coupon')['discount'])*100;
+      }
+
 
 
       $charge = Charge::create([
-        'amount' => 100*$course->price,
+        'amount' => $final_price,
         'currency' => 'twd',
         'description' => 'SeeEDU Live School',
         'source' => $token
