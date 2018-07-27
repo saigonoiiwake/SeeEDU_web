@@ -37,6 +37,10 @@ class CouponsController extends Controller
      */
     public function getCode($id, Request $request)
     {
+        $this->validate($request, [
+           'coupon_code' => 'alpha_num'
+        ]);
+
         $coupon = Coupon::where('code', $request->coupon_code)->first();
 
         $course = Course::find($id);

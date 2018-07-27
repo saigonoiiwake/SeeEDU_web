@@ -8,6 +8,7 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use Session;
 use Mail;
+use App\Transaction;
 use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
@@ -29,7 +30,7 @@ class CourseController extends Controller
     {
       Log::info($request);
       $course = Course::find($id);
-      //dd($course->price);
+      $id = \Auth::user()->id;
 
       // Set your secret key: remember to change this to your live secret key in production
       // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -40,13 +41,11 @@ class CourseController extends Controller
       $token = $_POST['stripeToken'];;
 
       $final_price = 100*$course->price;
-      
+
       if( session()->has('coupon') )
       {
         $final_price = ($course->price - session()->get('coupon')['discount'])*100;
       }
-
-
 
       $charge = Charge::create([
         'amount' => $final_price,
@@ -55,21 +54,34 @@ class CourseController extends Controller
         'source' => $token
       ]);
 
-
-
-      Log::info($charge);
-      Log::info($charge['paid']);
-
-      if(!$charge['paid']) {
-        Session::flash('success', '成功失敗');
-        return redirect('/course/' . $id);
-      }
-
       Session::flash('success', '成功付款，請至信箱確認');
 
       Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful);
 
-      return redirect('/course/' . $id);
+      //Store transaction data into Table:transaction
+      if( session()->has('coupon') )
+      {
+        $transaction = Transaction::create([
+          'user_id' => $id,
+          'course_id' => $course->id,
+          'purchase_price' => $final_price/100,
+          'channel' => 'stripe',
+          'coupon_code' => session()->get('coupon')['name']
+        ]);
+      }
+      else
+      {
+        $transaction = Transaction::create([
+          'user_id' => $id,
+          'course_id' => $course->id,
+          'purchase_price' => $final_price/100,
+          'channel' => 'stripe',
+          'coupon_code' => null
+        ]);
+      }
+
+
+      return redirect('/course/' . $course->id);
     }
 
 

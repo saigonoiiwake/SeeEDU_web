@@ -197,41 +197,48 @@ span.psw {
 
 			</div>
 
-			@if( session()->has('coupon'))
-				使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
-				<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
-					{{ csrf_field() }}
-					{{ method_field('delete') }}
-					<button class="btn btn-default" type="submit" name="button">移除</button>
-				</form>
-				<br>
-			@endif
+					@if( session()->has('coupon'))
+						使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
+						<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
+							{{ csrf_field() }}
+							{{ method_field('delete') }}
+							<button class="btn btn-default" type="submit" name="button">移除</button>
+						</form>
+						<br>
+					@endif
 
-			@php
-				$final_price = $course->price*100
-			@endphp
+					@php
+						$final_price = $course->price*100
+					@endphp
 
-			@if( session()->has('coupon') )
-				@php
-				$final_price =  ($course->price - session()->get('coupon')['discount'])*100
-				@endphp
-			@endif
+					@if( session()->has('coupon') )
+						@php
+						$final_price =  ($course->price - session()->get('coupon')['discount'])*100
+						@endphp
+					@endif
 
-
-				<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
-				 {{ csrf_field() }}
-				 <script
-					 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-					 data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
-					 data-amount="{{ $final_price }}"
-					 data-name="SeeEDU Live School"
-					 data-description="這裡放分類"
-					 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-					 data-locale="en"
-					 data-currency="twd"
-					 data-label="立即購買">
-				 </script>
-			 </form>
+					@auth
+						<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+						 {{ csrf_field() }}
+						 <script
+							 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							 data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+							 data-amount="{{ $final_price }}"
+							 data-name="SeeEDU Live School"
+							 data-description="這裡放分類"
+							 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+							 data-locale="en"
+							 data-currency="twd"
+							 data-label="立即購買">
+						 </script>
+					 	</form>
+					@else
+					<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+					 <span class="pix_edit_text">
+						<strong>請先登入</strong>
+					 </span>
+				 </a>
+					@endauth
 
 			 <button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" >擁有折扣代碼？</button>
 
@@ -313,20 +320,30 @@ span.psw {
 		         <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
 		          <span class="pix_edit_text">加入SeeEDU一起學習吧！</span>
 		         </h6>
-						 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay">
-							{{ csrf_field() }}
-							<script
-								src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-								data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
-								data-amount="{{ $course->price*100 }}"
-								data-name="SeeEDU Live School"
-								data-description="這裡放分類"
-								data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-								data-locale="en"
-								data-currency="twd"
-								data-label="購買">
-							</script>
-						</form>
+
+						 @auth
+							 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+								{{ csrf_field() }}
+								<script
+									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+									data-amount="{{ $final_price }}"
+									data-name="SeeEDU Live School"
+									data-description="這裡放分類"
+									data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+									data-locale="en"
+									data-currency="twd"
+									data-label="立即購買">
+								</script>
+							 </form>
+						 @else
+						 <a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+							<span class="pix_edit_text">
+							 <strong>請先登入</strong>
+							</span>
+						</a>
+						 @endauth
+
 		        </div>
 		       </div>
 		      </div>
@@ -356,7 +373,7 @@ span.psw {
 		<div class="container">
 
 				<label for="coupon"><b>折扣代碼</b></label>
-				<input class="pix-black-gray-light" type="text" name="coupon_code" id="coupon_code" value="請需入六碼代號">
+				<input class="pix-black-gray-light" type="text" name="coupon_code" id="coupon_code" placeholder="請需入六碼代號">
 				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 				<button type="submit" name="button" class="btn btn-bg pix-gray">確認</button>
 
