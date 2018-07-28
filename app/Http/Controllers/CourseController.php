@@ -9,6 +9,7 @@ use Stripe\Charge;
 use Session;
 use Mail;
 use App\Transaction;
+use App\Enroll;
 use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
@@ -32,9 +33,19 @@ class CourseController extends Controller
 
     public function pay($id, Request $request)
     {
-      Log::info($request);
+
       $course = Course::find($id);
       $id = \Auth::user()->id;
+
+      $check_exist = Enroll::where('user_id', $id)
+                            ->where('course_id', $course->id)
+                            ->count();
+      if($check_exist)
+      {
+          Session::flash('info', '已購買過此課');
+          return redirect()->back();
+      }
+
 
       // Set your secret key: remember to change this to your live secret key in production
       // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -84,9 +95,15 @@ class CourseController extends Controller
         ]);
       }
 
-      // Update enroll number in
+      // Update enroll number in Table: Course
       $course->enroll_num ++;
       $course->save();
+
+      // Store into Table: enroll
+      $enroll = Enroll::create([
+        'course_id' => $course->id,
+        'user_id' => $id
+      ]);
 
 
       return redirect('/course/' . $course->id);
