@@ -22,6 +22,10 @@ class CourseController extends Controller
     {
       $course = Course::where('id', $id)->first();
 
+      //update browse number
+      $course->browse_num ++;
+      $course->save();
+
       return view('single_course')->with('course', $course);
 
     }
@@ -58,7 +62,7 @@ class CourseController extends Controller
 
       Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful);
 
-      //Store transaction data into Table:transaction
+      // Store transaction data into Table:transaction
       if( session()->has('coupon') )
       {
         $transaction = Transaction::create([
@@ -79,6 +83,10 @@ class CourseController extends Controller
           'coupon_code' => null
         ]);
       }
+
+      // Update enroll number in
+      $course->enroll_num ++;
+      $course->save();
 
 
       return redirect('/course/' . $course->id);
