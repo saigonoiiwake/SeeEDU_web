@@ -400,11 +400,15 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 							</div>
 						</div>
 
-
-
  					 </div>
+
+
  					 <div class="bottom">
- 						 <div class="tag">{{ $course->from_date }} </div>
+						 @if( Carbon\Carbon::parse($course->from_date)->gt(Carbon\Carbon::now()) )
+ 						 <div class="tag">倒數 {{ Carbon\Carbon::parse($course->from_date)->diffInDays( Carbon\Carbon::now() ) }} 天</div>
+						 @else
+						 <div class="tag"><span>上課中</span></div>
+						 @endif
  						 <div class="text">
  							 <h3 class="classtitle"><a href="{{ route('course.single', ['id' => $course->id]) }}">{{ $course->title }}</a></h3>
  							 <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->name }}</div>

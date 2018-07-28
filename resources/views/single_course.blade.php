@@ -235,7 +235,7 @@ span.psw {
 					@else
 					<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
 					 <span class="pix_edit_text">
-						<strong>請先登入</strong>
+						<strong>立即購買</strong>
 					 </span>
 				 </a>
 					@endauth
@@ -339,7 +339,7 @@ span.psw {
 						 @else
 						 <a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
 							<span class="pix_edit_text">
-							 <strong>請先登入</strong>
+							 <strong>立即購買</strong>
 							</span>
 						</a>
 						 @endauth

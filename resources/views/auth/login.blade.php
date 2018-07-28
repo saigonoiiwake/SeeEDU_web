@@ -256,8 +256,8 @@ text-transform: capitalize;
                     登入
                   </button>
 
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
-                    忘記密碼?
+                  <a class="btn btn-link" href="{{ route('register') }}">
+                    還沒有帳號?
                   </a>
                 </div>
 

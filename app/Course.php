@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class Course extends Model
 {
@@ -167,4 +168,5 @@ class Course extends Model
 
         return self::generateIdSafe($retry - 1);
     }
+
 }
