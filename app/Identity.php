@@ -60,20 +60,20 @@ class Identity extends Model
     {
         // TODO
         return Validator::make($data, [
-            'course_id' => 'require',
-            'user_id'   => 'require',
-            'content'   => 'require',
+            'course_id' => 'required',
+            'user_id'   => 'required',
+            'role_id'   => 'required',
         ]);
     }
 
-    public static function newIdentity(array $param)
+    public static function newIdentity(array $params)
     {
-        self::validator($param)->validate();
+        self::validator($params)->validate();
 
         return parent::create([
-            'course_id' => $param['course_id'],
-            'user_id'   => $param['user_id'],
-            'role_id'   => $param['role_id'],
+            'course_id' => $params['course_id'],
+            'user_id'   => $params['user_id'],
+            'role_id'   => $params['role_id'],
         ]);
     }
 }

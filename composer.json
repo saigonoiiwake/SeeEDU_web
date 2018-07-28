@@ -13,6 +13,7 @@
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "~3.0",
         "stripe/stripe-php": "^6.10"
+
     },
     "require-dev": {
         "filp/whoops": "~2.0",

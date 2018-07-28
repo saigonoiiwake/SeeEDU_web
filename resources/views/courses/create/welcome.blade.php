@@ -3,7 +3,7 @@
 @section('styles')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
+	<link rel="shortcut icon" href="{{ asset('uploads/pix-favicon.ico') }}">
 	<meta name="description" content="讓知識創造最高價值">
 	<meta name="keywords" content="開課流程介紹
 優秀老師
@@ -49,7 +49,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
  <div class="container">
   <div class="row">
    <div class="col-xs-12 text-center col-sm-8 column ui-droppable col-md-6" style="display: block;">
-    <div class="pix-content"><img src="app/images/illustrations/開課說明.png" alt="" class="img-responsive"></div>
+    <div class="pix-content"><img src="{{ asset('app/images/illustrations/開課說明.png') }}" alt="" class="img-responsive"></div>
    </div>
    <div class="col-xs-12 col-sm-4 column ui-droppable col-md-6" style="display: block;">
     <div class="pix-content pix-padding-top-120" style="background-repeat: repeat-x; padding: 80px 0px 0px; margin: 0px;">
@@ -59,7 +59,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
      <p class="pix-black-gray-light big-text pix-margin-bottom-20">
       <span class="pix_edit_text">原生網路世代將重新定義教育<br><span>將所學教授給學生，帶給學生們最寶貴的價值</span></span>
      </p>
-     <a href="{{ route('open_courses_1') }}" class="btn green-blue-bg pix-white normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
+     <a href="{{ route('/courses/create/step/contract') }}" class="btn green-blue-bg pix-white normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
       <span class="pix_edit_text">
        <strong>立即開課</strong></span>
      </a>
@@ -76,7 +76,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/登入會員.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/登入會員.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>登入會員</strong></span>
 		 </h5>
@@ -85,7 +85,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/填寫老師基本資料.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/填寫老師基本資料.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>老師資訊</strong></span>
 		 </h5>
@@ -95,7 +95,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/填寫課程基本資料.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/填寫課程基本資料.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>課程資料</strong></span>
 		 </h5>
@@ -104,7 +104,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/簽訂合約.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/簽訂合約.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>簽訂合約</strong></span>
 		 </h5>
@@ -113,7 +113,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/等待審查.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/等待審查.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>等待審查</strong></span>
 		 </h5>
@@ -122,7 +122,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 
 	 <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
 		<div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
-			<img src="app/images/illustrations/成功開課.png" alt="" class="img-responsive">
+			<img src="{{ asset('app/images/illustrations/成功開課.png') }}" alt="" class="img-responsive">
 		 <h5 class="pix-black-gray-dark pix-no-margin-bottom">
 			<span class="pix_edit_text"><strong>成功開課</strong></span>
 		 </h5>
@@ -151,7 +151,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
      <p class="pix-black-gray-light big-text pix-margin-bottom-20">
       <span class="pix_edit_text">        教師可自行訂定<span style="font-weight: bold;">課程價格</span>，SeeEDU平台上顯示之<span style="font-weight: bold;">課程平台售價</span>為課程價格的1.1倍，成功開課並達成最低學生數，教師的收入為<span style="font-weight: bold;">（課程價格）☓&nbsp; &nbsp;(購課人數）☓&nbsp; 80%</span></span>
      </p>
-     <a href="{{ route('open_courses_1') }}" class="btn pix-orange-line wide normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
+     <a href="{{ route('/courses/create/step/contract') }}" class="btn pix-orange-line wide normal btn-lg pix-line" style="background: transparent; border-color: rgb(66, 157, 235); color: rgb(66, 157, 235);">
       <span class="pix_edit_text">
        <strong>立即開課</strong></span>
      </a>
@@ -162,6 +162,4 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
 </div>
 
 @include('includes.footer')
-
-
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Service\ParameterService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,47 +33,32 @@ class CourseDraft extends Model
 
     public static function validator(array $data)
     {
-        // TODO
         return Validator::make($data, [
-            'title'              => 'require',
-            'course_category_id' => 'require',
-            'min_num'            => 'require',
-            'max_num'            => 'require',
-            'currency_id'        => 'require',
-            'price'              => 'require',
-            'early_bird_price'   => 'require',
-            'early_bird_name'    => 'require',
-            'from_date'          => 'require',
-            'to_date'            => 'require',
-            'featured'           => 'require',
-            'video'              => 'require',
-            'description'        => 'require',
-            'chapter'            => 'require',
-            'data'               => 'require',
+            'title' => 'required',
         ]);
     }
 
-    public static function newCourseDraft(array $param)
+    public static function newCourseDraft(array $params)
     {
-        self::validator($param)->validate();
+        self::validator($params)->validate();
 
         return parent::create([
             'user_id'            => auth()->id(),
-            'title'              => $param['title'],
-            'course_category_id' => $param['course_category_id'],
-            'min_num'            => $param['min_num'],
-            'max_num'            => $param['max_num'],
-            'currency_id'        => $param['currency_id'],
-            'price'              => $param['price'],
-            'early_bird_price'   => $param['early_bird_price'],
-            'early_bird_name'    => $param['early_bird_price'],
-            'from_date'          => $param['from_date'],
-            'to_date'            => $param['to_date'],
-            'featured'           => $param['featured'],
-            'video'              => $param['video'],
-            'description'        => $param['description'],
-            'chapter'            => $param['chapter'],
-            'data'               => $param['data'],
+            'title'              => $params['title'],
+            'course_category_id' => ParameterService::get($params, 'course_category_id', ''),
+            'min_num'            => ParameterService::get($params, 'min_num', 0),
+            'max_num'            => ParameterService::get($params, 'max_num', 0),
+            'currency_id'        => ParameterService::get($params, 'currency_id', 0),
+            'price'              => ParameterService::get($params, 'price', 0),
+            'early_bird_price'   => ParameterService::get($params, 'early_bird_price', 0),
+            'early_bird_num'     => ParameterService::get($params, 'early_bird_num', 0),
+            'from_date'          => ParameterService::get($params, 'from_date', ''),
+            'to_date'            => ParameterService::get($params, 'to_date', ''),
+            'featured'           => ParameterService::get($params, 'featured', ''),
+            'video'              => ParameterService::get($params, 'video', ''),
+            'description'        => ParameterService::get($params, 'description', ''),
+            'chapter'            => json_encode(ParameterService::get($params, 'chapter', '')),
+            'data'               => json_encode(ParameterService::get($params, 'data', '')),
         ]);
     }
 }

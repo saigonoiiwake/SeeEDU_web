@@ -22,7 +22,7 @@ Route::get('/courses', [
 ]);
 
 Route::get('/course/{id}', [
-  'uses' => 'CourseController@singleCouse',
+  'uses' => 'CourseController@singleCourse',
   'as' => 'course.single'
 ]);
 
@@ -101,31 +101,36 @@ Route::get('/joinus', function () {
     return view('joinus');
 })->name('joinus');
 
-Route::get('/opencourse', function () {
-    return view('open_courses');
-})->name('open_courses');
+Route::get('/courses/create', function () {
+    return view('courses.create.welcome');
+})->name('/courses/create/welcome');
 
-Route::get('/opencourse-1', function () {
-    return view('open_courses_1');
-})->name('open_courses_1');
+Route::get('/courses/create/step/contract', 'CourseCreateController@showContract')
+    ->name('/courses/create/step/contract');
 
-Route::get('/opencourse-2', function () {
-    return view('open_courses_2');
-})->name('open_courses_2');
+Route::get('/courses/create/step/teacher', 'CourseCreateController@showTeacherProfileForm')
+    ->name('/courses/create/step/teacher');
 
-Route::get('/opencourse-3', function () {
-    return view('open_courses_3');
-})->name('open_courses_3');
+Route::post('/courses/create/step/teacher', 'CourseCreateController@postTeacherProfile');
 
-Route::get('/opencourse-4', function () {
-    return view('open_courses_4');
-})->name('open_courses_4');
+Route::post('/courses/create/step/teacher/save', 'CourseCreateController@saveTeacherProfile');
+
+Route::get('/courses/create/step/course', 'CourseCreateController@showCourseForm')
+    ->name('/courses/create/step/course');
+
+Route::post('/courses/create/step/submit', 'CourseCreateController@submitCourse');
+
+Route::post('/courses/create/step/course/previous', 'CourseCreateController@previousStepForCourse');
+
+Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCourseDraft');
+
+Route::get('/courses/create/complete', 'CourseCreateController@complete')
+    ->name('/courses/create/complete');
 
 Route::get('/how-to-take-courses', function () {
     return view('howtotakecourses');
 })->name('howtotakecourses');
 
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/courses/create/generate/chapter', 'CourseCreateController@generateChapterTime')
+    ->name('/courses/create/generate/chapter');;
