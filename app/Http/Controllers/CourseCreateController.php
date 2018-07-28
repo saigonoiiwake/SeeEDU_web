@@ -110,9 +110,9 @@ class CourseCreateController extends Controller
                 $file = $request->file('avatar');
                 $timestamp = time();
                 $file_name = $timestamp . '-' . $file->getClientOriginalName();
-                $file_dir = public_path() . '/images/avatar/';
+                $file_dir = public_path() . '/app/images/uploads/avatars/';
                 $file->move($file_dir, $file_name);
-                $user->avatar = '/images/avatar/' . $file_name;
+                $user->avatar = '/app/images/uploads/avatars/' . $file_name;
             }
 
             $user->save();
@@ -342,7 +342,7 @@ class CourseCreateController extends Controller
             $file = $request->file('featured');
             $timestamp = time();
             $file_name = $timestamp . '-' . $file->getClientOriginalName();
-            $file_dir = public_path() . '/images/courses/';
+            $file_dir = public_path() . '/app/images/uploads/courses/';
             $file->move($file_dir, $file_name);
 
             $chapters = array_values($validatedData['chapter']);
@@ -351,7 +351,7 @@ class CourseCreateController extends Controller
             $course_param = [
                 'title'              => $validatedData['title'],
                 'course_category_id' => $validatedData['category_3'],
-                'featured'           => '/images/courses/' . $file_name,
+                'featured'           => '/app/images/uploads/courses/' . $file_name,
                 'video'              => $validatedData['video'],
                 'from_date'          => $validatedData['from_date'],
                 'to_date'            => $validatedData['to_date'],

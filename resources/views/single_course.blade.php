@@ -177,10 +177,35 @@ span.psw {
 			 </div>
 
 			 <div class="info_detail">
-				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">星期</span> ？？</span></h6>
-			 </div>
-      <div class="info_detail">
-				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">時間</span> ？？</span></h6>
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">時間</span> 每週
+					 @foreach($course->getDayOfWeek() as $day_of_week)
+						 @switch($day_of_week)
+							 @case('monday')
+								 一
+								 @break
+							 @case('tuesday')
+								 二
+								 @break
+							 @case('wednesday')
+								 三
+								 @break
+							 @case('thursday')
+								 四
+								 @break
+							 @case('friday')
+								 五
+								 @break
+							 @case('saturday')
+								 六
+								 @break
+							 @case('sunday')
+								 日
+								 @break
+							 @default
+								 ?
+						 @endswitch
+					 @endforeach
+					 {{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span></span></h6>
 			 </div>
 
 			 <div class="info_detail">

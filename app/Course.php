@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\CourseCategory;
 
 class Course extends Model
 {
@@ -172,5 +173,16 @@ class Course extends Model
 
         return self::generateIdSafe($retry - 1);
     }
+
+    public function getDayOfWeek()
+    {
+       return json_decode($this->data, true)['day_of_week'];
+    }
+
+    public function getCategoryName($param)
+    {
+      return CourseCategory::where('id',$param)->first()->name;
+    }
+
 
 }

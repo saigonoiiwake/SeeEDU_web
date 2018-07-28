@@ -263,7 +263,7 @@
 					@endif
 				</div>
 				<div class="form-row col-md-12">
-					<input type="button" class="btn btn-success" onclick="addChapter()" value="add"/>
+					<input type="button" class="btn btn-success" onclick="addChapter()" value="新增"/>
 				</div>
 			</div>
 

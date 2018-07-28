@@ -368,32 +368,60 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 									<br>
 									<div class="course1">
-										<span>9/20 ~ 11/20</span>
+										<span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
 									</div>
 
 									<br>
 									<div class="course1">
-										<span class="weekday">每週 一 四</span>
+										<span class="weekday">每週
+											@foreach($course->getDayOfWeek() as $day_of_week)
+												@switch($day_of_week)
+													@case('monday')
+														一
+														@break
+													@case('tuesday')
+														二
+														@break
+													@case('wednesday')
+														三
+														@break
+													@case('thursday')
+														四
+														@break
+													@case('friday')
+														五
+														@break
+													@case('saturday')
+														六
+														@break
+													@case('sunday')
+														日
+														@break
+													@default
+														?
+												@endswitch
+											@endforeach
+											{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span>
 									</div>
 
 									<br>
 									<div class="course1">
-										<span>21:30 - 23:30 </span>
+										<span> 共 {{ count(json_decode($course->data, true)['chapter']) }} 堂課 </span>
 									</div>
 
 									<br>
 									<div class="course1">
-										<span>分類一 </span>
+										<span>{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
 									</div>
 
 									<br>
 									<div class="course1">
-										<span>分類二</span>
+										<span>{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
 									</div>
 
 									<br>
 									<div class="course1">
-										<span>分類三</span>
+										<span>{{ $course->category()->get()->first()->name }}</span>
 									</div>
 
 		 						</div>
