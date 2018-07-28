@@ -15,6 +15,7 @@
     <link href="{{ asset('app/css/font-style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     @yield('styles')
 
 
@@ -62,9 +63,9 @@
                             </a>
                         </li>
 
-                        <li class="search search_main" style="color: black; margin-top: 8px;">
+                        <!-- <li class="search search_main" style="color: black; margin-top: 8px;">
                           <input type="text" name="search" >
-                        </li>
+                        </li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,6 +79,7 @@
                         @else
 
                             <li>
+
                                  <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
                             </li>
 
@@ -87,7 +89,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                  <li>
+                                  <!-- <li>
                                     <a href="{{ route('mycourse') }}" class="">
                                         <i class="seoicon-button"> 個人頁面</i>
                                     </a>
@@ -97,7 +99,7 @@
                                     <a href="#" class="">
                                         <i class="seoicon-mail-send"> 私人訊息</i>
                                     </a>
-                                  </li>
+                                  </li> -->
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -124,7 +126,24 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('scripts')
+
+    <script>
+
+    @if(Session::has('success'))
+
+      toastr.success('{{ Session::get('success') }}')
+
+    @endif
+
+    @if(Session::has('info'))
+
+      toastr.info('{{ Session::get('info') }}')
+
+    @endif
+
+    </script>
 
 </body>
 </html>

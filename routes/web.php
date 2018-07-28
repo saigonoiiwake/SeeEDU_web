@@ -13,6 +13,9 @@
 
 Auth::routes();
 
+Route::post('/coupon/{id}','CouponsController@getCode')->name('coupon.getCode');
+Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
+
 Route::get('/courses', [
   'uses' => 'CourseController@index',
   'as' => 'courses'
@@ -23,6 +26,10 @@ Route::get('/course/{id}', [
   'as' => 'course.single'
 ]);
 
+Route::post('/course/checkout/{id}', [
+  'uses' => 'CourseController@pay',
+  'as' => 'course.checkout'
+]);
 
 Route::get('/', function () {
     return view('welcome');

@@ -263,6 +263,10 @@ text-transform: capitalize;
                   <button type="submit" class="btn btn-primary btnn form-submit">註冊</button>
                 </div>
 
+                <a class="btn btn-link" href="{{ route('login') }}">
+                  已有帳號?
+                </a>
+
               </form>
 
 

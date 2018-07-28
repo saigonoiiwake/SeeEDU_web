@@ -18,6 +18,7 @@
 
 
 	<style>
+
 	.box {
 	  border: 3px solid #398DD5;
 	  border-radius: 80px;
@@ -25,6 +26,118 @@
 	  width: auto;
 
 	}
+	.notice {
+  font-size: 12px;
+
+	}
+	.dollor {
+  color: #E24831;
+  font-size: 30px;
+  margin: 0 auto;
+}
+.originalprice {
+  text-decoration:line-through;
+
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 20%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
 	</style>
 @endsection
 
@@ -41,6 +154,7 @@
 			 <span class="pix_edit_text"><strong>{{ $course->title }}</strong></span>
 			</h5>
 		</div>
+
    	<div class="row">
 
 
@@ -51,46 +165,95 @@
       </div>
      </div>
     </div>
+
 		<div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable" style="display: block;">
-     <div class="pix-content text-left pix_feature_std pix_light_gray_border white-bg">
+     <div class="pix-content white-bg">
       <div class="pix-padding-h-10">
 
 
-       <div class="pix-margin-bottom-15">
-				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">開始日期</span> {{$course->from_date}} </span></h4>
+       <div class="info_detail">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">日期</span> {{ $course->from_date }} ~ {{  $course->to_date }}</span></h6>
+
 			 </div>
 
-			 <div class="pix-margin-bottom-15">
-				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">結束日期</span> {{$course->to_date}} </span></h4>
+			 <div class="info_detail">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">星期</span> ？？</span></h6>
+			 </div>
+      <div class="info_detail">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">時間</span> ？？</span></h6>
 			 </div>
 
-			 <div class="pix-margin-bottom-15">
-				 <h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">剩餘名額</span></span>  {{ $course->max_num - $course->enroll_num }} 名</h4>
+			 <div class="info_detail">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">剩餘名額</span></span>{{ $course->max_num - $course->enroll_num }}</h6>
 			 </div>
 
-			 <div class="pix-margin-bottom-15">
-					<h4><span class="pix_edit_text"><span class="label label-default pix-black-gray-light gray-bg">課程價格</span></span>  NT ${{ $course->price}}</h4>
+			 <div class="pix-margin-top-80">
 
-				</div>
+				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
+
+				 @if( !session()->has('coupon') )
+         <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price,0) }}</span></span></h4>
+				 @else
+				    <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
+				 @endif
+
+			</div>
+
+					@if( session()->has('coupon'))
+						使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
+						<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
+							{{ csrf_field() }}
+							{{ method_field('delete') }}
+							<button class="btn btn-default" type="submit" name="button">移除</button>
+						</form>
+						<br>
+					@endif
+
+					@php
+						$final_price = $course->price*100
+					@endphp
+
+					@if( session()->has('coupon') )
+						@php
+						$final_price =  ($course->price - session()->get('coupon')['discount'])*100
+						@endphp
+					@endif
+
+					@auth
+						<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+						 {{ csrf_field() }}
+						 <script
+							 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							 data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+							 data-amount="{{ $final_price }}"
+							 data-name="SeeEDU Live School"
+							 data-description="這裡放分類"
+							 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+							 data-locale="en"
+							 data-currency="twd"
+							 data-label="立即購買">
+						 </script>
+					 	</form>
+					@else
+					<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+					 <span class="pix_edit_text">
+						<strong>立即購買</strong>
+					 </span>
+				 </a>
+					@endauth
+
+			 <button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" >擁有折扣代碼？</button>
 
 
-       <p class="pix-black-gray-light big-text">
-         <span class="pix_edit_text">
-          <i class="fas fa-hashtag"></i>
-         </span>
-       </p>
-       <a href="#" class="btn  orange-bg btn-round-lg pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-         <span class="pix_edit_text">
-          <strong>購買</strong>
-         </span>
-       </a>
-      </div>
-     </div>
-    </div>
-   	</div>
+
+			 	<h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
+			</div>
+   </div>
 
   </div>
  </div>
+
+
 
 
 
@@ -119,7 +282,9 @@
 			        <div class="media-right media-top text-center media-box-area">
 			         <div class="pix-inner">
 			          <div class="pix-round-shape-120 pix-margin-h-10">
-			           <img src="{{ asset($teacher->first()->avatar) }}" alt="">
+
+			           <img src="{{ asset($course->teacherOrTA()->get()->first()->avatar) }}" alt="">
+
 			          </div>
 			         </div>
 			        </div>
@@ -175,9 +340,30 @@
 		         <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
 		          <span class="pix_edit_text">加入SeeEDU一起學習吧！</span>
 		         </h6>
-		         <a href="#" class="btn green-bg btn-lg pix-white wide">
-		          <span class="pix_edit_text"><b>立即購買</b></span>
-		         </a>
+
+						 @auth
+							 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+								{{ csrf_field() }}
+								<script
+									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+									data-amount="{{ $final_price }}"
+									data-name="SeeEDU Live School"
+									data-description="這裡放分類"
+									data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+									data-locale="en"
+									data-currency="twd"
+									data-label="立即購買">
+								</script>
+							 </form>
+						 @else
+						 <a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+							<span class="pix_edit_text">
+							 <strong>立即購買</strong>
+							</span>
+						</a>
+						 @endauth
+
 		        </div>
 		       </div>
 		      </div>
@@ -197,18 +383,45 @@
 	 </div>
  </div>
 
- <!-- Go to www.addthis.com/dashboard to customize your tools -->
- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
+@include('includes.footer')
+
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="{{ route('coupon.getCode', ['id' => $course->id]) }}" method="post" >
+		{{ csrf_field()	}}
+		<div class="container">
+
+				<label for="coupon"><b>折扣代碼</b></label>
+				<input class="pix-black-gray-light" type="text" name="coupon_code" id="coupon_code" placeholder="請需入六碼代號">
+				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+				<button type="submit" name="button" class="btn btn-bg pix-gray">確認</button>
+
+    </div>
+
+  </form>
 
 
 
- @include('includes.footer')
+</div>
+
 
 @endsection
 
 @section('scripts')
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 @endsection
