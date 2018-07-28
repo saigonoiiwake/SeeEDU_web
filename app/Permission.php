@@ -20,7 +20,7 @@ class Permission extends Model
     {
         // TODO
         return Validator::make($data, [
-            'name' => 'require',
+            'name' => 'required',
         ]);
     }
 

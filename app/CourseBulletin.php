@@ -35,10 +35,10 @@ class CourseBulletin extends Model
     {
         // TODO
         return Validator::make($data, [
-            'course_id' => 'require',
-            'type_id'   => 'require',
-            'title'     => 'require',
-            'content'   => 'require',
+            'course_id' => 'required',
+            'type_id'   => 'required',
+            'title'     => 'required',
+            'content'   => 'required',
         ]);
     }
 

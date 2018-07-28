@@ -32,8 +32,8 @@ class QA extends Model
     {
         // TODO
         return Validator::make($data, [
-            'course_id' => 'require',
-            'question'  => 'require',
+            'course_id' => 'required',
+            'question'  => 'required',
         ]);
     }
 

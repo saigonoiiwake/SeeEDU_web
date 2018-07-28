@@ -27,8 +27,8 @@ class Role extends Model
     {
         // TODO
         return Validator::make($data, [
-            'name'            => 'require',
-            'permission_ids'  => 'require',
+            'name'            => 'required',
+            'permission_ids'  => 'required',
         ]);
     }
 
