@@ -322,20 +322,23 @@ span.psw {
 			           <span class="pix_edit_text"><span style="font-weight: 700;">{{ $teacher->nick_name }}</span></span>
 			          </h5>
 			          <h6 class="pix-black-gray-light pix-no-margin-top">
+
 			           <span class="pix_edit_text">
                            @if($teacher->profile or false)
                                @foreach($teacher->profile->getEducation() as $education)
                                   {{ $education }}
                                @endforeach
                            @endif
-                       </span>
-                      <span class="pix_edit_text">
+                 </span>
+								 <br>
+                <span class="pix_edit_text">
                           @if($teacher->profile or false)
                               @foreach($teacher->profile->getExperience() as $experience)
                                   {{ $experience }}
                               @endforeach
                           @endif
-                       </span>
+                </span>
+
 			          </h6>
 			         </div>
 			        </div>

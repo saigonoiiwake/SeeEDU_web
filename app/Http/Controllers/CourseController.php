@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\User;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Session;
@@ -34,10 +35,10 @@ class CourseController extends Controller
     public function pay($id, Request $request)
     {
 
-      $course = Course::find($id);
-      $id = \Auth::user()->id;
+      $course = Course::findOrFail($id);
+      $uid = \Auth::user()->id;
 
-      $check_exist = Enroll::where('user_id', $id)
+      $check_exist = Enroll::where('user_id', $uid)
                             ->where('course_id', $course->id)
                             ->count();
       if($check_exist)
@@ -71,13 +72,22 @@ class CourseController extends Controller
 
       Session::flash('success', '成功付款，請至信箱確認');
 
-      Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful);
+      $data = array(
+        'course_name' => $course->title,
+        'course_price' => $course->price,
+        'from_time' => $course->from_date
+      );
+
+      //dd($data);
+
+      Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful($data));
+
 
       // Store transaction data into Table:transaction
       if( session()->has('coupon') )
       {
         $transaction = Transaction::create([
-          'user_id' => $id,
+          'user_id' => $uid,
           'course_id' => $course->id,
           'purchase_price' => $final_price/100,
           'channel' => 'stripe',
@@ -87,7 +97,7 @@ class CourseController extends Controller
       else
       {
         $transaction = Transaction::create([
-          'user_id' => $id,
+          'user_id' => $uid,
           'course_id' => $course->id,
           'purchase_price' => $final_price/100,
           'channel' => 'stripe',
@@ -102,7 +112,7 @@ class CourseController extends Controller
       // Store into Table: enroll
       $enroll = Enroll::create([
         'course_id' => $course->id,
-        'user_id' => $id
+        'user_id' => $uid
       ]);
 
 
