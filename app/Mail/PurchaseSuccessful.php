@@ -32,7 +32,7 @@ class PurchaseSuccessful extends Mailable
     public function build()
     {
         return $this->view('emails.purchased')
-                     ->subject('【成功購買通知】SeeEDU Live School')
+                     ->subject('【SeeEDU Live School】成功購買課程通知')
                      ->with(['data', $this->data]);
     }
 }

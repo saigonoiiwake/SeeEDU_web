@@ -46,7 +46,7 @@
      <div class="pix-content text-left">
       <div>
        <h2 class="pix-black-gray-dark secondary-font pix-small-width-text">
-        <span class="pix_edit_text">創立於2018年5月</span>
+        <span class="pix_edit_text">創立於2018年7月</span>
        </h2>
       </div>
       <div>
@@ -119,7 +119,7 @@
 
 
 
-<div class="pix_section pix-padding-v-50" id="section_team_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
+<!-- <div class="pix_section pix-padding-v-50" id="section_team_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
@@ -258,6 +258,6 @@
     </div>
    </div>
   </div>
- </div>
+ </div> -->
 
  @include('includes.footer')

@@ -1,6 +1,6 @@
 <!-- Footer -->
 
-<footer class="pix_section pix-padding-v-85" id="section_footer_1" style="display: block; background-color: rgb(252, 252, 252); background-repeat: repeat-x; padding-top: 85px; padding-bottom: 85px;">
+<footer class="pix_section pix-padding-v-85" id="section_footer_1" style="display: block; background-color: #E6E6E6; background-repeat: repeat-x; padding-top: 85px; padding-bottom: 85px;">
  <div class="container">
   <div class="row">
    <div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">

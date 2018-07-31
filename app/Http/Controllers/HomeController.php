@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with('courses', Course::take(3)->get());
+        return view('home')->with('courses', Course::take(3)->where('status', 'open')->get());
     }
 }

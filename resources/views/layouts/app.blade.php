@@ -22,7 +22,36 @@
 <style>
 @charset "UTF-8";
 * {
-  font-family: 微軟正黑體;
+
+}
+
+.navbar {
+  min-height: 50px;
+}
+
+.navbar-brand {
+  padding: 12px 15px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 12px;
+  padding: 5px 10px !important;
+}
+
+.logo {
+  padding-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 20.5px;
+    padding-bottom: 20.5px;
+    line-height: 22px;
+  }
 }
 
 </style>
@@ -80,7 +109,7 @@
 
                             <li>
 
-                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="50px" height="50px" style="border-radius: 50%;">
+                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="65px" height="65px" style="border-radius: 50%; padding-top: 2px;">
                             </li>
 
                             <li class="dropdown">
@@ -89,7 +118,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                  
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

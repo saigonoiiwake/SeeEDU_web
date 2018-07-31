@@ -80,11 +80,11 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       color: white;
       top: 20px;
       left: -40px;
-      padding-top: 5px;
+      padding-top: 3px;
       text-align: center;
-      background-color: #398DD5;
+      background-color: #429DEB;
       border-radius: 15px;
-      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
     }
 
     .teacher_name, .student_number {
@@ -119,7 +119,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     .view_number {
       font-weight: 300;
       font-size: 15px;
-      margin: 10px 0px;
+      margin: 10px 8px 10px 0px;
       color: #C3C3C3;
     }
 
@@ -130,7 +130,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     .price {
       font-size: 15px;
       posiiton: relative;
-      margin-left: 20px;
+
     }
 
 		.card-container {
@@ -164,7 +164,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 		.course1 span {
 		  position: relative;
-		  top: 14px;
+		  top: 5px;
 		}
 		.weekday {
 		    color: #429DEB;
@@ -177,7 +177,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		  text-align: center;
 		  border: solid 1px #C3C3C3;
 		  border-radius: 5px;
-		  height: 30px;
+		  height: 60px;
 		  width: 200px;
 		  margin-right: auto;
 		  margin-left: auto;
@@ -194,6 +194,12 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		  color: #434343;
 		  line-height: 3px;
 		  transform: rotateY(-180deg);
+
+		}
+
+		.coursetime {
+		  text-align: center;
+		  margin: 10px;
 
 		}
 
@@ -242,6 +248,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
 @foreach($courses as $course)
+	@if( $course->status === 'open')
  	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
  		 <div class="category"></div>
 
@@ -257,14 +264,11 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 									</div>
 		 						</div>
 		 						<div class="side back">
+									<h6 class="coursetime"><strong>上課時段</strong><h6>
 
 									<br>
 									<div class="course1">
 										<span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
-									</div>
-
-									<br>
-									<div class="course1">
 										<span class="weekday">每週
 											@foreach($course->getDayOfWeek() as $day_of_week)
 												@switch($day_of_week)
@@ -293,28 +297,24 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 														?
 												@endswitch
 											@endforeach
-											{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span>
+										</span>
+										<span>	{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span></span>
 									</div>
 
-									<br>
-									<div class="course1">
+										<br>
+
+									<!-- <div class="course1">
 										<span> 共 {{ count(json_decode($course->data, true)['chapter']) }} 堂課 </span>
+									</div> -->
+									<div class="" style="margin-left: 20px;">
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->category()->get()->first()->name }}</span>
 									</div>
 
-									<br>
-									<div class="course1">
-										<span>{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
-									</div>
-
-									<br>
-									<div class="course1">
-										<span>{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
-									</div>
-
-									<br>
-									<div class="course1">
-										<span>{{ $course->category()->get()->first()->name }}</span>
-									</div>
 
 		 						</div>
 							</div>
@@ -345,6 +345,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
  	 </div>
+	 @endif
 @endforeach
 
  	</div>

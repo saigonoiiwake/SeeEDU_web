@@ -29,28 +29,11 @@
 
 <style>
 
-input[type=text] {
-    width: 40px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 7px;
-    font-size: 12px;
-    opacity: 0.6;
-    background-color: white;
-    background-image: url('app/images/illustrations/search-solid.svg');
-    background-size: 15px 15px;
-    background-position: 3px 3px;
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 4px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-  }
-
-
     html, body {
       margin: 0;
       padding: 0;
     }
+
 
         .classbox {
           width: 260px;
@@ -106,11 +89,11 @@ input[type=text] {
           color: white;
           top: 20px;
           left: -40px;
-          padding-top: 5px;
+          padding-top: 3px;
           text-align: center;
-          background-color: #398DD5;
+          background-color: #429DEB;
           border-radius: 15px;
-          box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+          box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
         }
 
         .teacher_name, .student_number {
@@ -134,7 +117,7 @@ input[type=text] {
         .progressbar .valuebar {
           background-color: #398DD5;
           height: 100%;
-    			width: 30px;
+          width: 30px;
           transition-duration: 1s;
         }
 
@@ -145,7 +128,7 @@ input[type=text] {
         .view_number {
           font-weight: 300;
           font-size: 15px;
-          margin: 10px 0px;
+          margin: 10px 8px 10px 0px;
           color: #C3C3C3;
         }
 
@@ -156,72 +139,79 @@ input[type=text] {
         .price {
           font-size: 15px;
           posiiton: relative;
-          margin-left: 20px;
+
         }
 
-    		.card-container {
-    		  cursor: pointer;
-    		  height: 220px;
-    		  perspective: 600;
-    		  position: relative;
-    		  width: 260px;
-    		}
-    		.card {
-    		  height: 220px;
-    		  position: absolute;
-    		  transform-style: preserve-3d;
-    		  transition: all 1s ease-in-out;
-    		  width: 260px;
-    		}
+        .card-container {
+          cursor: pointer;
+          height: 220px;
+          perspective: 600;
+          position: relative;
+          width: 260px;
+        }
+        .card {
+          height: 220px;
+          position: absolute;
+          transform-style: preserve-3d;
+          transition: all 1s ease-in-out;
+          width: 260px;
+        }
 
-    		.card:hover {
-    		  transform: rotateY(180deg);
+        .card:hover {
+          transform: rotateY(180deg);
 
-    		}
+        }
 
-    		.card .side {
-    		  backface-visibility: hidden;
-    		  border-radius: 6px;
-    		  height: 100%;
-    		  position: absolute;
-    		  overflow: hidden;
-    		  width: 100%;
-    		}
+        .card .side {
+          backface-visibility: hidden;
+          border-radius: 6px;
+          height: 100%;
+          position: absolute;
+          overflow: hidden;
+          width: 100%;
+        }
 
-    		.course1 span {
-    		  position: relative;
-    		  top: 14px;
-    		}
-    		.weekday {
-    		    color: #429DEB;
-    		  }
-    		.comment {
-    		  margin: 20px 0px 20px 30px;
-    		}
-    		.course1 {
-    		  background-color: #FCFCFC;
-    		  text-align: center;
-    		  border: solid 1px #C3C3C3;
-    		  border-radius: 5px;
-    		  height: 30px;
-    		  width: 200px;
-    		  margin-right: auto;
-    		  margin-left: auto;
-    		  margin-top: 0;
-    		  margin-bottom: 0;
-    		  padding: 0px;
+        .course1 span {
+          position: relative;
+          top: 5px;
+        }
+        .weekday {
+            color: #429DEB;
+          }
+        .comment {
+          margin: 20px 0px 20px 30px;
+        }
+        .course1 {
+          background-color: #FCFCFC;
+          text-align: center;
+          border: solid 1px #C3C3C3;
+          border-radius: 5px;
+          height: 60px;
+          width: 200px;
+          margin-right: auto;
+          margin-left: auto;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding: 0px;
 
-    		  }
+          }
 
-    		.card .back {
+        .card .back {
 
-    		  font-size: 12px;
-    		  background: #eaeaed;
-    		  color: #434343;
-    		  line-height: 3px;
-    		  transform: rotateY(-180deg);
+          font-size: 12px;
+          background: #eaeaed;
+          color: #434343;
+          line-height: 3px;
+          transform: rotateY(-180deg);
 
-    		}
+        }
+
+        .coursetime {
+          text-align: center;
+          margin: 10px;
+
+        }
+
 
 
 </style>
@@ -286,9 +276,9 @@ input[type=text] {
       <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
        <span class="pix_edit_text"><strong>熱門課程</strong></span>
       </h2>
-      <p class="pix-black-gray-light big-text text-center">
+      <!-- <p class="pix-black-gray-light big-text text-center">
        <span class="pix_edit_text">即將額滿</span>
-      </p>
+      </p> -->
      </div>
     </div>
    </div>
@@ -301,116 +291,111 @@ input[type=text] {
    <div class="row">
 
      @foreach($courses as $course)
-      	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
-      		 <div class="category"></div>
+     <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
+        <div class="category"></div>
 
-      			 			<div class="classbox">
-      				 		<div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
-      					 <div class="top">
+               <div class="classbox">
+               <div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
+              <div class="top">
 
-     						 <div class="card-container">
-     		 		   		<div class="card">
-     		 						<div class="side">
-     									<div class="classpicture">
-     										<a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
-     									</div>
-     		 						</div>
-     		 						<div class="side back">
+              <div class="card-container">
+               <div class="card">
+                 <div class="side">
+                   <div class="classpicture">
+                     <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+                   </div>
+                 </div>
+                 <div class="side back">
+                   <h6 class="coursetime"><strong>上課時段</strong><h6>
 
-     									<br>
-     									<div class="course1">
-     										<span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
-     									</div>
+                   <br>
+                   <div class="course1">
+                     <span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
+                     <span class="weekday">每週
+                       @foreach($course->getDayOfWeek() as $day_of_week)
+                         @switch($day_of_week)
+                           @case('monday')
+                             一
+                             @break
+                           @case('tuesday')
+                             二
+                             @break
+                           @case('wednesday')
+                             三
+                             @break
+                           @case('thursday')
+                             四
+                             @break
+                           @case('friday')
+                             五
+                             @break
+                           @case('saturday')
+                             六
+                             @break
+                           @case('sunday')
+                             日
+                             @break
+                           @default
+                             ?
+                         @endswitch
+                       @endforeach
+                     </span>
+                     <span>	{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span></span>
+                   </div>
 
-     									<br>
-     									<div class="course1">
-     										<span class="weekday">每週
-     											@foreach($course->getDayOfWeek() as $day_of_week)
-     												@switch($day_of_week)
-     													@case('monday')
-     														一
-     														@break
-     													@case('tuesday')
-     														二
-     														@break
-     													@case('wednesday')
-     														三
-     														@break
-     													@case('thursday')
-     														四
-     														@break
-     													@case('friday')
-     														五
-     														@break
-     													@case('saturday')
-     														六
-     														@break
-     													@case('sunday')
-     														日
-     														@break
-     													@default
-     														?
-     												@endswitch
-     											@endforeach
-     											{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span>
-     									</div>
+                     <br>
 
-     									<br>
-     									<div class="course1">
-     										<span> 共 {{ count(json_decode($course->data, true)['chapter']) }} 堂課 </span>
-     									</div>
-
-     									<br>
-     									<div class="course1">
-     										<span>{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
-     									</div>
-
-     									<br>
-     									<div class="course1">
-     										<span>{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
-     									</div>
-
-     									<br>
-     									<div class="course1">
-     										<span>{{ $course->category()->get()->first()->name }}</span>
-     									</div>
-
-     		 						</div>
-     							</div>
-     						</div>
+                   <!-- <div class="course1">
+                     <span> 共 {{ count(json_decode($course->data, true)['chapter']) }} 堂課 </span>
+                   </div> -->
+                   <div class="" style="margin-left: 20px;">
+                     <i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+                       <span class="pix_edit_text">{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
+                     <i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+                       <span class="pix_edit_text">{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
+                     <i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+                       <span class="pix_edit_text">{{ $course->category()->get()->first()->name }}</span>
+                   </div>
 
 
-      					 </div>
+                 </div>
+               </div>
+             </div>
 
 
-      					 <div class="bottom">
-     						 @if( Carbon\Carbon::parse($course->from_date)->gt(Carbon\Carbon::now()) )
-      						 <div class="tag">倒數 {{ Carbon\Carbon::parse($course->from_date)->diffInDays( Carbon\Carbon::now() ) }} 天</div>
-     						 @else
-     						 <div class="tag"><span>上課中</span></div>
-     						 @endif
-      						 <div class="text">
-      							 <h3 class="classtitle"><a href="{{ route('course.single', ['id' => $course->id]) }}">{{ $course->title }}</a></h3>
-      							 <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->nick_name }}</div>
-      							 <div class="student_number">修課人數<span> {{ $course->enroll_num }}</span></div>
-      						 </div>
-      						 <div class="progressbar">
-      							 <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
-      						 </div>
-      					 <div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
-      					 <div class="price">課程價格<span>NTD {{ $course->price }}</span></div>
-      				 </div>
-      			 			</div>
+              </div>
 
 
-      	 </div>
+              <div class="bottom">
+              @if( Carbon\Carbon::parse($course->from_date)->gt(Carbon\Carbon::now()) )
+                <div class="tag">倒數 {{ Carbon\Carbon::parse($course->from_date)->diffInDays( Carbon\Carbon::now() ) }} 天</div>
+              @else
+              <div class="tag"><span>上課中</span></div>
+              @endif
+                <div class="text">
+                  <h3 class="classtitle"><a href="{{ route('course.single', ['id' => $course->id]) }}">{{ $course->title }}</a></h3>
+                  <div class="teacher_name">{{ $course->teacherOrTA()->get()->first()->nick_name }}</div>
+                  <div class="student_number">修課人數<span> {{ $course->enroll_num }}</span></div>
+                </div>
+                <div class="progressbar">
+                  <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
+                </div>
+              <div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
+              <div class="price">課程價格<span>NTD {{ $course->price }}</span></div>
+            </div>
+               </div>
+
+
+      </div>
      @endforeach
 
    </div>
   </div>
  </div>
 
-<div class="pix_section pix-padding" id="section_titles_3" style="display: block; background-color: rgb(252, 252, 252); background-repeat: repeat-x; padding-top: 60px; padding-bottom: 60px;">
+ <br> <br>
+
+<div class="pix_section pix-padding" id="section_titles_3" style="display: block; background-color: #E6E6E6; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 60px;">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -426,7 +411,7 @@ input[type=text] {
    </div>
   </div>
  </div>
- <div class="pix_section pix-padding-v-30" id="section_features_2" style="display: block; background-color: rgb(252, 252, 252); background-repeat: repeat-x; padding-top: 0px; padding-bottom: 30px;">
+ <div class="pix_section pix-padding-v-30" id="section_features_2" style="display: block; background-color: #E6E6E6; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 30px;">
   <div class="container">
    <div class="row">
 
@@ -490,13 +475,14 @@ input[type=text] {
        <h6 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
 
       </h6>
-       <a href="{{ route('howtotakecourses') }}" class="btn green-bg btn-lg pix-white wide">
+       <a href="{{ route('howtotakecourses') }}" class="btn blue-bg btn-lg pix-white wide">
         <span class="pix_edit_text"><b>立即了解</b></span>
        </a>
       </div>
      </div>
     </div>
    </div>
+   <br>
 
   </div>
 

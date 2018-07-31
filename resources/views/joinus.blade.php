@@ -235,7 +235,7 @@
         <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
          <span class="pix_edit_text">這裡有與你/妳一起實現夢想的夥伴！</span>
         </h6>
-        <a href="#" class="btn green-bg btn-lg pix-white wide">
+        <a href="#" class="btn blue-bg btn-lg pix-white wide">
          <span class="pix_edit_text"><b>立即加入</b></span>
         </a>
        </div>
