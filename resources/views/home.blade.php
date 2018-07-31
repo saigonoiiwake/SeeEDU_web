@@ -512,7 +512,7 @@
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/teammember3.png" alt="">
+         <img src="app/images/tsia2.jpg" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -541,7 +541,7 @@
         <div class="pix-padding-left-5">
          <h6 class="media-heading pix-black-gray-dark">
           <span class="pix_edit_text">
-           <strong>留學生 王同學</strong></span>
+           <strong>設計師 王同學</strong></span>
          </h6>
         </div>
        </div>
@@ -556,7 +556,7 @@
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/teammember3.png" alt="">
+         <img src="app/images/chen.jpg" alt="">
         </div>
        </div>
        <div class="media-body media-middle">

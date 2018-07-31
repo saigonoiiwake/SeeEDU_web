@@ -59,6 +59,8 @@
 
 <div class="col-md-8 col-md-offset-2">
 
+	<br>
+
 	{{--@if($course_drafts or false)--}}
 	{{--<div class="panel panel-default">--}}
 		{{--<div class="panel-heading">--}}

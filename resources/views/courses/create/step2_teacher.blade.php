@@ -55,6 +55,7 @@
  </div>
 
  <div class="col-md-8 col-md-offset-2">
+	 <br>
  	<div class="panel panel-default">
  	 	<div class="panel-heading">
  	     老師基本資訊
@@ -151,8 +152,8 @@
 
 			<div class="panel-footer">
 				<div class="teacher_profile_button">
-					<button class="btn btn-default" type="submit" formaction="/courses/create/step/teacher/save">更新且離開</button>
-					<button class="btn btn-success" type="submit">更新且進入下一步</button>
+					<button class="btn btn-default" type="submit" formaction="/courses/create/step/teacher/save">暫存離開</button>
+					<button class="btn btn-success" type="submit">下一步</button>
 				</div>
 			</div>
 		</form>
@@ -231,4 +232,3 @@
 </script>
 
 @endsection
-
