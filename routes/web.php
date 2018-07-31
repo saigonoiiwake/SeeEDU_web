@@ -43,13 +43,6 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/mypage', function () {
-    return view('mypage');
-})->name('mypage');
-
-Route::get('/mycourse', function () {
-    return view('mycourse');
-})->name('mycourse');
 
 Route::get('/qa', function () {
     return view('qa');
@@ -97,6 +90,14 @@ Route::get('/courses/create/generate/chapter', 'CourseCreateController@generateC
     ->name('/courses/create/generate/chapter');;
 
 
+/*
+Route::get('/mypage', function () {
+    return view('mypage');
+})->name('mypage');
+
+Route::get('/mycourse', function () {
+    return view('mycourse');
+})->name('mycourse');
 
 Route::get('/messenger', 'MessengerController@index')->name('messenger');
 
@@ -134,3 +135,4 @@ Route::get('/results', function(){
                         ->with('categories', \App\BlogCategory::take(5)->get())
                         ->with('query', request('query'));
 });
+*/

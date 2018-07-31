@@ -89,17 +89,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                  <!-- <li>
-                                    <a href="{{ route('mycourse') }}" class="">
-                                        <i class="seoicon-button"> 個人頁面</i>
-                                    </a>
-                                  </li>
-                                  <li>
-                                  <li>
-                                    <a href="#" class="">
-                                        <i class="seoicon-mail-send"> 私人訊息</i>
-                                    </a>
-                                  </li> -->
+                                  
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

@@ -35,7 +35,7 @@
    </div><div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content pix-padding-v-10">
      <div class="pix-padding-v-10">
-      <a href="{{ route('index') }}" class="pix-navy-blue-2"><span class="pix_edit_text">Blog</span></a>
+      <a href="https://medium.com/@service_28123" class="pix-navy-blue-2" target="_blank"><span class="pix_edit_text">Blog</span></a>
      </div>
      <div class="pix-padding-v-10">
       <a href="{{ route('joinus') }}" class="pix-navy-blue-2"><span class="pix_edit_text">加入我們</span></a>
@@ -56,7 +56,7 @@
      <a href="https://www.facebook.com/seeedulive/" class="small-social" target="_blank">
       <i class="fab fa-facebook-square" style="color: rgb(129, 142, 155);"></i>
      </a>
-     <a href="https://www.facebook.com/seeedulive/" class="small-social" target="_blank">
+     <a href="https://www.instagram.com/seeedu_live_school" class="small-social" target="_blank">
       <i class="fab fa-instagram" style="color: rgb(129, 142, 155);"></i>
      </a>
      <a href="mailto:service@seeedu31.com" class="small-social" ><i class="far fa-envelope" style="color: rgb(129, 142, 155);"></i></a>
