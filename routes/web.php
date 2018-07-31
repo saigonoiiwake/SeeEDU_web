@@ -13,6 +13,13 @@
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/courses/category/{id}', [
+  'uses' => 'CourseController@category',
+  'as' => 'category.single'
+]);
+
 Route::post('/coupon/{id}','CouponsController@getCode')->name('coupon.getCode');
 Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
 
@@ -30,51 +37,6 @@ Route::post('/course/checkout/{id}', [
   'uses' => 'CourseController@pay',
   'as' => 'course.checkout'
 ]);
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/messenger', 'MessengerController@index')->name('messenger');
-
-Route::get('/messenger/friendships', 'MessengerController@getFriendship');
-
-Route::get('/messenger/getMessages/{id}', 'MessengerController@getMessagesFor');
-Route::post('/messenger/send', 'MessengerController@send');
-
-Route::get('/blogs', [
-  'uses' => 'BlogController@index',
-  'as' => 'index'
-]);
-
-Route::get('/blog/{slug}', [
-  'uses' => 'BlogController@singlePost',
-  'as' => 'post.single'
-]);
-
-Route::get('/category/{id}', [
-  'uses' => 'BlogController@category',
-  'as' => 'category.single'
-]);
-
-Route::get('/tag/{id}', [
-  'uses' => 'BlogController@tag',
-  'as' => 'tag.single'
-]);
-
-Route::get('/results', function(){
-  $posts = \App\BlogPost::where('title', 'like', '%' . request('query') . '%')->get();
-
-  return view('results')->with('posts', $posts)
-                        ->with('title', 'Search results:' . request('query'))
-                        ->with('settings', \App\Setting::first())
-                        ->with('categories', \App\BlogCategory::take(5)->get())
-                        ->with('query', request('query'));
-});
-
-
 
 
 Route::get('/about', function () {
@@ -100,6 +62,10 @@ Route::get('/policies', function () {
 Route::get('/joinus', function () {
     return view('joinus');
 })->name('joinus');
+
+Route::get('/how-to-take-courses', function () {
+    return view('howtotakecourses');
+})->name('howtotakecourses');
 
 Route::get('/courses/create', function () {
     return view('courses.create.welcome');
@@ -127,10 +93,44 @@ Route::post('/courses/create/step/course/save', 'CourseCreateController@saveCour
 Route::get('/courses/create/complete', 'CourseCreateController@complete')
     ->name('/courses/create/complete');
 
-Route::get('/how-to-take-courses', function () {
-    return view('howtotakecourses');
-})->name('howtotakecourses');
-
-
 Route::get('/courses/create/generate/chapter', 'CourseCreateController@generateChapterTime')
     ->name('/courses/create/generate/chapter');;
+
+
+
+Route::get('/messenger', 'MessengerController@index')->name('messenger');
+
+Route::get('/messenger/friendships', 'MessengerController@getFriendship');
+
+Route::get('/messenger/getMessages/{id}', 'MessengerController@getMessagesFor');
+Route::post('/messenger/send', 'MessengerController@send');
+
+Route::get('/blogs', [
+  'uses' => 'BlogController@index',
+  'as' => 'index'
+]);
+
+Route::get('/blog/{slug}', [
+  'uses' => 'BlogController@singlePost',
+  'as' => 'post.single'
+]);
+
+Route::get('/category/{id}', [
+  'uses' => 'BlogController@category',
+  'as' => 'Blogcategory.single'
+]);
+
+Route::get('/tag/{id}', [
+  'uses' => 'BlogController@tag',
+  'as' => 'tag.single'
+]);
+
+Route::get('/results', function(){
+  $posts = \App\BlogPost::where('title', 'like', '%' . request('query') . '%')->get();
+
+  return view('results')->with('posts', $posts)
+                        ->with('title', 'Search results:' . request('query'))
+                        ->with('settings', \App\Setting::first())
+                        ->with('categories', \App\BlogCategory::take(5)->get())
+                        ->with('query', request('query'));
+});

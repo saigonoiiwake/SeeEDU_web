@@ -240,8 +240,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
   <div class="container">
  	<div class="row">
 
-
-@foreach($courses as $course)
+@foreach($bottom_categories as $bottom_categorie)
+  @foreach($bottom_categorie->course as $course)
  	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
  		 <div class="category"></div>
 
@@ -345,8 +345,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
  	 </div>
+   @endforeach
 @endforeach
-
  	</div>
   </div>
  </div>

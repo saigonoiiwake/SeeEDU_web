@@ -195,7 +195,7 @@ text-transform: capitalize;
                   <div class="form-container-in">
           </div>
           <div class="log-container">
-            <a href="{{ route('welcome') }}"><img id="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="">
+            <a href="{{ route('home') }}"><img id="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="">
           </a>
 
         </div>
@@ -220,7 +220,7 @@ text-transform: capitalize;
               <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 {!! csrf_field() !!}
                  <div class="form-group">
-                  <label for="lname">暱稱</label>
+                  <label for="lname">帳號</label>
                   <input id="lname" type="text" class="form-control{{ $errors->has('nick_name') ? ' is-invalid' : '' }}" name="nick_name" value="{{ old('nick_name') }}" required autofocus>
 
                     @if ($errors->has('nick_name'))

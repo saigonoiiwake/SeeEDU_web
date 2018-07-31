@@ -110,8 +110,8 @@
       <h6 class="pix-black-gray-light text-center pix-margin-bottom-20">
        <span class="pix_edit_text">給您最優質的線上互動體驗</span>
       </h6>
-      <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="btn green-bg pix-white wide btn-lg normal" style="background-color: rgb(66, 157, 235);">
-       <span class="pix_edit_text" target="_blank"><strong>免費下載</strong></span>
+      <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="btn green-bg pix-white wide btn-lg normal"  target="_blank" style="background-color: rgb(66, 157, 235);">
+       <span class="pix_edit_text"><strong>免費下載</strong></span>
       </a>
      </div>
     </div>

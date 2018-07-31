@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\User;
+use App\CourseCategory;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Session;
@@ -17,7 +18,8 @@ class CourseController extends Controller
 {
     public function index()
     {
-      return view('courses')->with('courses', Course::all());
+      return view('courses')->with('courses', Course::all())
+                            ->with('categories', CourseCategory::take(2)->get());
     }
 
     public function singleCourse($id)
@@ -75,7 +77,7 @@ class CourseController extends Controller
       $data = array(
         'course_name' => $course->title,
         'course_price' => $course->price,
-        'from_time' => $course->from_date
+        'from_date' => $course->from_date
       );
 
       //dd($data);
@@ -117,6 +119,32 @@ class CourseController extends Controller
 
 
       return redirect('/course/' . $course->id);
+    }
+
+
+    public function category($id)
+    {
+
+      $second_layers = CourseCategory::where('parent_id', $id)->get();
+      $category_IDs = collect( [$id] );
+
+      foreach($second_layers as $second_layer )
+      {
+        $third_layers = CourseCategory::where('parent_id', $second_layer->id)->get();
+
+        foreach($third_layers as $third_layer)
+        {
+          $category_IDs = $category_IDs->merge( [$third_layer->id] );
+        }
+      }
+
+      //dd($category_IDs);
+
+      $categories = CourseCategory::findMany($category_IDs);
+
+      return view('CourseCategory')->with('bottom_categories', $categories)
+                                  ->with('categories', CourseCategory::take(2)->get());
+
     }
 
 

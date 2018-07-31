@@ -46,7 +46,7 @@
 
                     <!-- Branding Image -->
                     <!-- <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a> -->
-                    <a href="{{ route('welcome') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
+                    <a href="{{ route('home') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -509,7 +509,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                            <h1>親愛的 {{ \Auth::user()->nick_name}} 同學 ：</h1>
+                            <h1>親愛的 {{ \Auth::user()->nick_name }} 同學 ：</h1>
 
                         </td>
                     </tr>
@@ -546,12 +546,12 @@
 	<tbody>
 		<tr>
 			<td height="22" style="text-align: center;">
-			<h2 class="null"><span style="font-size:16px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">感謝您選擇SeeEDU Live School 作為你學習路上的好夥伴：）這次購買的課程為：「{{ $data['course_name'] }}」</span></span></h2>
+			<h2 class="null"><span style="font-size:16px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">感謝您選擇SeeEDU Live School 作為你學習路上的好夥伴：）這次購買的課程：「{{ $data['course_name'] }}」，金額： NT ${{  number_format($data['course_price'],0) }}</span></span></h2>
 			</td>
 		</tr>
 		<tr>
 			<td height="22" style="text-align: center;">
-			<h2 class="null"><span style="font-size:16px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">此課程將於 {{ $data['from_date'] }} 開始上課</span></span></h2></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%;">
+			<h2 class="null"><span style="font-size:16px"><span style="font-family:arial,helvetica neue,helvetica,sans-serif">將於 {{ $data['from_date'] }} 開始上課，提醒您，如有關於課程的問題請參閱常見問題，或直接聯繫線上客服人員。 SeeEDU 團隊祝您學習愉快順利</span></span></h2></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnFollowBlock" style="min-width:100%;">
     <tbody class="mcnFollowBlockOuter">
         <tr>
             <td align="center" valign="top" style="padding:9px" class="mcnFollowBlockInner">
