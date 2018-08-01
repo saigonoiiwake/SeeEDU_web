@@ -34,7 +34,7 @@ Route::get('/course/{id}', [
 ]);
 
 Route::post('/course/checkout/{id}', [
-  'uses' => 'CourseController@pay',
+  'uses' => 'CheckoutController@pay',
   'as' => 'course.checkout'
 ]);
 
