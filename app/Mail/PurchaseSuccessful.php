@@ -7,18 +7,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+
 class PurchaseSuccessful extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     *
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+      $this->data = $data;
     }
 
     /**
@@ -28,6 +31,8 @@ class PurchaseSuccessful extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.purchased');
+        return $this->view('emails.purchased')
+                     ->subject('【SeeEDU Live School】成功購買課程通知')
+                     ->with(['data', $this->data]);
     }
 }

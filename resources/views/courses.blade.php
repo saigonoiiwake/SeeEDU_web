@@ -20,119 +20,6 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 <style>
 
 
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    .classbox {
-      width: 260px;
-      padding: 15px;
-      padding-bottom: 0px;
-      box-sizing: border-box;
-      background-color: white;
-      border-radius: 5px;
-      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-      position: relative;
-      cursor: pointer;
-      display: inline-block;
-      margin: 25px 45px;
-      text-align: left;
-      text-decoration: none;
-    }
-
-    .classbox:hover .bookbtn {
-      bottom: 10px;
-    }
-    .classbox .top {
-      height: 220px;
-      border-radius: 5px 5px 0px 0px;
-      margin: -15px;
-      margin-bottom: 0px;
-      overflow: hidden;
-      position: relative;
-    }
-    .classbox .top .classpicture {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      background-size: cover;
-      transition-duration: 0.3s;
-    }
-
-    .teacherpic {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background-size: cover;
-      border: solid 2px white;
-      border-radius: 100%;
-      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
-      z-index: 10;
-      right: 5px;
-      bottom: 170px;
-    }
-
-    .tag {
-      width: 80px;
-      height: 25px;
-      position: absolute;
-      color: white;
-      top: 20px;
-      left: -40px;
-      padding-top: 5px;
-      text-align: center;
-      background-color: #398DD5;
-      border-radius: 15px;
-      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
-    }
-
-    .teacher_name, .student_number {
-      font-size: 15px;
-      display: inline-block;
-      color: #C3C3C3;
-    }
-
-    .student_number {
-      font-weight: 300;
-      position: absolute;
-      right: 20px;
-    }
-
-    .progressbar {
-      height: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-      background-color: rgba(0, 0, 0, 0.12);
-    }
-    .progressbar .valuebar {
-      background-color: #398DD5;
-      height: 100%;
-			width: 30px;
-      transition-duration: 1s;
-    }
-
-    .view_number, .price {
-      display: inline-block;
-    }
-
-    .view_number {
-      font-weight: 300;
-      font-size: 15px;
-      margin: 10px 0px;
-      color: #C3C3C3;
-    }
-
-    .classtitle, .price {
-      color: #434343;
-    }
-
-    .price {
-      font-size: 15px;
-      posiiton: relative;
-      margin-left: 10px;
-    }
-
 		html, body {
       margin: 0;
       padding: 0;
@@ -193,11 +80,11 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       color: white;
       top: 20px;
       left: -40px;
-      padding-top: 5px;
+      padding-top: 3px;
       text-align: center;
-      background-color: #398DD5;
+      background-color: #429DEB;
       border-radius: 15px;
-      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
     }
 
     .teacher_name, .student_number {
@@ -232,7 +119,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     .view_number {
       font-weight: 300;
       font-size: 15px;
-      margin: 10px 0px;
+      margin: 10px 8px 10px 0px;
       color: #C3C3C3;
     }
 
@@ -243,7 +130,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     .price {
       font-size: 15px;
       posiiton: relative;
-      margin-left: 20px;
+
     }
 
 		.card-container {
@@ -277,7 +164,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 		.course1 span {
 		  position: relative;
-		  top: 14px;
+		  top: 5px;
 		}
 		.weekday {
 		    color: #429DEB;
@@ -290,7 +177,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		  text-align: center;
 		  border: solid 1px #C3C3C3;
 		  border-radius: 5px;
-		  height: 30px;
+		  height: 60px;
 		  width: 200px;
 		  margin-right: auto;
 		  margin-left: auto;
@@ -307,6 +194,12 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		  color: #434343;
 		  line-height: 3px;
 		  transform: rotateY(-180deg);
+
+		}
+
+		.coursetime {
+		  text-align: center;
+		  margin: 10px;
 
 		}
 
@@ -336,7 +229,12 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
        <span class="pix_edit_text"><span style="font-weight: 700;">探索課程</span></span>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text">英文&nbsp; 日文</span>
+       <span class="pix_edit_text">
+				 @foreach($categories as $category)
+
+            <a href="{{ route('category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
+            &nbsp;
+          @endforeach</span>
       </p>
      </div>
     </div>
@@ -350,6 +248,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
 @foreach($courses as $course)
+	@if( $course->status === 'open')
  	 <div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
  		 <div class="category"></div>
 
@@ -365,36 +264,57 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 									</div>
 		 						</div>
 		 						<div class="side back">
+									<h6 class="coursetime"><strong>上課時段</strong><h6>
 
 									<br>
 									<div class="course1">
-										<span>9/20 ~ 11/20</span>
+										<span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
+										<span class="weekday">每週
+											@foreach($course->getDayOfWeek() as $day_of_week)
+												@switch($day_of_week)
+													@case('monday')
+														一
+														@break
+													@case('tuesday')
+														二
+														@break
+													@case('wednesday')
+														三
+														@break
+													@case('thursday')
+														四
+														@break
+													@case('friday')
+														五
+														@break
+													@case('saturday')
+														六
+														@break
+													@case('sunday')
+														日
+														@break
+													@default
+														?
+												@endswitch
+											@endforeach
+										</span>
+										<span>	{{ json_decode($course->data, true)['from_time'] }} ~ {{ json_decode($course->data, true)['to_time'] }}</span></span>
 									</div>
 
-									<br>
-									<div class="course1">
-										<span class="weekday">每週 一 四</span>
+										<br>
+
+									<!-- <div class="course1">
+										<span> 共 {{ count(json_decode($course->data, true)['chapter']) }} 堂課 </span>
+									</div> -->
+									<div class="" style="margin-left: 20px;">
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->getCategoryName(App\CourseCategory::where('id',$course->category()->get()->first()->parent_id)->first()->parent_id) }}</span>
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->getCategoryName($course->category()->get()->first()->parent_id) }}</span>
+										<i class="fas fa-tag" style="color: #313131; font-size: 10px;"></i>
+											<span class="pix_edit_text">{{ $course->category()->get()->first()->name }}</span>
 									</div>
 
-									<br>
-									<div class="course1">
-										<span>21:30 - 23:30 </span>
-									</div>
-
-									<br>
-									<div class="course1">
-										<span>分類一 </span>
-									</div>
-
-									<br>
-									<div class="course1">
-										<span>分類二</span>
-									</div>
-
-									<br>
-									<div class="course1">
-										<span>分類三</span>
-									</div>
 
 		 						</div>
 							</div>
@@ -425,6 +345,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
  	 </div>
+	 @endif
 @endforeach
 
  	</div>

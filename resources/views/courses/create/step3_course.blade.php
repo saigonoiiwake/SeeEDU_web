@@ -59,6 +59,8 @@
 
 <div class="col-md-8 col-md-offset-2">
 
+	<br>
+
 	{{--@if($course_drafts or false)--}}
 	{{--<div class="panel panel-default">--}}
 		{{--<div class="panel-heading">--}}
@@ -263,7 +265,7 @@
 					@endif
 				</div>
 				<div class="form-row col-md-12">
-					<input type="button" class="btn btn-success" onclick="addChapter()" value="add"/>
+					<input type="button" class="btn btn-success" onclick="addChapter()" value="新增"/>
 				</div>
 			</div>
 

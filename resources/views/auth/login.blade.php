@@ -194,7 +194,7 @@ text-transform: capitalize;
                   <div class="form-container-in">
           </div>
           <div class="log-container">
-            <a href="{{ route('welcome') }}"><img id="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="">
+            <a href="{{ route('home') }}"><img id="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="">
           </a>
 
         </div>
