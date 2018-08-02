@@ -220,24 +220,23 @@
 
 @section('content')
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '1573148302793893',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v3.1'
-    });
-  };
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+<!-- Your customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="1551974268251961"
+  logged_in_greeting="嗨！我是SeeEDU的小幫手，請問要找英語還是日語的課程呢？"
+  logged_out_greeting="嗨！我是SeeEDU的小幫手，請問要找英語還是日語的課程呢？">
+</div>
 
 <div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;app/images/travel/intro-bg-3.jpg&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;app/images/travel/intro-bg-3.jpg&quot;)">
   <div class="container">
@@ -590,10 +589,6 @@
      </div>
     </div>
    </div>
-  </div>
-
-  <div class="fb-customerchat"
-   page_id="<seeedulive>">
   </div>
 
 
