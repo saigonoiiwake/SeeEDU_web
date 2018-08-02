@@ -14,7 +14,6 @@
 .container {
 width: 100vw;
 height: 100vh;
-background: url('app/img/register_background.jpg') no-repeat center center fixed;
 background-size: cover;
 }
 #logo{
