@@ -232,7 +232,7 @@
        <span class="pix_edit_text">和同學們一同開啟世界的大門吧！</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
-       <span class="pix_edit_text"><b>開啟學習之旅</b></span>
+       <span class="pix_edit_text"><b>探索直播課程</b></span>
       </a>
      </div>
     </div>
