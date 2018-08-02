@@ -226,7 +226,7 @@
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><strong>語言是一把鑰匙</strong></span>
+       <span class="pix_edit_text">語言是一把鑰匙</span>
       </h1>
       <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
        <span class="pix_edit_text">和同學們一同開啟世界的大門吧！</span>
@@ -242,7 +242,7 @@
        <i class="far fa-comments" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><b>即時互動</b></span>
+       <span class="pix_edit_text"><b>直播即時互動</b></span>
       </h6>
      </div>
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
@@ -534,7 +534,7 @@
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/teammember3.png" alt="">
+         <img src="app/images/wang2.jpg" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -562,8 +562,8 @@
        <div class="media-body media-middle">
         <div class="pix-padding-left-5">
          <h6 class="media-heading pix-black-gray-dark">
-          <span class="pix_edit_text">
-           <strong>登山愛好者 林同學</strong></span>
+           <a href="https://medium.com/@service_28123/%E5%AD%B8%E7%BF%92%E5%83%8F%E7%99%BB%E5%B1%B1-%E5%BE%80%E4%B8%8A%E5%B0%B1%E6%9C%83%E7%9C%8B%E5%88%B0%E6%9B%B4%E9%81%BC%E9%97%8A%E7%9A%84%E9%A2%A8%E6%99%AF-2159bc14dc40" target="_blank"><span class="pix_edit_text">
+            <strong>登山愛好者 林同學</strong></span></a>
          </h6>
         </div>
        </div>

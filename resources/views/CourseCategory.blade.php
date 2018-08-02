@@ -250,8 +250,9 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 @foreach($bottom_categories as $bottom_categorie)
   @foreach($bottom_categorie->course as $course)
-	<div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
-		<div class="category"></div>
+		@if( $course->status === 'open')
+		<div class="col-md-4 col-xs-12 col-sm-6 column ui-droppable">
+			<div class="category"></div>
 
 					 <div class="classbox">
 					 <div class="teacher"><img class="teacherpic" src="{{ $course->teacherOrTA()->get()->first()->avatar }}" alt="" width="200px"/></div>
@@ -345,7 +346,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 					 </div>
 
 
-	</div>
+				 </div>
+			@endif
    @endforeach
 @endforeach
  	</div>

@@ -26,11 +26,20 @@ class CourseController extends Controller
     {
       $course = Course::where('id', $id)->first();
 
-      //update browse number
-      $course->browse_num ++;
-      $course->save();
+      if( $course->status === 'open')
+      {
+        //update browse number
+        $course->browse_num ++;
+        $course->save();
 
-      return view('single_course')->with('course', $course);
+        return view('single_course')->with('course', $course);
+
+      }
+      else
+      {
+        Session::flash('info', '此課程未開放！');
+        return redirect()->back();
+      }
 
     }
 

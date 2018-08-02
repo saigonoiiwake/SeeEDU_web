@@ -48,11 +48,15 @@ class CheckoutController extends Controller
     // Get the payment token ID submitted by the form:
     $token = $_POST['stripeToken'];;
 
-    $final_price = 100*$course->price;
+
 
     if( session()->has('coupon') )
     {
-      $final_price = ($course->price - session()->get('coupon')['discount'])*100;
+      $final_price = (1.1*$course->price - session()->get('coupon')['discount'])*100;
+    }
+    else
+    {
+      $final_price = 100*1.1*$course->price;    //100=>cent to dollar 1.1=>service fees
     }
 
     $charge = Charge::create([
