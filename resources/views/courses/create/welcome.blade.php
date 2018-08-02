@@ -18,8 +18,7 @@
 補習班
 線上課程
 立即開課">
-開課流程介紹
-SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
+	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.fancybox.min.css') }}" />

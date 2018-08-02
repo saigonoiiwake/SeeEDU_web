@@ -219,7 +219,7 @@ text-transform: capitalize;
               <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 {!! csrf_field() !!}
                  <div class="form-group">
-                  <label for="lname">帳號</label>
+                  <label for="lname">暱稱</label>
                   <input id="lname" type="text" class="form-control{{ $errors->has('nick_name') ? ' is-invalid' : '' }}" name="nick_name" value="{{ old('nick_name') }}" required autofocus>
 
                     @if ($errors->has('nick_name'))
