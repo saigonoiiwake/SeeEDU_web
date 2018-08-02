@@ -573,6 +573,10 @@
    </div>
   </div>
 
+  <div class="fb-customerchat"
+   page_id="<seeedulive>">
+  </div>
+
 
 @include('includes.footer')
 
