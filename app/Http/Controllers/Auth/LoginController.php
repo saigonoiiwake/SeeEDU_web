@@ -48,7 +48,11 @@ class LoginController extends Controller
     {
         $userSocial = Socialite::driver('facebook')->user();
 
-        $findUser = User::where('email', $userSocial->email)->first();
+        $token = $userSocial->token;
+        $refreshToken = $userSocial->refreshToken; // not always provided
+        $expiresIn = $userSocial->expiresIn;
+
+        $findUser = User::where('email', $userSocial->getEmail())->first();
 
         if( $findUser )
         {
@@ -57,15 +61,17 @@ class LoginController extends Controller
         else {
           $user = new User;
 
-          $user->name = $userSocial->name;
+          $user->nick_name = $userSocial->getNickname();
 
-          $user->email = $userSocial->email;
+          $user->email = $userSocial->getEmail();
+
+          $user->avatar = $userSocial->getAvatar();
 
           $user->password =  bcrypt(123456);
 
           $user->save();
 
-          Auth::login($userSocial->email);
+          Auth::login($userSocial->getEmail());
 
           return redirect()->back();
         }
