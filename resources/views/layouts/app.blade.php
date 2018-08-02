@@ -20,9 +20,9 @@
 
 
 <style>
-@charset "UTF-8";
-* {
 
+* {
+  font-family: Microsoft JhengHei,Apple LiGothic;
 }
 
 .navbar {
@@ -118,6 +118,18 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+
+                                    <li>
+                                      <a href="#">
+                                          <i class="fas fa-book"> 我的課程(未開放)</i>
+                                      </a>
+                                    </li>
+
+                                    <li>
+                                      <a href="#">
+                                          <i class="far fa-edit"> 購買紀錄(未開放)</i>
+                                      </a>
+                                    </li>
 
                                     <li>
                                         <a href="{{ route('logout') }}"
