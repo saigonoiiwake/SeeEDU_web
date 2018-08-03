@@ -75,6 +75,7 @@ class LoginController extends Controller
           else {
             User::newUser($data);
             DB::commit();
+            \Auth::login($findUser);
           }
 
           return redirect('/');
