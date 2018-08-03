@@ -139,7 +139,7 @@ SeeEDU提供優秀老師一個最佳的舞台	<!-- CSS dependencies -->
  <div class="container">
   <div class="row">
    <div class="col-md-6 col-xs-12 text-center col-sm-6 column ui-droppable">
-    <div class="pix-content"><img src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_350/v1531225020/All_外框-15.png" alt=""></div>
+    <div class="pix-content"><img src="{{ asset('app/images/illustrations/分潤政策-2.png') }}" alt=""></div>
    </div><div class="col-xs-12 col-sm-6 column ui-droppable col-md-6" style="display: block;">
     <div class="pix-content pix-padding-top-60">
      <h2 class="pix-black-gray-dark pix-no-margin-top secondary-font">
