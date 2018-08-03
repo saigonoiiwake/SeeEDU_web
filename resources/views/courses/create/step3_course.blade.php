@@ -334,7 +334,7 @@
             error = true;
 		}
 
-        if (tenAfterDate.getDate() > from.getDate() || tenAfterDate.getDate() > to.getDate()) {
+        if (tenAfterDate.getDate() < from.getDate() || tenAfterDate.getDate() < to.getDate()) {
             toastr.warning('請輸入十天後的日期');
             error = true;
 		}
