@@ -334,12 +334,12 @@
             error = true;
 		}
 
-        if (tenAfterDate.getDate() > from.getDate() || tenAfterDate.getDate() > to.getDate()) {
+        if (tenAfterDate > from|| tenAfterDate > to) {
             toastr.warning('請輸入十天後的日期');
             error = true;
 		}
 
-        if (from.getDate() > to.getDate()) {
+        if (from> to) {
             toastr.warning('上課日期須小於下課日期');
             error = true;
         }
