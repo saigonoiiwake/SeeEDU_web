@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Mockery\Exception;
+use Illuminate\Support\Facades\DB;
 use Socialite;
 use App\User;
 
@@ -52,28 +54,37 @@ class LoginController extends Controller
         $refreshToken = $userSocial->refreshToken; // not always provided
         $expiresIn = $userSocial->expiresIn;
 
-        $findUser = User::where('email', $userSocial->getEmail())->first();
+        DB::beginTransaction();
 
-        if( $findUser )
-        {
-          Auth::login($findUser);
-        }
-        else {
-          $user = new User;
+        try {
 
-          $user->nick_name = $userSocial->getNickname();
+          $findUser = User::where('email', $userSocial->getEmail())->first();
 
-          $user->email = $userSocial->getEmail();
+          if( $findUser )
+          {
+            Auth::login($findUser);
+          }
+          else {
+            $user = new User;
 
-          $user->avatar = $userSocial->getAvatar();
+            $user->nick_name = $userSocial->getName();;
 
-          $user->password =  bcrypt(123456);
+            $user->email = $userSocial->getEmail();
 
-          $user->save();
+            $user->avatar = $userSocial->getAvatar();
 
-          Auth::login($userSocial->getEmail());
+            $user->password = bcrypt(123456);
 
-          return redirect()->back();
+            $user->save();
+
+            Auth::login($userSocial->getEmail());
+
+            return redirect()->back();
+          }
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
         }
 
     }

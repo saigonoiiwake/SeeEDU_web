@@ -83,12 +83,12 @@
                     <ul class="nav navbar-nav">
                         <li class="">
                             <a href="{{ route('/courses/create/welcome') }}" class="">
-                                <i class="seoicon-lightbulb-on"> 開課去</i>
+                                <i class="far fa-lightbulb"> 開課去</i>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('courses') }}" class="">
-                                <i class="seoicon-people"> 選課去</i>
+                                <i class="far fa-eye"> 選課去</i>
                             </a>
                         </li>
 

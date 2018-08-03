@@ -17,7 +17,10 @@
 
 @section('content')
 
-
+<br>
+<br>
+<br>
+<br>
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
@@ -99,7 +102,7 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="avatar">更新大頭貼</label>
+					<label for="avatar">更新大頭貼 (1MB以下)</label>
 					<input accept="image/*" id="uploadImage" type="file" name="avatar">
 					<div class="container col-md-2">
 						<img id="img" src="{{ asset($teacher_profile['avatar']) }}" style="max-width: 100%; height: auto;">

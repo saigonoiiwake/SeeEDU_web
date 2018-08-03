@@ -21,6 +21,11 @@
 @stop
 
 @section('content')
+
+<br>
+<br>
+<br>
+<br>
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
@@ -142,7 +147,7 @@
 					</select>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="featured">課程圖片</label>
+					<label for="featured">課程圖片 (1MB以下)</label>
 					<input accept="image/*" id="uploadImage" type="file" name="featured">
 					<div class="container col-md-12">
 						<img id="img" src="" style="max-width: 100%; height: auto;">
