@@ -70,13 +70,14 @@ class LoginController extends Controller
           if( $findUser )
           {
             \Auth::login($findUser);
+            return redirect()->back();
           }
           else {
             User::newUser($data);
             DB::commit();
           }
 
-          return redirect()->back();
+
 
         } catch (\Exception $e) {
             DB::rollback();
