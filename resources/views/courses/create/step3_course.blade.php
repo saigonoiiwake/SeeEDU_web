@@ -368,8 +368,6 @@
             error = true;
         }
 
-        console.log((monday || tuesday || wednesday || thursday || friday || saturday || sunday));
-
         if (!(monday || tuesday || wednesday || thursday || friday || saturday || sunday)) {
             toastr.warning('請勾選星期');
             error = true;
@@ -387,13 +385,13 @@
 				to_date: toDate,
 				from_time: fromTime,
 				to_time: toTime,
-				monday: document.getElementById('monday').checked,
-        		tuesday: document.getElementById('tuesday').checked,
-				wednesday: document.getElementById('wednesday').checked,
-				thursday: document.getElementById('thursday').checked,
-        		friday: document.getElementById('friday').checked,
-        		saturday: document.getElementById('saturday').checked,
-				sunday: document.getElementById('sunday').checked
+				monday: monday,
+        		tuesday: tuesday,
+				wednesday: wednesday,
+				thursday: thursday,
+        		friday: friday,
+        		saturday: saturday,
+				sunday: sunday
             },
 			success: function(data) {
                 toastr.success('成功生成章節');
