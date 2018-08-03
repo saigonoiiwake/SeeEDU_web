@@ -74,8 +74,12 @@ class LoginController extends Controller
           }
           else {
             User::newUser($data);
+
+            $newUser = User::where('email', $userSocial->getEmail())->first();
+
+            \Auth::login($newUser);
+
             DB::commit();
-            \Auth::login($findUser);
           }
 
           return redirect('/');
