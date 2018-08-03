@@ -58,6 +58,13 @@ class LoginController extends Controller
 
         try {
 
+          $data = [
+            'nick_name' => $userSocial->getName(),
+            'email' => $userSocial->getEmail(),
+            'avatar' => $userSocial->getAvatar(),
+            'password' =>  bcrypt(123456),
+          ];
+
           $findUser = User::where('email', $userSocial->getEmail())->first();
 
           if( $findUser )
@@ -65,21 +72,8 @@ class LoginController extends Controller
             Auth::login($findUser);
           }
           else {
-            $user = new User;
-
-            $user->nick_name = $userSocial->getName();;
-
-            $user->email = $userSocial->getEmail();
-
-            $user->avatar = $userSocial->getAvatar();
-
-            $user->password = bcrypt(123456);
-
-            $user->save();
-
-            Auth::login($userSocial->getEmail());
-
-            return redirect()->back();
+            User::newUser($data);
+            DB::commit();
           }
 
         } catch (\Exception $e) {
