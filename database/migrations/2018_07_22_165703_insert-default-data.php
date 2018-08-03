@@ -20,7 +20,7 @@ class InsertDefaultData extends Migration
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (1, \'日文\', 1, 0, 0, now(), now());');
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (2, \'英文\', 1, 0, 0, now(), now());');
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (3, \'JLPT\', 2, 1, 0, now(), now());');
-        DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (4, \'日文會話\', 2, 2, 0, now(), now());');
+        DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (4, \'日文會話\', 2, 1, 0, now(), now());');
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (5, \'TOEIC\', 2, 2, 0, now(), now());');
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (6, \'TOEFL iBT\', 2, 2, 0, now(), now());');
         DB::statement('INSERT INTO course_category (id, name, level, parent_id, display_order, created_at, updated_at) VALUES (7, \'N1\', 3, 3, 0, now(), now());');

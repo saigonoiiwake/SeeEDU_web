@@ -35,6 +35,7 @@ class CourseDraft extends Model
     {
         return Validator::make($data, [
             'title' => 'required',
+            'price' => 'max:999999'
         ]);
     }
 

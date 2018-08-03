@@ -14,7 +14,6 @@ use App\Service\ParameterService;
 use App\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 
@@ -226,16 +225,35 @@ class CourseCreateController extends Controller
             ];
         });
 
-        $course_drafts = auth()->user()->courseDraft;
+        $course_draft = auth()->user()->courseDraft->last();
+        if($course === null && $course_draft) {
+            $course = [
+                'draft_id'    => $course_draft->id,
+                'title'       => $course_draft['title'],
+                'category_1'  => json_decode($course_draft->data, true)['category_1'],
+                'category_2'  => json_decode($course_draft->data, true)['category_2'],
+                'category_3'  => json_decode($course_draft->data, true)['category_3'],
+                'video'       => $course_draft['video'],
+                'description' => $course_draft['description'],
+                'from_date'   => $course_draft['from_date'],
+                'to_date'     => $course_draft['to_date'],
+                'from_time'   => json_decode($course_draft->data, true)['from_time'],
+                'to_time'     => json_decode($course_draft->data, true)['to_time'],
+                'day_of_week' => json_decode($course_draft->data, true)['day_of_week'],
+                'chapter'     => json_decode($course_draft->chapter, true),
+                'min_num'     => $course_draft['min_num'],
+                'max_num'     => $course_draft['max_num'],
+                'price'       => $course_draft['price'],
+            ];
+        }
 
-        Log::error($course);
-
-        return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories, 'course_drafts' => $course_drafts]);
+        return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories]);
     }
 
     public function previousStepForCourse(Request $request)
     {
         $course = [
+            'draft_id'    => ParameterService::get($request->toArray(),'draft_id'),
             'title'       => $request['title'],
             'category_1'  => $request['category_1'],
             'category_2'  => $request['category_2'],
@@ -263,6 +281,7 @@ class CourseCreateController extends Controller
         $chapter = array_values(ParameterService::get($request->toArray(),'chapter', []));
         sort($chapter);
         $course = [
+            'draft_id'    => $request['draft_id'],
             'title'       => $request['title'],
             'category_1'  => $request['category_1'],
             'category_2'  => $request['category_2'],
@@ -347,7 +366,7 @@ class CourseCreateController extends Controller
             $file->move($file_dir, $file_name);
 
             $chapters = array_values($validatedData['chapter']);
-            sort($validatedData['chapter']);
+            sort($chapters);
 
             $course_param = [
                 'title'              => $validatedData['title'],
@@ -396,6 +415,12 @@ class CourseCreateController extends Controller
                 'role_id'   => 1,
             ]);
 
+
+            $draft_id = ParameterService::get($request->toArray(),'draft_id', null);
+            if ($draft_id) {
+                CourseDraft::where('id',$draft_id)->delete();
+            }
+
             DB::commit();
 
         } catch (\Exception $e) {
@@ -413,21 +438,45 @@ class CourseCreateController extends Controller
 
     public function saveCourseDraft(Request $request)
     {
-        DB::beginTransaction();
+        $chapter = array_values(ParameterService::get($request->toArray(),'chapter', []));
+        sort($chapter);
+        $course = [
+            'title'       => $request['title'],
+            'category_1'  => $request['category_1'],
+            'category_2'  => $request['category_2'],
+            'category_3'  => $request['category_3'],
+            'video'       => $request['video'],
+            'description' => $request['description'],
+            'from_date'   => $request['from_date'],
+            'to_date'     => $request['to_date'],
+            'from_time'   => $request['from_time'],
+            'to_time'     => $request['to_time'],
+            'day_of_week' => ParameterService::get($request->toArray(),'day_of_week', []),
+            'chapter'     => $chapter,
+            'min_num'     => $request['min_num'],
+            'max_num'     => $request['max_num'],
+            'price'       => $request['price'],
+        ];
+        $request->session()->put('course', $course);
 
+        $validatedData = $request->validate([
+            'price'       => 'max:999999',
+        ]);
+
+        DB::beginTransaction();
         try {
             $draft_param = [
                 'title'              => $request['title'],
                 'course_category_id' => $request['category_3'],
-                'video'              => $request['video'],
+                'video'              => $request['video'] ? $request['video'] : "",
                 'from_date'          => $request['from_date'],
                 'to_date'            => $request['to_date'],
                 'min_num'            => $request['min_num'],
                 'max_num'            => $request['max_num'],
                 'currency_id'        => 1,
-                'price'              => $request['price'],
+                'price'              => $validatedData['price'],
                 'description'        => $request['description'],
-                'chapter'            => $request['chapter'],
+                'chapter'            => $chapter,
                 'data'               => [
                     'day_of_week' => $request['day_of_week'],
                     'from_time'   => $request['from_time'],

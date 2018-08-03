@@ -66,32 +66,6 @@
 
 	<br>
 
-	{{--@if($course_drafts or false)--}}
-	{{--<div class="panel panel-default">--}}
-		{{--<div class="panel-heading">--}}
-			{{--課程草稿--}}
-		{{--</div>--}}
-		{{--<div class="panel-body">--}}
-			{{--<table class="table">--}}
-				{{--<thead>--}}
-					{{--<tr>--}}
-						{{--<th> 編號 </th>--}}
-						{{--<th> 標題 </th>--}}
-					{{--</tr>--}}
-				{{--</thead>--}}
-				{{--<tbody>--}}
-				{{--@foreach($course_drafts as $draft)--}}
-					{{--<tr onclick="{{ route("/courses/create/step/course") }}" style="cursor: pointer;">--}}
-						{{--<td><a href="#">{{ $draft['id'] }}</a></td>--}}
-						{{--<td><a href="#">{{ $draft['title'] }}</a></td>--}}
-					{{--</tr>--}}
-				{{--@endforeach--}}
-				{{--</tbody>--}}
-			{{--</table>--}}
-		{{--</div>--}}
-	{{--</div>--}}
-	{{--@endif--}}
-
 	<div class="panel panel-default">
 		<form class="form" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
@@ -112,6 +86,8 @@
 					</div>
 				@endif
 
+				<input name="draft_id" value="{{ $course['draft_id'] or '' }}" hidden>
+
 				<div class="form-group col-md-12" >
 					<label for="title">課程名稱</label>
 					<input name="title" id="title" class="form-control" value="{{ $course['title'] or '' }}">
@@ -120,7 +96,7 @@
 					<label for="title">課程類別</label>
 					{{--Level 1--}}
 					<select class="form-control" name="category_1" id="level-1">
-						<option data-subgroup="" value="" selected disabled>請選擇</option>
+						<option data-subgroup="" value="0" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 1)
 								<option data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_1'] or false) ? ($course['category_1'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
@@ -294,7 +270,7 @@
 				<div class="form-group">
 					<div class="form-row col-md-12">
 						<label for="price">課程售價(新台幣)</label><span class="required">*</span>
-						<input type="number" class="form-control" id="price" placeholder="" name="price" value="{{ $course['price'] or '' }}">
+						<input type="number" class="form-control" id="price" placeholder="" name="price" min="1" max="999999" value="{{ $course['price'] or '' }}">
 					</div>
 				</div>
 
@@ -487,9 +463,9 @@
     setHierarchySelectEvent('#level-1', '#level-2');
     setHierarchySelectEvent('#level-2', '#level-3');
     //セレクトボックスの初期値
-    $('#level-1').val({{ ($course['category_1'] or false) ? $course['category_1'] : '' }}).change();
-    $('#level-2').val({{ ($course['category_2'] or false) ? $course['category_2'] : '' }}).change();
-    $('#level-3').val({{ ($course['category_3'] or false) ? $course['category_3'] : '' }}).change();
+    $('#level-1').val({{ ($course['category_1'] or false) ? $course['category_1'] : '0' }}).change();
+    $('#level-2').val({{ ($course['category_2'] or false) ? $course['category_2'] : '0' }}).change();
+    $('#level-3').val({{ ($course['category_3'] or false) ? $course['category_3'] : '0' }}).change();
 
     function setHierarchySelectEvent(parentSelect, childSelect){
         var initCategorySmallHtml = $(childSelect).html();
@@ -513,15 +489,9 @@
                     }
                 });
             }
-            $(childSelect).val('').change();
+            $(childSelect).val('0').change();
         });
     }
-
-    function readDraft($id) {
-
-	}
-
-
 </script>
 
 @endsection
