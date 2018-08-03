@@ -77,7 +77,7 @@ class LoginController extends Controller
             DB::commit();
           }
 
-          return redirect('home');
+          return redirect('/');
 
 
         } catch (\Exception $e) {
