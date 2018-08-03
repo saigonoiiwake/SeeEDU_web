@@ -76,6 +76,8 @@ class LoginController extends Controller
             DB::commit();
           }
 
+          return redirect()->back();
+
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
