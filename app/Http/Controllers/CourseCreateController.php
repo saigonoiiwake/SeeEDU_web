@@ -98,6 +98,7 @@ class CourseCreateController extends Controller
             'education.0'  => 'required',
             'experience.0' => 'required',
             'about'        => 'required|max:50',
+            'avatar'       => 'max:1000'
         ]);
 
         DB::beginTransaction();
@@ -159,7 +160,7 @@ class CourseCreateController extends Controller
         $request->validate([
             'nick_name' => 'required',
             'birthday'  => 'date',
-            'about'     => 'max:50',
+            'about'     => 'max:100',
         ]);
 
         DB::beginTransaction();
@@ -321,7 +322,7 @@ class CourseCreateController extends Controller
             'category_1'  => 'required|integer',
             'category_2'  => 'required|integer',
             'category_3'  => 'required|integer',
-            'featured'    => 'required|file',
+            'featured'    => 'required|file|max:1000',
             'video'       => 'required|active_url',
             'description' => 'required',
             // start date should be large than 10 day from today

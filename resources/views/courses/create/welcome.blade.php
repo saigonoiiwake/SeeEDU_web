@@ -29,6 +29,10 @@
 @stop
 
 @section('content')
+<br>
+<br>
+<br>
+<br>
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block;">
  <div class="container">
   <div class="row">
