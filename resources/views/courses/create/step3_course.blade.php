@@ -154,7 +154,7 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="video">課程介紹影片(網址)</label>
+					<label for="video">課程介紹影片(例如：https://www.youtube.com/embed/影片編號 )</label>
 					<input name="video" id="video" class="form-control" value="{{ $course['video'] or '' }}">
 				</div>
 				<div class="form-group col-md-12" >

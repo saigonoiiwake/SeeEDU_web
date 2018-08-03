@@ -70,7 +70,6 @@ class CheckoutController extends Controller
         'source' => $token
       ]);
 
-      Session::flash('success', '成功付款，請至信箱確認');
 
       $data = array(
         'course_name' => $course->title,
@@ -115,12 +114,14 @@ class CheckoutController extends Controller
         'user_id' => $uid
       ]);
 
+      Session::flash('success', '成功付款，請至信箱確認');
+
       DB::commit();
     }catch (\Exception $e) {
         DB::rollback();
         report($e);
 
-        return 0;
+      Session::flash('warning', '您的信用卡無法付款，請聯繫客服人員');
     }
 
     session()->forget('coupon');

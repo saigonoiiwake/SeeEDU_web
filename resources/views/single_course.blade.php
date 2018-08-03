@@ -382,6 +382,7 @@ span.psw {
 									data-image="{{ asset('app/images/illustrations/checkout.png')}}"
 									data-locale="en"
 									data-currency="twd"
+									data-email="{{ \Auth::user()->email }}"
 									data-label="立即購買">
 								</script>
 							 </form>
