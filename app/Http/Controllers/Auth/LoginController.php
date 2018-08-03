@@ -69,7 +69,7 @@ class LoginController extends Controller
 
           if( $findUser )
           {
-            Auth::login($findUser);
+            \Auth::login($findUser);
           }
           else {
             User::newUser($data);
