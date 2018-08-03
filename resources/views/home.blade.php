@@ -220,19 +220,37 @@
 
 @section('content')
 
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="1551974268251961"
+  logged_in_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！"
+  logged_out_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！">
+</div>
+
 <div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;app/images/travel/intro-bg-3.jpg&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;app/images/travel/intro-bg-3.jpg&quot;)">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><strong>語言是一把鑰匙</strong></span>
+       <span class="pix_edit_text">語言是一把鑰匙</span>
       </h1>
       <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
        <span class="pix_edit_text">和同學們一同開啟世界的大門吧！</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
-       <span class="pix_edit_text"><b>開啟學習之旅</b></span>
+       <span class="pix_edit_text"><b>探索直播課程</b></span>
       </a>
      </div>
     </div>
@@ -242,7 +260,7 @@
        <i class="far fa-comments" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><b>即時互動</b></span>
+       <span class="pix_edit_text"><b>直播即時互動</b></span>
       </h6>
      </div>
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
@@ -507,7 +525,7 @@
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">我的工作是IC晶片設計開發，利用下班時間在SeeEDU上課，今年成功考到N3，希望未來在工作上可以活用日語能力。</span>
+       <span class="pix_edit_text">我是任職於台積電的工程師，利用下班時間在SeeEDU上課，SeeEDU不僅具備上課時間、地點較為彈性等優點，課程品質及教學效果更是讓人驚豔。希望今年能成功考到N3，並在工作上活用日語能力。</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
@@ -529,12 +547,12 @@
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">學習英日語是為了到國外看看，我希望能到日本留學，進入設計領域一流的學校，完成夢想並向他們的職人精神看齊。</span>
+       <span class="pix_edit_text">我偏好小班教學，但在開始工作後時間常常無法配合，昂貴的學費往往都成為浪費。在SeeEDU能享受小班即時問答和無線觀看課程影片的好處，日文真的進步很多！</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
         <div class="pix-round-shape-60">
-         <img src="app/images/teammember3.png" alt="">
+         <img src="app/images/wang2.jpg" alt="">
         </div>
        </div>
        <div class="media-body media-middle">
@@ -551,7 +569,7 @@
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">現實生活中我是一名數學老師，但在這裡我是資深學生。學習日語是為了到日本攀登不同的山，閱覽不同的風景。</span>
+       <span class="pix_edit_text">現實生活中我是一名資深登山客，但在這裡我是日文初學者。我發現學習像登山，往上就會看到更遼闊的風景，上完課後我就能在日本繼續挑戰各個山岳，蝦咪攏不驚！</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
@@ -562,8 +580,8 @@
        <div class="media-body media-middle">
         <div class="pix-padding-left-5">
          <h6 class="media-heading pix-black-gray-dark">
-          <span class="pix_edit_text">
-           <strong>登山愛好者 林同學</strong></span>
+           <a href="https://medium.com/@service_28123/%E5%AD%B8%E7%BF%92%E5%83%8F%E7%99%BB%E5%B1%B1-%E5%BE%80%E4%B8%8A%E5%B0%B1%E6%9C%83%E7%9C%8B%E5%88%B0%E6%9B%B4%E9%81%BC%E9%97%8A%E7%9A%84%E9%A2%A8%E6%99%AF-2159bc14dc40" target="_blank"><span class="pix_edit_text">
+            <strong>登山愛好者 陳同學</strong></span></a>
          </h6>
         </div>
        </div>

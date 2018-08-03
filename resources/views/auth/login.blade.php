@@ -13,7 +13,6 @@
 .container {
 width: 100vw;
 height: 100vh;
-background: url('app/img/login_background.jpg') no-repeat center center fixed;
 background-size: cover;
 }
 #logo{
@@ -186,6 +185,29 @@ text-transform: capitalize;
 </head>
 
 <body>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '247057992791403',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.1'
+      });
+
+      FB.AppEvents.logPageView();
+
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <div class="container">
     <div class="flex-container">
       <div class="row full">
@@ -205,10 +227,10 @@ text-transform: capitalize;
               <h3 class="lead-text"> 使用社群帳號登入 </h3>
                 <div id="social-platforms">
                   <div class="media-container">
-                    <a class="btnn btnn-icon btnn-facebook" href="#"><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
+                    <a class="btnn btnn-icon btnn-facebook" href=" {{ route('login.facebook') }} "><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
                   </div>
                   <div class="media-container">
-                     <a class="btnn btnn-icon btnn-google" href="#"><i class="fa fa-google">
+                     <a class="btnn btnn-icon btnn-google" href="{{ route('login.google') }}"><i class="fa fa-google">
                 </i><span>Google+</span></a>
                   </div>
                 </div>

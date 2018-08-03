@@ -217,9 +217,9 @@ span.psw {
 				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
 
 				 @if( !session()->has('coupon') )
-         <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price,0) }}</span></span></h4>
+         <h4><span class="price"><span class="dollor">NT$ {{ number_format(1.1*$course->price,0) }}</span></span></h4>
 				 @else
-				    <h4><span class="price"><span class="dollor">NT$ {{ number_format($course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
+				    <h4><span class="price"><span class="dollor">NT$ {{ number_format(1.1*$course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
 				 @endif
 
 			</div>
@@ -235,12 +235,12 @@ span.psw {
 					@endif
 
 					@php
-						$final_price = $course->price*100
+						$final_price = $course->price*100*1.1
 					@endphp
 
 					@if( session()->has('coupon') )
 						@php
-						$final_price =  ($course->price - session()->get('coupon')['discount'])*100
+						$final_price =  (1.1*$course->price - session()->get('coupon')['discount'])*100
 						@endphp
 					@endif
 

@@ -17,7 +17,10 @@
 
 @section('content')
 
-
+<br>
+<br>
+<br>
+<br>
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
@@ -99,7 +102,7 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="avatar">更新大頭貼</label>
+					<label for="avatar">更新大頭貼 (1MB以下)</label>
 					<input accept="image/*" id="uploadImage" type="file" name="avatar">
 					<div class="container col-md-2">
 						<img id="img" src="{{ asset($teacher_profile['avatar']) }}" style="max-width: 100%; height: auto;">
@@ -145,7 +148,7 @@
 
 
 				<div class="form-group" >
-					<label for="about">簡介(約50字)</label>
+					<label for="about">簡介(少於200字)</label>
 					<textarea name="about" id="about" rows="5" cols="5" class="form-control">{{ $teacher_profile['about'] or '' }}</textarea>
 				</div>
 			</div>
@@ -183,7 +186,6 @@
 
  function delEducation() {
      educationId--;
-     console.log(educationId);
      $("#education-" + educationId).remove();
      if( educationId === 1 ) {
          $("#education-del-btn").remove();

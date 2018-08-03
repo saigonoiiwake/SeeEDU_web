@@ -14,7 +14,6 @@
 .container {
 width: 100vw;
 height: 100vh;
-background: url('app/img/register_background.jpg') no-repeat center center fixed;
 background-size: cover;
 }
 #logo{
@@ -206,10 +205,10 @@ text-transform: capitalize;
               <h3 class="lead-text"> 使用社群帳號登入 </h3>
                 <div id="social-platforms">
                   <div class="media-container">
-                    <a class="btnn btnn-icon btnn-facebook" href="#"><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
+                    <a class="btnn btnn-icon btnn-facebook" href="{{ route('login.facebook') }}"><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
                   </div>
                   <div class="media-container">
-                     <a class="btnn btnn-icon btnn-google" href="#"><i class="fa fa-google">
+                     <a class="btnn btnn-icon btnn-google" href="{{ route('login.google') }}"><i class="fa fa-google">
                 </i><span>Google+</span></a>
                   </div>
                 </div>
@@ -220,7 +219,7 @@ text-transform: capitalize;
               <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 {!! csrf_field() !!}
                  <div class="form-group">
-                  <label for="lname">帳號</label>
+                  <label for="lname">暱稱</label>
                   <input id="lname" type="text" class="form-control{{ $errors->has('nick_name') ? ' is-invalid' : '' }}" name="nick_name" value="{{ old('nick_name') }}" required autofocus>
 
                     @if ($errors->has('nick_name'))

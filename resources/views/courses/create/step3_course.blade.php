@@ -21,6 +21,11 @@
 @stop
 
 @section('content')
+
+<br>
+<br>
+<br>
+<br>
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
@@ -142,7 +147,7 @@
 					</select>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="featured">課程圖片</label>
+					<label for="featured">課程圖片 (1MB以下)</label>
 					<input accept="image/*" id="uploadImage" type="file" name="featured">
 					<div class="container col-md-12">
 						<img id="img" src="" style="max-width: 100%; height: auto;">
@@ -158,7 +163,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-					  <label for="from_date">課程開始日期</label><span class="required">*</span>
+					  <label for="from_date">課程開始日期(至少十天後)</label><span class="required">*</span>
 					  <input type="date" class="form-control" id="from_date" placeholder="2018/04/06" name="from_date" value="{{ $course['from_date'] or '' }}">
 					</div>
 
@@ -328,9 +333,48 @@
         var toDate = document.getElementById('to_date').value;
         var fromTime = document.getElementById('from_time').value;
         var toTime = document.getElementById('to_time').value;
+        var tenAfterDate = new Date();
+        tenAfterDate.setDate(tenAfterDate.getDate() + 10);
+        var from = new Date(fromDate);
+        var to = new Date(toDate);
 
-        if (!fromDate || !toDate || !fromTime || !toTime || fromTime > toTime) {
-			return;
+        var monday = document.getElementById('monday').checked;
+        var tuesday = document.getElementById('tuesday').checked;
+        var wednesday = document.getElementById('wednesday').checked;
+        var thursday = document.getElementById('thursday').checked;
+        var friday = document.getElementById('friday').checked;
+        var saturday = document.getElementById('saturday').checked;
+        var sunday = document.getElementById('sunday').checked;
+
+        var error = false;
+
+        if (!fromDate || !toDate || !fromTime || !toTime ) {
+            toastr.warning('請輸入日期與時間');
+            error = true;
+		}
+
+		if (fromTime > toTime) {
+            toastr.warning('上課時間須小於下課時間');
+            error = true;
+		}
+
+        if (tenAfterDate.getDate() > from.getDate() || tenAfterDate.getDate() > to.getDate()) {
+            toastr.warning('請輸入十天後的日期');
+            error = true;
+		}
+
+        if (from.getDate() > to.getDate()) {
+            toastr.warning('上課日期須小於下課日期');
+            error = true;
+        }
+
+        if (!(monday || tuesday || wednesday || thursday || friday || saturday || sunday)) {
+            toastr.warning('請勾選星期');
+            error = true;
+        }
+
+        if (error) {
+            return
 		}
 
         $.get({
@@ -341,17 +385,16 @@
 				to_date: toDate,
 				from_time: fromTime,
 				to_time: toTime,
-				monday: document.getElementById('monday').checked,
-        		tuesday: document.getElementById('tuesday').checked,
-				wednesday: document.getElementById('wednesday').checked,
-				thursday: document.getElementById('thursday').checked,
-        		friday: document.getElementById('friday').checked,
-        		saturday: document.getElementById('saturday').checked,
-				sunday: document.getElementById('sunday').checked
+				monday: monday,
+        		tuesday: tuesday,
+				wednesday: wednesday,
+				thursday: thursday,
+        		friday: friday,
+        		saturday: saturday,
+				sunday: sunday
             },
 			success: function(data) {
-			    console.log(data);
-
+                toastr.success('成功生成章節');
 			    if (data.length > 0) {
                     numberOfChapter = data.length;
                     $("#chapter-detail").empty();
@@ -363,7 +406,6 @@
                         $("#chapter-detail").append(
                             getChapterFormat(id, value['from_datetime'],value['to_datetime'])
                         );
-
                     });
 
 				} else {

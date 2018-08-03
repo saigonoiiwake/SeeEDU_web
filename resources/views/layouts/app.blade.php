@@ -20,9 +20,9 @@
 
 
 <style>
-@charset "UTF-8";
-* {
 
+* {
+  font-family: Microsoft JhengHei,Apple LiGothic;
 }
 
 .navbar {
@@ -83,12 +83,12 @@
                     <ul class="nav navbar-nav">
                         <li class="">
                             <a href="{{ route('/courses/create/welcome') }}" class="">
-                                <i class="seoicon-lightbulb-on"> 開課去</i>
+                                <i class="far fa-lightbulb"> 開課去</i>
                             </a>
                         </li>
                         <li class="">
                             <a href="{{ route('courses') }}" class="">
-                                <i class="seoicon-people"> 選課去</i>
+                                <i class="far fa-eye"> 選課去</i>
                             </a>
                         </li>
 
@@ -118,6 +118,18 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+
+                                    <li>
+                                      <a href="#">
+                                          <i class="fas fa-book"> 我的課程(未開放)</i>
+                                      </a>
+                                    </li>
+
+                                    <li>
+                                      <a href="#">
+                                          <i class="far fa-edit"> 購買紀錄(未開放)</i>
+                                      </a>
+                                    </li>
 
                                     <li>
                                         <a href="{{ route('logout') }}"

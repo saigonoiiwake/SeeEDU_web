@@ -97,7 +97,8 @@ class CourseCreateController extends Controller
             'phone_number' => 'required',
             'education.0'  => 'required',
             'experience.0' => 'required',
-            'about'        => 'required|max:50',
+            'about'        => 'required|max:200',
+            'avatar'       => 'max:1000'
         ]);
 
         DB::beginTransaction();
@@ -159,7 +160,7 @@ class CourseCreateController extends Controller
         $request->validate([
             'nick_name' => 'required',
             'birthday'  => 'date',
-            'about'     => 'max:50',
+            'about'     => 'max:100',
         ]);
 
         DB::beginTransaction();
@@ -227,6 +228,8 @@ class CourseCreateController extends Controller
 
         $course_drafts = auth()->user()->courseDraft;
 
+        Log::error($course);
+
         return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories, 'course_drafts' => $course_drafts]);
     }
 
@@ -243,8 +246,8 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => ParameterService::get($request,'day_of_week', []),
-            'chapter'     => ParameterService::get($request,'chapter', []),
+            'day_of_week' => ParameterService::get($request->toArray(),'day_of_week', []),
+            'chapter'     => ParameterService::get($request->toArray(),'chapter', []),
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
             'price'       => $request['price'],
@@ -256,10 +259,8 @@ class CourseCreateController extends Controller
 
     public function submitCourse(Request $request)
     {
-        Log::info($request);
-
         // reindex chapter and sort it by time
-        $chapter = array_values(ParameterService::get($request,'chapter', []));
+        $chapter = array_values(ParameterService::get($request->toArray(),'chapter', []));
         sort($chapter);
         $course = [
             'title'       => $request['title'],
@@ -272,7 +273,7 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => ParameterService::get($request,'day_of_week', []),
+            'day_of_week' => ParameterService::get($request->toArray(),'day_of_week', []),
             'chapter'     => $chapter,
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
@@ -321,7 +322,7 @@ class CourseCreateController extends Controller
             'category_1'  => 'required|integer',
             'category_2'  => 'required|integer',
             'category_3'  => 'required|integer',
-            'featured'    => 'required|file',
+            'featured'    => 'required|file|max:1000',
             'video'       => 'required|active_url',
             'description' => 'required',
             // start date should be large than 10 day from today
@@ -333,7 +334,7 @@ class CourseCreateController extends Controller
             'chapter'     => ['required', 'array', 'min:1', new \App\Rules\Chapter($request['from_date'], $request['to_date'])],
             'min_num'     => 'required|integer|min:1|max:max_num',
             'max_num'     => 'required|integer|min:1',
-            'price'       => 'required|integer',
+            'price'       => 'required|integer|max:999999',
         ]);
 
         DB::beginTransaction();
