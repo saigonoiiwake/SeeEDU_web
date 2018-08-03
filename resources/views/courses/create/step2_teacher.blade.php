@@ -41,7 +41,7 @@
   <div class="container">
    <div class="row">
     <div class="col-xs-12 text-center col-sm-8 column ui-droppable col-md-6" style="display: block;">
-     <div class="pix-content"><img src="https://res.cloudinary.com/sabina123/image/upload/v1530274963/基本資料-05.png" alt="" class="img-responsive"></div>
+     <div class="pix-content"><img src="{{ asset('app/images/illustrations/基本資料-05-2.png') }}" alt="" class="img-responsive"></div>
     </div>
     <div class="col-xs-12 col-sm-4 column ui-droppable col-md-6" style="display: block;">
      <div class="pix-content pix-padding-top-120" style="background-repeat: repeat-x; padding: 0px; margin: 80px 0px 0px;">
