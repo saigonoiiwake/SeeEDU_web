@@ -110,7 +110,7 @@
 
                             <li>
 
-                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="65px" height="65px" style="border-radius: 50%; padding-top: 2px;">
+                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="35px" height="35px" style="border-radius: 50%; padding-top: 2px;">
                             </li>
 
                             <li class="dropdown">
