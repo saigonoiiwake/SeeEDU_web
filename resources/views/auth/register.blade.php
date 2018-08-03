@@ -208,7 +208,7 @@ text-transform: capitalize;
                     <a class="btnn btnn-icon btnn-facebook" href="{{ route('login.facebook') }}"><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
                   </div>
                   <div class="media-container">
-                     <a class="btnn btnn-icon btnn-google" href="#"><i class="fa fa-google">
+                     <a class="btnn btnn-icon btnn-google" href="{{ route('login.google') }}"><i class="fa fa-google">
                 </i><span>Google+</span></a>
                   </div>
                 </div>
