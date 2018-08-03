@@ -257,8 +257,6 @@ class CourseCreateController extends Controller
 
     public function submitCourse(Request $request)
     {
-        Log::info($request);
-
         // reindex chapter and sort it by time
         $chapter = array_values(ParameterService::get($request,'chapter', []));
         sort($chapter);
@@ -334,7 +332,7 @@ class CourseCreateController extends Controller
             'chapter'     => ['required', 'array', 'min:1', new \App\Rules\Chapter($request['from_date'], $request['to_date'])],
             'min_num'     => 'required|integer|min:1|max:max_num',
             'max_num'     => 'required|integer|min:1',
-            'price'       => 'required|integer',
+            'price'       => 'required|integer|max:999999',
         ]);
 
         DB::beginTransaction();
