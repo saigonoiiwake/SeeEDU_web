@@ -77,10 +77,7 @@ class CheckoutController extends Controller
         'from_date' => $course->from_date
       );
 
-      //dd($data);
-
       Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful($data));
-
 
       // Store transaction data into Table:transaction
       if( session()->has('coupon') )

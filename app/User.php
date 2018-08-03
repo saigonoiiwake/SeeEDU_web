@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -141,6 +142,8 @@ class User extends Authenticatable
 
     public static function newUser($param)
     {
+        Mail::to($param['email'])->send(new \App\Mail\RegisterSuccessful());
+
         return parent::create([
             'id'        => self::generateIdSafe(),
             'nick_name' => $param['nick_name'],
