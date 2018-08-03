@@ -228,6 +228,8 @@ class CourseCreateController extends Controller
 
         $course_drafts = auth()->user()->courseDraft;
 
+        Log::error($course);
+
         return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories, 'course_drafts' => $course_drafts]);
     }
 
@@ -244,8 +246,8 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => ParameterService::get($request,'day_of_week', []),
-            'chapter'     => ParameterService::get($request,'chapter', []),
+            'day_of_week' => ParameterService::get($request->toArray(),'day_of_week', []),
+            'chapter'     => ParameterService::get($request->toArray(),'chapter', []),
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],
             'price'       => $request['price'],
@@ -258,7 +260,7 @@ class CourseCreateController extends Controller
     public function submitCourse(Request $request)
     {
         // reindex chapter and sort it by time
-        $chapter = array_values(ParameterService::get($request,'chapter', []));
+        $chapter = array_values(ParameterService::get($request->toArray(),'chapter', []));
         sort($chapter);
         $course = [
             'title'       => $request['title'],
@@ -271,7 +273,7 @@ class CourseCreateController extends Controller
             'to_date'     => $request['to_date'],
             'from_time'   => $request['from_time'],
             'to_time'     => $request['to_time'],
-            'day_of_week' => ParameterService::get($request,'day_of_week', []),
+            'day_of_week' => ParameterService::get($request->toArray(),'day_of_week', []),
             'chapter'     => $chapter,
             'min_num'     => $request['min_num'],
             'max_num'     => $request['max_num'],

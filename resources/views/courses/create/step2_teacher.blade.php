@@ -186,7 +186,6 @@
 
  function delEducation() {
      educationId--;
-     console.log(educationId);
      $("#education-" + educationId).remove();
      if( educationId === 1 ) {
          $("#education-del-btn").remove();
