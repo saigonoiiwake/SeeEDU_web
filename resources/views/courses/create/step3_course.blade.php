@@ -105,7 +105,7 @@
 					</select>
 					{{--Level 2--}}
 					<select class="form-control" name="category_2" id="level-2">
-						<option data-subgroup="" value="" selected disabled>請選擇</option>
+						<option data-subgroup="" value="0" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 2)
 								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_2'] or false) ? ($course['category_2'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
@@ -114,7 +114,7 @@
 					</select>
 					{{--Level 2--}}
 					<select class="form-control" name="category_3" id="level-3">
-						<option data-subgroup="" value="" selected disabled>請選擇</option>
+						<option data-subgroup="" value="0" selected disabled>請選擇</option>
 						@foreach($categories as $category)
 							@if( $category['level'] === 3)
 								<option data-group="{{ $category['parent_id'] }}" data-subgroup="{{ $category['id'] }}" value="{{ $category['id'] }}" {{ ($course['category_3'] or false) ? ($course['category_3'] == $category['id'] ? "selected" : "") : "" }}>{{ $category['name'] }}</option>
