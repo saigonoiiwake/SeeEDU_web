@@ -269,6 +269,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 									<br>
 									<div class="course1">
 										<span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
+										<br>
 										<span class="weekday">每週
 											@foreach($course->getDayOfWeek() as $day_of_week)
 												@switch($day_of_week)
@@ -338,7 +339,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  						 <div class="progressbar">
  							 <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
  						 </div>
- 					 <div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
+ 					 <div class="view_number">瀏覽數<span>{{ 5*$course->browse_num }}</span></div>
  					 <div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
  				 </div>
  			 			</div>

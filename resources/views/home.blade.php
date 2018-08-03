@@ -525,7 +525,7 @@
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">我是任職於台積電的工程師，利用下班時間在SeeEDU上課，SeeEDU不僅具備上課時間、地點較為彈性等優點，課程品質及教學效果更是讓人驚豔。希望今年能成功考到N3，並在工作上活用日語能力。</span>
+       <span class="pix_edit_text">我是任職於台積電的工程師，利用下班時間在SeeEDU上課，SeeEDU不僅具備時間、地點較為彈性等優點，課程品質及效果更是讓人驚豔。希望今年能成功考到N3，並活用日語能力。</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">

@@ -15,7 +15,7 @@
 
 
 	<!-- include summernote css -->
-	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
 
 @stop
@@ -45,7 +45,7 @@
   <div class="container">
    <div class="row">
     <div class="col-xs-12 text-center col-sm-8 column ui-droppable col-md-6" style="display: block;">
-     <div class="pix-content" style="background-repeat: repeat-x; padding: 0px 0px 0px 120px; margin: 0px;"><img src="http://res.cloudinary.com/sabina123/image/upload/c_scale,w_200/v1531221805/All_外框-23.png" alt="" class="img-responsive"></div>
+     <div class="pix-content" style="background-repeat: repeat-x; padding: 0px 0px 0px 120px; margin: 0px;"><img src="{{ asset('app/images/illustrations/All_外框-23-2.png') }}" alt="" class="img-responsive"></div>
     </div>
     <div class="col-xs-12 col-sm-4 column ui-droppable col-md-6" style="display: block;">
      <div class="pix-content pix-padding-top-120" style="background-repeat: repeat-x; padding: 0px; margin: 80px 0px 0px;">
@@ -130,7 +130,7 @@
 					</div>
 				</div>
 				<div class="form-group col-md-12" >
-					<label for="video">課程介紹影片(網址)</label>
+					<label for="video">課程介紹影片(例如：https://www.youtube.com/embed/影片編號 )</label>
 					<input name="video" id="video" class="form-control" value="{{ $course['video'] or '' }}">
 				</div>
 				<div class="form-group col-md-12" >
@@ -297,7 +297,7 @@
 <!-- include summernote js -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer="defer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer="defer"></script>
 
 <script>
 

@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115929258-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-115929258-3');
+  </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +22,7 @@
     <title>SeeEDU LIVE School</title>
 
     <!-- Styles -->
+    <link rel="Shortcut Icon" type="image/x-icon" href="{{ asset('app/images/eye-01.ico') }}" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('app/css/font-style.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
@@ -42,7 +54,7 @@
 }
 
 .logo {
-  padding-top: 8px;
+  padding-top: 0px;
 }
 
 @media (min-width: 768px) {
@@ -74,8 +86,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <!-- <a class="navbar-brand" href="{{ url('/') }}">SeeEDU</a> -->
-                    <a href="{{ route('home') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
+                    <!-- <a href="{{ route('home') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a> -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -109,7 +121,7 @@
 
                             <li>
 
-                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="65px" height="65px" style="border-radius: 50%; padding-top: 2px;">
+                                 <img src="{{ asset(Auth::user()->avatar ? Auth::user()->avatar : "app/img/blog-details-author.png")  }}" alt="Author" width="40px" height="40px" style="border-radius: 50%; margin-top: 15px;">
                             </li>
 
                             <li class="dropdown">
@@ -171,6 +183,18 @@
     @if(Session::has('info'))
 
       toastr.info('{{ Session::get('info') }}')
+
+    @endif
+
+    @if(Session::has('error'))
+
+      toastr.error('{{ Session::get('error') }}')
+
+    @endif
+
+    @if(Session::has('warning'))
+
+      toastr.warning('{{ Session::get('warning') }}')
 
     @endif
 
