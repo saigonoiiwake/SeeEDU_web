@@ -144,7 +144,7 @@ class User extends Authenticatable
         return parent::create([
             'id'        => self::generateIdSafe(),
             'nick_name' => $param['nick_name'],
-            'avatar'    => "app/images/illustrations/default_avatar.png",
+            'avatar'    => isset($param['avatar'])?  $param['avatar'] : "app/images/illustrations/default_avatar.png",
             'email'     => $param['email'],
             'password'  => bcrypt($param['password']),
         ]);

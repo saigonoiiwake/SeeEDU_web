@@ -89,7 +89,7 @@ Route::get('/courses/create/complete', 'CourseCreateController@complete')
 Route::get('/courses/create/generate/chapter', 'CourseCreateController@generateChapterTime')
     ->name('/courses/create/generate/chapter');
 
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('login.facebook');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 

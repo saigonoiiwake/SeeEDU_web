@@ -163,7 +163,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-					  <label for="from_date">課程開始日期</label><span class="required">*</span>
+					  <label for="from_date">課程開始日期(至少十天後)</label><span class="required">*</span>
 					  <input type="date" class="form-control" id="from_date" placeholder="2018/04/06" name="from_date" value="{{ $course['from_date'] or '' }}">
 					</div>
 

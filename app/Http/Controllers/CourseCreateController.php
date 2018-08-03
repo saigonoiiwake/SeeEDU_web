@@ -97,7 +97,7 @@ class CourseCreateController extends Controller
             'phone_number' => 'required',
             'education.0'  => 'required',
             'experience.0' => 'required',
-            'about'        => 'required|max:50',
+            'about'        => 'required|max:200',
             'avatar'       => 'max:1000'
         ]);
 
