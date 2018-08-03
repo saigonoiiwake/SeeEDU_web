@@ -333,19 +333,50 @@
         var toDate = document.getElementById('to_date').value;
         var fromTime = document.getElementById('from_time').value;
         var toTime = document.getElementById('to_time').value;
-
-        if (!fromDate || !toDate || !fromTime || !toTime || fromTime > toTime) {
-            toastr.warning('請輸入日期與時間');
-            return;
-		}
-
-		var tenAfterDate = new Date();
+        var tenAfterDate = new Date();
         tenAfterDate.setDate(tenAfterDate.getDate() + 10);
         var from = new Date(fromDate);
         var to = new Date(toDate);
+
+        var monday = document.getElementById('monday').checked;
+        var tuesday = document.getElementById('tuesday').checked;
+        var wednesday = document.getElementById('wednesday').checked;
+        var thursday = document.getElementById('thursday').checked;
+        var friday = document.getElementById('friday').checked;
+        var saturday = document.getElementById('saturday').checked;
+        var sunday = document.getElementById('sunday').checked;
+
+        var error = false;
+
+        if (!fromDate || !toDate || !fromTime || !toTime ) {
+            toastr.warning('請輸入日期與時間');
+            error = true;
+		}
+
+		if (fromTime > toTime) {
+            toastr.warning('上課時間須小於下課時間');
+            error = true;
+		}
+
         if (tenAfterDate.getDate() > from.getDate() || tenAfterDate.getDate() > to.getDate()) {
             toastr.warning('請輸入十天後的日期');
-            return ;
+            error = true;
+		}
+
+        if (from.getDate() > to.getDate()) {
+            toastr.warning('上課日期須小於下課日期');
+            error = true;
+        }
+
+        console.log((monday || tuesday || wednesday || thursday || friday || saturday || sunday));
+
+        if (!(monday || tuesday || wednesday || thursday || friday || saturday || sunday)) {
+            toastr.warning('請勾選星期');
+            error = true;
+        }
+
+        if (error) {
+            return
 		}
 
         $.get({
@@ -365,6 +396,7 @@
 				sunday: document.getElementById('sunday').checked
             },
 			success: function(data) {
+                toastr.success('成功生成章節');
 			    if (data.length > 0) {
                     numberOfChapter = data.length;
                     $("#chapter-detail").empty();
@@ -376,7 +408,6 @@
                         $("#chapter-detail").append(
                             getChapterFormat(id, value['from_datetime'],value['to_datetime'])
                         );
-
                     });
 
 				} else {
