@@ -335,7 +335,17 @@
         var toTime = document.getElementById('to_time').value;
 
         if (!fromDate || !toDate || !fromTime || !toTime || fromTime > toTime) {
-			return;
+            toastr.warning('請輸入日期與時間');
+            return;
+		}
+
+		var tenAfterDate = new Date();
+        tenAfterDate.setDate(tenAfterDate.getDate() + 10);
+        var from = new Date(fromDate);
+        var to = new Date(toDate);
+        if (tenAfterDate.getDate() > from.getDate() || tenAfterDate.getDate() > to.getDate()) {
+            toastr.warning('請輸入十天後的日期');
+            return ;
 		}
 
         $.get({
@@ -355,8 +365,6 @@
 				sunday: document.getElementById('sunday').checked
             },
 			success: function(data) {
-			    console.log(data);
-
 			    if (data.length > 0) {
                     numberOfChapter = data.length;
                     $("#chapter-detail").empty();
