@@ -148,7 +148,7 @@
 
 
 				<div class="form-group" >
-					<label for="about">簡介(約50字)</label>
+					<label for="about">簡介(少於200字)</label>
 					<textarea name="about" id="about" rows="5" cols="5" class="form-control">{{ $teacher_profile['about'] or '' }}</textarea>
 				</div>
 			</div>

@@ -227,7 +227,7 @@ text-transform: capitalize;
               <h3 class="lead-text"> 使用社群帳號登入 </h3>
                 <div id="social-platforms">
                   <div class="media-container">
-                    <a class="btnn btnn-icon btnn-facebook" href="#"><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
+                    <a class="btnn btnn-icon btnn-facebook" href=" {{ route('login.facebook') }} "><i class="fa fa-facebook">                           </i><span>Facebook</span></a>
                   </div>
                   <div class="media-container">
                      <a class="btnn btnn-icon btnn-google" href="#"><i class="fa fa-google">

@@ -525,7 +525,7 @@
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">我的工作是IC晶片設計開發，利用下班時間在SeeEDU上課，今年成功考到N3，希望未來在工作上可以活用日語能力。</span>
+       <span class="pix_edit_text">我是任職於台積電的工程師，利用下班時間在SeeEDU上課，希望今年能成功考到N3，並在工作上活用日語能力。</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
@@ -547,7 +547,7 @@
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">學習英日語是為了到國外看看，我希望能到日本留學，進入設計領域一流的學校，完成夢想並向他們的職人精神看齊。</span>
+       <span class="pix_edit_text">我偏好小班教學，但在開始工作後時間常常無法配合，昂貴的學費往往都成為浪費。在SeeEDU能享受小班即時問答和無線觀看課程影片的好處，日文真的進步很多！</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
@@ -569,7 +569,7 @@
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">現實生活中我是一名數學老師，但在這裡我是資深學生。學習日語是為了到日本攀登不同的山，閱覽不同的風景。</span>
+       <span class="pix_edit_text">現實生活中我是一名資深登山客，但在這裡我是日文初學者。我發現學習像登山，往上就會看到更遼闊的風景，上完課後我就能在日本繼續挑戰各個山岳，蝦咪攏不驚！</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
@@ -581,7 +581,7 @@
         <div class="pix-padding-left-5">
          <h6 class="media-heading pix-black-gray-dark">
            <a href="https://medium.com/@service_28123/%E5%AD%B8%E7%BF%92%E5%83%8F%E7%99%BB%E5%B1%B1-%E5%BE%80%E4%B8%8A%E5%B0%B1%E6%9C%83%E7%9C%8B%E5%88%B0%E6%9B%B4%E9%81%BC%E9%97%8A%E7%9A%84%E9%A2%A8%E6%99%AF-2159bc14dc40" target="_blank"><span class="pix_edit_text">
-            <strong>登山愛好者 林同學</strong></span></a>
+            <strong>登山愛好者 陳同學</strong></span></a>
          </h6>
         </div>
        </div>
