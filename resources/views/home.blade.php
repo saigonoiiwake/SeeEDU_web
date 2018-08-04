@@ -54,17 +54,20 @@
         .classbox:hover .bookbtn {
           bottom: 10px;
         }
+
         .classbox .top {
           height: 220px;
           border-radius: 5px 5px 0px 0px;
           margin: -15px;
           margin-bottom: 0px;
           overflow: hidden;
+    			object-fit: cover;
           position: relative;
         }
         .classbox .top .classpicture {
-          width: 100%;
-          height: 100%;
+    			max-width:100%;
+    			max-height:100%;
+    			height: auto;
           position: absolute;
         }
 
@@ -320,7 +323,7 @@
                <div class="card">
                  <div class="side">
                    <div class="classpicture">
-                     <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+                     <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt=""  width="260px"></a>
                    </div>
                  </div>
                  <div class="side back">
@@ -399,7 +402,7 @@
                 <div class="progressbar">
                   <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
                 </div>
-              <div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
+              <div class="view_number">瀏覽數<span>{{ 5*$course->browse_num }}</span></div>
               <div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
             </div>
                </div>

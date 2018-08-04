@@ -244,33 +244,35 @@ span.psw {
 						$final_price =  (1.1*$course->price - session()->get('coupon')['discount'])*100
 						@endphp
 					@endif
+					<div class="row">
+						@auth
+							<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+							 {{ csrf_field() }}
+							 <script
+								 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
+								 data-amount="{{ $final_price }}"
+								 data-name="SeeEDU Live School"
+								 data-description="{{ $course->title }}"
+								 data-email="{{ \Auth::user()->email }}"
+								 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+								 data-locale="en"
+								 data-currency="twd"
+								 data-label="立即購買">
+							 </script>
+							</form>
+						@else
+						<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+						 <span class="pix_edit_text">
+							<strong>立即購買</strong>
+						 </span>
+					 </a>
+						@endauth
 
-					@auth
-						<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
-						 {{ csrf_field() }}
-						 <script
-							 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-							 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
-							 data-amount="{{ $final_price }}"
-							 data-name="SeeEDU Live School"
-							 data-description="{{ $course->title }}"
-							 data-email="{{ \Auth::user()->email }}"
-							 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-							 data-locale="en"
-							 data-currency="twd"
-							 data-label="立即購買">
-						 </script>
-					 	</form>
-					@else
-					<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-					 <span class="pix_edit_text">
-						<strong>立即購買</strong>
-					 </span>
-				 </a>
-					@endauth
+				 <button class="btn btn-bg pix-gray pix-margin-bottom-20 wide pix-margin-top-5 secondary-font" onclick="document.getElementById('id01').style.display='block'" style="padding-top:5px;"><span>擁有折扣代碼？</span></button>
 
-			 <button class="btn btn-bg pix-gray pix-margin-bottom-20 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" ><span style="padding-top: 4px; text-align:left;">擁有折扣代碼？</span></button>
 
+					</div>
 
 			 <div class="" style="padding-bottom:10px;">
 				 <h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
@@ -296,7 +298,7 @@ span.psw {
      <div role="tabpanel" class="tab-pane fade in active" id="intro">
 
 
-			 <div class="pix_section pix-padding-v-40" id="section_testimonials_1" style="display: block;">
+			 <div class="pix_section pix-padding-v-20" id="section_testimonials_1" style="display: block;">
 			   <div class="container">
 					 <h5 class="pix-black-gray-dark secondary-font">
 		 			 <span class="pix_edit_text"><strong>開課老師</strong></span>
@@ -308,7 +310,7 @@ span.psw {
 
                  @foreach($course->teacherOrTA()->get() as $teacher)
 			     <div class="col-md-10 col-xs-12 col-sm-10 column ui-droppable">
-			      <div class="pix-content pix-padding-bottom-30 pix-margin-v-30">
+			      <div class="pix-content pix-padding-bottom-10 pix-margin-v-30">
 			       <div class="media">
 			        <div class="media-right media-top text-center media-box-area">
 			         <div class="pix-inner">
@@ -367,7 +369,7 @@ span.psw {
 					{!! $course->description->description !!}
 				<hr>
 
-				<div class="pix_section pix-padding-v-85" id="section_call_to_action_1" style="display: block;">
+				<div class="pix_section pix-padding-v-40" id="section_call_to_action_1" style="display: block;">
 		     <div class="container">
 		      <div class="row">
 		       <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
