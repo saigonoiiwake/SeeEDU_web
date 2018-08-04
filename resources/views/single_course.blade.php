@@ -291,8 +291,8 @@ span.psw {
  <div class="container">
    <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
      <li class="active"><a href="#intro" data-toggle="tab">課程介紹</a></li>
-     <!-- <li><a href="#Videos" data-toggle="tab">心得感想</a></li> -->
-     <li><a href="#Events" data-toggle="tab">討論區</a></li>
+     <li><a href="#chapters" data-toggle="tab">課程大綱</a></li>
+     <li><a href="#forum" data-toggle="tab">討論區</a></li>
    </ul>
    <div class="tab-content">
      <div role="tabpanel" class="tab-pane fade in active" id="intro">
@@ -415,11 +415,74 @@ span.psw {
 
 		 </div>
    </div>
+<!-- chapters -->
+	 <div role="tabpanel" class="tab-pane fade" id="chapters">
 
-	 <!-- <div role="tabpanel" class="tab-pane fade" id="Videos">
-		 暫不開放
-	 </div> -->
-	 <div role="tabpanel" class="tab-pane fade" id="Events">
+					 <div class="panel panel-default">
+			  <div class="panel-heading">
+			    課程大綱
+			  </div>
+			  <div class="panel-body">
+			  <table class="table table-hover">
+			    <thead>
+			      <th>
+			            編號
+			      </th>
+			      <th>
+			            日期
+			      </th>
+						<th>
+			            上課時間
+			      </th>
+			      <th>
+			            標題
+			      </th>
+			      <th>
+			            內容
+			      </th>
+			    </thead>
+
+			    <tbody>
+			      @if($course->chapter->count()>0)
+			        @foreach($course->chapter as $chapter)
+			        <tr>
+
+			          <td>
+			            	{{ $chapter->order }}
+			          </td>
+
+			          <td>
+			              {{ date('Y-m-d', strtotime($chapter->from_time)) }}
+			          </td>
+
+								<td>
+			              {{ date('H:i', strtotime($chapter->from_time)) }} ~ {{ date('H:i', strtotime($chapter->to_time)) }}
+			          </td>
+
+			          <td>
+										{{ $chapter->title }}
+			          </td>
+
+			          <td>
+										{{ $chapter->description }}
+			          </td>
+
+			        </tr>
+			        @endforeach
+			      @else
+			      <tr>
+			        <th colspan="5" class="text-center">沒有大綱可以顯示</th>
+			      </tr>
+			      @endif
+			    </tbody>
+
+			  </table>
+			  </div>
+			</div>
+
+	 </div>
+<!-- chapters -->
+	 <div role="tabpanel" class="tab-pane fade" id="forum">
 		 	@include('includes.disqus')
 	 </div>
 

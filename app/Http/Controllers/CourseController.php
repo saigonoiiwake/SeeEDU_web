@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\User;
+use App\Chapter;
 use App\CourseCategory;
 use Stripe\Stripe;
 use Stripe\Charge;
