@@ -159,7 +159,9 @@ class CourseCreateController extends Controller
         $request->validate([
             'nick_name' => 'required',
             'birthday'  => 'date',
-            'about'     => 'max:100',
+            'about'     => 'max:200',
+            'avatar'    => 'max:1000',
+
         ]);
 
         DB::beginTransaction();
