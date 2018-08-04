@@ -44,6 +44,11 @@ class CourseCreateController extends Controller
 
     public function showTeacherProfileForm(Request $request)
     {
+        // dd($request);
+        // $this->validate($request, [
+        //      'contractCheck' => 'accepted',
+        //  ]);
+
         $signed_contract = $request->session()->get('signed_contract');
         if (empty($signed_contract)) {
             return redirect('/courses/create/step/contract');

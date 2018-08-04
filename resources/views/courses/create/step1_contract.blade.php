@@ -72,8 +72,15 @@
 		  </div>
 	 </div>
 	 <div class="panel-footer">
-		 <a href="{{ route('/courses/create/step/teacher') }}"><button class="btn btn-info" type="submit">下一步</button></a>
-	 </div>
+		 <form class="form" action="/courses/create/step/teacher" method="get">
+			 {{ csrf_field() }}
+				 <!-- <input class="form-check-input" type="checkbox" value="" id="contractCheck" name="contractCheck" value="1"> -->
+					 <label class="form-check-label" for="contractCheck">
+						 我已認真閱讀並同意上述條款
+					 </label>
+				<button class="btn btn-success" type="submit">同意</button>
+		 </form>
+	</div>
  </div>
 
 </div>
