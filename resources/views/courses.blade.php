@@ -217,7 +217,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 @section('content')
 
-
+<!-- Load Facebook SDK for JavaScript -->
+@include('includes.fbBot')
 
 
 <br>

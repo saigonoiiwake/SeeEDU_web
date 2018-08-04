@@ -225,22 +225,7 @@
 @section('content')
 
 <!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<!-- Your customer chat code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="1551974268251961"
-  logged_in_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！"
-  logged_out_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！">
-</div>
+@include('includes.fbBot')
 
 <div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;app/images/travel/intro-bg-3.jpg&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;app/images/travel/intro-bg-3.jpg&quot;)">
   <div class="container">
@@ -296,7 +281,7 @@
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content pix-padding-bottom-30" style="background-repeat: repeat-x; padding: 0px; margin: 0px;">
       <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><strong>熱門課程</strong></span>
+       <span class="pix_edit_text"><strong>最新課程</strong></span>
       </h2>
       <!-- <p class="pix-black-gray-light big-text text-center">
        <span class="pix_edit_text">即將額滿</span>
