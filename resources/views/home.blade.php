@@ -329,6 +329,7 @@
                    <br>
                    <div class="course1">
                      <span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
+                     <br>
                      <span class="weekday">每週
                        @foreach($course->getDayOfWeek() as $day_of_week)
                          @switch($day_of_week)
