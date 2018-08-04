@@ -171,8 +171,8 @@ span.psw {
       <div class="pix-padding-h-10">
 
 
-       <div class="info_detail">
-				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">日期</span> {{ $course->from_date }} ~ {{  $course->to_date }}</span></h6>
+       <div class="info_detail" style="padding-top:10px;">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light" >日期</span> {{ $course->from_date }} ~ {{  $course->to_date }}</span></h6>
 
 			 </div>
 
@@ -212,7 +212,8 @@ span.psw {
 				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">剩餘名額</span></span>{{ $course->max_num - $course->enroll_num }}</h6>
 			 </div>
 
-			 <div class="pix-margin-top-80">
+			 <div class="pix-margin-top-60">
+				 <div class="pix-padding-h-10">
 
 				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
 
@@ -221,9 +222,9 @@ span.psw {
 				 @else
 				    <h4><span class="price"><span class="dollor">NT$ {{ number_format(1.1*$course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
 				 @endif
-
+			 	</div>
 			</div>
-
+			<div class="pix-padding-h-10">
 					@if( session()->has('coupon'))
 						使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
 						<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
@@ -268,12 +269,14 @@ span.psw {
 				 </a>
 					@endauth
 
-			 <button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" >擁有折扣代碼？</button>
+			 <button class="btn btn-bg pix-gray pix-margin-bottom-20 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" ><span style="padding-top: 4px; text-align:left;">擁有折扣代碼？</span></button>
 
 
-
-			 	<h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
+			 <div class="" style="padding-bottom:10px;">
+				 <h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
+			 </div>
 			</div>
+		</div>
    </div>
 
   </div>
@@ -295,7 +298,9 @@ span.psw {
 
 			 <div class="pix_section pix-padding-v-40" id="section_testimonials_1" style="display: block;">
 			   <div class="container">
-					 <h1 class="header">開課老師</h1>
+					 <h5 class="pix-black-gray-dark secondary-font">
+		 			 <span class="pix_edit_text"><strong>開課老師</strong></span>
+		 			</h5>
 			    <div class="row">
 
 			     <div class="col-md-1 col-xs-12 col-sm-1 column ui-droppable">
@@ -354,7 +359,9 @@ span.psw {
 				<hr>
 
 				<div class="container">
-					<h1 class="header">課程介紹</h1>
+					<h5 class="pix-black-gray-dark secondary-font">
+					<span class="pix_edit_text"><strong>課程介紹</strong></span>
+				 </h5>
 					{!! $course->description->description !!}
 				<hr>
 
@@ -411,6 +418,10 @@ span.psw {
 	 <div role="tabpanel" class="tab-pane fade" id="Events">
 		 	@include('includes.disqus')
 	 </div>
+
+ </div>
+ 		</div>
+ 	</div>
  </div>
 
 @include('includes.footer')
