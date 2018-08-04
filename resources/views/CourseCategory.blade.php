@@ -63,19 +63,20 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  	       position: absolute;
  	     }
 
-		    .teacherpic {
-		      position: absolute;
-		      width: 60px;
-		      height: 60px;
-		      top: 190px;
-		      background-size: cover;
-		      border: solid 2px white;
-		      border-radius: 100%;
-		      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
-		      z-index: 10;
-		      right: 5px;
-		      bottom: 170px;
-		    }
+			 .teacherpic {
+				 position: absolute;
+				 width: 60px;
+				 height: 60px;
+				 top: 190px;
+				 background-size: cover;
+				object-fit: cover;
+				 border: solid 2px white;
+				 border-radius: 100%;
+				 box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+				 z-index: 10;
+				 right: 5px;
+				 bottom: 170px;
+			 }
 
 		    .tag {
 		      width: 80px;

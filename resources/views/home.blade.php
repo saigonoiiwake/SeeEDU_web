@@ -77,6 +77,7 @@
           height: 60px;
           top: 190px;
           background-size: cover;
+          object-fit: cover;
           border: solid 2px white;
           border-radius: 100%;
           box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
