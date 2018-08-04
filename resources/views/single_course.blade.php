@@ -333,6 +333,7 @@ span.psw {
                            @if($teacher->profile or false)
                                @foreach($teacher->profile->getEducation() as $education)
                                   {{ $education }}
+																	<br>
                                @endforeach
                            @endif
                  </span>
@@ -341,6 +342,7 @@ span.psw {
                           @if($teacher->profile or false)
                               @foreach($teacher->profile->getExperience() as $experience)
                                   {{ $experience }}
+																	<br>
                               @endforeach
                           @endif
                 </span>
