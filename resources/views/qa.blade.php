@@ -47,7 +47,7 @@
        <span class="pix_edit_text"><strong>1. 錯過直播上課的時間，可以補課嗎?</strong></span>
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
-       <span class="pix_edit_text">        可以！每堂課都有保留錄影檔，讓同學補課、複習沒煩惱。        </span>
+       <span class="pix_edit_text">        可以！每堂課都有保留錄影檔，讓同學補課、複習沒煩惱，錯過重點也可以再次溫習。        </span>
       </p>
      </div>
     </div>
@@ -70,7 +70,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-				 無論是使用智慧型手機、平板或是電腦，都可以上課，另外，為了有更好的視聽品質，強烈建議使用耳機(有麥克風功能)上課，老師也能更清楚聆聽你/妳的問題。
+				 無論是使用智慧型手機、平板或是電腦，都可以上課，建議使用耳機(有麥克風功能)上課，老師也能更清楚聆聽你/妳的問題。
 
        </span>
       </p>
@@ -83,7 +83,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-				 購課學員可以在該門課第一堂課後的七天內提出退費或換課申請。
+				 購課學員可以在該門課第一堂課後的七天內提出退費或換課申請。如有退費需求請聯繫線上課服人員。
 
        </span>
       </p>
@@ -95,18 +95,18 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-        目前提供信用卡付款，其他付款方式請洽詢線上客服小幫手。
+        目前提供信用卡付款，不在台灣的同學也可以方便付款喔！其他付款方式請洽詢線上客服小幫手。
        </span>
       </p>
      </div>
     </div><div class="col-md-6 col-xs-12 col-sm-6 column ui-droppable">
      <div class="pix-content pix-padding-top-30">
       <h5 class="pix-black-gray-dark pix-no-margin-top">
-       <span class="pix_edit_text"><strong>6. 我不在台灣，也可以購買課程嗎？</strong></span>
+       <span class="pix_edit_text"><strong>6. 如果遇到國定假日或是天災是否放假？</strong></span>
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-        可以的！請使用信用卡付款。
+        如果因為老師身體不適、天災等不可抗因素需要調課，系統將自動發出通知信通知學生。
        </span>
       </p>
      </div>
@@ -117,7 +117,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-				 請透過客服信箱 service@seeedu31.com 與我們聯繫，信件主旨請寫：「申請退費_課程名稱」、信件內容請提供「訂單編號」，SeeEDU的夥伴會協助你處理後續退費流程。(客服時段：週一至週五 11:00-18:00，例假日及國定假日則暫停服務)
+				 請透過客服信箱 service@seeedu31.com 與我們聯繫，信件主旨請寫：「申請退費_課程名稱」，SeeEDU的夥伴會協助你處理後續退費流程。
 
        </span>
       </p>
@@ -141,11 +141,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-					 依據一開始註冊方式不同，取回密碼的方式有以下兩種：
-					 (1) 如果你是以「SeeEDU 會員E-mail」方式登入，請告知客服人員「忘記密碼」，我們將會寄送一組「新密碼」到你的信箱，變更希望設定的密碼。
-					 (2) 如你是以「FB帳號」方式登入，請至FB平台點選「忘記密碼」，依FB給的指示流程取得FB的新密碼，登入FB平台後透過SeeEDU的「使用Facebook登入」登入SeeEDU就可以了。
-
-					 *提醒：若您申請忘記密碼後，E-mail收件匣沒有收到「新密碼」信件，請您前往垃圾信件匣查詢看看唷！
+					 請聯繫線上課服人員專案處理。(客服時段：週一至週五 11:00-18:00，例假日及國定假日則暫停服務)
 
        </span>
       </p>
