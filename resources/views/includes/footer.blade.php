@@ -59,6 +59,9 @@
      <a href="https://www.instagram.com/seeedu_live_school" class="small-social" target="_blank">
       <i class="fab fa-instagram" style="color: rgb(129, 142, 155);"></i>
      </a>
+     <a href="https://line.me/R/ti/p/%40xtr9590d" class="small-social" target="_blank">
+      <i class="fab fa-line" style="color: rgb(129, 142, 155);"></i>
+     </a>
      <a href="mailto:service@seeedu31.com" class="small-social" ><i class="far fa-envelope" style="color: rgb(129, 142, 155);"></i></a>
     </div>
    </div>
