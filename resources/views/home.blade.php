@@ -246,7 +246,7 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landing.jpg&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;/app/images/landing.jpg&quot;)">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;/app/images/landingPic-2.png&quot;)">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -407,7 +407,7 @@
                 <div class="progressbar">
                   <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
                 </div>
-              <div class="view_number">瀏覽數<span>{{ 5*$course->browse_num }}</span></div>
+              <div class="view_number">瀏覽數<span>{{ 3*$course->browse_num }}</span></div>
               <div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
             </div>
                </div>
