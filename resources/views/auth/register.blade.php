@@ -9,8 +9,10 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-115929258-3');
+
+    gtag('config', 'AW-812562386');
   </script>
-  
+
   <meta charset="UTF-8">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
