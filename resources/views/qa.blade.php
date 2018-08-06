@@ -117,7 +117,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-				 請透過客服信箱 service@seeedu31.com 與我們聯繫，信件主旨請寫：「申請退費_課程名稱」，SeeEDU的夥伴會協助你處理後續退費流程。
+				 請來信 service@seeedu31.com 與我們聯繫，信件主旨請寫：「申請退費_課程名稱」，SeeEDU會協助你處理後續退費流程。
 
        </span>
       </p>
