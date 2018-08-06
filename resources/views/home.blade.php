@@ -556,7 +556,7 @@
     <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
       <p class="pix-black-gray-light big-text">
-       <span class="pix_edit_text">我偏好小班教學，但在開始工作後時間常常無法配合，昂貴的學費往往都成為浪費。在SeeEDU能享受小班即時問答和無線觀看課程影片的好處，日文真的進步很多！</span>
+       <span class="pix_edit_text">我偏好小班教學，但在開始工作後時間常常無法配合，昂貴的學費往往都成為浪費。在SeeEDU能享受小班即時問答和無限觀看課程影片的好處，日文真的進步很多！</span>
       </p>
       <div class="media">
        <div class="media-left media-middle">
