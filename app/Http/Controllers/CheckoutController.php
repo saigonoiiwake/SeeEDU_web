@@ -46,7 +46,7 @@ class CheckoutController extends Controller
 
       // Set your secret key: remember to change this to your live secret key in production
       // See your keys here: https://dashboard.stripe.com/account/apikeys
-      Stripe::setApiKey("sk_live_GSvVivTVkXEj6aj5PEN65TcJ");
+      Stripe::setApiKey("sk_test_kAXem82PGepcHgCcuyPHDcmo");
 
       // Token is created using Checkout or Elements!
       // Get the payment token ID submitted by the form:
@@ -113,17 +113,21 @@ class CheckoutController extends Controller
 
       Session::flash('success', '成功付款，請至信箱確認');
 
+      return redirect()->route('PurchaseSuccessful');
+
       DB::commit();
     }catch (\Exception $e) {
         DB::rollback();
         report($e);
 
       Session::flash('warning', '您的信用卡無法付款，請聯繫客服人員');
+
+      return redirect('/course/' . $course->id);
     }
 
     session()->forget('coupon');
 
-    return redirect('/course/' . $course->id);
+
   }
 
 
