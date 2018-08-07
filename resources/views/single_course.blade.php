@@ -250,7 +250,7 @@ span.psw {
 							 {{ csrf_field() }}
 							 <script
 								 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-								 data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+								 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
 								 data-amount="{{ $final_price }}"
 								 data-name="SeeEDU Live School"
 								 data-description="{{ $course->title }}"
@@ -386,7 +386,7 @@ span.psw {
 								{{ csrf_field() }}
 								<script
 									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-									data-key="pk_test_LIuXwWxBY3u1pu98tJfg894O"
+									data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
 									data-amount="{{ $final_price }}"
 									data-name="SeeEDU Live School"
 									data-description="這裡放分類"
