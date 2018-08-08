@@ -83,7 +83,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-				 購課學員可以在該門課第一堂課後的七天內提出退費或換課申請。如有退費需求請聯繫線上課服人員。
+				 購課學員可以在該門課第一堂課後的七天內提出全額退費或換課申請。如有退費需求請聯繫線上客服人員。
 
        </span>
       </p>
@@ -141,7 +141,7 @@
       </h5>
       <p class="pix-black-gray-light pix-margin-bottom-20 big-text">
        <span class="pix_edit_text">
-					 請聯繫線上課服人員專案處理。(客服時段：週一至週五 11:00-18:00，例假日及國定假日則暫停服務)
+					 請聯繫線上客服人員專案處理。(客服時段：週一至週五 11:00-18:00，例假日及國定假日則暫停服務)
 
        </span>
       </p>
