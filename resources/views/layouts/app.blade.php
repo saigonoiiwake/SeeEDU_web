@@ -36,7 +36,7 @@
 <style>
 
 * {
-  font-family: Univers,Microsoft JhengHei,Apple LiGothic;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 .navbar {
