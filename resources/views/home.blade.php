@@ -604,3 +604,33 @@
 @include('includes.footer')
 
 @endsection
+
+
+@section('scripts')
+
+
+  <script>
+
+  toastr.options = {
+   "closeButton": true,
+   "debug": false,
+   "newestOnTop": false,
+   "progressBar": false,
+   "positionClass": "toast-bottom-left",
+   "preventDuplicates": false,
+   "onclick": null,
+   "showDuration": "300",
+   "hideDuration": "1000",
+   "timeOut": "50000",
+   "extendedTimeOut": "1000",
+   "showEasing": "swing",
+   "hideEasing": "linear",
+   "showMethod": "fadeIn",
+   "hideMethod": "fadeOut"
+  }
+
+  toastr.success("第一堂課不滿意，無條件全額退費！", "SeeEDU 保障您")
+
+  </script>
+
+@stop
