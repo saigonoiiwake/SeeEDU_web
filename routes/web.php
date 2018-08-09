@@ -38,6 +38,11 @@ Route::post('/course/checkout/{id}', [
   'as' => 'course.checkout'
 ]);
 
+Route::get('/course/checkout/login/{id}', [
+    'uses' => 'CheckoutController@login',
+    'as' => 'course.checkout.login'
+]);
+
 Route::get('/course/checkout/success', function() {
   return view('PurchaseSuccessful');
 })->name('PurchaseSuccessful');
