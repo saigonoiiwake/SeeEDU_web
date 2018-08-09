@@ -29,7 +29,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+   protected $redirectTo = '/';
+
+
 
     /**
      * Create a new controller instance.
@@ -87,7 +89,7 @@ class LoginController extends Controller
             DB::commit();
           }
 
-          return redirect('/');
+          return redirect()->back();
 
 
         } catch (\Exception $e) {
@@ -133,7 +135,7 @@ class LoginController extends Controller
              DB::commit();
            }
 
-           return redirect('/');
+            return redirect()->back();
 
 
          } catch (\Exception $e) {
