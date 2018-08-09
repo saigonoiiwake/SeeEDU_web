@@ -10,6 +10,8 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-115929258-3');
+
+    gtag('config', 'AW-812562386');
   </script>
 
     <meta charset="utf-8">
@@ -34,7 +36,7 @@
 <style>
 
 * {
-  font-family: Microsoft JhengHei,Apple LiGothic;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 .navbar {
@@ -71,6 +73,8 @@
 </head>
 
 <body>
+
+
 
     <header id="app">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -199,6 +203,8 @@
     @endif
 
     </script>
+
+
 
 </body>
 </html>

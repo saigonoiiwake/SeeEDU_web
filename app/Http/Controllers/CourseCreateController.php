@@ -44,6 +44,11 @@ class CourseCreateController extends Controller
 
     public function showTeacherProfileForm(Request $request)
     {
+        // dd($request);
+        // $this->validate($request, [
+        //      'contractCheck' => 'accepted',
+        //  ]);
+
         $signed_contract = $request->session()->get('signed_contract');
         if (empty($signed_contract)) {
             return redirect('/courses/create/step/contract');
@@ -97,7 +102,7 @@ class CourseCreateController extends Controller
             'education.0'  => 'required',
             'experience.0' => 'required',
             'about'        => 'required|max:200',
-            'avatar'       => 'max:1000'
+            'avatar'       => 'image|max:1000'
         ]);
 
         DB::beginTransaction();
@@ -159,7 +164,9 @@ class CourseCreateController extends Controller
         $request->validate([
             'nick_name' => 'required',
             'birthday'  => 'date',
-            'about'     => 'max:100',
+            'about'     => 'max:200',
+            'avatar'    => 'image|max:1000',
+
         ]);
 
         DB::beginTransaction();
@@ -341,7 +348,7 @@ class CourseCreateController extends Controller
             'category_1'  => 'required|integer',
             'category_2'  => 'required|integer',
             'category_3'  => 'required|integer',
-            'featured'    => 'required|file|max:1000',
+            'featured'    => 'required|image|max:1000',
             'video'       => 'required|active_url',
             'description' => 'required',
             // start date should be large than 10 day from today

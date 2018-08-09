@@ -148,7 +148,7 @@
 
 
 				<div class="form-group" >
-					<label for="about">簡介(少於200字)</label>
+					<label for="about">簡介(少於200字)</label><p><span id="wordCount">0</span> 字</p>
 					<textarea name="about" id="about" rows="5" cols="5" class="form-control">{{ $teacher_profile['about'] or '' }}</textarea>
 				</div>
 			</div>
@@ -230,6 +230,18 @@
          FR.readAsDataURL( input.files[0] );
      }
  }
+
+</script>
+
+<script>
+
+var myText = document.getElementById("about");
+var wordCount = document.getElementById("wordCount");
+
+myText.addEventListener("keyup", function(){
+	var characters = myText.value.split('');
+	wordCount.innerText = characters.length;
+});
 
 </script>
 

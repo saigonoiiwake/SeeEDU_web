@@ -51,11 +51,13 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       margin: -15px;
       margin-bottom: 0px;
       overflow: hidden;
+			object-fit: cover;
       position: relative;
     }
     .classbox .top .classpicture {
-      width: 100%;
-      height: 100%;
+			max-width:100%;
+			max-height:100%;
+			height: auto;
       position: absolute;
     }
 
@@ -65,6 +67,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
       height: 60px;
       top: 190px;
       background-size: cover;
+			object-fit: cover;
       border: solid 2px white;
       border-radius: 100%;
       box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
@@ -214,11 +217,16 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 @section('content')
 
+<!-- Your customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="1551974268251961"
+  logged_in_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！"
+  logged_out_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！">
+</div>
 
-
-
-
-
+<br>
+<br>
 
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
   <div class="container">
@@ -226,7 +234,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content pix-padding-bottom-30" style="background-repeat: repeat-x; padding: 0px; margin: 0px;">
       <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text"><span style="font-weight: 700;">探索課程</span></span>
+       <span class="pix_edit_text"><span style="font-weight: 700; ">探索課程</span></span>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
        <span class="pix_edit_text">
@@ -260,7 +268,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		 		   		<div class="card">
 		 						<div class="side">
 									<div class="classpicture">
-										<a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+										<a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="260px"></a>
 									</div>
 		 						</div>
 		 						<div class="side back">
@@ -339,7 +347,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
  						 <div class="progressbar">
  							 <div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
  						 </div>
- 					 <div class="view_number">瀏覽數<span>{{ 5*$course->browse_num }}</span></div>
+ 					 <div class="view_number">瀏覽數<span>{{ 3*$course->browse_num }}</span></div>
  					 <div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
  				 </div>
  			 			</div>
@@ -353,6 +361,9 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
   </div>
  </div>
 
+ <br>
+ <br>
+
 
 @include('includes.footer')
 
@@ -365,5 +376,35 @@ $('[data-countdown]').each(function() {
   });
 });
 </script>
+
+
+@stop
+
+@section('scripts')
+
+
+  <script>
+
+  toastr.options = {
+   "closeButton": true,
+   "debug": false,
+   "newestOnTop": false,
+   "progressBar": false,
+   "positionClass": "toast-bottom-left",
+   "preventDuplicates": false,
+   "onclick": null,
+   "showDuration": "300",
+   "hideDuration": "1000",
+   "timeOut": "50000",
+   "extendedTimeOut": "1000",
+   "showEasing": "swing",
+   "hideEasing": "linear",
+   "showMethod": "fadeIn",
+   "hideMethod": "fadeOut"
+  }
+
+  toastr.success("第一堂課不滿意，無條件全額退費！", "SeeEDU 保障您")
+
+  </script>
 
 @stop

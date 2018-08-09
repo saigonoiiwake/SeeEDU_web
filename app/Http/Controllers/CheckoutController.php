@@ -114,16 +114,20 @@ class CheckoutController extends Controller
       Session::flash('success', '成功付款，請至信箱確認');
 
       DB::commit();
+
+      return redirect()->route('PurchaseSuccessful');
     }catch (\Exception $e) {
         DB::rollback();
         report($e);
 
       Session::flash('warning', '您的信用卡無法付款，請聯繫客服人員');
+
+      return redirect('/course/' . $course->id);
     }
 
     session()->forget('coupon');
 
-    return redirect('/course/' . $course->id);
+
   }
 
 

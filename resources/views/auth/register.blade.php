@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115929258-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-115929258-3');
+
+    gtag('config', 'AW-812562386');
+  </script>
+
+
+    <!-- Event snippet for 註冊 conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+    function gtag_report_conversion( {{ route('register') }} ) {
+      var callback = function () {
+        if (typeof({{ route('register') }}) != 'undefined') {
+          window.location = {{ route('register') }};
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-812562386/NvxoCLeTkYcBENLvuoMD',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
+
+
+
   <meta charset="UTF-8">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -46,33 +46,37 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 		    .classbox:hover .bookbtn {
 		      bottom: 10px;
 		    }
-		    .classbox .top {
-		      height: 220px;
-		      border-radius: 5px 5px 0px 0px;
-		      margin: -15px;
-		      margin-bottom: 0px;
-		      overflow: hidden;
-		      position: relative;
-		    }
-		    .classbox .top .classpicture {
-		      width: 100%;
-		      height: 100%;
-		      position: absolute;
-		    }
 
-		    .teacherpic {
-		      position: absolute;
-		      width: 60px;
-		      height: 60px;
-		      top: 190px;
-		      background-size: cover;
-		      border: solid 2px white;
-		      border-radius: 100%;
-		      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
-		      z-index: 10;
-		      right: 5px;
-		      bottom: 170px;
-		    }
+				.classbox .top {
+ 	       height: 220px;
+ 	       border-radius: 5px 5px 0px 0px;
+ 	       margin: -15px;
+ 	       margin-bottom: 0px;
+ 	       overflow: hidden;
+ 	 			object-fit: cover;
+ 	       position: relative;
+ 	     }
+ 	     .classbox .top .classpicture {
+ 	 			max-width:100%;
+ 	 			max-height:100%;
+ 	 			height: auto;
+ 	       position: absolute;
+ 	     }
+
+			 .teacherpic {
+				 position: absolute;
+				 width: 60px;
+				 height: 60px;
+				 top: 190px;
+				 background-size: cover;
+				object-fit: cover;
+				 border: solid 2px white;
+				 border-radius: 100%;
+				 box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+				 z-index: 10;
+				 right: 5px;
+				 bottom: 170px;
+			 }
 
 		    .tag {
 		      width: 80px;
@@ -218,8 +222,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 
 
 
-
-
+<br>
+<br>
 
 
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
@@ -262,7 +266,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 						 <div class="card">
 							 <div class="side">
 								 <div class="classpicture">
-									 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt="" width="400px"></a>
+									 <a href="{{ route('course.single', ['id' => $course->id]) }}"><img src="{{ $course->featured }}" alt=""  width="260px"></a>
 								 </div>
 							 </div>
 							 <div class="side back">
@@ -271,6 +275,7 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 								 <br>
 								 <div class="course1">
 									 <span>{{ $course->from_date }} ~ {{ $course->to_date }}</span>
+									  <br>
 									 <span class="weekday">每週
 										 @foreach($course->getDayOfWeek() as $day_of_week)
 											 @switch($day_of_week)
@@ -340,8 +345,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
 						<div class="progressbar">
 							<div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
 						</div>
-					<div class="view_number">瀏覽數<span>{{ $course->browse_num }}</span></div>
-					<div class="price">課程價格<span>NTD {{ $course->price }}</span></div>
+					<div class="view_number">瀏覽數<span>{{ 3*$course->browse_num }}</span></div>
+					<div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
 				</div>
 					 </div>
 
@@ -354,6 +359,8 @@ SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課�
   </div>
  </div>
 
+ <br>
+ <br>
 
 @include('includes.footer')
 

@@ -21,6 +21,9 @@
 
 @section('content')
 
+<br>
+<br>
+
 <div class="pix_section pix-padding" id="section_titles_1" style="display: block; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">

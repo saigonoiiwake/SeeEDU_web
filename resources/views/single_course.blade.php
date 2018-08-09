@@ -171,8 +171,8 @@ span.psw {
       <div class="pix-padding-h-10">
 
 
-       <div class="info_detail">
-				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">日期</span> {{ $course->from_date }} ~ {{  $course->to_date }}</span></h6>
+       <div class="info_detail" style="padding-top:10px;">
+				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light" >日期</span> {{ $course->from_date }} ~ {{  $course->to_date }}</span></h6>
 
 			 </div>
 
@@ -212,7 +212,8 @@ span.psw {
 				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">剩餘名額</span></span>{{ $course->max_num - $course->enroll_num }}</h6>
 			 </div>
 
-			 <div class="pix-margin-top-80">
+			 <div class="pix-margin-top-60">
+				 <div class="pix-padding-h-10">
 
 				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
 
@@ -221,9 +222,9 @@ span.psw {
 				 @else
 				    <h4><span class="price"><span class="dollor">NT$ {{ number_format(1.1*$course->price - session()->get('coupon')['discount'],0) }}</span></span></h4>
 				 @endif
-
+			 	</div>
 			</div>
-
+			<div class="pix-padding-h-10">
 					@if( session()->has('coupon'))
 						使用折價券({{ session()->get('coupon')['name'] }}) : {{ session()->get('coupon')['discount'] }} NTD
 						<form action="{{ route('coupon.destroy') }}" method="post" style="display:inline">
@@ -243,37 +244,41 @@ span.psw {
 						$final_price =  (1.1*$course->price - session()->get('coupon')['discount'])*100
 						@endphp
 					@endif
+					<div class="row">
+						@auth
+							<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+							 {{ csrf_field() }}
+							 <script
+								 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
+								 data-amount="{{ $final_price }}"
+								 data-name="SeeEDU Live School"
+								 data-description="{{ $course->title }}"
+								 data-email="{{ \Auth::user()->email }}"
+								 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+								 data-locale="en"
+								 data-currency="twd"
+								 data-label="立即購買">
+							 </script>
+							</form>
+						@else
+						<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+						 <span class="pix_edit_text">
+							<strong>立即購買</strong>
+						 </span>
+					 </a>
+						@endauth
 
-					@auth
-						<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
-						 {{ csrf_field() }}
-						 <script
-							 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-							 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
-							 data-amount="{{ $final_price }}"
-							 data-name="SeeEDU Live School"
-							 data-description="{{ $course->title }}"
-							 data-email="{{ \Auth::user()->email }}"
-							 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-							 data-locale="en"
-							 data-currency="twd"
-							 data-label="立即購買">
-						 </script>
-					 	</form>
-					@else
-					<a href="{{ route('login') }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-					 <span class="pix_edit_text">
-						<strong>立即購買</strong>
-					 </span>
-				 </a>
-					@endauth
-
-			 <button class="btn btn-bg pix-gray pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-1 secondary-font" onclick="document.getElementById('id01').style.display='block'" >擁有折扣代碼？</button>
+				 <button class="btn btn-bg pix-gray pix-margin-bottom-20 wide pix-margin-top-5 secondary-font" onclick="document.getElementById('id01').style.display='block'" style="padding-top:5px;"><span>擁有折扣代碼？</span></button>
 
 
+					</div>
 
-			 	<h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
+			 <div class="" style="padding-bottom:10px;">
+				 <h6><span class="notice"><span class="notice">其他支付方式請洽詢客服人員</span></span></h6>
+			 </div>
 			</div>
+		</div>
    </div>
 
   </div>
@@ -286,16 +291,18 @@ span.psw {
  <div class="container">
    <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
      <li class="active"><a href="#intro" data-toggle="tab">課程介紹</a></li>
-     <!-- <li><a href="#Videos" data-toggle="tab">心得感想</a></li> -->
-     <li><a href="#Events" data-toggle="tab">討論區</a></li>
+     <li><a href="#chapters" data-toggle="tab">課程大綱</a></li>
+     <li><a href="#forum" data-toggle="tab">討論區</a></li>
    </ul>
    <div class="tab-content">
      <div role="tabpanel" class="tab-pane fade in active" id="intro">
 
 
-			 <div class="pix_section pix-padding-v-40" id="section_testimonials_1" style="display: block;">
+			 <div class="pix_section pix-padding-v-20" id="section_testimonials_1" style="display: block;">
 			   <div class="container">
-					 <h1 class="header">開課老師</h1>
+					 <h5 class="pix-black-gray-dark secondary-font">
+		 			 <span class="pix_edit_text"><strong>開課老師</strong></span>
+		 			</h5>
 			    <div class="row">
 
 			     <div class="col-md-1 col-xs-12 col-sm-1 column ui-droppable">
@@ -303,7 +310,7 @@ span.psw {
 
                  @foreach($course->teacherOrTA()->get() as $teacher)
 			     <div class="col-md-10 col-xs-12 col-sm-10 column ui-droppable">
-			      <div class="pix-content pix-padding-bottom-30 pix-margin-v-30">
+			      <div class="pix-content pix-padding-bottom-10 pix-margin-v-30">
 			       <div class="media">
 			        <div class="media-right media-top text-center media-box-area">
 			         <div class="pix-inner">
@@ -328,6 +335,7 @@ span.psw {
                            @if($teacher->profile or false)
                                @foreach($teacher->profile->getEducation() as $education)
                                   {{ $education }}
+																	<br>
                                @endforeach
                            @endif
                  </span>
@@ -336,6 +344,7 @@ span.psw {
                           @if($teacher->profile or false)
                               @foreach($teacher->profile->getExperience() as $experience)
                                   {{ $experience }}
+																	<br>
                               @endforeach
                           @endif
                 </span>
@@ -354,11 +363,13 @@ span.psw {
 				<hr>
 
 				<div class="container">
-					<h1 class="header">課程介紹</h1>
+					<h5 class="pix-black-gray-dark secondary-font">
+					<span class="pix_edit_text"><strong>課程介紹</strong></span>
+				 </h5>
 					{!! $course->description->description !!}
 				<hr>
 
-				<div class="pix_section pix-padding-v-85" id="section_call_to_action_1" style="display: block;">
+				<div class="pix_section pix-padding-v-40" id="section_call_to_action_1" style="display: block;">
 		     <div class="container">
 		      <div class="row">
 		       <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -404,13 +415,80 @@ span.psw {
 
 		 </div>
    </div>
+<!-- chapters -->
+	 <div role="tabpanel" class="tab-pane fade" id="chapters">
 
-	 <!-- <div role="tabpanel" class="tab-pane fade" id="Videos">
-		 暫不開放
-	 </div> -->
-	 <div role="tabpanel" class="tab-pane fade" id="Events">
+					 <div class="panel panel-default">
+			  <div class="panel-heading">
+			    課程大綱
+			  </div>
+			  <div class="panel-body">
+			  <table class="table table-hover">
+			    <thead>
+			      <th>
+			            編號
+			      </th>
+			      <th>
+			            日期
+			      </th>
+						<th>
+			            上課時間
+			      </th>
+			      <th>
+			            標題
+			      </th>
+			      <th>
+			            內容
+			      </th>
+			    </thead>
+
+			    <tbody>
+			      @if($course->chapter->count()>0)
+			        @foreach($course->chapter as $chapter)
+			        <tr>
+
+			          <td>
+			            	{{ $chapter->order }}
+			          </td>
+
+			          <td>
+			              {{ date('Y-m-d', strtotime($chapter->from_time)) }}
+			          </td>
+
+								<td>
+			              {{ date('H:i', strtotime($chapter->from_time)) }} ~ {{ date('H:i', strtotime($chapter->to_time)) }}
+			          </td>
+
+			          <td>
+										{{ $chapter->title }}
+			          </td>
+
+			          <td>
+										{{ $chapter->description }}
+			          </td>
+
+			        </tr>
+			        @endforeach
+			      @else
+			      <tr>
+			        <th colspan="5" class="text-center">沒有大綱可以顯示</th>
+			      </tr>
+			      @endif
+			    </tbody>
+
+			  </table>
+			  </div>
+			</div>
+
+	 </div>
+<!-- chapters -->
+	 <div role="tabpanel" class="tab-pane fade" id="forum">
 		 	@include('includes.disqus')
 	 </div>
+
+ </div>
+ 		</div>
+ 	</div>
  </div>
 
 @include('includes.footer')

@@ -23,6 +23,9 @@
 
 @section('content')
 
+<br>
+<br>
+
 
 <div class="pix_section gray-bg pix-padding" id="section_videos_1" style="display: block;">
   <div class="container">
@@ -31,7 +34,7 @@
     </div>
     <div class="col-md-10 col-xs-12 col-sm-10 column ui-droppable">
      <div class="pix-content"><div class="embed-responsive embed-responsive-16by9">
-      <iframe src="https://player.vimeo.com/video/96847806" width="640" height="360"></iframe>
+      <iframe src="https://www.youtube.com/embed/epQJXmi5onw" width="640" height="360"></iframe>
      </div></div>
     </div>
    </div>
