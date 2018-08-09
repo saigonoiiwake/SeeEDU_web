@@ -49,7 +49,7 @@
        <span class="pix_edit_text"><span style="font-weight: 700;">簽訂合約</span></span>
       </h4>
       <p class="pix-black-gray-light big-text pix-margin-bottom-20">
-       <span class="pix_edit_text">合約可以保障雙方權益，簽署完，服務人員即會開始審查，10個工作天內會告知審查結果，在這期間有任何問題客服人員都會盡力協助您。<br><span><br></span></span>
+       <span class="pix_edit_text">合約可以保障雙方權益，請老師務必逐條仔細閱讀，對合約有任何問題都歡迎隨時連絡客服人員。<br><span><br></span></span>
       </p>
 
      </div>
