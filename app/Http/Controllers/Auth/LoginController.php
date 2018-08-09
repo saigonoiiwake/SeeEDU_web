@@ -89,7 +89,7 @@ class LoginController extends Controller
             DB::commit();
           }
 
-          return redirect()->back();
+          return back();
 
 
         } catch (\Exception $e) {
@@ -135,7 +135,7 @@ class LoginController extends Controller
              DB::commit();
            }
 
-            return redirect()->back();
+            return back();
 
 
          } catch (\Exception $e) {
