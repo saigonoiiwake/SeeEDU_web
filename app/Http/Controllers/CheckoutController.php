@@ -17,13 +17,15 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
-
-
   public function __construct()
   {
       $this->middleware('auth');
   }
 
+  public function login($id)
+  {
+      return redirect('/course/' . $id);
+  }
 
   public function pay($id, Request $request)
   {
