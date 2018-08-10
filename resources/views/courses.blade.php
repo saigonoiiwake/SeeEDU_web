@@ -6,7 +6,7 @@
 	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
 	<meta name="description" content="不斷學習，是一種生活態度！
 SeeEDU Live School 讓學習把我們連結在一起，透過互動式直播課程，學習可以無所不在，錯過直播也不用擔心，每堂課都有錄影，讓你無限次觀看、複習，更棒的是！能夠和志同道合的同學們一起分享、討論，學習變成一件最有趣的事！ ">
-	<meta name="keywords" content="日檢 課程 多益 日語 會話班 Hiroshi老師 日本留學 美國留學 托福 toefl 雅思">
+<meta name="keywords" content="日語,英語,線上課程,直播課程,學日文,學英文,互動式教學,小班式教學,真人教學,日文檢定,TOEIC,TOEFL">
 
 <!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
