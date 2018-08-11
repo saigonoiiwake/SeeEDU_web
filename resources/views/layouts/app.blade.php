@@ -38,6 +38,9 @@
   </noscript>
     <!-- End Facebook Pixel Code -->
 
+    <!--  Bing -->
+    <meta name="msvalidate.01" content="0864370712EEBC21C7789D456E3B060E" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
