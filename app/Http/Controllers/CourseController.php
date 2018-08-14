@@ -14,6 +14,7 @@ use Mail;
 use App\Transaction;
 use App\Enroll;
 use Illuminate\Support\Facades\Log;
+use Jenssegers\Agent\Agent;
 
 class CourseController extends Controller
 {
@@ -25,6 +26,12 @@ class CourseController extends Controller
 
     public function singleCourse($id)
     {
+      $agent = new Agent();
+
+      if($agent->isMobile() || $agent->isTablet()){
+        $agent->setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1');
+      }
+      
       $course = Course::where('id', $id)->first();
 
       if( $course->status === 'open')
