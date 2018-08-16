@@ -262,11 +262,20 @@ span.psw {
 							 </script>
 							</form>
 						@else
-						<a href="{{ route('course.checkout.login', ['id' => $course->id]) }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-						 <span class="pix_edit_text">
-							<strong>立即購買</strong>
-						 </span>
-					 </a>
+							<form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+							 {{ csrf_field() }}
+							 <script
+								 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+								 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
+								 data-amount="{{ $final_price }}"
+								 data-name="SeeEDU Live School"
+								 data-description="{{ $course->title }}"
+								 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+								 data-locale="en"
+								 data-currency="twd"
+								 data-label="立即購買">
+							 </script>
+							</form>
 						@endauth
 
 				 <button class="btn btn-bg pix-gray pix-margin-bottom-20 wide pix-margin-top-5 secondary-font" onclick="document.getElementById('id01').style.display='block'" style="padding-top:5px;"><span>擁有折扣代碼？</span></button>
@@ -398,11 +407,20 @@ span.psw {
 								</script>
 							 </form>
 						 @else
-						 <a href="{{ route('course.checkout.login', ['id' => $course->id]) }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-							<span class="pix_edit_text">
-							 <strong>立即購買</strong>
-							</span>
-						</a>
+							 <form action="{{ route('course.checkout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+								{{ csrf_field() }}
+								<script
+									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
+									data-amount="{{ $final_price }}"
+									data-name="SeeEDU Live School"
+									data-description="{{ $course->title }}"
+									data-image="{{ asset('app/images/illustrations/checkout.png')}}"
+									data-locale="en"
+									data-currency="twd"
+									data-label="立即購買">
+								</script>
+							 </form>
 						 @endauth
 
 		        </div>

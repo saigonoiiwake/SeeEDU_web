@@ -15,6 +15,7 @@ use App\Enroll;
 use Mockery\Exception;
 use Illuminate\Support\Facades\DB;
 
+
 class CheckoutController extends Controller
 {
   public function __construct()
@@ -29,6 +30,7 @@ class CheckoutController extends Controller
 
   public function pay($id, Request $request)
   {
+    
 
     DB::beginTransaction();
 
