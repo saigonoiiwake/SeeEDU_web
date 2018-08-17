@@ -25,7 +25,6 @@ class CheckoutController extends Controller
 
   public function login($id)
   {
-      session(['previous_link' => url()->previous()]);
       return redirect('/course/' . $id);
   }
 

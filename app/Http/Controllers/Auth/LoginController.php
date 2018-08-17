@@ -87,14 +87,7 @@ class LoginController extends Controller
             DB::commit();
           }
 
-          if (Session::has('previous_link'))
-          {
-              Session::forget('previous_link');
-              return redirect(session('previous_link'));
-          }
-          else{
-            return back();
-          }
+          return redirect('/courses');
 
 
         } catch (\Exception $e) {
@@ -140,7 +133,7 @@ class LoginController extends Controller
              DB::commit();
            }
 
-          return back();
+           return redirect('/courses');
 
 
          } catch (\Exception $e) {
