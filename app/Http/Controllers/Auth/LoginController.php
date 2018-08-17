@@ -87,7 +87,7 @@ class LoginController extends Controller
             DB::commit();
           }
 
-          return redirect('/courses');
+          return redirect('/');
 
 
         } catch (\Exception $e) {
@@ -133,7 +133,7 @@ class LoginController extends Controller
              DB::commit();
            }
 
-           return redirect('/courses');
+           return redirect('/');
 
 
          } catch (\Exception $e) {
