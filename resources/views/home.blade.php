@@ -417,6 +417,24 @@
      @endforeach
 
    </div>
+   <!-- 選課去 -->
+
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
+      <div class="pix-content text-center">
+       <h6 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
+
+      </h6>
+       <a href="{{ route('courses') }}" class="btn blue-bg btn-lg pix-white wide">
+        <span class="pix_edit_text"><b>更多課程</b></span>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+   <br>
+
   </div>
  </div>
 
