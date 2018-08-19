@@ -417,6 +417,10 @@
      @endforeach
 
    </div>
+   <!-- 選課去 -->
+   <a href="{{ route('courses') }}" class="btn blue-bg btn-lg pix-white wide">
+    <span class="pix_edit_text"><b>更多課程</b></span>
+   </a>
   </div>
  </div>
 
