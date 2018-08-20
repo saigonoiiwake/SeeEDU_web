@@ -252,17 +252,17 @@
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text">讓學習把我們連結在一起</span>
+       <span class="pix_edit_text">最超值的英日語學習平台</span>
       </h1>
       <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
-       <span class="pix_edit_text">SeeEDU是最有溫度的直播學習平台</span>
+       <span class="pix_edit_text">英語會話、新制TOEIC、日語各級會話、日文檢定等各式課程</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
        <span class="pix_edit_text"><b>探索課程</b></span>
       </a>
      </div>
     </div>
-    <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable" style="display: block;">
+    <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable" style="display: block;">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
        <i class="far fa-comments" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
@@ -271,7 +271,7 @@
        <span class="pix_edit_text"><b>直播即時互動</b></span>
       </h6>
      </div>
-    </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
+   </div><div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
        <i class="far fa-play-circle" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
@@ -281,7 +281,7 @@
       </h6>
      </div>
     </div>
-    <div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
+    <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
        <i class="far fa-laugh-beam" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
