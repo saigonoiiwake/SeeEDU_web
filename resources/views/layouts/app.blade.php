@@ -130,6 +130,12 @@
                                 <i class="far fa-eye"> 選課去</i>
                             </a>
                         </li>
+                        <li class="">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScPE5b8JhY7LP_7HJ3LkYkJnTrRSxUiYdVtX2hnhCuxPTH4sQ/viewform" class="" target="_blank">
+                                <i class="fas fa-users"> 報名免費試聽</i>
+                            </a>
+                        </li>
+
 
                         <!-- <li class="search search_main" style="color: black; margin-top: 8px;">
                           <input type="text" name="search" >
