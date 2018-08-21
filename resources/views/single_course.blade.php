@@ -113,6 +113,10 @@ span.psw {
     animation: animatezoom 0.6s
 }
 
+img{
+    max-width:100%;
+}
+
 @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
@@ -291,6 +295,7 @@ span.psw {
      <li><a href="#forum" data-toggle="tab">討論區</a></li>
    </ul>
    <div class="tab-content">
+		 <!--  intro -->
      <div role="tabpanel" class="tab-pane fade in active" id="intro">
 
 
@@ -360,10 +365,13 @@ span.psw {
 
 				<div class="container">
 					<h5 class="pix-black-gray-dark secondary-font">
-					<span class="pix_edit_text"><strong>課程介紹</strong></span>
-				 </h5>
-					{!! $course->description->description !!}
+						<span class="pix_edit_text"><strong>課程介紹</strong></span>
+				 	</h5>
+
+						{!! $course->description->description !!}
+
 				<hr>
+				</div>
 
 				<div class="pix_section pix-padding-v-40" id="section_call_to_action_1" style="display: block;">
 		     <div class="container">
@@ -409,7 +417,7 @@ span.psw {
 
 
 
-		 </div>
+
    </div>
 <!-- chapters -->
 	 <div role="tabpanel" class="tab-pane fade" id="chapters">
@@ -477,7 +485,7 @@ span.psw {
 			</div>
 
 	 </div>
-<!-- chapters -->
+<!-- forum -->
 	 <div role="tabpanel" class="tab-pane fade" id="forum">
 		 	@include('includes.disqus')
 	 </div>
