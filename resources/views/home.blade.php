@@ -211,12 +211,10 @@
         }
 
         @media screen and (max-width: 300px) {
-            div.pix_section pix-padding-top-100 pix-showcase-1{
-              
+            span.big_title{
+              font-size: 2px;
             }
         }
-
-
 
 </style>
 
@@ -252,13 +250,13 @@
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="pix_edit_text">最超值的英日語學習平台</span>
+       <span class="big_title">最超值的英日語學習平台</span>
       </h1>
       <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
-       <span class="pix_edit_text">英語會話、新制TOEIC、日語各級會話、日文檢定等各式課程</span>
+       <span class="sm_title">日語各級會話、JLPT日文檢定、英語會話、新制TOEIC等各式課程</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
-       <span class="pix_edit_text"><b>探索課程</b></span>
+       <span class="landing_button"><b>探索課程</b></span>
       </a>
      </div>
     </div>
