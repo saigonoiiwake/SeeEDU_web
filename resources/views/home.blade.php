@@ -210,6 +210,12 @@
 
         }
 
+        @media screen and (max-width: 300px) {
+            div.pix_section pix-padding-top-100 pix-showcase-1{
+              
+            }
+        }
+
 
 
 </style>
