@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('styles')
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="和我們一起懷抱熱情，朝理想邁進 這裡沒有老闆與員工，只有一群互相支援的夥伴！">
-	<meta name="keywords" content="熱門職缺 前端工程師 高薪 後端工程師 UI設計師 PM BD Internship 兼職">
+
+
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />

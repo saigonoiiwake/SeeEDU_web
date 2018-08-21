@@ -2,12 +2,6 @@
 
 @section('styles')
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="shortcut icon" href="uploads/pix-favicon.ico">
-<meta name="description" content="SeeEDU Live School 讓學習把我們連結在一起。語言是一把鑰匙，讓我們一同開啟世界的門。英文、日文，以及你想得到的各種外語，在這裡都能輕鬆快樂的和朋友們一同學習！互動式直播課程、無限次觀看、同學間的討論、分享。
-學習變成最快樂的一件事！">
-<meta name="keywords" content="日語,英語,線上課程,直播課程,學日文,學英文,互動式教學,小班式教學,真人教學,日文檢定,TOEIC,TOEFL">
 
 <!-- CSS dependencies -->
 <link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />

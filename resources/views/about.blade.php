@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="uploads/pix-favicon.ico">
-	<meta name="description" content="懷抱著對教育的滿腔熱血，四個人，一個理想，我們相信學習是連結彼此最好的方式，因此SeeEDU Live School誕生了！ 在這裡，學習不再孤單沒動力，每個人都可以找到志同道合的朋友，一起更上一層樓！">
-	<meta name="keywords" content="教育 理想 交通大學 學習">
+	
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }} " />
