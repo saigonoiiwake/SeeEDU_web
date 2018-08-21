@@ -10,9 +10,6 @@
   });
 </script>
 
-
-<meta name="description" content="">
-<meta name="keywords" content="">
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />

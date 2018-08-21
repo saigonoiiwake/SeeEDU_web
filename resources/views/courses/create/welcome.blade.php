@@ -1,23 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="{{ asset('uploads/pix-favicon.ico') }}">
-	<meta name="description" content="讓知識創造最高價值">
-	<meta name="keywords" content="開課流程介紹
-優秀老師
-最高價值
-最高收入
-教學
-日語
-英語
-韓語
-西班牙語
-美語
-補習班
-線上課程
-立即開課">
+
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/bootstrap.min.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('app/css/font-awesome.min.css') }}" />
