@@ -41,9 +41,6 @@
     <!--  SEO -->
     <meta name="description" content="最優質透明的線上英日語課程，TOEIC、TOEFL、JLPT日文檢定、英語會話、日語會話，直播即時互動，SeeEDU把教室搬到線上了。">
 
-    <!--  Bing -->
-    <meta name="msvalidate.01" content="0864370712EEBC21C7789D456E3B060E" />
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

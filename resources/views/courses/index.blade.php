@@ -211,14 +211,6 @@
 
 @section('content')
 
-<!-- Your customer chat code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="1551974268251961"
-  logged_in_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！"
-  logged_out_greeting="哈囉！我是SeeEDU的Lisa，有問題都可以找我喔！">
-</div>
-
 <br>
 <br>
 
@@ -234,7 +226,7 @@
        <span class="pix_edit_text">
 				 @foreach($categories as $category)
 
-            <a href="{{ route('category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
+            <a href="{{ route('course.category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
             &nbsp;
           @endforeach</span>
       </p>

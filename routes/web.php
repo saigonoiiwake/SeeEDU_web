@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/courses/category/{id}', [
   'uses' => 'CourseController@category',
-  'as' => 'category.single'
+  'as' => 'course.category.single'
 ]);
 
 Route::post('/coupon/{id}','CouponsController@getCode')->name('coupon.getCode');
@@ -103,6 +103,39 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallba
 
 Route::get('login/google', 'Auth\LoginController@redirectToProvider_G')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback_G');
+
+
+Route::get('/blog', [
+  'uses' => 'BlogController@index',
+  'as' => 'blog.index'
+]);
+
+Route::get('/blog/{slug}', [
+  'uses' => 'BlogController@singlePost',
+  'as' => 'post.single'
+]);
+
+Route::get('/blog/category/{id}', [
+  'uses' => 'BlogController@category',
+  'as' => 'blog.category.single'
+]);
+
+Route::get('/blog/tag/{id}', [
+  'uses' => 'BlogController@tag',
+  'as' => 'tag.single'
+]);
+
+Route::get('/results', function(){
+  $posts = \App\BlogPost::where('title', 'like', '%' . request('query') . '%')->get();
+
+  return view('results')->with('posts', $posts)
+                        ->with('title', 'Search results:' . request('query'))
+                        ->with('settings', \App\Setting::first())
+                        ->with('categories', \App\BlogCategory::take(5)->get())
+                        ->with('query', request('query'));
+});
+
+
 
 
 /*

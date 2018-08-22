@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>SeeEDU</title>
 
+    <link rel="Shortcut Icon" type="image/x-icon" href="{{ asset('app/images/eye-01.ico') }}" />
+
     <link rel="stylesheet" type="text/css" href="{{ asset('app/css/fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app/css/normalize.css') }}">
@@ -35,6 +37,8 @@
         }
     </style>
 
+    @yield('blog_styles')
+
 </head>
 
 
@@ -42,7 +46,7 @@
 
 <div class="content-wrapper">
 
-  @include('includes.header')
+  @include('includes.blog_header')
 
     <div class="header-spacer"></div>
 
@@ -124,7 +128,7 @@
                             <span class="short-line"></span>
                             <span class="long-line"></span>
                         </div>
-                        <p class="heading-text">因為學習，把我們連結在一起
+                        <p class="heading-text">最超值的英日語學習平台
                         </p>
                     </div>
                 </div>
