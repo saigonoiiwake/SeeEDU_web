@@ -35,7 +35,7 @@
    </div><div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content pix-padding-v-10">
      <div class="pix-padding-v-10">
-      <a href="https://medium.com/seeedu-live-school" class="pix-navy-blue-2" target="_blank"><span class="pix_edit_text">Blog</span></a>
+      <a href="{{ route('blog.index') }}" class="pix-navy-blue-2" target="_blank"><span class="pix_edit_text">Blog</span></a>
      </div>
      <div class="pix-padding-v-10">
       <a href="{{ route('joinus') }}" class="pix-navy-blue-2"><span class="pix_edit_text">加入我們</span></a>
