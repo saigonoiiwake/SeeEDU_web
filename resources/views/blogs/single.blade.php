@@ -1,5 +1,15 @@
 @extends('layouts.blog')
 
+@section('blog_style')
+<style>
+
+.post__content-info > p {
+  max-width: 100% !important;
+}
+</style>
+
+@stop
+
 @section('content')
 
 <!-- Stunning Header -->
@@ -22,7 +32,7 @@
                 <article class="hentry post post-standard-details">
 
                     <div class="post-thumb">
-                        <img src="{{ $post->featured }}" alt="seo">
+                        <img src="{{ $post->featured }}" alt="pic">
                     </div>
 
                     <div class="post__content">
@@ -34,7 +44,7 @@
                                 作者
 
                                 <div class="post__author-name fn">
-                                    <a href="#" class="post__author-link">Admin</a>
+                                    <a href="#" class="post__author-link">SeeEDU</a>
                                 </div>
 
                             </div>
@@ -51,29 +61,37 @@
 
                             <span class="category">
                                 <i class="seoicon-tags"></i>
-                                <a href="{{ route('category.single', ['id' => $post->category->id ]) }}">{{ $post->category->name}}</a>
+                                <a href="{{ route('blog.category.single', ['id' => $post->category->id ]) }}">{{ $post->category->name}}</a>
                             </span>
 
                         </div>
 
-                        <div class="post__content-info">
+                          <div class="post__content-info">
 
-                            {!! $post->content !!}
+                                  {!! $post->content !!}
 
-                            <div class="widget w-tags">
-                                <div class="tags-wrap">
-                                  @foreach($post->tags as $tag)
-                                    <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
-                                  @endforeach
-                                </div>
-                            </div>
+                            	<hr>
+                              <div class="widget w-tags">
+                                  <div class="tags-wrap">
+                                    @foreach($post->tags as $tag)
+                                      <a href="{{ route('tag.single', ['id' => $tag->id])}}" class="w-tags-item text-center">{{ $tag->name }}</a>
+                                    @endforeach
+                                  </div>
+                              </div>
 
-                        </div>
+
+                              <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                              <div class="addthis_inline_share_toolbox_s9u5"></div>
+                          </div>
+
                     </div>
 
 
 
                 </article>
+
+
+
 
 
                 <div class="pagination-arrow">
@@ -128,7 +146,7 @@
 
                         <div class="tags-wrap">
                           @foreach($tags as $tag)
-                            <a href="{{ route('tag.single', ['id' => $tag->id ])}}" class="w-tags-item">{{ $tag->tag }}</a>
+                            <a href="{{ route('tag.single', ['id' => $tag->id ])}}" class="w-tags-item">{{ $tag->name }}</a>
                           @endforeach
                         </div>
                     </div>
@@ -140,5 +158,9 @@
         </main>
     </div>
 </div>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b48c694fd25b00d"></script>
+
 
 @endsection

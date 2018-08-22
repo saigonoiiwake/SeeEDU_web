@@ -232,7 +232,7 @@
        <span class="pix_edit_text">
 				 @foreach($categories as $category)
 
-            <a href="{{ route('category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
+            <a href="{{ route('course.category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
             &nbsp;
           @endforeach</span>
       </p>

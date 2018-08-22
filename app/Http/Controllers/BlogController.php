@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Setting;
 use App\BlogCategory;
 use App\BlogPost;
 use App\BlogTag;
@@ -12,16 +11,14 @@ class BlogController extends Controller
 {
         public function index()
       {
-        return view('blogs')
-                ->with('title', Setting::first()->site_name)
+        return view('blogs.index')
                 ->with('categories', BlogCategory::take(5)->get())
                 ->with('first_post', BlogPost::orderBy('created_at', 'desc')->first())
                 ->with('second_post',BlogPost::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
                 ->with('third_post', BlogPost::orderBy('created_at', 'desc')->skip(2)->take(1)->get()->first())
-                ->with('newToeic', BlogCategory::find(7))
-                ->with('JLPT', BlogCategory::find(8))
-                ->with('Japanese', BlogCategory::find(11))
-                ->with('settings', Setting::first());
+                ->with('newToeic', BlogCategory::find(1))
+                ->with('JLPT', BlogCategory::find(2))
+                ->with('Japanese', BlogCategory::find(3));
       }
 
       public function singlePost($slug)
@@ -33,10 +30,9 @@ class BlogController extends Controller
         $prev_id = BlogPost::where('id', '<', $post->id)->max('id');
 
 
-        return view('single')->with('post', $post)
+        return view('blogs.single')->with('post', $post)
                              ->with('title', $post->title)
                              ->with('categories', BlogCategory::take(5)->get())
-                             ->with('settings', Setting::first())
                              ->with('next', BlogPost::find($next_id))
                              ->with('prev', BlogPost::find($prev_id))
                              ->with('tags', BlogTag::all());
@@ -46,9 +42,8 @@ class BlogController extends Controller
       {
         $category = BlogCategory::find($id);
 
-        return view('category')->with('category', $category)
+        return view('blogs.category')->with('category', $category)
                                ->with('title', $category->name)
-                               ->with('settings', Setting::first())
                                ->with('categories', BlogCategory::take(5)->get())
                                ->with('tags', BlogTag::all());
       }
@@ -57,9 +52,8 @@ class BlogController extends Controller
       {
         $tag = BlogTag::find($id);
 
-        return view('tag')->with('tag', $tag)
+        return view('blogs.tag')->with('tag', $tag)
                                ->with('title', $tag)
-                               ->with('settings', Setting::first())
                                ->with('categories', BlogCategory::take(5)->get())
                                ->with('tags', BlogTag::all());
       }
