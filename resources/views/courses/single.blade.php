@@ -115,6 +115,7 @@ span.psw {
 
 img{
     max-width:100%;
+		height:auto;
 }
 
 @-webkit-keyframes animatezoom {
