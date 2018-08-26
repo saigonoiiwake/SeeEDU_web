@@ -2,6 +2,8 @@
 
 @section('content')
 
+<br>
+
 <div class="content-wrapper">
 
     <div class="header-spacer"></div>
@@ -219,7 +221,7 @@
                                     <div class="case-item__thumb">
                                         <img src="{{ $post->featured }}" alt="our case">
                                     </div>
-                                    <h6 class="case-item__title"><a href="{{ route('post.single', ['slug' => $post->slug]) }}"></a>{{ $post->title }}</h6>
+                                    <h6 class="case-item__title text-center"><a href="{{ route('post.single', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h6>
                                 </div>
                             </div>
                             @endforeach
@@ -246,9 +248,9 @@
                           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                               <div class="case-item">
                                   <div class="case-item__thumb">
-                                      <img src="{{ $post->featured }}" alt="our case">
+                                      <img src="{{ $post->featured }}" alt="img">
                                   </div>
-                                  <h6 class="case-item__title"><a href="{{ route('post.single', [ 'slug' => $post->slug] ) }}"></a>{{ $post->title }}</h6>
+                                  <h6 class="case-item__title text-center"><a href="{{ route('post.single', [ 'slug' => $post->slug] ) }}">{{ $post->title }}</a></h6>
                               </div>
                           </div>
                           @endforeach
