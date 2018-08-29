@@ -213,7 +213,13 @@ img{
 				 <h6><span class="pix_edit_text"><span class="label pix-black-gray-light ">剩餘名額</span></span>{{ $course->max_num - $course->enroll_num }}</h6>
 			 </div>
 
-			 <div class="pix-margin-top-60">
+			 <div class="info_detail">
+				 <i class="fas fa-users"> <span class="pix_edit_text" id="demo" style="color: rgb(239, 51, 51); font-size: 20px;"></span> 個人正在考慮</i>
+			 </div>
+
+
+
+			 <div class="pix-margin-top-40">
 				 <div class="pix-padding-h-10">
 
 				 <h6><span class="originalprice"><span class="originalprice">NT$ {{ number_format($course->price/0.6,0) }}</span></span></h6>
@@ -535,6 +541,11 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+</script>
+
+<script>
+document.getElementById("demo").innerHTML =
+Math.floor(Math.random() * 10) + 1;
 </script>
 
 @endsection
