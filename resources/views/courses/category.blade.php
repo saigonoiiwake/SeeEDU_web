@@ -340,7 +340,12 @@
 							<div class="valuebar"  style = "width : {{ 230*$course->enroll_num/$course->max_num }}px;" ></div>
 						</div>
 					<div class="view_number">瀏覽數<span>{{ 3*$course->browse_num }}</span></div>
-					<div class="price">課程價格<span>NTD {{ 1.1*$course->price }}</span></div>
+						@php
+					 		$d1 = new DateTime($course->from_date);
+					 		$d2 = new DateTime($course->to_date);
+				 		@endphp
+					<div class="price">價格<span>NTD {{ 1.1*$course->price/(1 + $d1->diff($d2)->m ) }} /月</span></div>
+
 				</div>
 					 </div>
 
