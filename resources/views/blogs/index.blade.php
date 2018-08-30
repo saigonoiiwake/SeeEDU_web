@@ -2,12 +2,11 @@
 
 @section('content')
 
-<br>
 
 <div class="content-wrapper">
 
-    <div class="header-spacer"></div>
-
+    <!-- <div class="header-spacer"></div> -->
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-lg-2"></div>
