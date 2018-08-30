@@ -297,9 +297,9 @@ img{
 
  <div class="container">
    <ul id="myTabs" class="nav nav-pills nav-justified" role="tablist" data-tabs="tabs">
-     <li class="active"><a href="#intro" data-toggle="tab">課程介紹</a></li>
-     <li><a href="#chapters" data-toggle="tab">課程大綱</a></li>
-     <li><a href="#forum" data-toggle="tab">討論區</a></li>
+     <li class="active" style="background-color: #ffffff;"><a href="#intro" data-toggle="tab">課程介紹</a></li>
+     <li style="background-color: #ffffff;"><a href="#chapters" data-toggle="tab">課程大綱</a></li>
+     <li style="background-color: #ffffff;"><a href="#forum" data-toggle="tab">討論區</a></li>
    </ul>
    <div class="tab-content">
 		 <!--  intro -->
