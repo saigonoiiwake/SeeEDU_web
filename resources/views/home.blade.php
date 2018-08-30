@@ -250,10 +250,10 @@
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
      <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="big_title">最超值的英日語學習平台</span>
+       <span class="big_title">最有效率的日語學習平台</span>
       </h1>
       <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
-       <span class="sm_title">日語各級會話、JLPT日文檢定、英語會話、新制TOEIC等各式課程</span>
+       <span class="sm_title">JLPT日文檢定、日語各級會話等各式課程</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
        <span class="landing_button"><b>探索課程</b></span>
@@ -266,7 +266,7 @@
        <i class="far fa-comments" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><b>直播即時互動</b></span>
+       <span class="pix_edit_text"><b>即時互動</b></span>
       </h6>
      </div>
    </div><div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
@@ -282,10 +282,10 @@
     <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
-       <i class="far fa-laugh-beam" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
+       <i class="fas fa-tasks" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><strong>討論分享</strong></span>
+       <span class="pix_edit_text"><strong>系統學習</strong></span>
       </h6>
      </div>
     </div>
@@ -459,13 +459,14 @@
    </div>
   </div>
  </div>
+
  <div class="pix_section pix-padding-v-30" id="section_features_2" style="display: block; background-color: #E6E6E6; background-repeat: repeat-x; padding-top: 0px; padding-bottom: 30px;">
   <div class="container">
    <div class="row">
 
-     <div class="col-sm-1 column ui-droppable col-md-1"></div>
+     <!-- <div class="col-sm-1 column ui-droppable col-md-1"></div> -->
 
-    <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
+    <div class="col-xs-3 col-sm-3 column ui-droppable col-md-3">
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/註冊會員.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
@@ -474,7 +475,7 @@
      </div>
     </div>
 
-    <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
+    <div class="col-xs-3 col-sm-3 column ui-droppable col-md-3">
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/購買課程.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
@@ -484,16 +485,16 @@
     </div>
 
 
-    <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
+    <!-- <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/下載教材.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
        <span class="pix_edit_text"><strong>取得教材</strong></span>
       </h5>
      </div>
-    </div>
+    </div> -->
 
-    <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
+    <div class="col-xs-3 col-sm-3 column ui-droppable col-md-3">
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/下載zoom.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
@@ -502,7 +503,7 @@
      </div>
     </div>
 
-    <div class="col-xs-6 col-sm-2 column ui-droppable col-md-2">
+    <div class="col-xs-3 col-sm-3 column ui-droppable col-md-3">
      <div class="pix-content text-center pix-margin-v-20 pix-padding-h-10" style="background-repeat: repeat-x; padding: 0px 20px 0px 10px; margin: 0px 0px 20px;">
        <img src="app/images/illustrations/快樂上課.png" alt="" class="img-responsive">
       <h5 class="pix-black-gray-dark pix-no-margin-bottom">
@@ -511,7 +512,7 @@
      </div>
     </div>
 
-     <div class="col-sm-1 column ui-droppable col-md-1"></div>
+     <!-- <div class="col-sm-1 column ui-droppable col-md-1"></div> -->
 
     </div>
    </div>
@@ -534,6 +535,23 @@
 
   </div>
 
+  <div class="pix_section pix-padding gray-bg" id="section_titles_3" style="display: block; background-color: #ffffff; background-repeat: repeat-x; padding-top: 60px; padding-bottom: 60px;">
+    <div class="container">
+     <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
+       <div class="pix-content pix-padding-bottom-30" style="background-repeat: repeat-x; padding: 0px; margin: 0px;">
+        <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
+         <span class="pix_edit_text"><strong>課程比較</strong></span>
+        </h2>
+        <p class="pix-black-gray-light big-text text-center">
+         <span class="pix_edit_text">為何選擇SeeEDU</span>
+        </p>
+       </div>
+       <img src="https://res.cloudinary.com/sabina123/image/upload/v1535634704/seeedu_%E6%AF%94%E8%BC%83.png" alt="pic" style="max-width:100%;">
+      </div>
+     </div>
+    </div>
+   </div>
 
 
 
@@ -549,7 +567,7 @@
        <span class="pix_edit_text">學習，讓我們遇見更好的自己。</span>
       </h2>
       <p class="pix-black-gray-light big-text pix-md-width-text pix-margin-bottom-30">
-       <span class="pix_edit_text">聽聽SeeEDU學員們怎麼說...</span>
+       <span class="pix_edit_text">聽聽其他學員們怎麼說...</span>
       </p>
      </div>
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">

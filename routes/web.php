@@ -44,29 +44,29 @@ Route::get('/course/checkout/login/{id}', [
 ]);
 
 Route::get('/course/checkout/success', function() {
-  return view('PurchaseSuccessful');
+  return view('courses.PurchaseSuccessful');
 })->name('PurchaseSuccessful');
 
 
 Route::get('/about', function () {
-    return view('about');
+    return view('static.about');
 })->name('about');
 
 
 Route::get('/qa', function () {
-    return view('qa');
+    return view('static.qa');
 })->name('qa');
 
 Route::get('/policies', function () {
-    return view('policies');
+    return view('static.policies');
 })->name('policies');
 
 Route::get('/joinus', function () {
-    return view('joinus');
+    return view('static.joinus');
 })->name('joinus');
 
 Route::get('/how-to-take-courses', function () {
-    return view('howtotakecourses');
+    return view('static.howtotakecourses');
 })->name('howtotakecourses');
 
 Route::get('/courses/create', function () {
