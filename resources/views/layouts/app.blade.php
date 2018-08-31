@@ -59,7 +59,7 @@
 <style>
 
 * {
-  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "微軟正黑體", "Microsoft JhengHei", "標楷體", DFKai-SB, sans-serif;
 }
 
 .navbar {
