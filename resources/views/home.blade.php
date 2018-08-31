@@ -244,7 +244,7 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed; padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;/app/images/landingPic-2.png&quot;)">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;/app/images/landingPic-2.png&quot;)">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -451,9 +451,6 @@
       <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
        <span class="pix_edit_text"><strong>上課方式</strong></span>
       </h2>
-      <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text">輕輕鬆鬆開始學習</span>
-      </p>
      </div>
     </div>
    </div>
@@ -543,11 +540,8 @@
         <h2 class="pix-black-gray-dark text-center pix-no-margin-top secondary-font">
          <span class="pix_edit_text"><strong>課程比較</strong></span>
         </h2>
-        <p class="pix-black-gray-light big-text text-center">
-         <span class="pix_edit_text">為何選擇SeeEDU</span>
-        </p>
        </div>
-       <img src="https://res.cloudinary.com/sabina123/image/upload/v1535634704/seeedu_%E6%AF%94%E8%BC%83.png" alt="pic" style="max-width:100%;">
+       <img src="https://res.cloudinary.com/sabina123/image/upload/v1535684528/seeedu_%E6%AF%94%E8%BC%83.png" alt="pic" style="max-width:100%;">
       </div>
      </div>
     </div>
@@ -566,9 +560,6 @@
       <h2 class="pix-black-gray-dark pix-no-margin-top">
        <span class="pix_edit_text">學習，讓我們遇見更好的自己。</span>
       </h2>
-      <p class="pix-black-gray-light big-text pix-md-width-text pix-margin-bottom-30">
-       <span class="pix_edit_text">聽聽其他學員們怎麼說...</span>
-      </p>
      </div>
     </div><div class="col-md-4 col-xs-12 col-sm-4 column ui-droppable">
      <div class="pix-content white-bg pix-radius-3 pix-padding-v-30 pix-margin-v-10 pix-padding-h-20">
@@ -638,6 +629,12 @@
     </div>
    </div>
   </div>
+  <div class="text-center">
+    <p class="pix-black-gray-light big-text pix-md-width-text pix-margin-bottom-30">
+     <span class="pix_edit_text ">更多故事...</span>
+    </p>
+  </div>
+</div>
 
 
 @include('includes.footer')
