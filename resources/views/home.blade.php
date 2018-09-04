@@ -244,7 +244,7 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: url(&quot;/app/images/asia-1822521_1920.jpg&quot;); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: url(&quot;/app/images/asia-1822521_1920.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -253,7 +253,7 @@
        <span class="big_title" style=" text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">精通日語不是夢</span>
       </h1>
       <p class="pix-white big-text-20 text-center pix-margin-bottom-30">
-       <span class="sm_title" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">JLPT日文檢定、日語各級會話等各式課程</span>
+       <span class="sm_title" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">JLPT日文檢定、日語各級會話等課程</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
        <span class="sm_title" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">探索課程</span>
