@@ -195,7 +195,6 @@
                 </div>
             </div>
         </nav>
-  <div class="header-spacer"></div>
     </header>
 
     @yield('content')
