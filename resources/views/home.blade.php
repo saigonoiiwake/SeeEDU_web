@@ -244,19 +244,19 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: url(&quot;/app/images/asia-1822521_1920.jpg&quot;); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
-     <div class="pix-content text-center pix-padding-top-40 pix-padding-bottom-30">
+     <div class="pix-content text-center pix-padding-top-20 pix-padding-bottom-40">
       <h1 class="pix-white text-center pix-no-margin-top secondary-font">
-       <span class="big_title">最有效率的日語學習平台</span>
+       <span class="big_title" style=" text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">精通日語不是夢</span>
       </h1>
-      <p class="pix-light-gray big-text-20 text-center pix-margin-bottom-30">
-       <span class="sm_title">JLPT日文檢定、日語各級會話等各式課程</span>
+      <p class="pix-white big-text-20 text-center pix-margin-bottom-30">
+       <span class="sm_title" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">JLPT日文檢定、日語各級會話等各式課程</span>
       </p>
       <a href="{{ route('courses') }}" class="btn btn-lg pix-line pix-white-line wide">
-       <span class="landing_button"><b>探索課程</b></span>
+       <span class="sm_title" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">探索課程</span>
       </a>
      </div>
     </div>
@@ -264,30 +264,30 @@
     <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable" style="display: block;">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
-       <i class="far fa-comments" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
+       <i class="far fa-comments" style="color: #429DEB; font-size: 100px; text-shadow: 0 1px 0 rgba(255, 255, 255, 1); "></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><b>即時互動</b></span>
+       <span class="pix_edit_text" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">即時互動</span>
       </h6>
      </div>
    </div>
    <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
-       <i class="far fa-play-circle" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
+       <i class="far fa-play-circle" style="color: #429DEB; font-size: 100px; text-shadow: 0 1px 0 rgba(255, 255, 255, 1); "></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><strong>無限次觀看</strong></span>
+       <span class="pix_edit_text" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">無限次觀看</span>
       </h6>
      </div>
     </div>
     <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
-       <i class="fas fa-tasks" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
+       <i class="fas fa-tasks" style="color: #429DEB; font-size: 100px; text-shadow: 0 1px 0 rgba(255, 255, 255, 1); "></i>
       </div>
       <h6 class="pix-white secondary-font">
-       <span class="pix_edit_text"><strong>系統學習</strong></span>
+       <span class="pix_edit_text" style="font-weight:300; text-shadow: 0 2px 5px rgba(0, 0, 0,.5);">系統學習</span>
       </h6>
      </div>
     </div>
