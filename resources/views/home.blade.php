@@ -244,7 +244,7 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: url(&quot;/app/images/asia-1822521_1920.jpg&quot;); background-size: cover;  background-repeat: no-repeat; background-attachment: fixed;padding-top: 80px; padding-bottom: 0px;">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: url(&quot;/app/images/asia-1822521_1920.jpg&quot;); background-size: cover; background-position: center; background-origin: content-box; background-repeat: no-repeat; background-attachment: fixed; padding-top: 80px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
