@@ -244,7 +244,7 @@
 
 
 
-<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-repeat: repeat-x; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;" data-bg-img="linear-gradient( rgba(54,63,72,0.8) ,rgba(54,63,72,0.8)),url(&quot;/app/images/landingPic-2.png&quot;)">
+<div class="pix_section pix-padding-top-100 pix-showcase-1" id="section_intros_1" style="display: block; background-image: linear-gradient(rgba(54, 63, 72, 0.8), rgba(54, 63, 72, 0.8)), url(&quot;/app/images/landingPic-2.png&quot;); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;padding-top: 100px; padding-bottom: 0px;">
   <div class="container">
    <div class="row">
     <div class="col-md-12 col-xs-12 col-sm-12 column ui-droppable">
@@ -260,6 +260,7 @@
       </a>
      </div>
     </div>
+
     <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable" style="display: block;">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
@@ -269,7 +270,8 @@
        <span class="pix_edit_text"><b>即時互動</b></span>
       </h6>
      </div>
-   </div><div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
+   </div>
+   <div class="col-md-4 col-xs-4 col-sm-4 column ui-droppable">
      <div class="pix-content text-center pix-padding-v-50 pix-margin-v-10 pix-padding-h-10">
       <div class="pix-margin-bottom-30">
        <i class="far fa-play-circle" style="color: rgb(239, 143, 52); font-size: 100px;"></i>
@@ -289,6 +291,7 @@
       </h6>
      </div>
     </div>
+
    </div>
   </div>
  </div>
