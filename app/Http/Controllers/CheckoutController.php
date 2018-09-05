@@ -77,7 +77,7 @@ class CheckoutController extends Controller
 
       $data = array(
         'course_name' => $course->title,
-        'course_price' => 1.1*$course->price,
+        'course_price' => $final_price,
         'from_date' => $course->from_date
       );
 
