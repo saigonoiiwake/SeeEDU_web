@@ -81,7 +81,9 @@ class CheckoutController extends Controller
         'from_date' => $course->from_date
       );
 
-      Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchaseSuccessful($data));
+      Mail::to(request()->stripeEmail)
+            ->bcc('b816132@gmail.com')
+            ->send(new \App\Mail\PurchaseSuccessful($data));
 
       // Store transaction data into Table:transaction
       if( session()->has('coupon') )
