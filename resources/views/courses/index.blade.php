@@ -223,13 +223,16 @@
        <span class="pix_edit_text"><span style="font-weight: 700; ">探索課程</span></span>
       </h2>
       <p class="pix-black-gray-light big-text text-center">
-       <span class="pix_edit_text">
-				 @foreach($categories as $category)
+
+       	<span class="pix_edit_text">
+				  @foreach($categories as $category)
 
             <a href="{{ route('course.category.single', ['id' => $category->id])}}">{{ $category->name }}</a>
             &nbsp;
-          @endforeach</span>
+          @endforeach
+				</span>
       </p>
+
      </div>
     </div>
    </div>

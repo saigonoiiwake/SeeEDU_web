@@ -38,7 +38,7 @@
       <a href="{{ route('blog.index') }}" class="pix-navy-blue-2" target="_blank"><span class="pix_edit_text">Blog</span></a>
      </div>
      <div class="pix-padding-v-10">
-      <a href="{{ route('joinus') }}" class="pix-navy-blue-2"><span class="pix_edit_text">加入我們</span></a>
+      <a href=" {{ route('/courses/create/welcome') }} " class="pix-navy-blue-2"><span class="pix_edit_text">開課去</span></a>
     </div>
     <div class="pix-padding-v-10">
      <a href="https://zoomnow.net/zntw_zoom_download.php?showType=ALL" class="pix-navy-blue-2 " target="_blank">免費下載上課軟體</a>
