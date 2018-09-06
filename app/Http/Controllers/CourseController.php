@@ -20,7 +20,7 @@ class CourseController extends Controller
     public function index()
     {
       return view('courses.index')->with('courses', Course::all())
-                            ->with('categories', CourseCategory::take(2)->get());
+                            ->with('categories', CourseCategory::skip(2)->take(2)->get());
     }
 
     public function singleCourse($id)
@@ -49,25 +49,24 @@ class CourseController extends Controller
     public function category($id)
     {
 
-      $second_layers = CourseCategory::where('parent_id', $id)->get();
+      //$second_layers = CourseCategory::where('parent_id', $id)->get();
       $category_IDs = collect( [$id] );
 
-      foreach($second_layers as $second_layer )
-      {
-        $third_layers = CourseCategory::where('parent_id', $second_layer->id)->get();
+      //foreach($second_layers as $second_layer )
+      //{
+        //$third_layers = CourseCategory::where('parent_id', $second_layer->id)->get();
+        $third_layers = CourseCategory::where('parent_id', $id)->get();
 
         foreach($third_layers as $third_layer)
         {
           $category_IDs = $category_IDs->merge( [$third_layer->id] );
         }
-      }
-
-      //dd($category_IDs);
+      //}
 
       $categories = CourseCategory::findMany($category_IDs);
 
       return view('courses.category')->with('bottom_categories', $categories)
-                                  ->with('categories', CourseCategory::take(2)->get());
+                                  ->with('categories', CourseCategory::skip(2)->take(2)->get());
 
     }
 
