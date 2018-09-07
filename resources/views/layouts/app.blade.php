@@ -39,12 +39,12 @@
     <!-- End Facebook Pixel Code -->
 
     <!--  SEO -->
-    <meta name="description" content="最優質透明的線上英日語課程，TOEIC、TOEFL、JLPT日文檢定、英語會話、日語會話，直播即時互動，SeeEDU把教室搬到線上了。">
+    <meta name="description" content="最優質的線上日語課程，JLPT日文檢定、日語會話，透過直播即時互動及系統性的教學，精通第二外語不再是夢！">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SeeEDU LIVE School</title>
+    <title>SeeEDU LIVE School 最優質的日語直播教室</title>
 
     <!-- Styles -->
     <link rel="Shortcut Icon" type="image/x-icon" href="{{ asset('app/images/eye-01.ico') }}" />
