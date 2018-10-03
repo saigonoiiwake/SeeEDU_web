@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/newlanding', 'HomeController@newlanding')->name('newlanding');
+
 Route::get('/courses/category/{id}', [
   'uses' => 'CourseController@category',
   'as' => 'course.category.single'

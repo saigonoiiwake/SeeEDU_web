@@ -27,4 +27,9 @@ class HomeController extends Controller
         
         return view('home')->with('courses', Course::take(3)->where('status', 'open')->get());
     }
+    public function newlanding()
+    {
+        
+        return view('newlanding');
+    }
 }
