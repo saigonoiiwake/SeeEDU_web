@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf2e43148d2cf3715319c48f584e1ac9",
+    "content-hash": "505e9f0ee02df924a9b51394c327f91f",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1524,6 +1524,57 @@
                 "twitter"
             ],
             "time": "2016-08-17T00:36:58+00:00"
+        },
+        {
+            "name": "leochien/laravel-spgateway",
+            "version": "1.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/s950329/laravel-spgateway.git",
+                "reference": "5ad9b0b35ef89ac69733378d56c7a88663343008"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/s950329/laravel-spgateway/zipball/5ad9b0b35ef89ac69733378d56c7a88663343008",
+                "reference": "5ad9b0b35ef89ac69733378d56c7a88663343008",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LeoChien\\Spgateway\\SpgatewayServiceProvider"
+                    ]
+                },
+                "aliases": {
+                    "Spgateway": "LeoChien\\Spgateway\\Facades"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LeoChien\\Spgateway\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LeoChien",
+                    "email": "leo@hourmasters.com"
+                }
+            ],
+            "description": "spgateway library for laravel",
+            "keywords": [
+                "library",
+                "spgateway"
+            ],
+            "time": "2018-09-07T09:17:40+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
