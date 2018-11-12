@@ -13,7 +13,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@landing')->name('home');
 
 Route::get('/spg', 'SPGController@spg');
 
