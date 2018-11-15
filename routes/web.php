@@ -13,10 +13,15 @@
 
 Auth::routes();
 
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/', 'HomeController@landing')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@landing')->name('home');
 
-Route::get('/spg', 'SPGController@spg');
+Route::get('/spg', 'SPGController@spgpay');
+Route::post('/course/spgcheckout/{id}', [
+  'uses' => 'SPGController@spgpay',
+  'as' => 'course.spgcheckout'
+]);
+Route::post('/spgresult', 'SPGController@callback');
 
 Route::get('/courses/category/{id}', [
   'uses' => 'CourseController@category',

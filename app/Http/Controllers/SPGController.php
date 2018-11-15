@@ -28,23 +28,36 @@ class SPGController extends Controller
       return redirect('/course/' . $id);
   }
 
-  public function spg()
+  // spgateway pay function
+  //public function spgpay($id, Request $request)
+  public function spgpay()
   {
+    // if( session()->has('coupon') ){
+    //   $final_price = (1.1*$course->price - session()->get('coupon')['discount'])*100;
+    // }
+    // else{
+    //   $final_price = 100*1.1*$course->price;    //100=>cent to dollar 1.1=>service fees
+    // }
+
+    $params = array('TradeLimit' => 240, 
+    'OrderComment' => 'Test Comment', 
+    'NotifyURL' => 'https://seeedu.org/spgresult');
+
     $order = MPG::generate(
-      10000,
+      150,
       'john80510@gmail.com',
-      'SeeEDU N3日文課'
+      'SeeEDU N3日文課',
+      $params
     );
 
     return $order->send();
+  }
 
-    // $order = array(
-    //   'key0'  => 'value0',
-    //   'key1' => 'value1',
-    //   'key2' => 'value2'
-    // );
-
-    // return view('send-order')->with('apiUrl', 'https://ccore.spgateway.com/MPG/mpg_gateway')->with('order', $order);
+  public function callback()
+  {
+    $tradeInfo = MPG::parse(request()->TradeInfo);
+    
+    DB::beginTransaction();
   }
 
   public function pay($id, Request $request)

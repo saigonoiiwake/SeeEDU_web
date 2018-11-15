@@ -64,10 +64,10 @@
   </path>
   </svg>
 </div>
-<!-- <script>
+<script>
     setTimeout(function(){
         document.getElementById('form').submit();
     }, 1000);
-</script> -->
+</script>
 </body>
 </html>
