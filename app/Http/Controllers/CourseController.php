@@ -70,5 +70,21 @@ class CourseController extends Controller
 
     }
 
+    // [API] Query course by id
+    public function show(Course $course)
+    {
+      return $course;
+    }
 
+    // [API] Top n open courses
+    public function showNew($count)
+    {
+      return Course::take($count)->where('status', 'open')->get();
+    }
+
+    // [API] All open courses
+    public function showAll()
+    {
+      return Course::all()->where('status', 'open')->get();
+    }
 }
