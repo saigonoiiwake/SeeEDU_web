@@ -78,8 +78,8 @@ class SPGController extends Controller
 
     $params = array('TradeLimit' => 240, 
     'OrderComment' => $id, 
-    'ReturnURL' => 'http://13.115.120.244/spgreturn',
-    'NotifyURL' => 'http://13.115.120.244/spgnotify');
+    'ReturnURL' => 'http://13.115.120.244/spgreturn');//,
+    //'NotifyURL' => 'http://13.115.120.244/spgnotify');
   
     $order = MPG::generate(
       $final_price,
@@ -91,7 +91,7 @@ class SPGController extends Controller
   }
 
   // Spgateway payment NotifyURL callback
-  public function notify(Request $request)
+  public function notify()
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
 
@@ -101,13 +101,14 @@ class SPGController extends Controller
   // Spgateway payment ReturnURL callback
   public function return()
   {
-    $payment_result = $_POST['Status'];
-    if($payment_result == 'SUCCESS')
-    { 
-      return redirect()->route('PurchaseSuccessful');
-    }else{
-      Session::flash('warning', '成功失敗，請至信箱確認');
-      return redirect('/course/' . $course->id);
-    }
+    return redirect()->route('PurchaseSuccessful');
+    // $payment_result = $_POST['Status'];
+    // if($payment_result == 'SUCCESS')
+    // { 
+    //   return redirect()->route('PurchaseSuccessful');
+    // }else{
+    //   Session::flash('warning', '成功失敗，請至信箱確認');
+    //   return redirect('/course/' . $course->id);
+    // }
   }
 }
