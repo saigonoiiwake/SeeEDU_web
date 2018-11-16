@@ -101,7 +101,7 @@ class SPGController extends Controller
   // Spgateway payment ReturnURL callback
   public function return()
   {
-    return redirect()->route('PurchaseSuccessful');
+    return view('courses.PurchaseSuccessful');
     // $payment_result = $_POST['Status'];
     // if($payment_result == 'SUCCESS')
     // { 
