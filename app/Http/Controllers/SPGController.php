@@ -101,14 +101,14 @@ class SPGController extends Controller
   // Spgateway payment ReturnURL callback
   public function return()
   {
-    return view('courses.PurchaseSuccessful');
-    // $payment_result = $_POST['Status'];
-    // if($payment_result == 'SUCCESS')
-    // { 
-    //   return redirect()->route('PurchaseSuccessful');
-    // }else{
-    //   Session::flash('warning', '成功失敗，請至信箱確認');
-    //   return redirect('/course/' . $course->id);
-    // }
+    // return view('courses.PurchaseSuccessful');
+    $payment_result = $_POST['Status'];
+    if($payment_result == 'SUCCESS')
+    { 
+      return redirect()->route('PurchaseSuccessful');
+    }else{
+      Session::flash('warning', '成功失敗，請至信箱確認');
+      return redirect('/course/' . $course->id);
+    }
   }
 }
