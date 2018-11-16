@@ -16,12 +16,13 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@landing')->name('home');
 
-Route::get('/spg', 'SPGController@spgpay');
+// Route::get('/spg', 'SPGController@spgpay');
 Route::post('/course/spgcheckout/{id}', [
-  'uses' => 'SPGController@spgpay',
+  'uses' => 'SPGController@pay',
   'as' => 'course.spgcheckout'
 ]);
-Route::post('/spgresult', 'SPGController@callback');
+Route::post('/spgreturn', 'SPGController@return');
+Route::post('/spgnotify', 'SPGController@notify');
 
 Route::get('/courses/category/{id}', [
   'uses' => 'CourseController@category',
