@@ -100,13 +100,17 @@ class SPGController extends Controller
     // $order_no = $tradeInfo->Result['MerchantOrderNo'];
     // $order = Transaction::where('merchant_order_no', $order_no);
     // if($tradeInfo->Status == 'SUCCESS')
-    if(request()->Status == 'SUCCESS')
-    {  
-      $order->transaction_status = 1;
-    }else{
-      $order->transaction_status = $tradeInfo->Status;
-    }
-    // return $tradeInfo;
+    // $payment_result = $_POST['Status'];
+    // if($payment_result == 'SUCCESS')
+    // {  
+    //   $order->transaction_status = 1;
+    // }else{
+    //   $order->transaction_status = $tradeInfo->Status;
+    // }
+    $order = Transaction::orderBy('created_at', 'desc')->first();
+    $order->info = request()->TradeInfo;
+    $order->save();
+    // return request()->TradeInfo;
   }
 
   // Spgateway payment ReturnURL callback
