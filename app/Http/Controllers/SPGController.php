@@ -94,7 +94,7 @@ class SPGController extends Controller
   }
 
   // Spgateway payment NotifyURL callback
-  public function notify()
+  public function notify(Request $request)
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result['MerchantOrderNo'];
