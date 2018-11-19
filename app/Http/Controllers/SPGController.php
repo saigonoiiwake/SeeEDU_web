@@ -33,6 +33,7 @@ class SPGController extends Controller
   {
     $course = Course::findOrFail($id);
     $uid = \Auth::user()->id;
+    $time_stamp = date("YmdHis_").gettimeofday()["usec"];;
 
     $check_exist = Enroll::where('user_id', $uid)
                           ->where('course_id', $course->id)
@@ -61,6 +62,7 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => session()->get('coupon')['name'],
+        'merchant_order_no' => $time_stamp,
         'transaction_status' => 0
       ]);
     }
@@ -72,14 +74,15 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => null,
+        'merchant_order_no' => $time_stamp,
         'transaction_status' => 0
       ]);
     }
 
-    $params = array('TradeLimit' => 240, 
+    $params = array('MerchantOrderNo' => $time_stamp, 
     'OrderComment' => $id, 
-    'ReturnURL' => 'http://13.115.120.244/spgreturn');//,
-    //'NotifyURL' => 'http://13.115.120.244/spgnotify');
+    'ReturnURL' => 'http://13.115.120.244/spgreturn',
+    'NotifyURL' => 'http://13.115.120.244/spgnotify');
   
     $order = MPG::generate(
       $final_price,
@@ -94,14 +97,20 @@ class SPGController extends Controller
   public function notify()
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
-
+    $order_no = $tradeInfo->Result['MerchantOrderNo'];
+    $order = Transaction::where('merchant_order_no', $order_no);
+    if($tradeInfo->Status == 'SUCCESS')
+    {  
+      $order->transaction_status = 1;
+    }else{
+      $order->transaction_status = $tradeInfo->Status;
+    }
     // return $tradeInfo;
   }
 
   // Spgateway payment ReturnURL callback
   public function return()
   {
-    // return view('courses.PurchaseSuccessful');
     $payment_result = $_POST['Status'];
     if($payment_result == 'SUCCESS')
     { 
