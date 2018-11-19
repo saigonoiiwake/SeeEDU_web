@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Route::get('/', 'HomeController@landing')->name('home');
 
 // Route::get('/spg', 'SPGController@spgpay');
+Route::get('/parse', 'SPGController@parse');
 Route::post('/course/spgcheckout/{id}', [
   'uses' => 'SPGController@pay',
   'as' => 'course.spgcheckout'
