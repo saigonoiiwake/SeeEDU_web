@@ -96,10 +96,11 @@ class SPGController extends Controller
   // Spgateway payment NotifyURL callback
   public function notify(Request $request)
   {
-    $tradeInfo = MPG::parse(request()->TradeInfo);
-    $order_no = $tradeInfo->Result['MerchantOrderNo'];
-    $order = Transaction::where('merchant_order_no', $order_no);
-    if($tradeInfo->Status == 'SUCCESS')
+    // $tradeInfo = MPG::parse(request()->TradeInfo);
+    // $order_no = $tradeInfo->Result['MerchantOrderNo'];
+    // $order = Transaction::where('merchant_order_no', $order_no);
+    // if($tradeInfo->Status == 'SUCCESS')
+    if(request()->Status == 'SUCCESS')
     {  
       $order->transaction_status = 1;
     }else{
