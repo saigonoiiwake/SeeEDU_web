@@ -103,12 +103,10 @@ class SPGController extends Controller
     {  
       $order->transaction_status = 1;
     }else{
-      $order->transaction_status = $tradeInfo->Status;
+      $order->transaction_status = -1; // $tradeInfo->Status;
     }
-    // $order = Transaction::orderBy('created_at', 'desc')->first();
     $order->info = request()->TradeInfo;
     $order->save();
-    // return request()->TradeInfo;
   }
 
   public function parse()
@@ -121,7 +119,7 @@ class SPGController extends Controller
     {  
       $order->transaction_status = 1;
     }else{
-      $order->transaction_status = $tradeInfo->Status;
+      $order->transaction_status = -1;//$tradeInfo->Status;
     }
     // $order = Transaction::orderBy('created_at', 'desc')->first();
     // $order->info = request()->TradeInfo;
@@ -133,15 +131,18 @@ class SPGController extends Controller
   }
 
   // Spgateway payment ReturnURL callback
-  public function return()
+  public function return(Request $request)
   {
-    $payment_result = $_POST['Status'];
+    $payment_result = request()->Status; // $_POST['Status'];
+    $tradeInfo = MPG::parse(request()->TradeInfo);
+    $order_no = $tradeInfo->Result->MerchantOrderNo;
+    $order = Transaction::where('merchant_order_no', $order_no)->first();
     if($payment_result == 'SUCCESS')
     { 
       return redirect()->route('PurchaseSuccessful');
     }else{
       Session::flash('warning', '成功失敗，請至信箱確認');
-      return redirect('/course/' . $course->id);
+      return redirect('/course/' . $order->course_id);
     }
   }
 }
