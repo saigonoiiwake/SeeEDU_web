@@ -105,6 +105,7 @@ class SPGController extends Controller
       // Update enroll number in Table: Course
       $course = Course::where('id', $order->course_id)->first();
       $uid = $order->user_id;
+      $user = User::where('id', $uid)->first();
       $course->enroll_num ++;
       $course->save();
 
@@ -116,6 +117,7 @@ class SPGController extends Controller
       
       // Mail order payment info
       $data = array(
+        'nick_name' => $user->nick_name,
         'course_name' => $course->title,
         'course_price' => $tradeInfo->Result->Amt,
         'from_date' => $course->from_date
@@ -123,7 +125,7 @@ class SPGController extends Controller
       
       // Mail::to('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
-      Mail::to($tradeInfo->Result->Email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+      Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
     }else{
       $order->transaction_status = $tradeInfo->Status;
     }
