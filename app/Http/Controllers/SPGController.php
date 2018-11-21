@@ -63,7 +63,7 @@ class SPGController extends Controller
         'channel' => 'spgateway',
         'coupon_code' => session()->get('coupon')['name'],
         'merchant_order_no' => $time_stamp,
-        'transaction_status' => 0
+        'transaction_status' => 'PENDING'
       ]);
     }
     else
@@ -75,7 +75,7 @@ class SPGController extends Controller
         'channel' => 'spgateway',
         'coupon_code' => null,
         'merchant_order_no' => $time_stamp,
-        'transaction_status' => 0
+        'transaction_status' => 'PENDING'
       ]);
     }
 
@@ -86,7 +86,7 @@ class SPGController extends Controller
   
     $order = MPG::generate(
       $final_price,
-      \Auth::user()->email,
+      $uid->email,
       $course->title,
       $params
     );
@@ -101,11 +101,33 @@ class SPGController extends Controller
     $order = Transaction::where('merchant_order_no', $order_no)->first();
     if($tradeInfo->Status == 'SUCCESS')
     {  
-      $order->transaction_status = 1;
+      $order->transaction_status = $tradeInfo->Status;
+      // Update enroll number in Table: Course
+      $course = Course::findOrFail($order->$course_id);
+      $uid = \Auth::user()->id;
+      $course->enroll_num ++;
+      $course->save();
+
+      // Store into Table: enroll
+      $enroll = Enroll::create([
+        'course_id' => $course->id,
+        'user_id' => $uid
+      ]);
+      
+      // Mail order payment info
+      $data = array(
+        'course_name' => $course->title,
+        'course_price' => $tradeInfo->Amt,
+        'from_date' => $course->from_date
+      );
+
+      Mail::to($tradeInfo->Email)
+            ->bcc('john80510@gmail.com')
+            ->send(new \App\Mail\PurchaseSuccessful($data));
     }else{
-      $order->transaction_status = -1; // $tradeInfo->Status;
+      $order->transaction_status = $tradeInfo->Status;
     }
-    $order->info = request()->TradeInfo;
+    $order->info = response()->json($tradeInfo);
     $order->save();
   }
 
@@ -117,9 +139,9 @@ class SPGController extends Controller
     $order = Transaction::where('merchant_order_no', $order_no)->first();
     if($tradeInfo->Status == 'SUCCESS')
     {  
-      $order->transaction_status = 1;
+      $order->transaction_status = $tradeInfo->Status;
     }else{
-      $order->transaction_status = -1;//$tradeInfo->Status;
+      $order->transaction_status = $tradeInfo->Status;
     }
     // $order = Transaction::orderBy('created_at', 'desc')->first();
     // $order->info = request()->TradeInfo;
