@@ -103,7 +103,7 @@ class SPGController extends Controller
     {  
       $order->transaction_status = $tradeInfo->Status;
       // Update enroll number in Table: Course
-      $course = Course::findOrFail($order->$course_id);
+      $course = Course::where('id', $order->$course_id)->first();
       $uid = \Auth::user()->id;
       $course->enroll_num ++;
       $course->save();
