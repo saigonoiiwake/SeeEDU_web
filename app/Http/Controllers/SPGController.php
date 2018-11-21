@@ -14,7 +14,7 @@ use App\Transaction;
 use App\Enroll;
 use Mockery\Exception;
 use Illuminate\Support\Facades\DB;
-use LeoChien\Spgateway\Facades\MPG;
+use MPG;
 
 class SPGController extends Controller
 {
@@ -103,8 +103,8 @@ class SPGController extends Controller
     {  
       $order->transaction_status = $tradeInfo->Status;
       // Update enroll number in Table: Course
-      $course = Course::where('id', $order->$course_id)->first();
-      $uid = \Auth::user()->id;
+      $course = Course::where('id', $order->course_id)->first();
+      $uid = $order->user_id;
       $course->enroll_num ++;
       $course->save();
 
@@ -117,13 +117,13 @@ class SPGController extends Controller
       // Mail order payment info
       $data = array(
         'course_name' => $course->title,
-        'course_price' => $tradeInfo->Amt,
+        'course_price' => $tradeInfo->Result->Amt,
         'from_date' => $course->from_date
       );
+      
+      // Mail::to('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
-      Mail::to($tradeInfo->Email)
-            ->bcc('john80510@gmail.com')
-            ->send(new \App\Mail\PurchaseSuccessful($data));
+      Mail::to($tradeInfo->Result->Email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
     }else{
       $order->transaction_status = $tradeInfo->Status;
     }
