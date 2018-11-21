@@ -86,7 +86,7 @@ class SPGController extends Controller
   
     $order = MPG::generate(
       $final_price,
-      $uid->email,
+      \Auth::user()->email,
       $course->title,
       $params
     );
