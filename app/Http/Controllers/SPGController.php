@@ -97,8 +97,8 @@ class SPGController extends Controller
   public function notify(Request $request)
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
-    $order_no = $tradeInfo->Result->MerchantOrderNo;
-    $order = Transaction::where('merchant_order_no', $order_no)->first();
+    // $order_no = $tradeInfo->Result->MerchantOrderNo;
+    // $order = Transaction::where('merchant_order_no', $order_no)->first();
     // if($tradeInfo->Status == 'SUCCESS')
     // {  
     //   $order->transaction_status = $tradeInfo->Status;
@@ -129,6 +129,7 @@ class SPGController extends Controller
     // }else{
     //   $order->transaction_status = $tradeInfo->Status;
     // }
+    $order = Transaction::orderBy('created_at', 'desc')->first();
     $order->info = response()->json($tradeInfo);
     $order->save();
   }
