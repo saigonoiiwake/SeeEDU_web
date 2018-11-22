@@ -99,36 +99,36 @@ class SPGController extends Controller
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result->MerchantOrderNo;
     $order = Transaction::where('merchant_order_no', $order_no)->first();
-    if($tradeInfo->Status == 'SUCCESS')
-    {  
-      $order->transaction_status = $tradeInfo->Status;
-      // Update enroll number in Table: Course
-      $course = Course::where('id', $order->course_id)->first();
-      $uid = $order->user_id;
-      $user = User::where('id', $uid)->first();
-      $course->enroll_num ++;
-      $course->save();
+    // if($tradeInfo->Status == 'SUCCESS')
+    // {  
+    //   $order->transaction_status = $tradeInfo->Status;
+    //   // Update enroll number in Table: Course
+    //   $course = Course::where('id', $order->course_id)->first();
+    //   $uid = $order->user_id;
+    //   $user = User::where('id', $uid)->first();
+    //   $course->enroll_num ++;
+    //   $course->save();
 
-      // Store into Table: enroll
-      $enroll = Enroll::create([
-        'course_id' => $course->id,
-        'user_id' => $uid
-      ]);
+    //   // Store into Table: enroll
+    //   $enroll = Enroll::create([
+    //     'course_id' => $course->id,
+    //     'user_id' => $uid
+    //   ]);
       
-      // Mail order payment info
-      $data = array(
-        'nick_name' => $user->nick_name,
-        'course_name' => $course->title,
-        'course_price' => $tradeInfo->Result->Amt,
-        'from_date' => $course->from_date
-      );
+    //   // Mail order payment info
+    //   $data = array(
+    //     'nick_name' => $user->nick_name,
+    //     'course_name' => $course->title,
+    //     'course_price' => $tradeInfo->Result->Amt,
+    //     'from_date' => $course->from_date
+    //   );
       
-      // Mail::to('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+    //   // Mail::to('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
-      Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
-    }else{
-      $order->transaction_status = $tradeInfo->Status;
-    }
+    //   Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+    // }else{
+    //   $order->transaction_status = $tradeInfo->Status;
+    // }
     $order->info = response()->json($tradeInfo);
     $order->save();
   }
