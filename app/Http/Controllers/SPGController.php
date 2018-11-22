@@ -99,9 +99,9 @@ class SPGController extends Controller
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result->MerchantOrderNo;
     $order = Transaction::where('merchant_order_no', $order_no)->first();
+    $order->transaction_status = $tradeInfo->Status;
     if($tradeInfo->Status == 'SUCCESS')
     {  
-      $order->transaction_status = $tradeInfo->Status;
       // Update enroll number in Table: Course
       $course = Course::where('id', $order->course_id)->first();
       $uid = $order->user_id;
@@ -126,9 +126,8 @@ class SPGController extends Controller
       // Mail::to('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
       Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
-    }else{
-      $order->transaction_status = $tradeInfo->Status;
     }
+    
     $order->info = response()->json($tradeInfo);
     $order->save();
   }
