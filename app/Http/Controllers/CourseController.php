@@ -85,6 +85,6 @@ class CourseController extends Controller
     // [API] All open courses
     public function showAll()
     {
-      return Course::all()->where('status', 'open')->get();
+      return Course::where('status', 'open')->get();
     }
 }
