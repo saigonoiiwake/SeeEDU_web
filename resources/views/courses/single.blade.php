@@ -255,19 +255,7 @@ img{
 						@auth
 							<form action="{{ route('course.spgcheckout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
 							 {{ csrf_field() }}
-							 <!-- <script
-								 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-								 data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
-								 data-amount="{{ $final_price }}"
-								 data-name="SeeEDU Live School"
-								 data-description="{{ $course->title }}"
-								 data-email="{{ \Auth::user()->email }}"
-								 data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-								 data-locale="en"
-								 data-currency="twd"
-								 data-label="立即購買">
-							 </script> -->
-							 <button>
+							 <button style=" padding: 0; border: none; background: transparent;">
 								<a href="#" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
 									<span class="pix_edit_text">
 										<strong>立即購買</strong>
@@ -399,29 +387,24 @@ img{
 		          <span class="pix_edit_text">加入SeeEDU一起學習吧！</span>
 		         </h6>
 
-						 @auth
-							 <form action="{{ route('course.spgcheckout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
-								{{ csrf_field() }}
-								<script
-									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-									data-key="pk_live_jxA8AjBLue9eOOh5leJIAQA6"
-									data-amount="{{ $final_price }}"
-									data-name="SeeEDU Live School"
-									data-description="這裡放分類"
-									data-image="{{ asset('app/images/illustrations/checkout.png')}}"
-									data-locale="en"
-									data-currency="twd"
-									data-email="{{ \Auth::user()->email }}"
-									data-label="立即購買">
-								</script>
-							 </form>
-						 @else
-						 <a href="{{ route('course.checkout.login', ['id' => $course->id]) }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-							 <span class="pix_edit_text">
+						@auth
+						<form action="{{ route('course.spgcheckout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+							{{ csrf_field() }}
+							<button style=" padding: 0; border: none; background: transparent;">
+								<a href="#" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+									<span class="pix_edit_text">
+										<strong>立即購買</strong>
+									</span>
+								</a>
+							</button>
+						</form>
+						@else
+						<a href="{{ route('course.checkout.login', ['id' => $course->id]) }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+							<span class="pix_edit_text">
 								<strong>立即購買</strong>
-							 </span>
-						 </a>
-						 @endauth
+							</span>
+						</a>
+						@endauth
 
 		        </div>
 		       </div>
