@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('courses/{course}', 'CourseController@show');
-Route::get('course/{count}', 'CourseController@showNew');
-Route::get('course', 'CourseController@showAll');
+Route::get('course/{course}', 'CourseController@show');
+Route::get('courses/{count}', 'CourseController@showNew');
+Route::get('courses', 'CourseController@showAll');
