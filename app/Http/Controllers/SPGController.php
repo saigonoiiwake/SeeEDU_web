@@ -109,7 +109,7 @@ class SPGController extends Controller
       DB::beginTransaction();
       try { 
         // Query Order
-        $order = Transaction::where('merchant_order_no', $order_no)->first();
+        $order = Transaction::where('id', $order_no)->first();
         $order->transaction_status = $tradeInfo->Status;
         $order->info = response()->json($tradeInfo);
         $order->save();
@@ -152,7 +152,7 @@ class SPGController extends Controller
     $payment_result = request()->Status;
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result->MerchantOrderNo;
-    $order = Transaction::where('merchant_order_no', $order_no)->first();
+    $order = Transaction::where('id', $order_no)->first();
     if($payment_result == 'SUCCESS')
     { 
       return redirect()->route('PurchaseSuccessful');
