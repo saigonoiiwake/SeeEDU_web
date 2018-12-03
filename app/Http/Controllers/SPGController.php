@@ -36,6 +36,71 @@ class SPGController extends Controller
       return redirect('/course/' . $id);
   }
 
+  // free class skip SPGateway
+  public function freeClass($id)
+  {
+    DB::beginTransaction();
+
+    try { 
+      $course = Course::findOrFail($id);
+      if($course->price > 0.0){
+        Session::flash('warning', '此課程未設定為免費課程，請聯繫客服人員');
+        return redirect()->back();
+      }
+
+      $uid = \Auth::user()->id;
+      $user = User::where('id', $uid)->first();
+
+      $check_exist = Enroll::where('user_id', $uid)
+                            ->where('course_id', $course->id)
+                            ->count();
+
+      if($check_exist)
+      {
+          Session::flash('info', '已購買過此課');
+          return redirect()->back();
+      }
+
+      // new transaction
+      $transaction = Transaction::create([
+        'user_id' => $uid,
+        'course_id' => $course->id,
+        'purchase_price' => 0,
+        'channel' => 'free',
+        'coupon_code' => null,
+        'transaction_status' => 'SUCCESS'
+      ]);
+
+      // Update enroll number in Table: Course
+      $course->enroll_num ++;
+      $course->save();
+
+      // Store into Table: enroll
+      $enroll = Enroll::create([
+        'course_id' => $course->id,
+        'user_id' => $uid
+      ]);
+      
+      // Mail order payment info
+      $data = array(
+        'nick_name' => $user->nick_name,
+        'course_name' => $course->title,
+        'course_price' => 0,
+        'from_date' => $course->from_date
+      );
+      
+      Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+
+      DB::commit();
+    }catch (Exception $e) {
+      DB::rollback();
+      report($e);
+      return false;
+    }
+
+    return redirect()->route('PurchaseSuccessful');
+  }
+
   // Spgateway pay
   public function pay($id, Request $request)
   {
