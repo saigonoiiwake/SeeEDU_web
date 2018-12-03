@@ -141,7 +141,7 @@ class SPGController extends Controller
           'from_date' => $course->from_date
         );
         
-        Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+        Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
         DB::commit();
       }catch (Exception $e) {
