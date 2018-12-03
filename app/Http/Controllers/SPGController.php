@@ -18,9 +18,17 @@ use MPG;
 
 class SPGController extends Controller
 {
+  private $serverUrl;
+  private $testServerIP = "13.115.120.244";
+
   public function __construct()
   {
       $this->middleware('auth');
+      if (env('APP_ENV') === 'production') {
+        $this->serverUrl = 'https://seeedu.org';
+      } else {
+        $this->serverUrl = 'http://' . $this->testServerIP;
+      }
   }
 
   public function login($id)
@@ -33,7 +41,6 @@ class SPGController extends Controller
   {
     $course = Course::findOrFail($id);
     $uid = \Auth::user()->id;
-    $time_stamp = date("YmdHis_").gettimeofday()["usec"];;
 
     $check_exist = Enroll::where('user_id', $uid)
                           ->where('course_id', $course->id)
@@ -62,7 +69,6 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => session()->get('coupon')['name'],
-        'merchant_order_no' => $time_stamp,
         'transaction_status' => 'PENDING'
       ]);
     }
@@ -74,15 +80,14 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => null,
-        'merchant_order_no' => $time_stamp,
         'transaction_status' => 'PENDING'
       ]);
     }
 
-    $params = array('MerchantOrderNo' => $time_stamp, 
+    $params = array('MerchantOrderNo' => $transaction->id, 
     'OrderComment' => $id, 
-    'ReturnURL' => 'http://13.115.120.244/spgreturn',
-    'NotifyURL' => 'http://13.115.120.244/spgnotify');
+    'ReturnURL' => $this->serverUrl . '/spg/return',
+    'NotifyURL' => $this->serverUrl . '/spg/notify');
   
     $order = MPG::generate(
       $final_price,
@@ -98,36 +103,47 @@ class SPGController extends Controller
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result->MerchantOrderNo;
-    $order = Transaction::where('merchant_order_no', $order_no)->first();
-    $order->transaction_status = $tradeInfo->Status;
-    if($tradeInfo->Status == 'SUCCESS')
-    {  
-      // Update enroll number in Table: Course
-      $course = Course::where('id', $order->course_id)->first();
-      $uid = $order->user_id;
-      $user = User::where('id', $uid)->first();
-      $course->enroll_num ++;
-      $course->save();
-
-      // Store into Table: enroll
-      $enroll = Enroll::create([
-        'course_id' => $course->id,
-        'user_id' => $uid
-      ]);
-      
-      // Mail order payment info
-      $data = array(
-        'nick_name' => $user->nick_name,
-        'course_name' => $course->title,
-        'course_price' => $tradeInfo->Result->Amt,
-        'from_date' => $course->from_date
-      );
-      
-      Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
-    }
     
-    $order->info = response()->json($tradeInfo);
-    $order->save();
+    if($tradeInfo->Status == 'SUCCESS')
+    { 
+      DB::beginTransaction();
+      try { 
+        // Query Order
+        $order = Transaction::where('merchant_order_no', $order_no)->first();
+        $order->transaction_status = $tradeInfo->Status;
+        $order->info = response()->json($tradeInfo);
+        $order->save();
+
+        // Update enroll number in Table: Course
+        $course = Course::where('id', $order->course_id)->first();
+        $uid = $order->user_id;
+        $user = User::where('id', $uid)->first();
+        $course->enroll_num ++;
+        $course->save();
+
+        // Store into Table: enroll
+        $enroll = Enroll::create([
+          'course_id' => $course->id,
+          'user_id' => $uid
+        ]);
+        
+        // Mail order payment info
+        $data = array(
+          'nick_name' => $user->nick_name,
+          'course_name' => $course->title,
+          'course_price' => $tradeInfo->Result->Amt,
+          'from_date' => $course->from_date
+        );
+        
+        Mail::to($user->email)->bcc('john80510@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
+
+        DB::commit();
+      }catch (Exception $e) {
+        DB::rollback();
+        report($e);
+        return false;
+      }
+    }
   }
 
   // Spgateway payment ReturnURL callback

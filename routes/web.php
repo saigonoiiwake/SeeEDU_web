@@ -20,8 +20,8 @@ Route::post('/course/spgcheckout/{id}', [
   'uses' => 'SPGController@pay',
   'as' => 'course.spgcheckout'
 ]);
-Route::post('/spgreturn', 'SPGController@return');
-Route::post('/spgnotify', 'SPGController@notify');
+Route::post('/spg/return', 'SPGController@return');
+Route::post('/spg/notify', 'SPGController@notify');
 
 Route::get('/courses/category/{id}', [
   'uses' => 'CourseController@category',

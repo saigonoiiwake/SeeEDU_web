@@ -13,7 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/spgreturn',
-        '/spgnotify'
+        '/spg/return',
+        '/spg/notify'
     ];
 }
