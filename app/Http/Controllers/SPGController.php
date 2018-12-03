@@ -84,7 +84,12 @@ class SPGController extends Controller
       ]);
     }
 
-    $params = array('MerchantOrderNo' => $transaction->id, 
+    // MerchantOrderNo shouldn't be too simple cause SPGateway any MerchantOrderNo will only accept once in one store, 
+    // If someday we rollback or use a new table, row ids let's said begin from 0 will be already exist in SPGateway system and won't be accept anymore.
+    // It already happened during testing, cause I connect to different DB after deploy to aws.
+    // So I use $transaction->created_at . "_" . $transaction->id as MerchantOrderNo now to ensure that won't happen in the future.
+
+    $params = array('MerchantOrderNo' => $transaction->created_at . "_" . $transaction->id,  
     'OrderComment' => $id, 
     'ReturnURL' => $this->serverUrl . '/spg/return',
     'NotifyURL' => $this->serverUrl . '/spg/notify');
@@ -102,7 +107,8 @@ class SPGController extends Controller
   public function notify(Request $request)
   {
     $tradeInfo = MPG::parse(request()->TradeInfo);
-    $order_no = $tradeInfo->Result->MerchantOrderNo;
+    $merchantOrderNo = explode("_", $tradeInfo->Result->MerchantOrderNo);
+    $order_no = $merchantOrderNo[1];
     
     if($tradeInfo->Status == 'SUCCESS')
     { 
