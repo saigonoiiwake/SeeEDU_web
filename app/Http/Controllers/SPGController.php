@@ -89,7 +89,7 @@ class SPGController extends Controller
     // It already happened during testing, cause I connect to different DB after deploy to aws.
     // So I use $transaction->created_at . "_" . $transaction->id as MerchantOrderNo now to ensure that won't happen in the future.
 
-    $params = array('MerchantOrderNo' => $transaction->created_at . "_" . $transaction->id,  
+    $params = array('MerchantOrderNo' => date("YmdHis") . "_" . $transaction->id,  
     'OrderComment' => $id, 
     'ReturnURL' => $this->serverUrl . '/spg/return',
     'NotifyURL' => $this->serverUrl . '/spg/notify');
