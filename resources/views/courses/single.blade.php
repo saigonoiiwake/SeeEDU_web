@@ -401,16 +401,29 @@ img{
 		         </h6>
 
 						@auth
-						<form action="{{ route('course.spgcheckout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
-							{{ csrf_field() }}
-							<button style=" padding: 0; border: none; background: transparent;">
-								<a href="#" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
-									<span class="pix_edit_text">
-										<strong>立即購買</strong>
-									</span>
-								</a>
-							</button>
-						</form>
+							@if($course->price > 0.0)
+								<form action="{{ route('course.spgcheckout', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+								{{ csrf_field() }}
+								<button style=" padding: 0; border: none; background: transparent;">
+									<a href="#" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+										<span class="pix_edit_text">
+											<strong>立即購買</strong>
+										</span>
+									</a>
+								</button>
+								</form>
+							@else
+								<form action="{{ route('course.free', ['id' => $course->id] ) }}" method="post" id="pay" style="display:inline">
+									{{ csrf_field() }}
+									<button style=" padding: 0; border: none; background: transparent;">
+										<a href="#" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
+											<span class="pix_edit_text">
+												<strong>立即購買</strong>
+											</span>
+										</a>
+									</button>
+								</form>
+							@endif
 						@else
 						<a href="{{ route('course.checkout.login', ['id' => $course->id]) }}" class="btn blue-bg  pix-white pix-margin-bottom-10 pix-margin-right-10 wide pix-margin-top-10 secondary-font">
 							<span class="pix_edit_text">
