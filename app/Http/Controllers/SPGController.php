@@ -68,7 +68,7 @@ class SPGController extends Controller
         'purchase_price' => 0,
         'channel' => 'free',
         'coupon_code' => null,
-        'transaction_status' => 'SUCCESS'
+        'transaction_status' => Transaction::SUCCESS
       ]);
 
       // Update enroll number in Table: Course
@@ -134,7 +134,7 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => session()->get('coupon')['name'],
-        'transaction_status' => 'PENDING'
+        'transaction_status' => Transaction::PENDING
       ]);
     }
     else
@@ -145,7 +145,7 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => null,
-        'transaction_status' => 'PENDING'
+        'transaction_status' => Transaction::PENDING
       ]);
     }
 
@@ -154,7 +154,7 @@ class SPGController extends Controller
     // It already happened during testing, cause I connect to different DB after deploy to aws.
     // So I use $transaction->created_at . "_" . $transaction->id as MerchantOrderNo now to ensure that won't happen in the future.
 
-    $params = array('MerchantOrderNo' => date("YmdHis") . "_" . $transaction->id,  
+    $params = array('MerchantOrderNo' => date("YmdHis", strtotime($transaction->created_at)) . "_" . $transaction->id,  
     'OrderComment' => $id, 
     'ReturnURL' => $this->serverUrl . '/spg/return',
     'NotifyURL' => $this->serverUrl . '/spg/notify');
@@ -208,6 +208,21 @@ class SPGController extends Controller
         
         Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
+        DB::commit();
+      }catch (Exception $e) {
+        DB::rollback();
+        report($e);
+        return false;
+      }
+    }else{
+      DB::beginTransaction();
+      try { 
+        // Query Order
+        $order = Transaction::where('id', $order_no)->first();
+        $order->transaction_status = $tradeInfo->Status;
+        $order->info = response()->json($tradeInfo);
+        $order->save();
+        
         DB::commit();
       }catch (Exception $e) {
         DB::rollback();
