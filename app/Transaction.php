@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 class Transaction extends Model
 {
     protected $table = 'transaction';
+    public const SUCCESS = 'SUCCESS';
+    public const PENDING = 'PENDING';
 
     /**
      * The attributes that are mass assignable.
