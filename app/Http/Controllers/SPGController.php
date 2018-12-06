@@ -243,7 +243,7 @@ class SPGController extends Controller
     { 
       return redirect()->route('PurchaseSuccessful');
     }else{
-      Session::flash('warning', '成功失敗，請至信箱確認');
+      Session::flash('warning', '付款失敗，請至信箱確認');
       return redirect('/course/' . $order->course_id);
     }
   }
