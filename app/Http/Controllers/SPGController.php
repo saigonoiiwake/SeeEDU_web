@@ -68,7 +68,7 @@ class SPGController extends Controller
         'purchase_price' => 0,
         'channel' => 'free',
         'coupon_code' => null,
-        'transaction_status' => Transaction::SUCCESS
+        'transaction_status' => Transaction::STATUS_SUCCESS
       ]);
 
       // Update enroll number in Table: Course
@@ -134,7 +134,7 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => session()->get('coupon')['name'],
-        'transaction_status' => Transaction::PENDING
+        'transaction_status' => Transaction::STATUS_PENDING
       ]);
     }
     else
@@ -145,7 +145,7 @@ class SPGController extends Controller
         'purchase_price' => $final_price,
         'channel' => 'spgateway',
         'coupon_code' => null,
-        'transaction_status' => Transaction::PENDING
+        'transaction_status' => Transaction::STATUS_PENDING
       ]);
     }
 
@@ -181,7 +181,7 @@ class SPGController extends Controller
       try { 
         // Query Order
         $order = Transaction::where('id', $order_no)->first();
-        $order->transaction_status = $tradeInfo->Status;
+        $order->transaction_status = Transaction::STATUS_SUCCESS;
         $order->info = response()->json($tradeInfo);
         $order->save();
 
@@ -219,7 +219,7 @@ class SPGController extends Controller
       try { 
         // Query Order
         $order = Transaction::where('id', $order_no)->first();
-        $order->transaction_status = $tradeInfo->Status;
+        $order->transaction_status = Transaction::STATUS_FAILED;
         $order->info = response()->json($tradeInfo);
         $order->save();
         
