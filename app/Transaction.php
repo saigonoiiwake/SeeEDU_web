@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 class Transaction extends Model
 {
     protected $table = 'transaction';
+    public const STATUS_SUCCESS = 'SUCCESS';
+    public const STATUS_FAILED = 'FAILED';
+    public const STATUS_PENDING = 'PENDING';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +18,7 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'course_id', 'purchase_price', 'channel', 'coupon_code'
+        'user_id', 'course_id', 'purchase_price', 'channel', 'coupon_code', 'transaction_status', 'info'
     ];
 
     public function user()

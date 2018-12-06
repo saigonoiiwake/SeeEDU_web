@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        LeoChien\Spgateway\SpgatewayServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -177,7 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
     ],
 
     /*
@@ -227,7 +228,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
-
+        'MPG' => LeoChien\Spgateway\Facades\MPG::class,
+        'Receipt' => LeoChien\Spgateway\Facades\Receipt::class,
+        'Refund' => LeoChien\Spgateway\Facades\Refund::class,
+        'Transfer' => LeoChien\Spgateway\Facades\Transfer::class,
     ],
 
 ];

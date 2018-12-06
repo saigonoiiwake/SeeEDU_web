@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Course;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('course/{course}', 'CourseController@show');
+Route::get('courses/{count}', 'CourseController@showNew');
+Route::get('courses', 'CourseController@showAll');
