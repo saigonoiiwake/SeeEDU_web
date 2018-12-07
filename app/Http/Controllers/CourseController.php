@@ -19,8 +19,9 @@ class CourseController extends Controller
 {
     public function index()
     {
-      return view('courses.index')->with('courses', Course::all())
-                            ->with('categories', CourseCategory::skip(2)->take(2)->get());
+      $courses = Course::all()->sortByDesc("from_date");
+      return view('courses.index')->with('courses', $courses)->with('categories', CourseCategory::skip(2)->take(2)->get());
+      // return view('courses.index')->with('courses', Course::all())->with('categories', CourseCategory::skip(2)->take(2)->get());
     }
 
     public function singleCourse($id)

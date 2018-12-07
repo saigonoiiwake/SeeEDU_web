@@ -344,7 +344,7 @@
 					 		$d1 = new DateTime($course->from_date);
 					 		$d2 = new DateTime($course->to_date);
 				 		@endphp
-					<div class="price">價格<span>NTD {{ 1.1*$course->price/(1 + $d1->diff($d2)->m ) }} /月</span></div>
+					<div class="price">價格<span>NTD {{ $course->price/(1 + $d1->diff($d2)->m ) }} /月</span></div>
 
 				</div>
 					 </div>
