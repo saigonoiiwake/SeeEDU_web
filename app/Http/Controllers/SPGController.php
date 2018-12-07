@@ -118,11 +118,11 @@ class SPGController extends Controller
 
     if( session()->has('coupon') )
     {
-      $final_price = 1.1*$course->price - session()->get('coupon')['discount'];
+      $final_price = $course->price - session()->get('coupon')['discount'];
     }
     else
     {
-      $final_price = 1.1*$course->price;    // 1.1=>service fees
+      $final_price = $course->price;
     }
 
     // Store transaction data into Table:transaction
