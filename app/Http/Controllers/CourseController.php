@@ -19,9 +19,10 @@ class CourseController extends Controller
 {
     public function index()
     {
-      $courses = Course::all()->sortByDesc("from_date");
+      $new_courses = Course::whereDate('from_date', '>', date('Y-m-d'))->get()->sortBy("from_date");
+      $old_courses = Course::whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date");
+      $courses = $new_courses->merge($old_courses);
       return view('courses.index')->with('courses', $courses)->with('categories', CourseCategory::skip(2)->take(2)->get());
-      // return view('courses.index')->with('courses', Course::all())->with('categories', CourseCategory::skip(2)->take(2)->get());
     }
 
     public function singleCourse($id)
