@@ -15,7 +15,7 @@ Auth::routes();
 
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@landing')->name('home');
-
+Route::get('/checkstatus', 'HomeController@check');
 Route::post('/course/spgcheckout/{id}', [
   'uses' => 'SPGController@pay',
   'as' => 'course.spgcheckout'
