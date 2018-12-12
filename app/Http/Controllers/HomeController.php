@@ -33,4 +33,21 @@ class HomeController extends Controller
         
         return view('landing');
     }
+
+    public function check()
+    {
+        if (\Auth::check()) {
+            // 已登入
+            $user = \Auth::user();
+            return response()->json([
+                'Status' => 'Success',
+                'User' => $user
+            ]);
+            return $user;
+        }else{
+            return response()->json([
+                'Status' => null
+            ]);
+        }
+    }
 }
