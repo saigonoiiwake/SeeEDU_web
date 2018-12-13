@@ -86,6 +86,7 @@ class CourseController extends Controller
       $courses = $new_courses->merge($old_courses);
       foreach($courses as $course){
         $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
+        $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
       }
       return $courses;
     }
