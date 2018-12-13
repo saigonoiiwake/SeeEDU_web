@@ -78,10 +78,17 @@ class CourseController extends Controller
       return $course;
     }
 
-    // [API] Top n open courses
+    // [API] Top n enroll student open courses
     public function showNew($count)
     {
-      return Course::take($count)->where('status', 'open')->get();
+      $new_courses = Course::take($count)->where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortByDesc("enroll_num");
+      $old_courses = Course::take($count - count($new_courses))->where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("enroll_num");
+      $courses = $new_courses->merge($old_courses);
+      foreach($courses as $course){
+        $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
+        $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
+      }
+      return $courses;
     }
 
     // [API] All open courses
