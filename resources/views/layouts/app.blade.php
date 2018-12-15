@@ -131,7 +131,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScPE5b8JhY7LP_7HJ3LkYkJnTrRSxUiYdVtX2hnhCuxPTH4sQ/viewform" class="" target="_blank">
+                            <a href="https://seeedu.typeform.com/to/bxxYrN" class="" target="_blank">
                                 <i class="fab fa-teamspeak"> 報名免費試聽</i>
                             </a>
                         </li>
