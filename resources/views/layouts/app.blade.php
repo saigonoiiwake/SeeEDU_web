@@ -113,7 +113,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><img class="logo" src="https://res.cloudinary.com/drxz8uaob/image/upload/v1545195166/seeedu_logo_1020final-03.png" alt="" width="72px"></a>
                     <!-- <a href="{{ route('home') }}" class="navbar-left"><img class="logo" src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" width="100px"></a> -->
                 </div>
 

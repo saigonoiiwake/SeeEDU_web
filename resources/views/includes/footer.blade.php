@@ -5,7 +5,7 @@
   <div class="row">
    <div class="col-md-3 col-xs-12 col-sm-3 column ui-droppable">
     <div class="pix-content"><div class="pix-padding-v-20">
-     <a class="" href="{{ route('home') }}"><img src="https://res.cloudinary.com/sabina123/image/upload/v1531194117/logo_final-398DD5.png" alt="" class="img-responsive pix-inline-block" width="130px"></a>
+     <a class="" href="{{ route('home') }}"><img src="https://res.cloudinary.com/drxz8uaob/image/upload/v1545195166/seeedu_logo_1020final-03.png" alt="" class="img-responsive pix-inline-block" width="130px"></a>
     </div><div class="clearfix"></div><div class="pix-padding-v-10">
      <p class="pix-navy-blue-2">
        <span class="pix_edit_text">
