@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use App\BlogCategory;
 use App\BlogPost;
 use App\BlogTag;
+use App\Repository\Repositories\BlogRepository;
 
 class BlogController extends Controller
 {
+    protected $blogRepository;
+
+    public function __construct(BlogRepository $blogRepository)
+    {
+        $this->blogRepository = $blogRepository;
+    }
+
     public function index()
     {
         return view('blogs.index')
@@ -23,16 +31,17 @@ class BlogController extends Controller
 
     public function singlePost($slug)
     {
-        $post = BlogPost::where('slug', $slug)->first();
-        $next_id = BlogPost::where('id', '>', $post->id)->min('id');
-        $prev_id = BlogPost::where('id', '<', $post->id)->max('id');
+        $postQeury['slug'] = $slug;
+        $post = $this->blogRepository->getPost($postQeury);
+        $next_id = $this->blogRepository->getNextPostId($post->id);
+        $prev_id = $this->blogRepository->getPrevPostId($post->id);
 
         return view('blogs.single')
             ->with('post', $post)
             ->with('title', $post->title)
             ->with('categories', BlogCategory::take(5)->get())
-            ->with('next', BlogPost::find($next_id))
-            ->with('prev', BlogPost::find($prev_id))
+            ->with('next', $this->blogRepository->find($next_id))
+            ->with('prev', $this->blogRepository->find($prev_id))
             ->with('tags', BlogTag::all());
     }
 
