@@ -24,13 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         return view('home')->with('courses', Course::take(3)->where('status', 'open')->get());
     }
 
     public function landing()
     {
-        
         return view('landing');
     }
 
@@ -39,15 +37,14 @@ class HomeController extends Controller
         if (\Auth::check()) {
             // 已登入
             $user = \Auth::user();
-            return response()->json([
-                'Status' => 'Success',
-                'User' => $user
-            ]);
-            return $user;
-        }else{
-            return response()->json([
-                'Status' => null
-            ]);
+
+            $rtndata ['Status'] = 'Success';
+            $rtndata ['User'] = $user;
+
+            return response()->json( $rtndata );
+        } else {
+            $rtndata ['Status'] = null;
+            return response()->json( $rtndata );
         }
     }
 }
