@@ -112,7 +112,9 @@ class CourseController extends Controller
     // [API] All open courses
     public function showAll()
     {
-      $courses = Course::where('status', 'open')->get();
+      $new_courses = Course::where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortBy("from_date");
+      $old_courses = Course::where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date");
+      $courses = $new_courses->merge($old_courses);
       foreach($courses as $course){
         $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
         $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
