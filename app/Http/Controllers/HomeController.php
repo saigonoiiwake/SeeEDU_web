@@ -40,13 +40,14 @@ class HomeController extends Controller
             // 已登入
             $user = \Auth::user();
             return response()->json([
-                'Status' => 'Success',
-                'User' => $user
+                'status' => 'Success',
+                'data' => $user
             ]);
             return $user;
         }else{
             return response()->json([
-                'Status' => null
+                'status' => 'Fail',
+                'message' => '尚未登入'
             ]);
         }
     }
