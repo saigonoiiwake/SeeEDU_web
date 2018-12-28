@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Course;
 use App\User;
-use App\Chapter;
 use App\CourseCategory;
-use Stripe\Stripe;
-use Stripe\Charge;
+use App\CourseDescription;
 use Session;
-use Mail;
-use App\Transaction;
-use App\Enroll;
 use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
@@ -75,7 +69,27 @@ class CourseController extends Controller
     // [API] Query course by id
     public function show(Course $course)
     {
-      return $course;
+      if( $course->status === 'open')
+      {
+        //update browse number
+        $course->browse_num ++;
+        $course->save();
+        
+        //query course description
+        $course_description = CourseDescription::where('course_id', $course->id)->first();
+        $course->description = $course_description->description;
+        return response()->json([
+          'status' => 'Success',
+          'data' => $course
+        ]);
+      }
+      else
+      {
+        return response()->json([
+          'status' => 'Fail',
+          'message' => '此課程未開放！'
+        ]);
+      }
     }
 
     // [API] Top n enroll student open courses
@@ -88,12 +102,25 @@ class CourseController extends Controller
         $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
         $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
       }
-      return $courses;
+
+      return response()->json([
+        'status' => 'Success',
+        'data' => $courses
+      ]);
     }
 
     // [API] All open courses
     public function showAll()
     {
-      return Course::where('status', 'open')->get();
+      $courses = Course::where('status', 'open')->get();
+      foreach($courses as $course){
+        $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
+        $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
+      }
+      
+      return response()->json([
+        'status' => 'Success',
+        'data' => $courses
+      ]);
     }
 }
