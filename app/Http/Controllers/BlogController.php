@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\Repositories\BlogCategoryRepository;
-use App\Repository\Repositories\BlogPostRepository;
-use App\Repository\Repositories\BlogTagRepository;
+use App\Repository\Repositories\Blog\BlogCategoryRepository;
+use App\Repository\Repositories\Blog\BlogPostRepository;
+use App\Repository\Repositories\Blog\BlogTagRepository;
 
 class BlogController extends Controller
 {

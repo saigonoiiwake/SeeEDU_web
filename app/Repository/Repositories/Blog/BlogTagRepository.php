@@ -5,7 +5,7 @@
  * Date: 2018/12/27
  * Time: 4:48 AM
  */
-namespace App\Repository\Repositories;
+namespace App\Repository\Repositories\Blog;
 
 use App\BlogTag;
 
