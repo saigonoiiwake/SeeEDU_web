@@ -4,35 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
-use App\User;
-use App\Chapter;
-use App\CourseCategory;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Session;
 use Mail;
-use App\Transaction;
-use App\Enroll;
 use Illuminate\Support\Facades\Log;
+use App\Repository\Repositories\Course\CourseRepository;
+use App\Repository\Repositories\Course\CourseCategoryRepository;
 
 class CourseController extends Controller
 {
+    protected $courseRepository;
+    protected $couresCategoryRepository;
+
+    public function __construct(CourseRepository $courseRepository, CourseCategoryRepository $courseCategoryRepository)
+    {
+        $this->courseRepository = $courseRepository;
+        $this->couresCategoryRepository = $courseCategoryRepository;
+    }
+
     public function index()
     {
-        $new_courses = Course::whereDate('from_date', '>', date('Y-m-d'))->get()->sortBy("from_date");
-        $old_courses = Course::whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date");
+        $new_courses = $this->courseRepository->newCourse('>', 'from_date');
+        $old_courses = $this->courseRepository->oldCourse('<=', 'from_date');
         $courses = $new_courses->merge($old_courses);
-        return view('courses.index')->with('courses', $courses)->with('categories', CourseCategory::skip(2)->take(2)->get());
+        return view('courses.index')->with('courses', $courses)->with('categories', $this->couresCategoryRepository->cateGorySkipTake(2,2));
     }
 
     public function singleCourse($id)
     {
-        $course = Course::where('id', $id)->first();
+        $course = $this->courseRepository->find($id);
 
         if ($course->status === 'open') {
             //update browse number
-            $course->browse_num ++;
-            $course->save();
+            $update['browse_num'] = $course->browse_num + 1;
+            $this->courseRepository->courseUpdateById($id, $update);
 
             return view('courses.single')->with('course', $course);
         } else {
@@ -44,24 +50,20 @@ class CourseController extends Controller
 
     public function category($id)
     {
-      //$second_layers = CourseCategory::where('parent_id', $id)->get();
         $category_IDs = collect( [$id] );
 
-      //foreach($second_layers as $second_layer )
-      //{
-        //$third_layers = CourseCategory::where('parent_id', $second_layer->id)->get();
-        $third_layers = CourseCategory::where('parent_id', $id)->get();
+        $query ['parent_id'] = $id;
+        $third_layers = $this->couresCategoryRepository->getCateGorys($query);
 
         foreach ($third_layers as $third_layer) {
           $category_IDs = $category_IDs->merge( [$third_layer->id] );
         }
-      //}
 
-      $categories = CourseCategory::findMany($category_IDs);
+        $categories = $this->couresCategoryRepository->findMany($category_IDs);
 
-      return view('courses.category')
-          ->with('bottom_categories', $categories)
-          ->with('categories', CourseCategory::skip(2)->take(2)->get());
+        return view('courses.category')
+            ->with('bottom_categories', $categories)
+            ->with('categories', $this->couresCategoryRepository->cateGorySkipTake(2,2));
     }
 
     // [API] Query course by id
@@ -73,16 +75,11 @@ class CourseController extends Controller
     // [API] Top n enroll student open courses
     public function showNew($count)
     {
-        $new_courses = Course::where('status', 'open')
-            ->whereDate('from_date', '>', date('Y-m-d'))
-            ->get()
-            ->sortByDesc("enroll_num")
-            ->take($count);
-        $old_courses = Course::where('status', 'open')
-            ->whereDate('from_date', '<=', date('Y-m-d'))
-            ->get()
-            ->sortByDesc("from_date")
-            ->take($count - count($new_courses));
+        $query ['status'] = 'open';
+        $new_courses = $this->courseRepository->newCourseTake($query, '>', 'enroll_num', $count);
+        $oldCount = $count - count($new_courses);
+        $old_courses = $this->courseRepository->oldCourseTake($query, '<=', 'from_date', $oldCount);
+
         $courses = $new_courses->merge($old_courses);
 
         foreach($courses as $course) {
@@ -95,6 +92,7 @@ class CourseController extends Controller
     // [API] All open courses
     public function showAll()
     {
-        return Course::where('status', 'open')->get();
+        $query['status'] = 'open';
+        return $this->courseRepository->getCourse($query);
     }
 }
