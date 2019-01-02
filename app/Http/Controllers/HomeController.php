@@ -45,7 +45,7 @@ class HomeController extends Controller
         } else {
             
             $rtndata ['status'] = 'Fail';
-            $rtndata ['message'] = '尚未登入';
+            $rtndata ['message'] = '尚未登入2';
             
             return response()->json( $rtndata );
         }
