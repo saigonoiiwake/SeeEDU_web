@@ -21,56 +21,42 @@ class CourseController extends Controller
 
     public function singleCourse($id)
     {
-
       $course = Course::where('id', $id)->first();
 
-      if( $course->status === 'open')
-      {
+      if ($course->status === 'open') {
         //update browse number
         $course->browse_num ++;
         $course->save();
 
         return view('courses.single')->with('course', $course);
-
-      }
-      else
-      {
+      } else {
         Session::flash('info', '此課程未開放！');
         return redirect()->back();
       }
-
     }
 
 
     public function category($id)
     {
-
-      //$second_layers = CourseCategory::where('parent_id', $id)->get();
       $category_IDs = collect( [$id] );
 
-      //foreach($second_layers as $second_layer )
-      //{
-        //$third_layers = CourseCategory::where('parent_id', $second_layer->id)->get();
-        $third_layers = CourseCategory::where('parent_id', $id)->get();
+      $third_layers = CourseCategory::where('parent_id', $id)->get();
 
-        foreach($third_layers as $third_layer)
-        {
-          $category_IDs = $category_IDs->merge( [$third_layer->id] );
-        }
-      //}
+      foreach($third_layers as $third_layer) {
+        $category_IDs = $category_IDs->merge( [$third_layer->id] );
+      }
 
       $categories = CourseCategory::findMany($category_IDs);
 
-      return view('courses.category')->with('bottom_categories', $categories)
-                                  ->with('categories', CourseCategory::skip(2)->take(2)->get());
-
+      return view('courses.category')
+        ->with('bottom_categories', $categories)
+        ->with('categories', CourseCategory::skip(2)->take(2)->get());
     }
 
     // [API] Query course by id
     public function show(Course $course)
     {
-      if( $course->status === 'open')
-      {
+      if ( $course->status === 'open') {
         //update browse number
         $course->browse_num ++;
         $course->save();
@@ -82,9 +68,7 @@ class CourseController extends Controller
           'status' => 'Success',
           'data' => $course
         ]);
-      }
-      else
-      {
+      } else {
         return response()->json([
           'status' => 'Fail',
           'message' => '此課程未開放！'
@@ -98,11 +82,10 @@ class CourseController extends Controller
       $new_courses = Course::where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortByDesc("enroll_num")->take($count);
       $old_courses = Course::where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date")->take($count - count($new_courses));
       $courses = $new_courses->merge($old_courses);
-      foreach($courses as $course){
+      foreach($courses as $course) {
         $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
         $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
       }
-
       return response()->json([
         'status' => 'Success',
         'data' => $courses
@@ -115,11 +98,11 @@ class CourseController extends Controller
       $new_courses = Course::where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortBy("from_date");
       $old_courses = Course::where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date");
       $courses = $new_courses->merge($old_courses);
-      foreach($courses as $course){
+
+      foreach($courses as $course) {
         $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
         $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
       }
-      
       return response()->json([
         'status' => 'Success',
         'data' => $courses

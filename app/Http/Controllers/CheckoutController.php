@@ -20,18 +20,16 @@ class CheckoutController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware('auth');
   }
 
   public function login($id)
   {
-      return redirect('/course/' . $id);
+    return redirect('/course/' . $id);
   }
 
   public function pay($id, Request $request)
   {
-
-
     DB::beginTransaction();
 
     try{
@@ -41,31 +39,21 @@ class CheckoutController extends Controller
       $check_exist = Enroll::where('user_id', $uid)
                             ->where('course_id', $course->id)
                             ->count();
-      if($check_exist)
-      {
-          Session::flash('info', '已購買過此課');
-          return redirect()->back();
+      if ($check_exist) {
+        Session::flash('info', '已購買過此課');
+        return redirect()->back();
       }
-
-
       // Set your secret key: remember to change this to your live secret key in production
       // See your keys here: https://dashboard.stripe.com/account/apikeys
       Stripe::setApiKey("sk_live_GSvVivTVkXEj6aj5PEN65TcJ");
 
       // Token is created using Checkout or Elements!
       // Get the payment token ID submitted by the form:
-      $token = $_POST['stripeToken'];;
+      $token = $_POST['stripeToken'];
 
-
-
-      if( session()->has('coupon') )
-      {
-        $final_price = (1.1*$course->price - session()->get('coupon')['discount'])*100;
-      }
-      else
-      {
-        $final_price = 100*1.1*$course->price;    //100=>cent to dollar 1.1=>service fees
-      }
+      $final_price = (session()->has('coupon'))
+        ? (1.1*$course->price - session()->get('coupon')['discount'])*100
+        : 100*1.1*$course->price;    //100=>cent to dollar 1.1=>service fees
 
       $charge = Charge::create([
         'amount' => $final_price,
@@ -73,7 +61,6 @@ class CheckoutController extends Controller
         'description' => 'SeeEDU Live School',
         'source' => $token
       ]);
-
 
       $data = array(
         'course_name' => $course->title,
@@ -86,8 +73,7 @@ class CheckoutController extends Controller
             ->send(new \App\Mail\PurchaseSuccessful($data));
 
       // Store transaction data into Table:transaction
-      if( session()->has('coupon') )
-      {
+      if (session()->has('coupon')) {
         $transaction = Transaction::create([
           'user_id' => $uid,
           'course_id' => $course->id,
@@ -95,9 +81,7 @@ class CheckoutController extends Controller
           'channel' => 'stripe',
           'coupon_code' => session()->get('coupon')['name']
         ]);
-      }
-      else
-      {
+      } else {
         $transaction = Transaction::create([
           'user_id' => $uid,
           'course_id' => $course->id,
@@ -122,19 +106,12 @@ class CheckoutController extends Controller
       DB::commit();
 
       return redirect()->route('PurchaseSuccessful');
-    }catch (\Exception $e) {
+    } catch (\Exception $e) {
         DB::rollback();
         report($e);
-
       Session::flash('warning', '您的信用卡無法付款，請聯繫客服人員');
-
       return redirect('/course/' . $course->id);
     }
-
     session()->forget('coupon');
-
-
   }
-
-
 }

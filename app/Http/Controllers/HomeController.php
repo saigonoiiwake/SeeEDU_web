@@ -24,13 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         return view('home')->with('courses', Course::take(3)->where('status', 'open')->get());
     }
 
     public function landing()
     {
-        
         return view('landing');
     }
 
@@ -43,8 +41,7 @@ class HomeController extends Controller
                 'status' => 'Success',
                 'data' => $user
             ]);
-            return $user;
-        }else{
+        } else {
             return response()->json([
                 'status' => 'Fail',
                 'message' => '尚未登入'
