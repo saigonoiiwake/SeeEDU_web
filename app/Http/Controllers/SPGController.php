@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\User;
+use App\CourseCategory;
+use Stripe\Stripe;
+use Stripe\Charge;
 use Session;
 use Mail;
 use App\Transaction;
@@ -21,9 +24,11 @@ class SPGController extends Controller
   public function __construct()
   {
       $this->middleware('auth', ['except'=>'notify']);
-      $this->serverUrl = (env('APP_ENV') === 'production')
-          ? 'https://seeedu.org'
-          : 'http://' . $this->testServerIP;
+      if (env('APP_ENV') === 'production') {
+        $this->serverUrl = 'https://seeedu.org';
+      } else {
+        $this->serverUrl = 'http://' . $this->testServerIP;
+      }
   }
 
   public function login($id)
@@ -38,7 +43,7 @@ class SPGController extends Controller
 
     try { 
       $course = Course::findOrFail($id);
-      if ($course->price > 0.0) {
+      if($course->price > 0.0){
         Session::flash('warning', '此課程未設定為免費課程，請聯繫客服人員');
         return redirect()->back();
       }
@@ -47,10 +52,11 @@ class SPGController extends Controller
       $user = User::where('id', $uid)->first();
 
       $check_exist = Enroll::where('user_id', $uid)
-          ->where('course_id', $course->id)
-          ->count();
+                            ->where('course_id', $course->id)
+                            ->count();
 
-      if ($check_exist) {
+      if($check_exist)
+      {
           Session::flash('info', '已購買過此課');
           return redirect()->back();
       }
@@ -86,12 +92,12 @@ class SPGController extends Controller
       Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
       DB::commit();
-    } catch (Exception $e) {
-
+    }catch (Exception $e) {
       DB::rollback();
       report($e);
       return false;
     }
+
     return redirect()->route('PurchaseSuccessful');
   }
 
@@ -102,20 +108,26 @@ class SPGController extends Controller
     $uid = \Auth::user()->id;
 
     $check_exist = Enroll::where('user_id', $uid)
-        ->where('course_id', $course->id)
-        ->count();
-
-    if ($check_exist) {
+                          ->where('course_id', $course->id)
+                          ->count();
+    if($check_exist)
+    {
         Session::flash('info', '已購買過此課');
         return redirect()->back();
     }
 
-    $final_price = (session()->has('coupon'))
-        ? $course->price - session()->get('coupon')['discount']
-        : $course->price;
+    if( session()->has('coupon') )
+    {
+      $final_price = $course->price - session()->get('coupon')['discount'];
+    }
+    else
+    {
+      $final_price = $course->price;
+    }
 
     // Store transaction data into Table:transaction
-    if (session()->has('coupon')) {
+    if( session()->has('coupon') )
+    {
       $transaction = Transaction::create([
         'user_id' => $uid,
         'course_id' => $course->id,
@@ -124,7 +136,9 @@ class SPGController extends Controller
         'coupon_code' => session()->get('coupon')['name'],
         'transaction_status' => Transaction::STATUS_PENDING
       ]);
-    } else {
+    }
+    else
+    {
       $transaction = Transaction::create([
         'user_id' => $uid,
         'course_id' => $course->id,
@@ -140,20 +154,17 @@ class SPGController extends Controller
     // It already happened during testing, cause I connect to different DB after deploy to aws.
     // So I use $transaction->created_at . "_" . $transaction->id as MerchantOrderNo now to ensure that won't happen in the future.
 
-    $params = array(
-        'MerchantOrderNo' => date("YmdHis", strtotime($transaction->created_at)) . "_" . $transaction->id,
-        'OrderComment' => $id,
-        'ReturnURL' => $this->serverUrl . '/spg/return',
-        'NotifyURL' => $this->serverUrl . '/spg/notify'
-    );
+    $params = array('MerchantOrderNo' => date("YmdHis", strtotime($transaction->created_at)) . "_" . $transaction->id,  
+    'OrderComment' => $id, 
+    'ReturnURL' => $this->serverUrl . '/spg/return',
+    'NotifyURL' => $this->serverUrl . '/spg/notify');
   
     $order = MPG::generate(
-        $final_price,
-        \Auth::user()->email,
-        $course->title,
-        $params
+      $final_price,
+      \Auth::user()->email,
+      $course->title,
+      $params
     );
-
     return $order->send();
   }
 
@@ -164,9 +175,9 @@ class SPGController extends Controller
     $merchantOrderNo = explode("_", $tradeInfo->Result->MerchantOrderNo);
     $order_no = $merchantOrderNo[1];
     
-    if ($tradeInfo->Status == 'SUCCESS') {
+    if($tradeInfo->Status == 'SUCCESS')
+    { 
       DB::beginTransaction();
-
       try { 
         // Query Order
         $order = Transaction::where('id', $order_no)->first();
@@ -198,14 +209,13 @@ class SPGController extends Controller
         Mail::to($user->email)->bcc('b816132@gmail.com')->send(new \App\Mail\PurchaseSuccessful($data));
 
         DB::commit();
-      } catch (Exception $e) {
+      }catch (Exception $e) {
         DB::rollback();
         report($e);
         return false;
       }
-    } else {
+    }else{
       DB::beginTransaction();
-
       try { 
         // Query Order
         $order = Transaction::where('id', $order_no)->first();
@@ -214,7 +224,7 @@ class SPGController extends Controller
         $order->save();
         
         DB::commit();
-      } catch (Exception $e) {
+      }catch (Exception $e) {
         DB::rollback();
         report($e);
         return false;
@@ -229,9 +239,10 @@ class SPGController extends Controller
     $tradeInfo = MPG::parse(request()->TradeInfo);
     $order_no = $tradeInfo->Result->MerchantOrderNo;
     $order = Transaction::where('id', $order_no)->first();
-    if ($payment_result == 'SUCCESS') {
+    if($payment_result == 'SUCCESS')
+    { 
       return redirect()->route('PurchaseSuccessful');
-    } else {
+    }else{
       Session::flash('warning', '付款失敗，請至信箱確認');
       return redirect('/course/' . $order->course_id);
     }

@@ -35,7 +35,9 @@ class CourseCreateController extends Controller
     {
         $course_id = $request->session()->get('course_id');
 
-        if (empty($course_id)) return redirect('/courses/create');
+        if (empty($course_id)) {
+            return redirect('/courses/create');
+        }
 
         return view('courses.create.complete', ['course_id' => $course_id]);
     }
@@ -48,10 +50,11 @@ class CourseCreateController extends Controller
         //  ]);
 
         $signed_contract = $request->session()->get('signed_contract');
-        if (empty($signed_contract)) return redirect('/courses/create/step/contract');
+        if (empty($signed_contract)) {
+            return redirect('/courses/create/step/contract');
+        }
 
         $teacher_profile = $request->session()->get('teacher_profile');
-
         if (empty($teacher_profile)) {
             $user = User::find(auth()->user()->id);
             $profile = $user->profile;
@@ -68,7 +71,9 @@ class CourseCreateController extends Controller
             ];
         }
 
-        if (!array_key_exists('avatar', $teacher_profile)) $teacher_profile['avatar'] = auth()->user()->avatar;
+        if(!array_key_exists('avatar', $teacher_profile)) {
+            $teacher_profile['avatar'] = auth()->user()->avatar;
+        }
 
         $request->session()->forget('teacher_profile');
 
@@ -106,7 +111,6 @@ class CourseCreateController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $validatedData['name'];
             $user->nick_name = $validatedData['nick_name'];
-
             if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
                 $timestamp = time();
@@ -212,7 +216,9 @@ class CourseCreateController extends Controller
     public function showCourseForm(Request $request)
     {
         $save_teacher = $request->session()->get('save_teacher');
-        if (empty($save_teacher)) return redirect('/courses/create');
+        if (empty($save_teacher)) {
+            return redirect('/courses/create');
+        }
 
         $course = $request->session()->get('course');
         $categories = CourseCategory::all();
@@ -227,8 +233,7 @@ class CourseCreateController extends Controller
         });
 
         $course_draft = auth()->user()->courseDraft->last();
-
-        if ($course === null && $course_draft) {
+        if($course === null && $course_draft) {
             $course = [
                 'draft_id'    => $course_draft->id,
                 'title'       => $course_draft['title'],
@@ -248,6 +253,7 @@ class CourseCreateController extends Controller
                 'price'       => $course_draft['price'],
             ];
         }
+
         return view('courses.create.step3_course', ['course' => $course, 'categories' => $categories]);
     }
 
@@ -418,9 +424,12 @@ class CourseCreateController extends Controller
 
 
             $draft_id = ParameterService::get($request->toArray(),'draft_id', null);
-            if ($draft_id) CourseDraft::where('id',$draft_id)->delete();
+            if ($draft_id) {
+                CourseDraft::where('id',$draft_id)->delete();
+            }
 
             DB::commit();
+
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
@@ -488,6 +497,7 @@ class CourseCreateController extends Controller
             CourseDraft::newCourseDraft($draft_param);
 
             DB::commit();
+
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;

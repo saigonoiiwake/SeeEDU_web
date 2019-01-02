@@ -45,19 +45,20 @@ class CouponsController extends Controller
 
         $course = Course::find($id);
 
-        if (!$coupon) {
-            Session::flash('info', '無此優惠券代碼');
-            return redirect()->back();
+        if(!$coupon){
+          Session::flash('info', '無此優惠券代碼');
+          return redirect()->back();
         }
 
         session()->put('coupon',[
-            'name' => $coupon->code,
-            'discount' => $coupon->discount($course->price)
+          'name' => $coupon->code,
+          'discount' => $coupon->discount($course->price)
         ]);
 
         Session::flash('success', '優惠券輸入成功');
 
         return redirect()->back();
+
     }
 
     /**
