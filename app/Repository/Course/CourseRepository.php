@@ -17,6 +17,14 @@ class CourseRepository {
         $this->model = $course;
     }
 
+    public function getCourseById($id) {
+        return $this->model->where('id', $id)->first();
+    }
+
+    public function updateCourseById($id, $update) {
+        $this->model->where('id', $id)->update($update);
+    }
+
     public function newCourseTake($count)
     {
         return $this->model->where('status', 'open')

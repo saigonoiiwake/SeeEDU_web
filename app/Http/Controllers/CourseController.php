@@ -29,18 +29,17 @@ class CourseController extends Controller
 
     public function singleCourse($id)
     {
-      $course = Course::where('id', $id)->first();
+        $course = $this->courseRepository->getCourseById($id);
 
-      if ($course->status === 'open') {
-        //update browse number
-        $course->browse_num ++;
-        $course->save();
+        if ($course->status === 'open') {
+            $update['browse_num'] = $course->browse_num + 1;
+            $this->courseRepository->updateCourseById($id, $update);
 
-        return view('courses.single')->with('course', $course);
-      } else {
-        Session::flash('info', '此課程未開放！');
-        return redirect()->back();
-      }
+            return view('courses.single')->with('course', $course);
+        } else {
+            Session::flash('info', '此課程未開放！');
+            return redirect()->back();
+        }
     }
 
 
