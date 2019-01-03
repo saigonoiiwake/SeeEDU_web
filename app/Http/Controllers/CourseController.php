@@ -87,9 +87,8 @@ class CourseController extends Controller
     // [API] Top n enroll student open courses
     public function showNew($count)
     {
-        $new_courses = $this->courseRepository->newCourseTake($count);
-        $old_count = $count - count($new_courses);
-        $old_courses = $this->courseRepository->oldCourseTake($old_count);
+        $new_courses = Course::where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortByDesc("enroll_num")->take($count);
+        $old_courses = Course::where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date")->take($count - count($new_courses));
 
         $courses = $new_courses->merge($old_courses);
         foreach($courses as $course) {
