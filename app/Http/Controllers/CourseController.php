@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Repository\Course\CourseRepository;
 use App\User;
 use App\CourseCategory;
 use App\CourseDescription;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
+    protected $courseRepository;
+
+    public function __construct(CourseRepository $courseRepository)
+    {
+        $this->courseRepository = $courseRepository;
+    }
+
     public function index()
     {
       $new_courses = Course::whereDate('from_date', '>', date('Y-m-d'))->get()->sortBy("from_date");
@@ -79,17 +87,20 @@ class CourseController extends Controller
     // [API] Top n enroll student open courses
     public function showNew($count)
     {
-      $new_courses = Course::where('status', 'open')->whereDate('from_date', '>', date('Y-m-d'))->get()->sortByDesc("enroll_num")->take($count);
-      $old_courses = Course::where('status', 'open')->whereDate('from_date', '<=', date('Y-m-d'))->get()->sortByDesc("from_date")->take($count - count($new_courses));
-      $courses = $new_courses->merge($old_courses);
-      foreach($courses as $course) {
-        $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
-        $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
-      }
-      return response()->json([
-        'status' => 'Success',
-        'data' => $courses
-      ]);
+        $new_courses = $this->courseRepository->newCourseTake($count);
+        $old_count = $count - count($new_courses);
+        $old_courses = $this->courseRepository->oldCourseTake($old_count);
+
+        $courses = $new_courses->merge($old_courses);
+        foreach($courses as $course) {
+            $course['avatar'] = $course->teacherOrTA()->get()->first()->avatar;
+            $course['teacher_name'] = $course->teacherOrTA()->get()->first()->nick_name;
+        }
+
+        $rtndata['status'] = 'Success';
+        $rtndata['data'] = $course;
+
+        return response()->json($rtndata);
     }
 
     // [API] All open courses

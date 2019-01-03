@@ -37,15 +37,16 @@ class HomeController extends Controller
         if (\Auth::check()) {
             // 已登入
             $user = \Auth::user();
-            return response()->json([
-                'status' => 'Success',
-                'data' => $user
-            ]);
-        } else {
-            return response()->json([
-                'status' => 'Fail',
-                'message' => '尚未登入'
-            ]);
+
+            $rtndata['status'] = 'Success';
+            $rtndata['data'] = $user;
+
+            return response()->json($rtndata);
         }
+
+        $rtndata['status'] = 'Fail';
+        $rtndata['message'] = '尚未登入';
+
+        return response()->json($rtndata);
     }
 }
