@@ -26,12 +26,12 @@ class CourseRepository {
             ->take($count);
     }
 
-    public function oldCourseTake()
+    public function oldCourseTake($count)
     {
         return $this->model->where('status', 'open')
             ->whereDate('from_date', '<=', date('Y-m-d'))
             ->get()
             ->sortByDesc("from_date")
-            ->take($count - count($new_courses));
+            ->take($count);
     }
 }
